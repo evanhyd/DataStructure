@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 
-template <typename T, typename Predicate>
+template <typename T, typename Predicate = std::less<T>>
 class BinaryHeap
 {
     std::vector<T> data_;
