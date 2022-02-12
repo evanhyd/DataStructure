@@ -11,7 +11,7 @@ public:
 
     bool IsEmpty() const;
     void Clear();
-    void Push(const T& item);
+    void Push(const T& val);
     void Pop(Predicate p = Predicate());
     const T& Top() const;
 
@@ -42,9 +42,9 @@ void BinaryHeap<T, Predicate>::Clear()
 }
 
 template <typename T, typename Predicate>
-void BinaryHeap<T, Predicate>::Push(const T& num)
+void BinaryHeap<T, Predicate>::Push(const T& val)
 {
-    data_.push_back(num);
+    data_.push_back(val);
     this->HeapSort(int(data_.size()) - 1);
 }
 

@@ -6,18 +6,11 @@
 #include <numeric>
 #include <ctime>
 #include <chrono>
-#include "BinaryHeap.h"
+
+#include "Stack.h"
 #include "Timer.h"
 
 using namespace std;
-
-struct C
-{
-    bool operator()(const int& a, const int& b)
-    {
-        return a > b;
-    }
-};
 
 int main()
 {
@@ -31,44 +24,70 @@ int main()
         arr.push_back(rand() % kSZ + 1);
     }
 
-    sort(arr.rbegin(), arr.rend());
+    /*sort(arr.rbegin(), arr.rend());
     for (int n : arr)
     {
         cout << n << ' ';
     }
-    std::cout << "\n\n";
-
-
-
+    std::cout << "\n\n";*/
 
 
     Timer timer;
-
     timer.Start();
-    priority_queue<int> que;
+
+    vector<int> vec;
     for (int n : arr)
     {
-        que.push(n);
+        vec.push_back(n);
     }
-    while (!que.empty())
+    vec.clear();
+    /*for (int n : vec)
     {
-        int t = que.top();
-        std::cout << t << ' ';
-        que.pop();
-    }
+        cout << n << ' ';
+    }*/
+    
     timer.Stop();
     timer.Result();
 
 
 
     timer.Start();
-    BinaryHeap<int, C> heap(arr);
-    while (!heap.IsEmpty())
+
+    
+
+    Stack<int> stk;
+    for (int n : arr)
     {
-        int t = heap.Top();
-        cout << t << ' ';
-        heap.Pop();
+        stk.Push(n);
     }
+
+    Stack<int> stk1(stk);
+    if (!stk.Empty()) std::cout << "Good copy constructor!\n";
+
+    Stack<int> stk2(std::move(stk));
+    if (stk.Empty()) std::cout << "Good move constructor!\n";
+
+    for (int i = 0; i < stk.Size(); ++i)
+    {
+        cout << stk[i] << ' ';
+    }
+    std::cout << "\n\n";
+
+
+    for (int i = 0; i < stk1.Size(); ++i)
+    {
+        cout << stk1[i] << ' ';
+    }
+    std::cout << "\n\n";
+
+
+    for (int i = 0; i < stk2.Size(); ++i)
+    {
+        cout << stk2[i] << ' ';
+    }
+    std::cout << "\n\n";
+
+
     timer.Stop();
     timer.Result();
     std::cout << "\n\n";
