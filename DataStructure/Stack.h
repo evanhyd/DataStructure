@@ -15,7 +15,7 @@ public:
 
     Stack();
     Stack(const Stack& other);
-    Stack(Stack&& other);
+    Stack(Stack&& other) noexcept;
     ~Stack();
 
     Stack& operator=(Stack s);
@@ -69,7 +69,7 @@ Stack<T>::Stack(const Stack& other) : data_(new T[other.capacity_]), capacity_(o
 }
 
 template <typename T>
-Stack<T>::Stack(Stack&& other) : Stack()
+Stack<T>::Stack(Stack&& other) noexcept : Stack()
 {
     swap(*this, other);
 }
