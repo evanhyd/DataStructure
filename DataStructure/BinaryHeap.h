@@ -91,13 +91,12 @@ const T& BinaryHeap<T, Predicate>::Top() const
 template <typename T, typename Predicate>
 void BinaryHeap<T, Predicate>::HeapSort(int i, Predicate p)
 {
-    while (i)
+    int parent = (i - 1) / 2;
+
+    while (i && p(data_[i], data_[parent]))
     {
-        int parent = (i - 1) / 2;
-
-        if (!p(data_[i], data_[parent])) break;
-
         std::swap(data_[i], data_[parent]);
         i = parent;
+        parent = (i - 1) / 2;
     }
 }
