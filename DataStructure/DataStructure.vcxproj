@@ -138,6 +138,8 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -148,12 +150,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BinaryHeap.cpp" />
+    <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryHeap.h" />
+    <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="Timer.h" />
   </ItemGroup>

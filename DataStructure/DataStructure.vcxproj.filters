@@ -11,6 +11,9 @@
     <ClCompile Include="Stack.cpp">
       <Filter>Stack</Filter>
     </ClCompile>
+    <ClCompile Include="LinkedList.cpp">
+      <Filter>LinkedList</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="BinaryHeap">
@@ -22,6 +25,9 @@
     <Filter Include="Stack">
       <UniqueIdentifier>{017f88f7-d72d-48f7-8275-a1555c3933bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="LinkedList">
+      <UniqueIdentifier>{9cdf970f-208f-425a-ab66-1ec250edd34d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryHeap.h">
@@ -32,6 +38,9 @@
     </ClInclude>
     <ClInclude Include="Stack.h">
       <Filter>Stack</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedList.h">
+      <Filter>LinkedList</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

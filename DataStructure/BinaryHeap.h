@@ -7,6 +7,7 @@ class BinaryHeap
     std::vector<T> data_;
 
 public:
+    BinaryHeap();
     BinaryHeap(const std::vector<T>& arr);
 
     bool IsEmpty() const;
@@ -19,6 +20,12 @@ private:
     void HeapSort(int i, Predicate p = Predicate());
 };
 
+
+template <typename T, typename Predicate>
+BinaryHeap<T, Predicate>::BinaryHeap() : data_()
+{
+    //empty
+}
 
 template <typename T, typename Predicate>
 BinaryHeap<T, Predicate>::BinaryHeap(const std::vector<T>& arr) : data_(arr)
@@ -62,15 +69,8 @@ void BinaryHeap<T, Predicate>::Pop(Predicate p)
         int next = i;
 
         //compare to the two child nodes
-        if (left < data_.size() && p(data_[left], data_[next]))
-        {
-            next = left;
-        }
-
-        if (right < data_.size() && p(data_[right], data_[next]))
-        {
-            next = right;
-        }
+        if (left < data_.size() && p(data_[left], data_[next])) next = left;
+        if (right < data_.size() && p(data_[right], data_[next])) next = right;
 
         //no larger element to swap
         if (next == i) break;

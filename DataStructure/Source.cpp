@@ -1,65 +1,67 @@
 #include <iostream>
+#include <numeric>
+#include <ctime>
+#include <chrono>
+#include <algorithm>
+#include <execution>
+
 #include <string>
 #include <vector>
 #include <deque>
 #include <queue>
-#include <numeric>
-#include <ctime>
-#include <chrono>
+#include <map>
+#include <unordered_map>
+
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
 
 #include "Stack.h"
+#include "LinkedList.h"
+#include "BinaryHeap.h"
 #include "Timer.h"
 
 using namespace std;
 
+
+constexpr int kSZ = 10;
+using ValType = int;
+
+
 int main()
 {
-    srand(time(NULL));
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-    constexpr int kSZ = 100000000;
-    using ValType = double;
+    srand(time(NULL));
 
     vector<ValType> arr;
     for (int i = 0; i < kSZ; ++i)
     {
-        arr.push_back(rand() % kSZ + 1);
+        arr.push_back(rand() % (kSZ * 2) + 1);
+        cout << arr[i] << ' ';
+    }
+    cout << '\n';
+
+
+    /*LinkedList<ValType> lst;
+    for (const auto& n : arr)
+    {
+        lst.PushFront(n);
     }
 
-    /*sort(arr.rbegin(), arr.rend());
-    for (int n : arr)
+    auto node = lst.Head();
+    while (node)
     {
-        cout << n << ' ';
-    }
-    std::cout << "\n\n";*/
-
-
-    Timer timer;
-    timer.Start();
-
-    vector<ValType> vec;
-    for (auto n : arr)
-    {
-        vec.push_back(n);
-    }
-    /*for (int n : vec)
-    {
-        cout << n << ' ';
-    }*/
-    
-    timer.Stop();
-    timer.Result();
-
-
-
-    timer.Start();
-
-    Stack<ValType> stk;
-    for (auto n : arr)
-    {
-        stk.Push(n);
+        cout << node->val_ << ' ';
+        node = node->next_;
     }
 
-    timer.Stop();
-    timer.Result();
-    std::cout << "\n\n";
+    std::cout << '\n';
+    cout << "Front: " << lst.Front()<< '\n';
+    cout << "Back: " << lst.Back()<< '\n';
+
+    auto lst1(std::move(lst));
+    cout << "Front: " << lst1.Front() << '\n';
+    cout << "Back: " << lst1.Back() << '\n';
+    if (!lst.Head()) cout << "Move constructor is good\n";*/
 }
