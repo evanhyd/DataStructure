@@ -150,14 +150,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BinaryHeap.cpp" />
-    <ClCompile Include="LinkedList.cpp" />
+    <ClCompile Include="ForwardList.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryHeap.h" />
-    <ClInclude Include="LinkedList.h" />
+    <ClInclude Include="ForwardList.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="Timer.h" />
   </ItemGroup>

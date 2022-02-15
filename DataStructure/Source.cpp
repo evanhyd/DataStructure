@@ -17,7 +17,7 @@
 #include <crtdbg.h>
 
 #include "Stack.h"
-#include "LinkedList.h"
+#include "ForwardList.h"
 #include "BinaryHeap.h"
 #include "Timer.h"
 
@@ -40,10 +40,12 @@ int main()
         arr.push_back(rand() % (kSZ * 2) + 1);
         cout << arr[i] << ' ';
     }
-    cout << '\n';
+
+    std::cout << '\n';
 
 
-    /*LinkedList<ValType> lst;
+
+    ForwardList<ValType> lst;
     for (const auto& n : arr)
     {
         lst.PushFront(n);
@@ -58,10 +60,8 @@ int main()
 
     std::cout << '\n';
     cout << "Front: " << lst.Front()<< '\n';
-    cout << "Back: " << lst.Back()<< '\n';
 
     auto lst1(std::move(lst));
     cout << "Front: " << lst1.Front() << '\n';
-    cout << "Back: " << lst1.Back() << '\n';
-    if (!lst.Head()) cout << "Move constructor is good\n";*/
+    if (!lst.Head()) cout << "Move constructor is good\n";
 }

@@ -47,7 +47,7 @@ public:
 template <typename T>
 void swap(Stack<T>& s1, Stack<T>& s2)
 {
-    using namespace std;
+    using std::swap;
     swap(s1.data_, s2.data_);
     swap(s1.capacity_, s2.capacity_);
     swap(s1.size_, s2.size_);
