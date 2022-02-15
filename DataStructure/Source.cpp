@@ -43,8 +43,6 @@ int main()
 
     std::cout << '\n';
 
-
-
     ForwardList<ValType> lst;
     for (const auto& n : arr)
     {

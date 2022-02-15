@@ -1,5 +1,6 @@
 #pragma once
 #include <algorithm>
+#include <cassert>
 
 template <typename T> class Stack;
 template <typename T> void swap(Stack<T>& s1, Stack<T>& s2);
@@ -25,8 +26,8 @@ public:
     int Capacity() const;
 
 
-    void Push(const T& item);
-    void Pop();
+    void PushBack(const T& item);
+    void PopBack();
     void Clear();
     void Reserve(int new_capacity);
     void ShrinkToFit();
@@ -121,7 +122,7 @@ int Stack<T>::Capacity() const
 
 
 template <typename T>
-void Stack<T>::Push(const T& item)
+void Stack<T>::PushBack(const T& item)
 {
     if (size_ == capacity_) this->Reserve(capacity_ * 2 + 1);
 
@@ -130,8 +131,9 @@ void Stack<T>::Push(const T& item)
 }
 
 template <typename T>
-void Stack<T>::Pop()
+void Stack<T>::PopBack()
 {
+    assert(!this->Empty());
     --size_;
 }
 
@@ -144,6 +146,8 @@ void Stack<T>::Clear()
 template <typename T>
 void Stack<T>::Reserve(int new_capacity)
 {
+    if (new_capacity < capacity_) return;
+
     //expand the capacity
     //+1 to avoid edge case when the capacity is 0
     capacity_ = new_capacity;
@@ -177,21 +181,25 @@ void Stack<T>::ShrinkToFit()
 template <typename T>
 T& Stack<T>::Front()
 {
+    assert(!this->Empty());
     return data_[0];
 }
 template <typename T>
 const T& Stack<T>::Front() const
 {
+    assert(!this->Empty());
     return data_[0];
 }
 template <typename T>
 T& Stack<T>::Back()
 {
+    assert(!this->Empty());
     return data_[size_-1];
 }
 template <typename T>
 const T& Stack<T>::Back() const
 {
+    assert(!this->Empty());
     return data_[size_-1];
 }
 
@@ -199,11 +207,13 @@ const T& Stack<T>::Back() const
 template <typename T>
 T& Stack<T>::operator[](int i)
 {
+    assert(0 <= i && i < size_);
     return data_[i];
 }
 template <typename T>
 const T& Stack<T>::operator[](int i) const
 {
+    assert(0 <= i && i < size_);
     return data_[i];
 }
 
