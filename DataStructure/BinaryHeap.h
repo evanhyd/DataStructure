@@ -7,7 +7,7 @@ class BinaryHeap
     std::vector<T> data_;
 
 public:
-    BinaryHeap();
+    BinaryHeap() = default;
     BinaryHeap(const std::vector<T>& arr);
 
     bool IsEmpty() const;
@@ -20,12 +20,6 @@ private:
     void HeapSort(int i, Predicate p = Predicate());
 };
 
-
-template <typename T, typename Predicate>
-BinaryHeap<T, Predicate>::BinaryHeap() : data_()
-{
-    //empty
-}
 
 template <typename T, typename Predicate>
 BinaryHeap<T, Predicate>::BinaryHeap(const std::vector<T>& arr) : data_(arr)

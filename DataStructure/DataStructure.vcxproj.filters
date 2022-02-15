@@ -14,6 +14,9 @@
     <ClCompile Include="ForwardList.cpp">
       <Filter>ForwardList</Filter>
     </ClCompile>
+    <ClCompile Include="DClass.cpp">
+      <Filter>DClass</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="BinaryHeap">
@@ -28,6 +31,36 @@
     <Filter Include="ForwardList">
       <UniqueIdentifier>{9cdf970f-208f-425a-ab66-1ec250edd34d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SparseTable">
+      <UniqueIdentifier>{4607936a-fefe-4945-aac3-bd021d7834cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SegmentTree">
+      <UniqueIdentifier>{de117e4e-1cfa-4945-ad79-f29894844827}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DisjointSet">
+      <UniqueIdentifier>{5dcbd076-1cd4-4479-82a1-577114fae98e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PrefixSumArray">
+      <UniqueIdentifier>{a74e04ad-bd41-4f5e-8488-e93ad6bce616}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DifferenceArray">
+      <UniqueIdentifier>{4f7b8daa-2e37-41d3-9918-0ac3a5e7f29c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DoublyLinkedList">
+      <UniqueIdentifier>{08b7cfa7-f8ec-4b1c-9daf-032d351ea90e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AVLTree">
+      <UniqueIdentifier>{845f6a9c-ba21-4373-914f-fbd20469a60c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HashTable">
+      <UniqueIdentifier>{1207a45f-33c8-4044-9198-cbdc36abba55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SplayTree">
+      <UniqueIdentifier>{d52737c4-9a2f-4411-881d-12801d302600}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DClass">
+      <UniqueIdentifier>{bd0ac8b8-d301-4000-aa62-f7d68cb3ccc0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryHeap.h">
@@ -41,6 +74,9 @@
     </ClInclude>
     <ClInclude Include="ForwardList.h">
       <Filter>ForwardList</Filter>
+    </ClInclude>
+    <ClInclude Include="DClass.h">
+      <Filter>DClass</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

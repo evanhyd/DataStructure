@@ -6,9 +6,9 @@
 #include <execution>
 
 #include <string>
-#include <vector>
 #include <deque>
 #include <queue>
+#include <forward_list>
 #include <map>
 #include <unordered_map>
 
@@ -16,6 +16,7 @@
 #include <stdlib.h>
 #include <crtdbg.h>
 
+#include "DClass.h"
 #include "Stack.h"
 #include "ForwardList.h"
 #include "BinaryHeap.h"
@@ -24,8 +25,8 @@
 using namespace std;
 
 
-constexpr int kSZ = 10;
-using ValType = int;
+constexpr int kSZ = 20;
+using ValType = DClass;
 
 
 int main()
@@ -34,33 +35,44 @@ int main()
 
     srand(time(NULL));
 
-    vector<ValType> arr;
+    Stack<ValType> arr;
     for (int i = 0; i < kSZ; ++i)
     {
-        arr.push_back(rand() % (kSZ * 2) + 1);
-        cout << arr[i] << ' ';
+        arr.PushBack(ValType());
+        //cout << arr[i] << ' ';
     }
+    ValType v;
+    arr.PushBack(v);
+    arr.PopBack();
 
-    std::cout << '\n';
+
+    return 1;
+
+    Timer t1;
+    t1.Start();
+
+    forward_list<ValType> lst1;
+    for (int i = 0; i < arr.Size(); ++i)
+    {
+        lst1.push_front(arr[i]);
+    }
+    
+
+    t1.Stop();
+    t1.Result();
+
+
+
+
+    t1.Start();
 
     ForwardList<ValType> lst;
-    for (const auto& n : arr)
+    for (int i = 0; i < arr.Size(); ++i)
     {
-        lst.PushFront(n);
-    }
-    lst.Reverse();
-
-    auto node = lst.Head();
-    while (node)
-    {
-        cout << node->val_ << ' ';
-        node = node->next_;
+        lst.PushFront(arr[i]);
     }
 
-    std::cout << '\n';
-    cout << "Front: " << lst.Front()<< '\n';
-
-    auto lst1(std::move(lst));
-    cout << "Front: " << lst1.Front() << '\n';
-    if (!lst.Head()) cout << "Move constructor is good\n";
+    t1.Stop();
+    t1.Result();
+    
 }

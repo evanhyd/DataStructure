@@ -27,6 +27,7 @@ public:
 
 
     void PushBack(const T& item);
+    void PushBack(T&& item);
     void PopBack();
     void Clear();
     void Reserve(int new_capacity);
@@ -82,6 +83,12 @@ Stack<T>::Stack(Stack&& other) noexcept : Stack()
 template <typename T>
 Stack<T>::~Stack()
 {
+    //delete[] data_;
+    while (size_)
+    {
+        this->PopBack();
+    }
+
     delete[] data_;
 }
 
@@ -92,6 +99,7 @@ template <typename T>
 Stack<T>& Stack<T>::operator=(Stack s)
 {
     swap(*this, s);
+    return *this;
 }
 
 
@@ -125,16 +133,22 @@ template <typename T>
 void Stack<T>::PushBack(const T& item)
 {
     if (size_ == capacity_) this->Reserve(capacity_ * 2 + 1);
-
-    //push into the stack
     data_[size_++] = item;
+}
+
+template <typename T>
+void Stack<T>::PushBack(T&& item)
+{
+    if (size_ == capacity_) this->Reserve(capacity_ * 2 + 1);
+    data_[size_++] = std::move(item);
 }
 
 template <typename T>
 void Stack<T>::PopBack()
 {
     assert(!this->Empty());
-    --size_;
+    //~data_[--size_];
+    data_[--size_].~T();
 }
 
 template <typename T>
