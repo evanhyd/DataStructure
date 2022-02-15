@@ -40,8 +40,8 @@ public:
     void PushFront(const T& item);
     void PopFront();
 
-    void Insert(Node* dest, const T& item);
-    void Delete(Node* node);
+    void InsertAfter(Node* node, const T& item);
+    void DeleteAfter(Node* node);
     void Clear();
 
 
@@ -117,12 +117,6 @@ ForwardList<T>& ForwardList<T>::operator=(ForwardList<T> lst)
 
 
 
-
-
-
-
-
-
 template <typename T>
 int ForwardList<T>::Size() const
 {
@@ -137,8 +131,6 @@ bool ForwardList<T>::IsEmpty() const
 
 
 
-
-
 template <typename T>
 void ForwardList<T>::PushFront(const T& item)
 {
@@ -149,6 +141,7 @@ void ForwardList<T>::PushFront(const T& item)
 template <typename T>
 void ForwardList<T>::PopFront()
 {
+    assert(head_);
     auto old_head = head_;
     head_ = head_->next_;
     delete old_head;
@@ -160,15 +153,22 @@ void ForwardList<T>::PopFront()
 
 
 template <typename T>
-void ForwardList<T>::Insert(Node* dest, const T& item)
+void ForwardList<T>::InsertAfter(Node* node, const T& item)
 {
-
+    assert(node);
+    Node* next_child = node->next_;
+    node->next_ = new Node{ item, next_child };
 }
 
 template <typename T>
-void ForwardList<T>::Delete(Node* node)
+void ForwardList<T>::DeleteAfter(Node* node)
 {
-
+    assert(node);
+    Node* to_delete = node->next_;
+    if (to_delete == nullptr) return;
+    
+    node->next_ = to_delete->next_;
+    delete to_delete;
 }
 
 template <typename T>
@@ -186,12 +186,14 @@ void ForwardList<T>::Clear()
 template <typename T>
 T& ForwardList<T>::Front()
 {
+    assert(!this->IsEmpty());
     return head_->val_;
 }
 
 template <typename T>
 const T& ForwardList<T>::Front() const
 {
+    assert(!this->IsEmpty());
     return head_->val_;
 }
 
@@ -213,7 +215,18 @@ auto ForwardList<T>::Head() const -> const Node*
 template <typename T>
 void ForwardList<T>::Reverse()
 {
+    Node* prev = nullptr;
+    Node* child = nullptr;
 
+    while (head_)
+    {
+        child = head_->next_;
+        head_->next_ = prev;
+        prev = head_;
+        head_ = child;
+    }
+
+    head_ = prev;
 }
 
 

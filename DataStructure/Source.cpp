@@ -48,6 +48,7 @@ int main()
     {
         lst.PushFront(n);
     }
+    lst.Reverse();
 
     auto node = lst.Head();
     while (node)
