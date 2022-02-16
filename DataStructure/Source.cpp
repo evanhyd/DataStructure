@@ -12,11 +12,7 @@
 #include <map>
 #include <unordered_map>
 
-#define _CRTDBG_MAP_ALLOC
-#include <stdlib.h>
-#include <crtdbg.h>
-
-#include "DClass.h"
+#include "debug.h"
 #include "Stack.h"
 #include "ForwardList.h"
 #include "BinaryHeap.h"
@@ -24,29 +20,20 @@
 
 using namespace std;
 
-
-constexpr int kSZ = 20;
-using ValType = DClass;
-
+constexpr int kSZ = 3;
+using ValType = DebugClass;
 
 int main()
 {
-    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-
+    DEBUG_MEMORY();
     srand(time(NULL));
+
 
     Stack<ValType> arr;
     for (int i = 0; i < kSZ; ++i)
     {
-        arr.PushBack(ValType());
-        //cout << arr[i] << ' ';
+        arr.PushBack(DebugClass());
     }
-    ValType v;
-    arr.PushBack(v);
-    arr.PopBack();
-
-
-    return 1;
 
     Timer t1;
     t1.Start();

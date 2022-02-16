@@ -14,8 +14,8 @@
     <ClCompile Include="ForwardList.cpp">
       <Filter>ForwardList</Filter>
     </ClCompile>
-    <ClCompile Include="DClass.cpp">
-      <Filter>DClass</Filter>
+    <ClCompile Include="debug.cpp">
+      <Filter>debug</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -58,7 +58,7 @@
     <Filter Include="SplayTree">
       <UniqueIdentifier>{d52737c4-9a2f-4411-881d-12801d302600}</UniqueIdentifier>
     </Filter>
-    <Filter Include="DClass">
+    <Filter Include="debug">
       <UniqueIdentifier>{bd0ac8b8-d301-4000-aa62-f7d68cb3ccc0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -75,8 +75,8 @@
     <ClInclude Include="ForwardList.h">
       <Filter>ForwardList</Filter>
     </ClInclude>
-    <ClInclude Include="DClass.h">
-      <Filter>DClass</Filter>
+    <ClInclude Include="debug.h">
+      <Filter>debug</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

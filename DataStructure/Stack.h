@@ -1,6 +1,9 @@
 #pragma once
 #include <algorithm>
 #include <cassert>
+#include "debug.h"
+
+#define DEBUG_MODE true
 
 template <typename T> class Stack;
 template <typename T> void swap(Stack<T>& s1, Stack<T>& s2);
@@ -77,21 +80,12 @@ Stack<T>::Stack(Stack&& other) noexcept : Stack()
 }
 
 
-
-
 //destructor
 template <typename T>
 Stack<T>::~Stack()
 {
-    //delete[] data_;
-    while (size_)
-    {
-        this->PopBack();
-    }
-
     delete[] data_;
 }
-
 
 
 //assignment operators copy + move
@@ -101,8 +95,6 @@ Stack<T>& Stack<T>::operator=(Stack s)
     swap(*this, s);
     return *this;
 }
-
-
 
 
 
@@ -147,8 +139,8 @@ template <typename T>
 void Stack<T>::PopBack()
 {
     assert(!this->Empty());
-    //~data_[--size_];
-    data_[--size_].~T();
+    --size_;
+    //data_[--size_].~T();
 }
 
 template <typename T>
@@ -160,10 +152,9 @@ void Stack<T>::Clear()
 template <typename T>
 void Stack<T>::Reserve(int new_capacity)
 {
-    if (new_capacity < capacity_) return;
+    if (new_capacity < size_) return;
 
-    //expand the capacity
-    //+1 to avoid edge case when the capacity is 0
+    //adjust the capacity
     capacity_ = new_capacity;
 
     //allocate the new resource first
@@ -178,16 +169,7 @@ void Stack<T>::Reserve(int new_capacity)
 template <typename T>
 void Stack<T>::ShrinkToFit()
 {
-    //shrink to current size
-    capacity_ = size_;
-
-    //allocate the new resource first
-    T* new_data = new T[capacity_];
-
-    //update the internal data
-    std::copy(data_, data_ + size_, new_data);
-    delete[] data_;
-    data_ = new_data;
+    this->Reserve(size_);
 }
 
 
