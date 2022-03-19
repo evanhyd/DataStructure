@@ -107,9 +107,11 @@ DynamicArray<T>::DynamicArray(const DynamicArray& rhs) :
 }
 
 template <typename T>
-DynamicArray<T>::DynamicArray(DynamicArray&& rhs) noexcept : DynamicArray()
+DynamicArray<T>::DynamicArray(DynamicArray&& rhs) noexcept : data_(rhs.data_), capacity_(rhs.capacity_), size_(rhs.size_)
 {
-    swap(*this, rhs);
+    rhs.data_(nullptr);
+    rhs.capacity_ = 0;
+    rhs.size_ = 0;
 }
 
 template <typename T>
@@ -156,7 +158,7 @@ bool DynamicArray<T>::IsEmpty() const
     return size_ == 0;
 }
 
-template <typename T>
+template<typename T>
 int DynamicArray<T>::Capacity() const
 {
     return capacity_;
