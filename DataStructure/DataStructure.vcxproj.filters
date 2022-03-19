@@ -8,14 +8,17 @@
     <ClCompile Include="Timer.cpp">
       <Filter>Timer</Filter>
     </ClCompile>
-    <ClCompile Include="Stack.cpp">
-      <Filter>Stack</Filter>
+    <ClCompile Include="DynamicArray.cpp">
+      <Filter>DynamicArray</Filter>
     </ClCompile>
     <ClCompile Include="ForwardList.cpp">
       <Filter>ForwardList</Filter>
     </ClCompile>
     <ClCompile Include="debug.cpp">
       <Filter>debug</Filter>
+    </ClCompile>
+    <ClCompile Include="LinkedList.cpp">
+      <Filter>LinkedList</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -24,9 +27,6 @@
     </Filter>
     <Filter Include="Timer">
       <UniqueIdentifier>{65c0fcba-4407-46e1-b958-52c198e7757a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Stack">
-      <UniqueIdentifier>{017f88f7-d72d-48f7-8275-a1555c3933bd}</UniqueIdentifier>
     </Filter>
     <Filter Include="ForwardList">
       <UniqueIdentifier>{9cdf970f-208f-425a-ab66-1ec250edd34d}</UniqueIdentifier>
@@ -46,9 +46,6 @@
     <Filter Include="DifferenceArray">
       <UniqueIdentifier>{4f7b8daa-2e37-41d3-9918-0ac3a5e7f29c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="DoublyLinkedList">
-      <UniqueIdentifier>{08b7cfa7-f8ec-4b1c-9daf-032d351ea90e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="AVLTree">
       <UniqueIdentifier>{845f6a9c-ba21-4373-914f-fbd20469a60c}</UniqueIdentifier>
     </Filter>
@@ -61,6 +58,12 @@
     <Filter Include="debug">
       <UniqueIdentifier>{bd0ac8b8-d301-4000-aa62-f7d68cb3ccc0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="LinkedList">
+      <UniqueIdentifier>{08b7cfa7-f8ec-4b1c-9daf-032d351ea90e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DynamicArray">
+      <UniqueIdentifier>{017f88f7-d72d-48f7-8275-a1555c3933bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryHeap.h">
@@ -69,14 +72,17 @@
     <ClInclude Include="Timer.h">
       <Filter>Timer</Filter>
     </ClInclude>
-    <ClInclude Include="Stack.h">
-      <Filter>Stack</Filter>
+    <ClInclude Include="DynamicArray.h">
+      <Filter>DynamicArray</Filter>
     </ClInclude>
     <ClInclude Include="ForwardList.h">
       <Filter>ForwardList</Filter>
     </ClInclude>
     <ClInclude Include="debug.h">
       <Filter>debug</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedList.h">
+      <Filter>LinkedList</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

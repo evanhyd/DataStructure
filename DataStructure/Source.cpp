@@ -13,7 +13,7 @@
 #include <unordered_map>
 
 #include "debug.h"
-#include "Stack.h"
+#include "DynamicArray.h"
 #include "ForwardList.h"
 #include "BinaryHeap.h"
 #include "Timer.h"
@@ -28,38 +28,10 @@ int main()
     DEBUG_MEMORY();
     srand(time(NULL));
 
+    DynamicArray<int> arr;
 
-    Stack<ValType> arr;
-    for (int i = 0; i < kSZ; ++i)
-    {
-        arr.PushBack(DebugClass());
-    }
-
-    Timer t1;
-    t1.Start();
-
-    forward_list<ValType> lst1;
-    for (int i = 0; i < arr.Size(); ++i)
-    {
-        lst1.push_front(arr[i]);
-    }
-    
-
-    t1.Stop();
-    t1.Result();
-
-
-
-
-    t1.Start();
-
-    ForwardList<ValType> lst;
-    for (int i = 0; i < arr.Size(); ++i)
-    {
-        lst.PushFront(arr[i]);
-    }
-
-    t1.Stop();
-    t1.Result();
-    
+    DynamicArray<int> arr0(10);
+    DynamicArray<int> arr1(10, 20);
+    DynamicArray<int> arr3(arr0);
+    arr3 = arr1;
 }
