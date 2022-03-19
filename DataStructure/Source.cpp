@@ -27,67 +27,6 @@ int main()
     DEBUG_MEMORY();
 
     vector<DC> vec;
-    cout << vec.capacity() << '\n';
-    vec.push_back(DC());
-    cout << vec.capacity() << '\n';
-    vec.push_back(DC());
-    cout << vec.capacity() << '\n';
-    vec.push_back(DC());
-    cout << vec.capacity() << '\n';
-    vec.push_back(DC());
-    cout << vec.capacity() << '\n';
-    vec.push_back(DC());
-    cout << vec.capacity() << '\n';
-    vec.push_back(DC());
-    cout << vec.capacity() << '\n';
-    vec.push_back(DC());
-    cout << vec.capacity() << '\n';
-    vec.push_back(DC());
-    cout << vec.capacity() << '\n';
-    vec.push_back(DC());
-    cout << vec.capacity() << '\n';
-    vec.push_back(DC());
-    cout << vec.capacity() << '\n';
-    vec.push_back(DC());
-    cout << vec.capacity() << '\n';
-    vec.push_back(DC());
-    cout << vec.capacity() << '\n';
-    vec.push_back(DC());
-    cout << vec.capacity() << '\n';
-    vec.push_back(DC());
-    cout << vec.capacity() << '\n';
-    vec.push_back(DC());
-    cout << vec.capacity() << '\n';
-    vec.push_back(DC());
-    cout << vec.capacity() << '\n';
-    vec.push_back(DC());
-    cout << vec.capacity() << '\n';
-    vec.push_back(DC());
-    cout << vec.capacity() << '\n';
-    vec.push_back(DC());
-    cout << vec.capacity() << '\n';
-    vec.push_back(DC());
-    cout << vec.capacity() << '\n';
-    vec.push_back(DC());
-    cout << vec.capacity() << '\n';
-    vec.push_back(DC());
-    cout << vec.capacity() << '\n';
-    vec.push_back(DC());
-    cout << vec.capacity() << '\n';
-    vec.push_back(DC());
-    cout << vec.capacity() << '\n';
-    vec.push_back(DC());
-    cout << vec.capacity() << '\n';
-    vec.push_back(DC());
-    cout << vec.capacity() << '\n';
-    vec.push_back(DC());
-    cout << vec.capacity() << '\n';
-    vec.push_back(DC());
-    cout << vec.capacity() << '\n';
-    vec.push_back(DC());
-
-    return 0;
-
     DynamicArray<DC> da;
 
 
