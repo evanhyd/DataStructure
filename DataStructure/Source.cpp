@@ -29,31 +29,41 @@ int main()
     srand(time(NULL));
 
     DynamicArray<int> arr;
-    cout << "cap: " << arr.Capacity() << '\n';
-    cout << "size: " << arr.Size() << '\n';
     arr.PushBack(10);
-    cout << "cap: " << arr.Capacity() << '\n';
-    cout << "size: " << arr.Size() << '\n';
     arr.PushBack(20);
-    cout << "cap: " << arr.Capacity() << '\n';
-    cout << "size: " << arr.Size() << '\n';
     arr.PushBack(20);
-    cout << "cap: " << arr.Capacity() << '\n';
-    cout << "size: " << arr.Size() << '\n';
-    /*arr.PushBack(20);
-    arr.PushBack(10);
-    arr.PushBack(20);*/
 
-    /*cout << "cap: " << arr.Capacity() << '\n';
+    cout << "cap: " << arr.Capacity() << '\n';
     cout << "size: " << arr.Size() << '\n';
     for (int i = 0; i < arr.Size(); ++i)
     {
         cout << arr[i] << ' ';
     }
-    cout << '\n';*/
+    cout << '\n';
+
+    arr.Reserve(999);
+
+    cout << "cap: " << arr.Capacity() << '\n';
+    cout << "size: " << arr.Size() << '\n';
+    for (int i = 0; i < arr.Size(); ++i)
+    {
+        cout << arr[i] << ' ';
+    }
+    cout << '\n';
 
 
-    /*arr.PopBack();
+    arr.PopBack();
+
+
+    cout << "cap: " << arr.Capacity() << '\n';
+    cout << "size: " << arr.Size() << '\n';
+    for (int i = 0; i < arr.Size(); ++i)
+    {
+        cout << arr[i] << ' ';
+    }
+    cout << '\n';
+
+    arr.ShrinkToFit();
 
 
     cout << "cap: " << arr.Capacity() << '\n';
@@ -74,7 +84,21 @@ int main()
     {
         cout << arr[i] << ' ';
     }
-    cout << '\n';*/
+    cout << '\n';
 
+
+    arr.ShrinkToFit();
+
+
+    cout << "cap: " << arr.Capacity() << '\n';
+    cout << "size: " << arr.Size() << '\n';
+    for (int i = 0; i < arr.Size(); ++i)
+    {
+        cout << arr[i] << ' ';
+    }
+    cout << '\n';
+
+   
+    cout << arr.At(10) << '\n';
     
 }

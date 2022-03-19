@@ -293,7 +293,7 @@ template <typename T>
 void DynamicArray<T>::ShrinkToFit()
 {
     //allocate heap with size-equivalent capacity
-    T* new_data = operator new(size_ * sizeof(T));
+    T* new_data = static_cast<T*>(operator new(size_ * sizeof(T)));
 
     //move in the old data
     std::uninitialized_move(data_, data_ + size_, new_data);
