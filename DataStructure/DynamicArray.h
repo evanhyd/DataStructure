@@ -37,6 +37,7 @@ public:
 
     //basic container operators
     bool IsEmpty() const;
+    int Capacity() const;
     int Size() const;
 
 
@@ -156,6 +157,12 @@ bool DynamicArray<T>::IsEmpty() const
 }
 
 template <typename T>
+int DynamicArray<T>::Capacity() const
+{
+    return capacity_;
+}
+
+template <typename T>
 int DynamicArray<T>::Size() const
 {
     return size_;
@@ -207,10 +214,10 @@ template <typename T>
 void DynamicArray<T>::PushBack(const T& val)
 {
     //check if exceed capacity
-    if (size_ >= capacity_) Reserve(capacity_ * 2);
+    if (size_ >= capacity_) Reserve(2 * capacity_);
 
     //copy construct
-    operator new(data_ + size_)(val);
+    new(data_ + size_) T(val);
     ++size_;
 }
 
@@ -218,10 +225,10 @@ template <typename T>
 void DynamicArray<T>::PushBack(T&& val)
 {
     //check if exceed capacity
-    if (size_ >= capacity_) Reserve(capacity_ * 2);
+    if (size_ >= capacity_) Reserve(2 * capacity_);
 
     //move construct
-    operator new(data_ + size_)(val);
+    new(data_ + size_) T(std::move(val));
     ++size_;
 }
 
@@ -267,7 +274,7 @@ void DynamicArray<T>::Reserve(int new_capacity)
     if (new_capacity > capacity_)
     {
         //allocate heap with increased capacity
-        T* new_data = operator new(new_capacity * sizeof(T));
+        T* new_data = static_cast<T*>(operator new(new_capacity * sizeof(T)));
 
         //move in the old data
         std::uninitialized_move(data_, data_ + size_, new_data);
@@ -278,7 +285,7 @@ void DynamicArray<T>::Reserve(int new_capacity)
 
         //update the container
         data_ = new_data;
-        capacity_ = size_;
+        capacity_ = new_capacity;
     }
 }
 
