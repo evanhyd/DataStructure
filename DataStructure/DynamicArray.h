@@ -24,6 +24,7 @@ public:
     using value_type = T;
 
     DynamicArray();
+    DynamicArray(std::initializer_list<T> lst);
     DynamicArray(int new_size, const T& val = T());
     DynamicArray(const DynamicArray& rhs);
     DynamicArray(DynamicArray&& rhs) noexcept;
@@ -60,11 +61,6 @@ public:
     void ShrinkToFit();
 
 
-private:
-    void ClearObj();
-    void ClearMem();
-
-
     friend void swap<T>(DynamicArray<T>& lhs, DynamicArray<T>& rhs);
 };
 
@@ -79,9 +75,17 @@ void swap(DynamicArray<T>& lhs, DynamicArray<T>& rhs)
 
 
 template <typename T>
-DynamicArray<T>::DynamicArray() : data_(static_cast<T*>(operator new(sizeof(T)))), capacity_(1), size_(0)
+DynamicArray<T>::DynamicArray() : 
+    data_(static_cast<T*>(operator new(sizeof(T)))), capacity_(1), size_(0)
 {
     //empty
+}
+
+template <typename T>
+DynamicArray<T>::DynamicArray(std::initializer_list<T> lst) : 
+    data_(static_cast<T*>(operator new(lst.size() * sizeof(T)))), capacity_(static_cast<int>(lst.size())), size_(static_cast<int>(lst.size()))
+{
+    std::uninitialized_copy(lst.begin(), lst.end(), data_);
 }
 
 template <typename T>
@@ -109,7 +113,7 @@ DynamicArray<T>::DynamicArray(const DynamicArray& rhs) :
 template <typename T>
 DynamicArray<T>::DynamicArray(DynamicArray&& rhs) noexcept : data_(rhs.data_), capacity_(rhs.capacity_), size_(rhs.size_)
 {
-    rhs.data_(nullptr);
+    rhs.data_ = nullptr;
     rhs.capacity_ = 0;
     rhs.size_ = 0;
 }

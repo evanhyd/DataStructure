@@ -20,14 +20,96 @@
 
 using namespace std;
 
-constexpr int kSZ = 3;
-using ValType = DebugClass;
+using DC = DebugClass;
 
 int main()
 {
     DEBUG_MEMORY();
-    srand(time(NULL));
 
-    
+    vector<DC> vec;
+    cout << vec.capacity() << '\n';
+    vec.push_back(DC());
+    cout << vec.capacity() << '\n';
+    vec.push_back(DC());
+    cout << vec.capacity() << '\n';
+    vec.push_back(DC());
+    cout << vec.capacity() << '\n';
+    vec.push_back(DC());
+    cout << vec.capacity() << '\n';
+    vec.push_back(DC());
+    cout << vec.capacity() << '\n';
+    vec.push_back(DC());
+    cout << vec.capacity() << '\n';
+    vec.push_back(DC());
+    cout << vec.capacity() << '\n';
+    vec.push_back(DC());
+    cout << vec.capacity() << '\n';
+    vec.push_back(DC());
+    cout << vec.capacity() << '\n';
+    vec.push_back(DC());
+    cout << vec.capacity() << '\n';
+    vec.push_back(DC());
+    cout << vec.capacity() << '\n';
+    vec.push_back(DC());
+    cout << vec.capacity() << '\n';
+    vec.push_back(DC());
+    cout << vec.capacity() << '\n';
+    vec.push_back(DC());
+    cout << vec.capacity() << '\n';
+    vec.push_back(DC());
+    cout << vec.capacity() << '\n';
+    vec.push_back(DC());
+    cout << vec.capacity() << '\n';
+    vec.push_back(DC());
+    cout << vec.capacity() << '\n';
+    vec.push_back(DC());
+    cout << vec.capacity() << '\n';
+    vec.push_back(DC());
+    cout << vec.capacity() << '\n';
+    vec.push_back(DC());
+    cout << vec.capacity() << '\n';
+    vec.push_back(DC());
+    cout << vec.capacity() << '\n';
+    vec.push_back(DC());
+    cout << vec.capacity() << '\n';
+    vec.push_back(DC());
+    cout << vec.capacity() << '\n';
+    vec.push_back(DC());
+    cout << vec.capacity() << '\n';
+    vec.push_back(DC());
+    cout << vec.capacity() << '\n';
+    vec.push_back(DC());
+    cout << vec.capacity() << '\n';
+    vec.push_back(DC());
+    cout << vec.capacity() << '\n';
+    vec.push_back(DC());
+    cout << vec.capacity() << '\n';
+    vec.push_back(DC());
+
+    return 0;
+
+    DynamicArray<DC> da;
+
+
+    Timer t1;
+    t1.Start();
+
+    for (int i = 0; i < 99999999; ++i)
+    {
+        da.PushBack(DC(i * i));
+    }
+
+    t1.Stop();
+    t1.Result();
+
+    t1.Start();
+
+    for (int i = 0; i < 99999999; ++i)
+    {
+        vec.push_back(DC(i * i));
+    }
+
+    t1.Stop();
+    t1.Result();
     
 }

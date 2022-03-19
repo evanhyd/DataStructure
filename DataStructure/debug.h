@@ -28,4 +28,9 @@ public:
 
     DebugClass& operator=(const DebugClass& rhs);
     DebugClass& operator=(DebugClass&& rhs) noexcept;
+
+    friend std::ostream& operator<<(std::ostream& output, const DebugClass& obj);
+
+private:
+    static int global_id_;
 };
