@@ -26,22 +26,37 @@ int main()
 {
     DEBUG_MEMORY();
 
-    vector<DC> vec;
-    DynamicArray<DC> da;
+    vector<int> vec(10000000);
+    DynamicArray<int> da(10000000);
+    std::generate(vec.begin(), vec.end(), rand);
+    std::copy(vec.begin(), vec.end(), da.Data());
 
 
     Timer t1;
+
     t1.Start();
 
-    for (int i = 0; i < 99999999; ++i)
-    {
-        da.PushBack(DC(i * i));
-    }
+    std::sort(vec.begin(), vec.end());
 
     t1.Stop();
     t1.Result();
 
+
     t1.Start();
+
+    std::sort(da.begin(), da.end());
+
+    t1.Stop();
+    t1.Result();
+
+
+
+    /*for (int i = 0; i < da.Size(); ++i)
+    {
+        cout << da[i] << ' ';
+    }*/
+
+    /*t1.Start();
 
     for (int i = 0; i < 99999999; ++i)
     {
@@ -49,6 +64,6 @@ int main()
     }
 
     t1.Stop();
-    t1.Result();
+    t1.Result();*/
     
 }

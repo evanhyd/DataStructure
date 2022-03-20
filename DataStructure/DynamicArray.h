@@ -49,6 +49,10 @@ public:
     const T& Front() const;
     T& Back();
     const T& Back() const;
+    T* begin();
+    const T* begin() const;
+    T* end();
+    const T* end() const;
     void PushBack(const T& val);
     void PushBack(T&& val);
     void PopBack();
@@ -59,7 +63,8 @@ public:
     void Resize(int new_size, const T& val = T());
     void Reserve(int new_capacity);
     void ShrinkToFit();
-
+    T* Data();
+    const T* Data() const;
 
     friend void swap<T>(DynamicArray<T>& lhs, DynamicArray<T>& rhs);
 };
@@ -215,6 +220,27 @@ const T& DynamicArray<T>::Back() const
     return data_[size_ - 1];
 }
 
+template <typename T>
+T* DynamicArray<T>::begin()
+{
+    return data_;
+}
+template <typename T>
+const T* DynamicArray<T>::begin() const
+{
+    return data_;
+}
+template <typename T>
+T* DynamicArray<T>::end()
+{
+    return data_ + size_;
+}
+template <typename T>
+const T* DynamicArray<T>::end() const
+{
+    return data_ + size_;
+}
+
 
 template <typename T>
 void DynamicArray<T>::PushBack(const T& val)
@@ -311,4 +337,16 @@ void DynamicArray<T>::ShrinkToFit()
     //update the container
     data_ = new_data;
     capacity_ = size_;
+}
+
+template <typename T>
+T* DynamicArray<T>::Data()
+{
+    return data_;
+}
+
+template <typename T>
+const T* DynamicArray<T>::Data() const
+{
+    return data_;
 }
