@@ -81,21 +81,21 @@ void swap(DynamicArray<T>& lhs, DynamicArray<T>& rhs)
 
 template <typename T>
 DynamicArray<T>::DynamicArray() : 
-    data_(static_cast<T*>(operator new(sizeof(T)))), capacity_(1), size_(0)
+    data_(static_cast<T*>(operator new[](sizeof(T)))), capacity_(1), size_(0)
 {
     //empty
 }
 
 template <typename T>
 DynamicArray<T>::DynamicArray(std::initializer_list<T> lst) : 
-    data_(static_cast<T*>(operator new(lst.size() * sizeof(T)))), capacity_(static_cast<int>(lst.size())), size_(static_cast<int>(lst.size()))
+    data_(static_cast<T*>(operator new[](lst.size() * sizeof(T)))), capacity_(static_cast<int>(lst.size())), size_(static_cast<int>(lst.size()))
 {
     std::uninitialized_copy(lst.begin(), lst.end(), data_);
 }
 
 template <typename T>
 DynamicArray<T>::DynamicArray(int new_size, const T& val) : 
-    data_(static_cast<T*>(operator new(new_size * sizeof(T)))), capacity_(new_size), size_(new_size)
+    data_(static_cast<T*>(operator new[](new_size * sizeof(T)))), capacity_(new_size), size_(new_size)
 {
     //fill the default value [bug](fill calls operator=, which can be undefined behavior when uses on uninitialized object)
     //std::fill(data_, data_ + size_, val);
@@ -106,7 +106,7 @@ DynamicArray<T>::DynamicArray(int new_size, const T& val) :
 
 template <typename T>
 DynamicArray<T>::DynamicArray(const DynamicArray& rhs) : 
-    data_(static_cast<T*>(operator new(rhs.capacity_ * sizeof(T)))), capacity_(rhs.capacity_), size_(rhs.size_)
+    data_(static_cast<T*>(operator new[](rhs.capacity_ * sizeof(T)))), capacity_(rhs.capacity_), size_(rhs.size_)
 {
     //copy the constructed objects [bug](copy calls operator=, which can be undefined behavior when uses on uninitialized object)
     //std::copy(rhs.data_, rhs.data_ + rhs.size_, data_);
@@ -306,7 +306,7 @@ void DynamicArray<T>::Reserve(int new_capacity)
     if (new_capacity > capacity_)
     {
         //allocate heap with increased capacity
-        T* new_data = static_cast<T*>(operator new(new_capacity * sizeof(T)));
+        T* new_data = static_cast<T*>(operator new[](new_capacity * sizeof(T)));
 
         //move in the old data
         std::uninitialized_move(data_, data_ + size_, new_data);
@@ -325,7 +325,7 @@ template <typename T>
 void DynamicArray<T>::ShrinkToFit()
 {
     //allocate heap with size-equivalent capacity
-    T* new_data = static_cast<T*>(operator new(size_ * sizeof(T)));
+    T* new_data = static_cast<T*>(operator new[](size_ * sizeof(T)));
 
     //move in the old data
     std::uninitialized_move(data_, data_ + size_, new_data);
