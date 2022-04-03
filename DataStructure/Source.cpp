@@ -32,4 +32,10 @@ int main()
     arr.Integrate(0, arr.Size() - 1);
     cout << arr.Query(0, arr.Size() - 1) << '\n';
 
+    DynamicArray<int> arr1(arr.begin(), arr.end());
+    for (auto n : arr1)
+    {
+        cout << n << " ";
+    }
+
 }

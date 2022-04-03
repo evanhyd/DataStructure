@@ -28,6 +28,8 @@ public:
     using value_type = T;
 
     DynamicArray();
+    DynamicArray(const T* arr, int size);
+    DynamicArray(const T* begin, const T* end);
     DynamicArray(std::initializer_list<T> lst);
     DynamicArray(int new_size, const T& val = T());
     DynamicArray(const DynamicArray& rhs);
@@ -94,10 +96,23 @@ DynamicArray<T>::DynamicArray() :
 }
 
 template <typename T>
-DynamicArray<T>::DynamicArray(std::initializer_list<T> lst) : 
-    data_(static_cast<T*>(operator new[](lst.size() * sizeof(T)))), capacity_(static_cast<int>(lst.size())), size_(static_cast<int>(lst.size()))
+DynamicArray<T>::DynamicArray(const T* arr, int size) :
+    data_(static_cast<T*>(operator new[](size * sizeof(T)))), capacity_(static_cast<int>(size)), size_(static_cast<int>(size))
 {
-    std::uninitialized_copy(lst.begin(), lst.end(), data_);
+    assert(size >= 0);
+    std::uninitialized_copy(arr, arr + size, data_);
+}
+
+template <typename T>
+DynamicArray<T>::DynamicArray(const T* begin, const T* end) : DynamicArray(begin, static_cast<int>(end - begin)) 
+{
+    assert(begin <= end);
+}
+
+template <typename T>
+DynamicArray<T>::DynamicArray(std::initializer_list<T> lst) : DynamicArray(lst.begin(), lst.size()) 
+{
+    assert(lst.size() >= 0);
 }
 
 template <typename T>
@@ -115,7 +130,7 @@ template <typename T>
 DynamicArray<T>::DynamicArray(const DynamicArray& rhs) : 
     data_(static_cast<T*>(operator new[](rhs.capacity_ * sizeof(T)))), capacity_(rhs.capacity_), size_(rhs.size_)
 {
-    assert(new_size >= 0);
+    assert(rhs.capacity_ >= 0);
 
     //std::copy calls operator=, which is undefined behavior when used on uninitialized object)
 
@@ -124,11 +139,8 @@ DynamicArray<T>::DynamicArray(const DynamicArray& rhs) :
 }
 
 template <typename T>
-DynamicArray<T>::DynamicArray(DynamicArray&& rhs) noexcept : 
-    data_(std::exchange(rhs.data_, nullptr)), capacity_(std::exchange(rhs.capacity_, 0)), size_(std::exchange(rhs.size_, 0))
-{
-    //empty
-}
+DynamicArray<T>::DynamicArray(DynamicArray&& rhs) noexcept :
+    data_(std::exchange(rhs.data_, nullptr)), capacity_(std::exchange(rhs.capacity_, 0)), size_(std::exchange(rhs.size_, 0)) {}
 
 template <typename T>
 DynamicArray<T>::~DynamicArray()
