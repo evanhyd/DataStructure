@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <iomanip>
+#include <chrono>
 
 #define DEBUG
 
@@ -40,3 +41,30 @@ public:
 private:
     static int global_id_;
 };
+
+
+class Timer
+{
+    std::chrono::high_resolution_clock::time_point begin_;
+    std::chrono::high_resolution_clock::time_point end_;
+
+public:
+    void Start();
+    void Stop();
+    void Result() const;
+};
+
+
+template <typename T>
+void Print([[maybe_unused]] const std::string& sep, const T& curr)
+{
+    std::cout << curr << std::flush;
+}
+
+template <typename T, typename... Args>
+void Print(const std::string& sep, const T& curr, const Args&... rest)
+{
+    std::cout << curr << sep;
+    Print(sep, rest...);
+}
+

@@ -17,7 +17,6 @@
 #include "ForwardList.h"
 #include "BinaryHeap.h"
 #include "PSDA.h"
-#include "Timer.h"
 
 using namespace std;
 
@@ -28,14 +27,13 @@ int main()
     //DEBUG_MEMORY(); //address sanitizer is incompatiable with this
 
     PSDA<int> arr{ 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-    
-    arr.Integrate(0, arr.Size() - 1);
-    cout << arr.Query(0, arr.Size() - 1) << '\n';
 
     DynamicArray<int> arr1(arr.begin(), arr.end());
     for (auto n : arr1)
     {
-        cout << n << " ";
+        Print(", ", n, n+1);
     }
+
+
 
 }

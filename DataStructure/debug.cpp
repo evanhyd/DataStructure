@@ -29,7 +29,7 @@ DebugClass::~DebugClass()
 
 DebugClass& DebugClass::operator=(const DebugClass& rhs)
 {
-    std::cout << "Copy asm: " << id_ << " <= " << rhs.id_ << std::endl;
+    std::cout << "Copy asg: " << id_ << " <= " << rhs.id_ << std::endl;
     id_ = rhs.id_;
 
     return *this;
@@ -37,7 +37,7 @@ DebugClass& DebugClass::operator=(const DebugClass& rhs)
 
 DebugClass& DebugClass::operator=(DebugClass&& rhs) noexcept
 {
-    std::cout << "Move asm: " << id_ << " <= " << rhs.id_ << std::endl;
+    std::cout << "Move asg: " << id_ << " <= " << rhs.id_ << std::endl;
     id_ = rhs.id_;
     rhs.id_ = -rhs.id_;
 
@@ -51,4 +51,23 @@ std::ostream& operator<<(std::ostream& output, const DebugClass& obj)
 {
     output << obj.id_;
     return output;
+}
+
+
+
+
+
+
+
+void Timer::Start()
+{
+    begin_ = std::chrono::high_resolution_clock::now();
+}
+void Timer::Stop()
+{
+    end_ = std::chrono::high_resolution_clock::now();
+}
+void Timer::Result() const
+{
+    std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(end_ - begin_).count() << " ms\n";
 }
