@@ -20,6 +20,9 @@
     <ClCompile Include="LinkedList.cpp">
       <Filter>LinkedList</Filter>
     </ClCompile>
+    <ClCompile Include="PSDA.cpp">
+      <Filter>PSDA</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="BinaryHeap">
@@ -40,12 +43,6 @@
     <Filter Include="DisjointSet">
       <UniqueIdentifier>{5dcbd076-1cd4-4479-82a1-577114fae98e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PrefixSumArray">
-      <UniqueIdentifier>{a74e04ad-bd41-4f5e-8488-e93ad6bce616}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="DifferenceArray">
-      <UniqueIdentifier>{4f7b8daa-2e37-41d3-9918-0ac3a5e7f29c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="AVLTree">
       <UniqueIdentifier>{845f6a9c-ba21-4373-914f-fbd20469a60c}</UniqueIdentifier>
     </Filter>
@@ -63,6 +60,9 @@
     </Filter>
     <Filter Include="DynamicArray">
       <UniqueIdentifier>{017f88f7-d72d-48f7-8275-a1555c3933bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PSDA">
+      <UniqueIdentifier>{a74e04ad-bd41-4f5e-8488-e93ad6bce616}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -83,6 +83,9 @@
     </ClInclude>
     <ClInclude Include="LinkedList.h">
       <Filter>LinkedList</Filter>
+    </ClInclude>
+    <ClInclude Include="PSDA.h">
+      <Filter>PSDA</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -51,7 +51,7 @@ public:
     const Node* Head() const;
 
     void Reverse();
-    void Sort();
+    //void Sort();
 
 
     friend void swap<T>(ForwardList<T>& lst0, ForwardList<T>& lst1);
@@ -230,8 +230,8 @@ void ForwardList<T>::Reverse()
 }
 
 
-template <typename T>
-void ForwardList<T>::Sort()
-{
-
-}
+//template <typename T>
+//void ForwardList<T>::Sort()
+//{
+//
+//}

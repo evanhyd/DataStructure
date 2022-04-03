@@ -6,11 +6,17 @@
 
 #ifdef DEBUG
 
-#define _CRTDBG_MAP_ALLOC
+//incompatiable with address sanitizer
 #include <stdlib.h>
 #include <crtdbg.h>
+#define _CRTDBG_MAP_ALLOC
 #define DEBUG_MEMORY() (_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF));
 #define DEBUG_LOG(obj, debug_mode) if (debug_mode) std::cout <<__func__<<" -> "<<__LINE__<<": "<< (obj) << std::endl;
+
+#elif
+
+#define DEBUG_MEMORY() 
+#define DEBUG_LOG(obj, debug_mode)
 
 #endif
 
