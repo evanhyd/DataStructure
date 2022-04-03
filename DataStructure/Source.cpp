@@ -31,9 +31,8 @@ int main()
     DynamicArray<int> arr1(arr.begin(), arr.end());
     for (auto n : arr1)
     {
-        Print(", ", n, n+1);
+        LOG("", "hello", '\n');
     }
-
 
 
 }

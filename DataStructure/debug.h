@@ -11,8 +11,8 @@
 #include <stdlib.h>
 #include <crtdbg.h>
 #define _CRTDBG_MAP_ALLOC
-#define DEBUG_MEMORY() (_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF));
-#define DEBUG_LOG(obj, debug_mode) if (debug_mode) std::cout <<__func__<<" -> "<<__LINE__<<": "<< (obj) << std::endl;
+#define MEMORY_GUARD() (_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF));
+#define LOG(sep, ...) std::cout <<__func__<<"-"<<__LINE__<<":"; Print(sep, __VA_ARGS__);
 
 #elif
 
@@ -67,4 +67,3 @@ void Print(const std::string& sep, const T& curr, const Args&... rest)
     std::cout << curr << sep;
     Print(sep, rest...);
 }
-
