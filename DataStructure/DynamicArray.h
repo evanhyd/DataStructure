@@ -1,9 +1,13 @@
 #pragma once
 #include <algorithm>
 #include <cassert>
-#include "debug.h"
 
 #define DEBUG_MODE true
+
+#ifdef DEBUG_MODE
+#include "debug.h"
+#endif
+
 
 
 template<typename T>
@@ -53,6 +57,9 @@ public:
     const T* begin() const;
     T* end();
     const T* end() const;
+
+
+
     void PushBack(const T& val);
     void PushBack(T&& val);
     void PopBack();
@@ -97,9 +104,9 @@ template <typename T>
 DynamicArray<T>::DynamicArray(int new_size, const T& val) : 
     data_(static_cast<T*>(operator new[](new_size * sizeof(T)))), capacity_(new_size), size_(new_size)
 {
-    //fill the default value [bug](fill calls operator=, which can be undefined behavior when uses on uninitialized object)
-    //std::fill(data_, data_ + size_, val);
+    assert(new_size >= 0);
 
+    //std::fill calls operator=, which is undefined behavior when used on uninitialized object)
     //alternative: loop + placement new
     std::uninitialized_fill(data_, data_ + size_, val);
 }
@@ -108,19 +115,19 @@ template <typename T>
 DynamicArray<T>::DynamicArray(const DynamicArray& rhs) : 
     data_(static_cast<T*>(operator new[](rhs.capacity_ * sizeof(T)))), capacity_(rhs.capacity_), size_(rhs.size_)
 {
-    //copy the constructed objects [bug](copy calls operator=, which can be undefined behavior when uses on uninitialized object)
-    //std::copy(rhs.data_, rhs.data_ + rhs.size_, data_);
+    assert(new_size >= 0);
+
+    //std::copy calls operator=, which is undefined behavior when used on uninitialized object)
 
     //alternative: loop + placement new
     std::uninitialized_copy(rhs.data_, rhs.data_ + rhs.size_, data_);
 }
 
 template <typename T>
-DynamicArray<T>::DynamicArray(DynamicArray&& rhs) noexcept : data_(rhs.data_), capacity_(rhs.capacity_), size_(rhs.size_)
+DynamicArray<T>::DynamicArray(DynamicArray&& rhs) noexcept : 
+    data_(std::exchange(rhs.data_, nullptr)), capacity_(std::exchange(rhs.capacity_, 0)), size_(std::exchange(rhs.size_, 0))
 {
-    rhs.data_ = nullptr;
-    rhs.capacity_ = 0;
-    rhs.size_ = 0;
+    //empty
 }
 
 template <typename T>
@@ -134,8 +141,6 @@ DynamicArray<T>::~DynamicArray()
 }
 
 
-
-
 //operators overloading
 template <typename T>
 DynamicArray<T>& DynamicArray<T>::operator=(DynamicArray<T> rhs)
@@ -147,12 +152,14 @@ DynamicArray<T>& DynamicArray<T>::operator=(DynamicArray<T> rhs)
 template <typename T>
 T& DynamicArray<T>::operator[](int i)
 {
+    assert(0 <= i && i < size_);
     return data_[i];
 }
 
 template <typename T>
 const T& DynamicArray<T>::operator[](int i) const
 {
+    assert(0 <= i && i < size_);
     return data_[i];
 }
 
@@ -199,24 +206,28 @@ const T& DynamicArray<T>::At(int i) const
 template <typename T>
 T& DynamicArray<T>::Front()
 {
+    assert(!this->IsEmpty());
     return data_[0];
 }
 
 template <typename T>
 const T& DynamicArray<T>::Front() const
 {
+    assert(!this->IsEmpty());
     return data_[0];
 }
 
 template <typename T>
 T& DynamicArray<T>::Back()
 {
+    assert(!this->IsEmpty());
     return data_[size_ - 1];
 }
 
 template <typename T>
 const T& DynamicArray<T>::Back() const
 {
+    assert(!this->IsEmpty());
     return data_[size_ - 1];
 }
 
@@ -240,6 +251,9 @@ const T* DynamicArray<T>::end() const
 {
     return data_ + size_;
 }
+
+
+
 
 
 template <typename T>
@@ -282,6 +296,8 @@ void DynamicArray<T>::Clear()
 template <typename T>
 void DynamicArray<T>::Resize(int new_size, const T& val)
 {
+    assert(new_size >= 0);
+
     //shrinking
     if (new_size < size_)
     {
