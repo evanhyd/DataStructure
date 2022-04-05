@@ -30,16 +30,11 @@ int main()
 {
     //MEMORY_GUARD(); //address sanitizer is incompatiable with this
 
-    short n = Read<short>();
-    int m = Read<int>();
-    long c = Read<long>();
-    long long k = Read<long long>();
+    short n;
+    int m;
+    long c;
+    long long k;
 
-    unsigned short u = Read<unsigned short>();
-    unsigned int v = Read<unsigned int>();
-    unsigned long w = Read<unsigned long>();
-    unsigned long long x = Read<unsigned long long>();
-    
-    Print("", n, m , c, k, u, v, w, x);
-
+    Input(n, m, c, k);
+    Print(", ", n, m, c, k);
 }
