@@ -57,6 +57,7 @@ public:
 };
 
 
+
 template <typename T>
 void Print([[maybe_unused]] const std::string& sep, const T& curr)
 {
@@ -69,6 +70,8 @@ void Print(const std::string& sep, const T& curr, const Args&... rest)
     std::cout << curr << sep;
     Print(sep, rest...);
 }
+
+
 
 //not portable
 #if defined _WIN32 || defined _WIN64
@@ -88,6 +91,33 @@ template <>
 unsigned short Read<unsigned short>()
 {
     unsigned short x; char c{};
+    do { c = getchar_unlocked(); } while (c < '0');
+    for (x = c - '0'; '0' <= (c = getchar_unlocked()); x = (x << 3) + (x << 1) + c - '0');
+    return x;
+}
+
+template <>
+unsigned Read<unsigned>()
+{
+    unsigned x; char c{};
+    do { c = getchar_unlocked(); } while (c < '0');
+    for (x = c - '0'; '0' <= (c = getchar_unlocked()); x = (x << 3) + (x << 1) + c - '0');
+    return x;
+}
+
+template <>
+unsigned long Read<unsigned long>()
+{
+    unsigned long x; char c{};
+    do { c = getchar_unlocked(); } while (c < '0');
+    for (x = c - '0'; '0' <= (c = getchar_unlocked()); x = (x << 3) + (x << 1) + c - '0');
+    return x;
+}
+
+template <>
+unsigned long long Read<unsigned long long>()
+{
+    unsigned long long x; char c{};
     do { c = getchar_unlocked(); } while (c < '0');
     for (x = c - '0'; '0' <= (c = getchar_unlocked()); x = (x << 3) + (x << 1) + c - '0');
     return x;
