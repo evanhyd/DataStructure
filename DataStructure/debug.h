@@ -75,10 +75,11 @@ void Print(const std::string& sep, const T& curr, const Args&... rest)
 
 //not portable
 #if defined _WIN32 || defined _WIN64
-char getchar_unlocked() { return char(_getchar_nolock()); }
+inline char getchar_unlocked() { return static_cast<char>(_getchar_nolock()); }
 #endif
 
 template <typename T>
+    requires std::signed_integral<T>
 T Read()
 {
     T x; bool neg = false; char c{};
@@ -87,37 +88,11 @@ T Read()
     return neg ? -x : x;
 }
 
-template <>
-unsigned short Read<unsigned short>()
+template <typename T>
+    requires std::unsigned_integral<T>
+T Read()
 {
-    unsigned short x; char c{};
-    do { c = getchar_unlocked(); } while (c < '0');
-    for (x = c - '0'; '0' <= (c = getchar_unlocked()); x = (x << 3) + (x << 1) + c - '0');
-    return x;
-}
-
-template <>
-unsigned Read<unsigned>()
-{
-    unsigned x; char c{};
-    do { c = getchar_unlocked(); } while (c < '0');
-    for (x = c - '0'; '0' <= (c = getchar_unlocked()); x = (x << 3) + (x << 1) + c - '0');
-    return x;
-}
-
-template <>
-unsigned long Read<unsigned long>()
-{
-    unsigned long x; char c{};
-    do { c = getchar_unlocked(); } while (c < '0');
-    for (x = c - '0'; '0' <= (c = getchar_unlocked()); x = (x << 3) + (x << 1) + c - '0');
-    return x;
-}
-
-template <>
-unsigned long long Read<unsigned long long>()
-{
-    unsigned long long x; char c{};
+    T x; char c{};
     do { c = getchar_unlocked(); } while (c < '0');
     for (x = c - '0'; '0' <= (c = getchar_unlocked()); x = (x << 3) + (x << 1) + c - '0');
     return x;
