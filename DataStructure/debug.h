@@ -3,21 +3,23 @@
 #include <iomanip>
 #include <chrono>
 
-#define DEBUG
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 //incompatiable with address sanitizer
 #include <stdlib.h>
 #include <crtdbg.h>
+#include <string>
 #define _CRTDBG_MAP_ALLOC
+
+//functions
 #define MEMORY_GUARD() (_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF));
-#define LOG(sep, ...) std::cout <<__func__<<"-"<<__LINE__<<":"; Print(sep, __VA_ARGS__);
+#define LOG(sep, ...) Print(sep, std::string(__FUNCTION__) + std::string("-") + std::to_string(__LINE__), __VA_ARGS__);
 
-#elif
+#else
 
-#define DEBUG_MEMORY() 
-#define DEBUG_LOG(obj, debug_mode)
+#define MEMORY_GUARD() 
+#define LOG(sep, ...)
 
 #endif
 
@@ -66,4 +68,27 @@ void Print(const std::string& sep, const T& curr, const Args&... rest)
 {
     std::cout << curr << sep;
     Print(sep, rest...);
+}
+
+//not portable
+#if defined _WIN32 || defined _WIN64
+char getchar_unlocked() { return char(_getchar_nolock()); }
+#endif
+
+template <typename T>
+T Read()
+{
+    T x; bool neg = false; char c{};
+    do { c = getchar_unlocked(); if (c == '-') neg = true; } while (c < '0');
+    for (x = c - '0'; '0' <= (c = getchar_unlocked()); x = (x << 3) + (x << 1) + c - '0') {}
+    return neg ? -x : x;
+}
+
+template <>
+unsigned short Read<unsigned short>()
+{
+    unsigned short x; char c{};
+    do { c = getchar_unlocked(); } while (c < '0');
+    for (x = c - '0'; '0' <= (c = getchar_unlocked()); x = (x << 3) + (x << 1) + c - '0');
+    return x;
 }
