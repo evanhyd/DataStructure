@@ -91,8 +91,7 @@ void Print(const std::string& sep, const T& curr, const Args&... rest)
 inline char getchar_unlocked() { return static_cast<char>(_getchar_nolock()); }
 #endif
 
-template <typename T>
-    requires std::signed_integral<T>
+template <std::signed_integral T>
 T Read()
 {
     T x; bool neg = false; char c{};
@@ -101,8 +100,7 @@ T Read()
     return neg ? -x : x;
 }
 
-template <typename T>
-    requires std::unsigned_integral<T>
+template <std::unsigned_integral T>
 T Read()
 {
     T x; char c{};

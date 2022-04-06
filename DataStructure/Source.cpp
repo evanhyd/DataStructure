@@ -25,16 +25,9 @@ using DC = DebugClass;
 
 
 
-
 int main()
 {
     //MEMORY_GUARD(); //address sanitizer is incompatiable with this
 
-    short n;
-    int m;
-    long c;
-    long long k;
-
-    Input(n, m, c, k);
-    Print(", ", n, m, c, k);
+    int a = Read<int>();
 }
