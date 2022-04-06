@@ -59,6 +59,19 @@ public:
 
 
 template <typename T>
+void Input(T& curr)
+{
+    std::cin >> curr;
+}
+
+template <typename T, typename... Args>
+void Input(T& curr, Args&... rest)
+{
+    std::cin >> curr;
+    Input(rest...);
+}
+
+template <typename T>
 void Print([[maybe_unused]] const std::string& sep, const T& curr)
 {
     std::cout << curr << std::flush;
@@ -96,17 +109,4 @@ T Read()
     do { c = getchar_unlocked(); } while (c < '0');
     for (x = c - '0'; '0' <= (c = getchar_unlocked()); x = (x << 3) + (x << 1) + c - '0');
     return x;
-}
-
-template <typename T>
-void Input(T& curr)
-{
-    curr = Read<T>();
-}
-
-template <typename T, typename... Args>
-void Input(T& curr, Args&... rest)
-{
-    curr = Read<T>();
-    Input(rest...);
 }
