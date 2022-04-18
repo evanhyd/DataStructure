@@ -56,3 +56,14 @@ std::ostream& cug::memory::operator<<(std::ostream& output, const DebugClass& ob
 }
 
 int DebugClass::global_id_ = 1;
+
+
+
+
+
+
+
+
+
+//POOL
+std::unordered_map<void*, std::pair<size_t, std::string>> Pool::allocated_;
