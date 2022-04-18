@@ -25,9 +25,10 @@ using DC = DebugClass;
 
 
 
+
 int main()
 {
     //MEMORY_GUARD(); //address sanitizer is incompatiable with this
 
-    int a = Read<int>();
+    LOG('|', 2, 3, 4, 5);
 }
