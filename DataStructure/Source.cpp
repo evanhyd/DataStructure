@@ -17,18 +17,27 @@
 #include "BinaryHeap.h"
 #include "PSDA.h"
 
-#include "debug.h"
+#include "io.h"
+#include "memory.h"
+#include "time.h"
 
 using namespace std;
 
-using DC = DebugClass;
-
-
+using DC = cug::memory::DebugClass;
 
 
 int main()
 {
     //MEMORY_GUARD(); //address sanitizer is incompatiable with this
 
-    LOG('|', 2, 3, 4, 5);
+    LOG(" ", "my", "favorite", "cat", "is", 123, 'c', "years old");
+    DC a;
+    cout << a << '\n';
+
+    cug::time::Timer t;
+    t.Start();
+    t.Stop();
+    t.Result();
+
+    cout << a << '\n';
 }

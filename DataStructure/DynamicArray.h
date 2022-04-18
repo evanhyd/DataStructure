@@ -1,14 +1,7 @@
 #pragma once
+#include <iostream>
 #include <algorithm>
 #include <cassert>
-
-#define DEBUG_MODE true
-
-#ifdef DEBUG_MODE
-#include "debug.h"
-#endif
-
-
 
 template<typename Var>
 class DynamicArray;

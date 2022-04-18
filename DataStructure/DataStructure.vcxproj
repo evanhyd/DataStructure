@@ -164,20 +164,24 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BinaryHeap.cpp" />
-    <ClCompile Include="debug.cpp" />
+    <ClCompile Include="io.cpp" />
     <ClCompile Include="ForwardList.cpp" />
     <ClCompile Include="LinkedList.cpp" />
+    <ClCompile Include="memory.cpp" />
     <ClCompile Include="PSDA.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="DynamicArray.cpp" />
+    <ClCompile Include="time.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryHeap.h" />
-    <ClInclude Include="debug.h" />
+    <ClInclude Include="io.h" />
     <ClInclude Include="ForwardList.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="DynamicArray.h" />
+    <ClInclude Include="memory.h" />
     <ClInclude Include="PSDA.h" />
+    <ClInclude Include="time.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

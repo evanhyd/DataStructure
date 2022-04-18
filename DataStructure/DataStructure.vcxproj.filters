@@ -11,14 +11,20 @@
     <ClCompile Include="ForwardList.cpp">
       <Filter>ForwardList</Filter>
     </ClCompile>
-    <ClCompile Include="debug.cpp">
-      <Filter>debug</Filter>
-    </ClCompile>
     <ClCompile Include="LinkedList.cpp">
       <Filter>LinkedList</Filter>
     </ClCompile>
     <ClCompile Include="PSDA.cpp">
       <Filter>PSDA</Filter>
+    </ClCompile>
+    <ClCompile Include="io.cpp">
+      <Filter>cug\io</Filter>
+    </ClCompile>
+    <ClCompile Include="memory.cpp">
+      <Filter>cug\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="time.cpp">
+      <Filter>cug\time</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -46,9 +52,6 @@
     <Filter Include="SplayTree">
       <UniqueIdentifier>{d52737c4-9a2f-4411-881d-12801d302600}</UniqueIdentifier>
     </Filter>
-    <Filter Include="debug">
-      <UniqueIdentifier>{bd0ac8b8-d301-4000-aa62-f7d68cb3ccc0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="LinkedList">
       <UniqueIdentifier>{08b7cfa7-f8ec-4b1c-9daf-032d351ea90e}</UniqueIdentifier>
     </Filter>
@@ -57,6 +60,18 @@
     </Filter>
     <Filter Include="PSDA">
       <UniqueIdentifier>{a74e04ad-bd41-4f5e-8488-e93ad6bce616}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cug">
+      <UniqueIdentifier>{bd0ac8b8-d301-4000-aa62-f7d68cb3ccc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cug\io">
+      <UniqueIdentifier>{33161442-5503-4c08-8f92-89dce88b94be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cug\memory">
+      <UniqueIdentifier>{eef857e0-232f-494b-8295-83087e42c803}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cug\time">
+      <UniqueIdentifier>{b860c2e4-228d-439c-ad32-7ba3d4adeea2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -69,14 +84,20 @@
     <ClInclude Include="ForwardList.h">
       <Filter>ForwardList</Filter>
     </ClInclude>
-    <ClInclude Include="debug.h">
-      <Filter>debug</Filter>
-    </ClInclude>
     <ClInclude Include="LinkedList.h">
       <Filter>LinkedList</Filter>
     </ClInclude>
     <ClInclude Include="PSDA.h">
       <Filter>PSDA</Filter>
+    </ClInclude>
+    <ClInclude Include="io.h">
+      <Filter>cug\io</Filter>
+    </ClInclude>
+    <ClInclude Include="memory.h">
+      <Filter>cug\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="time.h">
+      <Filter>cug\time</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
