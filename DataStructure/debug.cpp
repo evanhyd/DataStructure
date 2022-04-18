@@ -3,8 +3,6 @@
 
 
 
-
-
 //DEBUG CLASS
 DebugClass::DebugClass() : id_(global_id_++)
 {
@@ -56,6 +54,9 @@ std::ostream& operator<<(std::ostream& output, const DebugClass& obj)
 }
 
 int DebugClass::global_id_ = 1;
+
+
+
 
 
 //TIMER
