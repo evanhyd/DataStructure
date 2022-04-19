@@ -60,17 +60,9 @@ using namespace cug::memory;
 using namespace cug::time;
 
 
-
-void Bar(const auto&... num)
-{
-    (cout << ... << num);
-}
-
-
 int main()
-{
-    
+{    
     int a, b, c, d, e;
     Input(a, b, c, d, e);
-    Print(a, b, c, d, e);
+    Output(a, b, c, d, e);
 }
