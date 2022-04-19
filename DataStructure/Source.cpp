@@ -1,17 +1,35 @@
 #include <iostream>
-#include <numeric>
+#include <iomanip>
+#include <fstream>
+#include <sstream>
+#include <cstdio>
+
+#include <string>
+#include <vector>
+#include <deque>
+#include <list>
+#include <forward_list>
+#include <set>
+#include <map>
+#include <unordered_set>
+#include <unordered_map>
+#include <stack>
+#include <queue>
+#include <thread>
+
+#include <bit>
+#include <any>
+#include <cmath>
 #include <ctime>
+#include <climits>
+#include <cassert>
+#include <numeric>
 #include <chrono>
+#include <random>
+#include <memory>
 #include <algorithm>
 #include <execution>
 #include <source_location>
-
-#include <string>
-#include <deque>
-#include <queue>
-#include <forward_list>
-#include <map>
-#include <unordered_map>
 
 
 #include "DynamicArray.h"
@@ -23,57 +41,36 @@
 #include "memory.h"
 #include "time.h"
 
-using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using U32 = unsigned int;
+using U64 = unsigned long long;
 
+template <typename T, typename S>
+using google_map = std::map<T, S>;
+
+constexpr ull kMod = 1000000007;
+
+static thread_local inline volatile constexpr const unsigned long long int* const __p = nullptr;
+
+
+using namespace std;
 using namespace cug::io;
 using namespace cug::memory;
 using namespace cug::time;
 
-template <typename... Ts>
-void log(Ts&&... ts, const source_location& loc = source_location::current())
-{
-    std::cout << loc.function_name() << " line " << loc.line() << ": ";
 
-    ((std::cout << std::forward<Ts>(ts) << " "), ...);
-    std::cout << '\n';
+
+void Bar(const auto&... num)
+{
+    (cout << ... << num);
 }
 
-struct Bar
-{
-    int a;
-    double b;
-    string c;
-};
-
-void Test(auto* p)
-{
-    Pool::Deallocate(p);
-    Pool::Deallocate(p);
-}
 
 int main()
 {
-
-    while (true)
-    {
-
-        try
-        {
-            auto* p = Pool::Allocate<Bar>(2, Bar(1, 2.0, "cat"), Bar(3, 4.5, "dog"));
-            Print(',', p->a, p->b, p->c,'\n');
-            Print(',', p[1].a, p[1].b, p[1].c, '\n');
-
-            Pool::PrintPool();
-
-            Test(p);
-
-            Pool::PrintPool();
-
-        }
-        catch (const std::exception& error)
-        {
-            cout << error.what() << '\n';
-        }
-    }
-
+    
+    int a, b, c, d, e;
+    Input(a, b, c, d, e);
+    Print(a, b, c, d, e);
 }

@@ -1,47 +1,41 @@
 #pragma once
 #include <iostream>
-
-//MSVC built-in debug flag
-#ifdef _DEBUG
-#include <string>
-
-//functions
-#define LOG(sep, ...) cug::io::Print(sep, std::string(__FUNCTION__"_") + std::to_string(__LINE__), __VA_ARGS__)
-
-#else
-#define LOG(sep, ...)
-#endif
-
-
-//not portable
-#if defined _WIN32 || defined _WIN64
-inline char getchar_unlocked() { return static_cast<char>(_getchar_nolock()); }
-#endif
+#include <source_location>
 
 
 
 namespace cug::io
 {
-    void Input(auto& curr)
+    void Input(auto&... rest)
     {
-        std::cin >> curr;
+        (std::cin >> ... >> rest);
     }
-    void Input(auto& curr, auto&... rest)
+    void Output(const auto&... param)
     {
-        std::cin >> curr;
-        Input(rest...);
-    }
-    void Print([[maybe_unused]] const auto& sep, const auto& curr)
-    {
-        std::cout << curr << std::flush;
-    }
-    void Print(const auto& sep, const auto& curr, const auto&... rest)
-    {
-        std::cout << curr << sep;
-        Print(sep, rest...);
+        (std::cout << ... << param);
     }
 
+//#ifdef _DEBUG
+//
+//    void Log()
+//    {
+//        //std::cout << srce.function_name() << '_' << srce.line() << ':';
+//        //cug::io::Print(log_info.sep_, rest...);
+//    }
+//#else
+//    template <typename T>
+//    void Log(const LogInfo<T>& log_info, const auto&... rest)
+//    {
+//        //empty
+//    }
+//#endif
 
+
+
+    //not portable
+#if defined _WIN32 || defined _WIN64
+    inline char getchar_unlocked() { return static_cast<char>(_getchar_nolock()); }
+#endif
     template <std::signed_integral T>
     T Read()
     {
@@ -59,6 +53,5 @@ namespace cug::io
         for (x = c - '0'; '0' <= (c = getchar_unlocked()); x = (x << 3) + (x << 1) + c - '0');
         return x;
     }
-
 };
 

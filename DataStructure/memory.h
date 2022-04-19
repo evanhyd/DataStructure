@@ -14,10 +14,10 @@
 #define _CRTDBG_MAP_ALLOC
 
 //functions
-#define MEMORY_GUARD() (_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF))
+#define MSVC_MEMORY_GUARD() (_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF))
 
 #else
-#define MEMORY_GUARD() 
+#define MSVC_MEMORY_GUARD() 
 #endif
 
 namespace cug::memory
@@ -50,14 +50,13 @@ namespace cug::memory
     class Pool
     {
     public:
-        class AllocateInfo
+        class AllocInfo
         {
             const int num_;
             const std::source_location srce_;
 
         public:
-            AllocateInfo(int num, const std::source_location srce = std::source_location::current()) : num_(num), srce_(srce) {}
-
+            AllocInfo(const int num, const std::source_location srce = std::source_location::current()) : num_(num), srce_(srce) {}
             friend class Pool;
         };
 
@@ -69,7 +68,7 @@ namespace cug::memory
     public:
 
         template <typename T, typename... Args>
-        static T* Allocate(const AllocateInfo& alloc_info, Args&&... args)
+        static T* Allocate(const AllocInfo& alloc_info, Args&&... args)
         {
             if (alloc_info.num_ <= 0)
             {
