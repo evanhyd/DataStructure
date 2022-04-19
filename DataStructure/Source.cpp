@@ -61,8 +61,8 @@ using namespace cug::time;
 
 
 int main()
-{    
-    int a, b, c, d, e;
-    Input(a, b, c, d, e);
-    Output(a, b, c, d, e);
+{
+    //Output("Hello I am {}, I earned {:20l} dollars through NFT, {:.2f} dollars in total\n", "cats", 30.5, 3.1415926535);
+    //Output("hello garry\n");
+    Log("debug this line");
 }

@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include <iomanip>
+#include <cassert>
 #include <source_location>
 
 
@@ -10,25 +12,124 @@ namespace cug::io
     {
         (std::cin >> ... >> rest);
     }
-    void Output(const auto&... param)
+
+    inline void Output(const char* hints)
     {
-        (std::cout << ... << param);
+        std::cout << hints;
     }
 
-//#ifdef _DEBUG
-//
-//    void Log()
-//    {
-//        //std::cout << srce.function_name() << '_' << srce.line() << ':';
-//        //cug::io::Print(log_info.sep_, rest...);
-//    }
-//#else
-//    template <typename T>
-//    void Log(const LogInfo<T>& log_info, const auto&... rest)
-//    {
-//        //empty
-//    }
-//#endif
+    void Output(const char* hints, const auto& val, const auto&... param)
+    {
+        while (*hints)
+        {
+            if (*hints == '{')
+            {
+                //check unexpected end of string
+                ++hints;
+                assert(*hints);
+
+
+                //check for width length
+                int c_width = 0;
+                if (*hints == ':')
+                {
+                    ++hints;
+
+                    while (isdigit(*hints))
+                    {
+                        c_width *= 10;
+                        c_width += *hints - '0';
+                        ++hints;
+                    }
+                }
+
+
+                //check for float precision
+                if (*hints == '.')
+                {
+                    ++hints;
+
+                    int f_precision = 0;
+                    while (isdigit(*hints))
+                    {
+                        f_precision *= 10;
+                        f_precision += *hints - '0';
+                        ++hints;
+                    }
+                    std::cout << std::setprecision(f_precision);
+
+                    //check for decimal fixed hint
+                    if (*hints == 'f')
+                    {
+                        std::cout << std::fixed;
+                        ++hints;
+                    }
+                }
+
+
+                //check for alignment
+                if (*hints == 'l')
+                {
+                    std::cout << std::left;
+                    ++hints;
+                }
+                else if (*hints == 'r')
+                {
+                    std::cout << std::right;
+                    ++hints;
+                }
+                else if (*hints == 'i')
+                {
+                    std::cout << std::internal;
+                    ++hints;
+                }
+
+                assert(*hints == '}');
+
+                //print
+                std::cout << std::setw(c_width) << val;
+
+                //recursively call to update the print argument
+                return cug::io::Output(++hints, param...);
+            }
+            else
+            {
+                putchar(*hints);
+            }
+
+            ++hints;
+        }
+    }
+
+#ifdef _DEBUG
+
+    template <typename... Args>
+    class Log
+    {
+    public:
+        Log(const Args&... args, const std::source_location srce = std::source_location::current())
+        {
+            std::cout << srce.function_name()<<'_'<<srce.line()<<":";
+            Output(args...);
+        }
+    };
+
+    template <typename... Args>
+    Log(const Args&...)->Log<Args...>;
+
+
+#else
+
+    class Log
+    {
+    public:
+        Log(const auto&... args)
+        {
+            //empty
+        }
+    };
+
+#endif
 
 
 
@@ -55,3 +156,4 @@ namespace cug::io
     }
 };
 
+    
