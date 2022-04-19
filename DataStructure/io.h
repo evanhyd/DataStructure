@@ -13,10 +13,7 @@ namespace cug::io
         (std::cin >> ... >> rest);
     }
 
-    inline void Output(const char* hints)
-    {
-        std::cout << hints;
-    }
+    void Output(const char* hints);
 
     void Output(const char* hints, const auto& val, const auto&... param)
     {

@@ -62,7 +62,11 @@ using namespace cug::time;
 
 int main()
 {
-    //Output("Hello I am {}, I earned {:20l} dollars through NFT, {:.2f} dollars in total\n", "cats", 30.5, 3.1415926535);
-    //Output("hello garry\n");
-    Log("debug this line");
+    string name;
+    int age;
+    double income;
+    Input(name, age, income);
+    Output("Hello I am {:20i}, {} years old, earn {:.2f}$ every day\n", name, age, income);
+
+    Log("Stop");
 }
