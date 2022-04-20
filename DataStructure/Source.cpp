@@ -69,12 +69,9 @@ struct Sum
     {
         return a + b;
     }
-};
 
-bool Bar(int a, int b)
-{
-    return a = b;
-}
+    static const int init_value = 0;
+};
 
 int main()
 {
@@ -82,5 +79,26 @@ int main()
     for_each(vec.begin(), vec.end(), [](auto& val) {val = GetRandom(1, 5); });
 
     SegmentTree<int, Sum> tree(vec);
-    tree.PrintTree(4);
+
+    while (true)
+    {
+        tree.PrintTree(4);
+        int opt;
+        Output("#1. Query\n#2. Update\n");
+        Input(opt);
+
+        if (opt == 1)
+        {
+            int a, b;
+            Input(a, b);
+            Output("Query Result: {}\n", tree.Query(a, b));
+        }
+        else
+        {
+            int a, b;
+            Input(a, b);
+            tree.Update(a, b);
+        }
+    }
+
 }
