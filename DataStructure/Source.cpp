@@ -78,9 +78,9 @@ bool Bar(int a, int b)
 
 int main()
 {
-    vector<int> vec(20);
-    for_each(vec.begin(), vec.end(), [](auto& val) {val = GetRandom(1, 100); });
+    vector<int> vec(16);
+    for_each(vec.begin(), vec.end(), [](auto& val) {val = GetRandom(1, 5); });
 
     SegmentTree<int, Sum> tree(vec);
-    tree.PrintTree(3);
+    tree.PrintTree(4);
 }

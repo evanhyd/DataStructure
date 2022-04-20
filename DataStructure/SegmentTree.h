@@ -44,22 +44,29 @@ SegmentTree<T, BinOp>::SegmentTree(const std::vector<T>& lst) : tree_(lst.size()
 template <typename T, typename BinOp>
 void SegmentTree<T, BinOp>::PrintTree(int width) const
 {
+    //notice the log2 and pow 2 does not cancel out each other due to int trancation
+    //get the height of the tree
     int height = static_cast<int>(std::log2(tree_.size()));
-    int max_space = static_cast<int>(pow(2.0, height)) * width;
 
-    for (int curr_tw = 0, max_tw = 1, curr_height = 0, i = 1; i < tree_.size(); ++i)
+    //get the number of elements at the bottom row
+    int space = static_cast<int>(std::pow(2.0, height)) * width;
+
+    for (int curr_tw = 0, max_tw = 1, i = 1; i < tree_.size(); ++i)
     {
-        int num_len = static_cast<int>(std::log10(tree_[i])) + 1;
-        //Output("{} && {} => {}\n", 4.0, curr_height, static_cast<int>(4.0, curr_height));
-        int space =  std::min(max_space / static_cast<int>(std::pow(4.0, curr_height)) - num_len, 1);
-        int left = space / 4 + space % 2, right = space / 4;
+        //get the length of each segment
+        int segment_space = space / max_tw;
+
+        //subtract the text length of the number
+        segment_space -= static_cast<int>(std::log10(tree_[i])) + 1;;
+        int left = segment_space / 2;
+        int right = left + segment_space % 2;
+
         std::cout << std::string(left, ' ') << tree_[i] << std::string(right, ' ');
 
         if (++curr_tw == max_tw)
         {
             curr_tw = 0;
             max_tw *= 2;
-            ++curr_height;
             std::cout << '\n';
         }
     }
@@ -70,8 +77,6 @@ void SegmentTree<T, BinOp>::PrintTree(int width) const
 template<typename T, typename BinOp>
 void SegmentTree<T, BinOp>::BuildParent(BinOp op)
 {
-    Log("tree size {}\n", tree_.size());
-    
     for (int i = static_cast<int>(tree_.size()) / 2 - 1; i >= 1; --i)
     {
         tree_[i] = op(tree_[i * 2], tree_[i * 2 + 1]);
