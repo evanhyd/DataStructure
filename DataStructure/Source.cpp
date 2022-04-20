@@ -62,11 +62,21 @@ using namespace cug::time;
 
 int main()
 {
+    /*std::ios cout_state(nullptr);
+    cout_state.copyfmt(std::cout);
+
+    double a = 3.1415926535;
+    cout <<setw(10) << left << setprecision(2) << a << '\n';
+
+    std::cout.copyfmt(cout_state);
+
+    cout << a << '\n';*/
+
     string name;
     int age;
     double income;
     Input(name, age, income);
-    Output("Hello I am {:20i}, {} years old, earn {:.2f}$ every day\n", name, age, income);
+    Output("Hello I am {:20l}, {:.3f} years old, earn {}$ every day\n", name, age, income);
 
     Log("Stop");
 }

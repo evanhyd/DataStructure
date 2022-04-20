@@ -26,6 +26,11 @@ namespace cug::io
                 assert(*hints);
 
 
+                //copy the original cout format
+                std::ios cout_state(nullptr);
+                cout_state.copyfmt(std::cout);
+
+
                 //check for width length
                 int c_width = 0;
                 if (*hints == ':')
@@ -83,8 +88,9 @@ namespace cug::io
 
                 assert(*hints == '}');
 
-                //print
+                //print and then reset format
                 std::cout << std::setw(c_width) << val;
+                std::cout.copyfmt(cout_state);
 
                 //recursively call to update the print argument
                 return cug::io::Output(++hints, param...);
