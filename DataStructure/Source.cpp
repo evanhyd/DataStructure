@@ -65,20 +65,19 @@ using namespace cug::random;
 
 struct Sum
 {
-    int operator()(const int &a, const int &b)
+    ull operator()(const ull &a, const ull &b)
     {
-        return a + b;
+        return lcm(a, b);
     }
 
-    static const int init_value = 0;
+    static constexpr ull init_value = INT_MAX;
 };
 
 int main()
 {
-    vector<int> vec(16);
-    for_each(vec.begin(), vec.end(), [](auto& val) {val = GetRandom(1, 5); });
-
-    SegmentTree<int, Sum> tree(vec);
+    vector<ull> vec(16);
+    for_each(vec.begin(), vec.end(), [](auto& val) {val = GetRandom(1ull, 10ull); });
+    SegmentTree<ull, Sum> tree(vec);
 
     while (true)
     {

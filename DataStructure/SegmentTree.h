@@ -8,8 +8,14 @@
 
 using namespace cug::io;
 
-template <typename T, typename BinOp>
-    requires std::same_as<T, std::remove_const_t<decltype(BinOp::init_value)>>
+template <typename BinOp, typename T>
+concept binary_predicate = requires(BinOp op, T t)
+{
+    std::same_as<decltype(BinOp::init_value), T>;
+    { op.operator()(t, t) } -> std::same_as<T>;
+};
+
+template <typename T, binary_predicate<T> BinOp>
 class SegmentTree
 {
     std::vector<T> tree_;
@@ -29,16 +35,14 @@ private:
 };
 
 
-template <typename T, typename BinOp>
-    requires std::same_as<T, std::remove_const_t<decltype(BinOp::init_value)>>
+template <typename T, binary_predicate<T> BinOp>
 SegmentTree<T, BinOp>::SegmentTree(std::initializer_list<T> lst) : tree_(lst.size() * 2)
 {
     std::copy(lst.begin(), lst.end(), tree_.begin() + tree_.size() / 2);
     this->BuildParent();
 }
 
-template <typename T, typename BinOp>
-    requires std::same_as<T, std::remove_const_t<decltype(BinOp::init_value)>>
+template <typename T, binary_predicate<T> BinOp>
 SegmentTree<T, BinOp>::SegmentTree(const std::vector<T>& lst) : tree_(lst.size() * 2)
 {
     std::copy(lst.begin(), lst.end(), tree_.begin() + tree_.size() / 2);
@@ -46,8 +50,7 @@ SegmentTree<T, BinOp>::SegmentTree(const std::vector<T>& lst) : tree_(lst.size()
 }
 
 
-template <typename T, typename BinOp>
-    requires std::same_as<T, std::remove_const_t<decltype(BinOp::init_value)>>
+template <typename T, binary_predicate<T> BinOp>
 void SegmentTree<T, BinOp>::PrintTree(int width) const
 {
     //notice the log2 and pow 2 does not cancel out each other due to int trancation
@@ -63,7 +66,8 @@ void SegmentTree<T, BinOp>::PrintTree(int width) const
         int segment_space = space / max_tw;
 
         //subtract the text length of the number
-        int num_len = 1, temp_num = tree_[i];
+        int num_len = 1;
+        T temp_num = tree_[i];
         if (temp_num < 0) num_len += 1;
         while (temp_num /= 10)
         {
@@ -85,8 +89,7 @@ void SegmentTree<T, BinOp>::PrintTree(int width) const
     }
 }
 
-template <typename T, typename BinOp>
-    requires std::same_as<T, std::remove_const_t<decltype(BinOp::init_value)>>
+template <typename T, binary_predicate<T> BinOp>
 T SegmentTree<T, BinOp>::Query(int left, int right, BinOp op) const
 {
     T res = BinOp::init_value;
@@ -100,8 +103,7 @@ T SegmentTree<T, BinOp>::Query(int left, int right, BinOp op) const
     return res;
 }
 
-template<typename T, typename BinOp>
-    requires std::same_as<T, std::remove_const_t<decltype(BinOp::init_value)>>
+template<typename T, binary_predicate<T> BinOp>
 void SegmentTree<T, BinOp>::Update(int segment, const T& new_value, BinOp op)
 {
     segment += static_cast<int>(tree_.size()) / 2;
@@ -113,8 +115,7 @@ void SegmentTree<T, BinOp>::Update(int segment, const T& new_value, BinOp op)
     }
 }
 
-template<typename T, typename BinOp>
-    requires std::same_as<T, std::remove_const_t<decltype(BinOp::init_value)>>
+template<typename T, binary_predicate<T> BinOp>
 void SegmentTree<T, BinOp>::BuildParent(BinOp op)
 {
     for (int i = static_cast<int>(tree_.size()) / 2 - 1; i >= 1; --i)
