@@ -78,7 +78,7 @@ int main()
     vector<ull> vec(16);
     for_each(vec.begin(), vec.end(), [](auto& val) {val = GetRandom(1ull, 10ull); });
     SegmentTree<ull, Sum> tree(vec);
-
+     
     while (true)
     {
         tree.PrintTree(4);
