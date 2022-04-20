@@ -36,10 +36,12 @@
 #include "ForwardList.h"
 #include "BinaryHeap.h"
 #include "PSDA.h"
+#include "SegmentTree.h"
 
 #include "io.h"
 #include "memory.h"
 #include "time.h"
+#include "random.h"
 
 using ll = long long;
 using ull = unsigned long long;
@@ -58,25 +60,27 @@ using namespace std;
 using namespace cug::io;
 using namespace cug::memory;
 using namespace cug::time;
+using namespace cug::random;
 
+
+struct Sum
+{
+    int operator()(const int &a, const int &b)
+    {
+        return a + b;
+    }
+};
+
+bool Bar(int a, int b)
+{
+    return a = b;
+}
 
 int main()
 {
-    /*std::ios cout_state(nullptr);
-    cout_state.copyfmt(std::cout);
+    vector<int> vec(20);
+    for_each(vec.begin(), vec.end(), [](auto& val) {val = GetRandom(1, 100); });
 
-    double a = 3.1415926535;
-    cout <<setw(10) << left << setprecision(2) << a << '\n';
-
-    std::cout.copyfmt(cout_state);
-
-    cout << a << '\n';*/
-
-    string name;
-    int age;
-    double income;
-    Input(name, age, income);
-    Output("Hello I am {:20l}, {:.3f} years old, earn {}$ every day\n", name, age, income);
-
-    Log("Stop");
+    SegmentTree<int, Sum> tree(vec);
+    tree.PrintTree(3);
 }

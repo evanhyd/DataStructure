@@ -169,6 +169,8 @@
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="memory.cpp" />
     <ClCompile Include="PSDA.cpp" />
+    <ClCompile Include="random.cpp" />
+    <ClCompile Include="SegmentTree.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="DynamicArray.cpp" />
     <ClCompile Include="time.cpp" />
@@ -181,6 +183,8 @@
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="memory.h" />
     <ClInclude Include="PSDA.h" />
+    <ClInclude Include="random.h" />
+    <ClInclude Include="SegmentTree.h" />
     <ClInclude Include="time.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

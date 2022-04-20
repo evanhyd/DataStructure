@@ -123,14 +123,7 @@ namespace cug::io
 
 #else
 
-    class Log
-    {
-    public:
-        Log(const auto&... args)
-        {
-            //empty
-        }
-    };
+    class Log { public: Log(const auto&... args) {} };
 
 #endif
 

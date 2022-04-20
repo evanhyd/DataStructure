@@ -26,6 +26,12 @@
     <ClCompile Include="time.cpp">
       <Filter>cug\time</Filter>
     </ClCompile>
+    <ClCompile Include="SegmentTree.cpp">
+      <Filter>SegmentTree</Filter>
+    </ClCompile>
+    <ClCompile Include="random.cpp">
+      <Filter>cug\random</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="BinaryHeap">
@@ -73,6 +79,9 @@
     <Filter Include="cug\time">
       <UniqueIdentifier>{b860c2e4-228d-439c-ad32-7ba3d4adeea2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="cug\random">
+      <UniqueIdentifier>{a376bd1f-92bb-41f0-b781-302d9d9ffae5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryHeap.h">
@@ -98,6 +107,12 @@
     </ClInclude>
     <ClInclude Include="time.h">
       <Filter>cug\time</Filter>
+    </ClInclude>
+    <ClInclude Include="SegmentTree.h">
+      <Filter>SegmentTree</Filter>
+    </ClInclude>
+    <ClInclude Include="random.h">
+      <Filter>cug\random</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
