@@ -37,6 +37,7 @@
 #include "BinaryHeap.h"
 #include "PSDA.h"
 #include "SegmentTree.h"
+#include "SparseTable.h"
 
 #include "io.h"
 #include "memory.h"
@@ -64,18 +65,20 @@ using namespace cug::time;
 using namespace cug::random;
 
 
-
+struct Min
+{
+    int operator()(int a, int b)
+    {
+        return std::min(a, b);
+    }
+};
 
 int main()
 {
-    PSDA<int> arr({ 1, 2, 3, 4, 5 });
-    arr.Integrate(0, 3);
-    arr.Differentiate(0, 3);
-    arr.LazyIncrement(0, 3, 10);
+    std::vector<int> arr{1, -2, 4, 3, -5, 6, 3, 2};
 
-    for (auto n : arr)
-    {
-
-    }
+    
+    SparseTable<int, Min> table(arr);
+    table.PrintTable(5);
 
 }
