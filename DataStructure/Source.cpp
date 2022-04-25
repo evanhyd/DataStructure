@@ -75,7 +75,11 @@ struct Min
 
 int main()
 {
-    std::vector<int> arr{1, -2, 4, 3, -5, 6, 3, 2};
+    std::vector<int> arr(32);
+    for (auto& n : arr)
+    {
+        n = GetRandom(-10, 10);
+    }
 
     
     SparseTable<int, Min> table(arr);

@@ -86,6 +86,27 @@
     <Filter Include="cug\random">
       <UniqueIdentifier>{a376bd1f-92bb-41f0-b781-302d9d9ffae5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FenwickTree">
+      <UniqueIdentifier>{3ddcdfa4-a727-4266-bc41-92974f6c2865}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FibonacciHeap">
+      <UniqueIdentifier>{a42e59f8-f82b-43cd-a0df-8c616e129599}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RedBlackTree">
+      <UniqueIdentifier>{87c14074-f23b-4fcb-829d-8fdfd1b6f0b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PrefixTrie">
+      <UniqueIdentifier>{15b2e04c-d015-4386-86f9-16ec8ebe439d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LazySegmentTree">
+      <UniqueIdentifier>{28df6f5d-2af6-4d37-b3a7-cb40b51b0bb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XORLinkedList">
+      <UniqueIdentifier>{bbf39ca2-2faf-490b-8205-c8edb231d173}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BTree">
+      <UniqueIdentifier>{e498e734-73db-4d5d-91e2-1f23a6560f48}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryHeap.h">
