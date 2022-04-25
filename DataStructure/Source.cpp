@@ -68,5 +68,14 @@ using namespace cug::random;
 
 int main()
 {
+    PSDA<int> arr({ 1, 2, 3, 4, 5 });
+    arr.Integrate(0, 3);
+    arr.Differentiate(0, 3);
+    arr.LazyIncrement(0, 3, 10);
+
+    for (auto n : arr)
+    {
+
+    }
 
 }

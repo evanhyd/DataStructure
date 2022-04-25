@@ -18,10 +18,10 @@ public:
     T& operator[](int i);
     const T& operator[](int i) const;
 
-    T* begin();
-    const T* begin() const;
-    T* end();
-    const T* end() const;
+    auto begin();
+    const auto begin() const;
+    auto end();
+    const auto end() const;
 
     T& Front();
     const T& Front() const;
@@ -64,25 +64,25 @@ const T& PSDA<T>::operator[](int i) const
 }
 
 template <typename T>
-T* PSDA<T>::begin()
+auto PSDA<T>::begin()
 {
     return data_.begin();
 }
 
 template <typename T>
-const T* PSDA<T>::begin() const
+const auto PSDA<T>::begin() const
 {
     return data_.cbegin();
 }
 
 template <typename T>
-T* PSDA<T>::end()
+auto PSDA<T>::end()
 {
     return data_.end();
 }
 
 template <typename T>
-const T* PSDA<T>::end() const
+const auto PSDA<T>::end() const
 {
     return data_.cend();
 }
@@ -149,7 +149,7 @@ void PSDA<T>::LazyIncrement(int left, int right, const T& val)
     assert(0 <= left && left <= right && right < data_.size());
 
     data_[left] += val;
-    if (right + 1 < size_) data_[right + 1] -= val;
+    if (right + 1 < data_.size()) data_[right + 1] -= val;
 }
 
 template <typename T>
