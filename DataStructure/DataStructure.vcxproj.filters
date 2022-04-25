@@ -107,6 +107,9 @@
     <Filter Include="BTree">
       <UniqueIdentifier>{e498e734-73db-4d5d-91e2-1f23a6560f48}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Tuple">
+      <UniqueIdentifier>{9f2541b4-19e0-4bf3-804e-d463c4f08a6a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryHeap.h">

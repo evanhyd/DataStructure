@@ -3,36 +3,36 @@
 #include <algorithm>
 #include <cassert>
 
-template<typename Var>
+template<typename T>
 class DynamicArray;
 
-template<typename Var>
-void swap(DynamicArray<Var>& lhs, DynamicArray<Var>& rhs);
+template<typename T>
+void swap(DynamicArray<T>& lhs, DynamicArray<T>& rhs);
 
-template <typename Var>
+template <typename T>
 class DynamicArray
 {
-    Var* data_;
+    T* data_;
     int capacity_;
     int size_;
 
 public:
 
-    using value_type = Var;
+    using value_type = T;
 
     DynamicArray();
-    DynamicArray(const Var* arr, int size);
-    DynamicArray(const Var* begin, const Var* end);
-    DynamicArray(std::initializer_list<Var> lst);
-    DynamicArray(int new_size, const Var& val = Var());
+    DynamicArray(const T* arr, int size);
+    DynamicArray(const T* begin, const T* end);
+    DynamicArray(std::initializer_list<T> lst);
+    DynamicArray(int new_size, const T& val = T());
     DynamicArray(const DynamicArray& rhs);
     DynamicArray(DynamicArray&& rhs) noexcept;
     ~DynamicArray();
 
     DynamicArray& operator=(DynamicArray rhs);
 
-    Var& operator[](int i);
-    const Var& operator[](int i) const;
+    T& operator[](int i);
+    const T& operator[](int i) const;
 
 
     //basic container operators
@@ -42,37 +42,37 @@ public:
 
 
     //specialized container operators
-    Var& At(int i);
-    const Var& At(int i) const;
-    Var& Front();
-    const Var& Front() const;
-    Var& Back();
-    const Var& Back() const;
-    Var* begin();
-    const Var* begin() const;
-    Var* end();
-    const Var* end() const;
+    T& At(int i);
+    const T& At(int i) const;
+    T& Front();
+    const T& Front() const;
+    T& Back();
+    const T& Back() const;
+    T* begin();
+    const T* begin() const;
+    T* end();
+    const T* end() const;
 
 
 
-    void PushBack(const Var& val);
-    void PushBack(Var&& val);
+    void PushBack(const T& val);
+    void PushBack(T&& val);
     void PopBack();
     void Clear();
 
 
     //custom memory management
-    void Resize(int new_size, const Var& val = Var());
+    void Resize(int new_size, const T& val = T());
     void Reserve(int new_capacity);
     void ShrinkToFit();
-    Var* Data();
-    const Var* Data() const;
+    T* Data();
+    const T* Data() const;
 
-    friend void swap<Var>(DynamicArray<Var>& lhs, DynamicArray<Var>& rhs);
+    friend void swap<T>(DynamicArray<T>& lhs, DynamicArray<T>& rhs);
 };
 
-template<typename Var>
-void swap(DynamicArray<Var>& lhs, DynamicArray<Var>& rhs)
+template<typename T>
+void swap(DynamicArray<T>& lhs, DynamicArray<T>& rhs)
 {
     using std::swap;
     swap(lhs.data_, rhs.data_);
@@ -81,36 +81,36 @@ void swap(DynamicArray<Var>& lhs, DynamicArray<Var>& rhs)
 }
 
 
-template <typename Var>
-DynamicArray<Var>::DynamicArray() : 
-    data_(static_cast<Var*>(operator new[](sizeof(Var)))), capacity_(1), size_(0)
+template <typename T>
+DynamicArray<T>::DynamicArray() : 
+    data_(static_cast<T*>(operator new[](sizeof(T)))), capacity_(1), size_(0)
 {
     //empty
 }
 
-template <typename Var>
-DynamicArray<Var>::DynamicArray(const Var* arr, int size) :
-    data_(static_cast<Var*>(operator new[](size * sizeof(Var)))), capacity_(static_cast<int>(size)), size_(static_cast<int>(size))
+template <typename T>
+DynamicArray<T>::DynamicArray(const T* arr, int size) :
+    data_(static_cast<T*>(operator new[](size * sizeof(T)))), capacity_(static_cast<int>(size)), size_(static_cast<int>(size))
 {
     assert(size >= 0);
     std::uninitialized_copy(arr, arr + size, data_);
 }
 
-template <typename Var>
-DynamicArray<Var>::DynamicArray(const Var* begin, const Var* end) : DynamicArray(begin, static_cast<int>(end - begin)) 
+template <typename T>
+DynamicArray<T>::DynamicArray(const T* begin, const T* end) : DynamicArray(begin, static_cast<int>(end - begin)) 
 {
     assert(begin <= end);
 }
 
-template <typename Var>
-DynamicArray<Var>::DynamicArray(std::initializer_list<Var> lst) : DynamicArray(lst.begin(), lst.size()) 
+template <typename T>
+DynamicArray<T>::DynamicArray(std::initializer_list<T> lst) : DynamicArray(lst.begin(), lst.size()) 
 {
     assert(lst.size() >= 0);
 }
 
-template <typename Var>
-DynamicArray<Var>::DynamicArray(int new_size, const Var& val) : 
-    data_(static_cast<Var*>(operator new[](new_size * sizeof(Var)))), capacity_(new_size), size_(new_size)
+template <typename T>
+DynamicArray<T>::DynamicArray(int new_size, const T& val) : 
+    data_(static_cast<T*>(operator new[](new_size * sizeof(T)))), capacity_(new_size), size_(new_size)
 {
     assert(new_size >= 0);
 
@@ -119,9 +119,9 @@ DynamicArray<Var>::DynamicArray(int new_size, const Var& val) :
     std::uninitialized_fill(data_, data_ + size_, val);
 }
 
-template <typename Var>
-DynamicArray<Var>::DynamicArray(const DynamicArray& rhs) : 
-    data_(static_cast<Var*>(operator new[](rhs.capacity_ * sizeof(Var)))), capacity_(rhs.capacity_), size_(rhs.size_)
+template <typename T>
+DynamicArray<T>::DynamicArray(const DynamicArray& rhs) : 
+    data_(static_cast<T*>(operator new[](rhs.capacity_ * sizeof(T)))), capacity_(rhs.capacity_), size_(rhs.size_)
 {
     assert(rhs.capacity_ >= 0);
 
@@ -131,12 +131,12 @@ DynamicArray<Var>::DynamicArray(const DynamicArray& rhs) :
     std::uninitialized_copy(rhs.data_, rhs.data_ + rhs.size_, data_);
 }
 
-template <typename Var>
-DynamicArray<Var>::DynamicArray(DynamicArray&& rhs) noexcept :
+template <typename T>
+DynamicArray<T>::DynamicArray(DynamicArray&& rhs) noexcept :
     data_(std::exchange(rhs.data_, nullptr)), capacity_(std::exchange(rhs.capacity_, 0)), size_(std::exchange(rhs.size_, 0)) {}
 
-template <typename Var>
-DynamicArray<Var>::~DynamicArray()
+template <typename T>
+DynamicArray<T>::~DynamicArray()
 {
     //destruct objects
     std::destroy(data_, data_ + size_);
@@ -147,22 +147,22 @@ DynamicArray<Var>::~DynamicArray()
 
 
 //operators overloading
-template <typename Var>
-DynamicArray<Var>& DynamicArray<Var>::operator=(DynamicArray<Var> rhs)
+template <typename T>
+DynamicArray<T>& DynamicArray<T>::operator=(DynamicArray<T> rhs)
 {
     swap(*this, rhs);
     return *this;
 }
 
-template <typename Var>
-Var& DynamicArray<Var>::operator[](int i)
+template <typename T>
+T& DynamicArray<T>::operator[](int i)
 {
     assert(0 <= i && i < size_);
     return data_[i];
 }
 
-template <typename Var>
-const Var& DynamicArray<Var>::operator[](int i) const
+template <typename T>
+const T& DynamicArray<T>::operator[](int i) const
 {
     assert(0 <= i && i < size_);
     return data_[i];
@@ -173,20 +173,20 @@ const Var& DynamicArray<Var>::operator[](int i) const
 
 
 //basic container operators
-template <typename Var>
-bool DynamicArray<Var>::IsEmpty() const
+template <typename T>
+bool DynamicArray<T>::IsEmpty() const
 {
     return size_ == 0;
 }
 
-template<typename Var>
-int DynamicArray<Var>::Capacity() const
+template<typename T>
+int DynamicArray<T>::Capacity() const
 {
     return capacity_;
 }
 
-template <typename Var>
-int DynamicArray<Var>::Size() const
+template <typename T>
+int DynamicArray<T>::Size() const
 {
     return size_;
 }
@@ -194,65 +194,65 @@ int DynamicArray<Var>::Size() const
 
 
 //specialized container operators
-template <typename Var>
-Var& DynamicArray<Var>::At(int i)
+template <typename T>
+T& DynamicArray<T>::At(int i)
 {
     if (i < 0 || i >= size_) throw std::out_of_range("index out of bound");
     else return data_[i];
 }
 
-template <typename Var>
-const Var& DynamicArray<Var>::At(int i) const
+template <typename T>
+const T& DynamicArray<T>::At(int i) const
 {
     if (i < 0 || i >= size_) throw std::out_of_range("index out of bound");
     else return data_[i];
 }
 
-template <typename Var>
-Var& DynamicArray<Var>::Front()
+template <typename T>
+T& DynamicArray<T>::Front()
 {
     assert(!this->IsEmpty());
     return data_[0];
 }
 
-template <typename Var>
-const Var& DynamicArray<Var>::Front() const
+template <typename T>
+const T& DynamicArray<T>::Front() const
 {
     assert(!this->IsEmpty());
     return data_[0];
 }
 
-template <typename Var>
-Var& DynamicArray<Var>::Back()
+template <typename T>
+T& DynamicArray<T>::Back()
 {
     assert(!this->IsEmpty());
     return data_[size_ - 1];
 }
 
-template <typename Var>
-const Var& DynamicArray<Var>::Back() const
+template <typename T>
+const T& DynamicArray<T>::Back() const
 {
     assert(!this->IsEmpty());
     return data_[size_ - 1];
 }
 
-template <typename Var>
-Var* DynamicArray<Var>::begin()
+template <typename T>
+T* DynamicArray<T>::begin()
 {
     return data_;
 }
-template <typename Var>
-const Var* DynamicArray<Var>::begin() const
+template <typename T>
+const T* DynamicArray<T>::begin() const
 {
     return data_;
 }
-template <typename Var>
-Var* DynamicArray<Var>::end()
+template <typename T>
+T* DynamicArray<T>::end()
 {
     return data_ + size_;
 }
-template <typename Var>
-const Var* DynamicArray<Var>::end() const
+template <typename T>
+const T* DynamicArray<T>::end() const
 {
     return data_ + size_;
 }
@@ -261,36 +261,36 @@ const Var* DynamicArray<Var>::end() const
 
 
 
-template <typename Var>
-void DynamicArray<Var>::PushBack(const Var& val)
+template <typename T>
+void DynamicArray<T>::PushBack(const T& val)
 {
     //check if exceed capacity
     if (size_ >= capacity_) Reserve(2 * capacity_);
 
     //copy construct
-    new(data_ + size_) Var(val);
+    new(data_ + size_) T(val);
     ++size_;
 }
 
-template <typename Var>
-void DynamicArray<Var>::PushBack(Var&& val)
+template <typename T>
+void DynamicArray<T>::PushBack(T&& val)
 {
     //check if exceed capacity
     if (size_ >= capacity_) Reserve(2 * capacity_);
 
     //move construct
-    new(data_ + size_) Var(std::move(val));
+    new(data_ + size_) T(std::move(val));
     ++size_;
 }
 
-template <typename Var>
-void DynamicArray<Var>::PopBack()
+template <typename T>
+void DynamicArray<T>::PopBack()
 {
     data_[--size_].~T();
 }
 
-template <typename Var>
-void DynamicArray<Var>::Clear()
+template <typename T>
+void DynamicArray<T>::Clear()
 {
     //destroy the objects
     std::destroy(data_, data_ + size_);
@@ -298,8 +298,8 @@ void DynamicArray<Var>::Clear()
 }
 
 //custom memory management
-template <typename Var>
-void DynamicArray<Var>::Resize(int new_size, const Var& val)
+template <typename T>
+void DynamicArray<T>::Resize(int new_size, const T& val)
 {
     assert(new_size >= 0);
 
@@ -315,19 +315,19 @@ void DynamicArray<Var>::Resize(int new_size, const Var& val)
         Reserve(new_size);
 
         //fill with the new objects
-        std::uninitialized_fill(data_ + size_, data_ + new_size, Var());
+        std::uninitialized_fill(data_ + size_, data_ + new_size, T());
     }
 
     size_ = new_size;
 }
 
-template <typename Var>
-void DynamicArray<Var>::Reserve(int new_capacity)
+template <typename T>
+void DynamicArray<T>::Reserve(int new_capacity)
 {
     if (new_capacity > capacity_)
     {
         //allocate heap with increased capacity
-        Var* new_data = static_cast<Var*>(operator new[](new_capacity * sizeof(Var)));
+        T* new_data = static_cast<T*>(operator new[](new_capacity * sizeof(T)));
 
         //move in the old data
         std::uninitialized_move(data_, data_ + size_, new_data);
@@ -342,11 +342,11 @@ void DynamicArray<Var>::Reserve(int new_capacity)
     }
 }
 
-template <typename Var>
-void DynamicArray<Var>::ShrinkToFit()
+template <typename T>
+void DynamicArray<T>::ShrinkToFit()
 {
     //allocate heap with size-equivalent capacity
-    Var* new_data = static_cast<Var*>(operator new[](size_ * sizeof(Var)));
+    T* new_data = static_cast<T*>(operator new[](size_ * sizeof(T)));
 
     //move in the old data
     std::uninitialized_move(data_, data_ + size_, new_data);
@@ -360,14 +360,14 @@ void DynamicArray<Var>::ShrinkToFit()
     capacity_ = size_;
 }
 
-template <typename Var>
-Var* DynamicArray<Var>::Data()
+template <typename T>
+T* DynamicArray<T>::Data()
 {
     return data_;
 }
 
-template <typename Var>
-const Var* DynamicArray<Var>::Data() const
+template <typename T>
+const T* DynamicArray<T>::Data() const
 {
     return data_;
 }

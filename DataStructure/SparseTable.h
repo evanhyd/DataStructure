@@ -13,7 +13,8 @@ class SparseTable
 public:
 
     SparseTable(const std::vector<T>& arr, BinOp op = BinOp());
-    T Query(int left, int right) const;
+    T Query(int left, int right, BinOp op = BinOp()) const;
+    T FastQuery(int left, int right, BinOp op = BinOp()) const;
     void PrintTable(int width) const;
 
     static int Pow2(int power);
@@ -39,9 +40,39 @@ SparseTable<T, BinOp>::SparseTable(const std::vector<T>& arr, BinOp op)
 }
 
 template <typename T, typename BinOp>
-int SparseTable<T, BinOp>::Pow2(int power)
+T SparseTable<T, BinOp>::Query(int left, int right, BinOp op) const
 {
-    return 1 << power;
+    //initial query result
+    T res = data_[0][left];
+
+    //top down
+    for (int h = static_cast<int>(data_.size()) - 1; h >= 0; --h)
+    {
+        //check if the table includes the left index
+        if (left < data_[h].size())
+        {
+            int inter_len = Pow2(h);
+            int require_len = right - left + 1;
+
+            //if the interval fits within the range
+            if (inter_len <= require_len)
+            {
+                //query
+                res = op(res, data_[h][left]);
+
+                //update range
+                left += inter_len;
+            }
+        }
+    }
+
+    return res;
+}
+
+template <typename T, typename BinOp>
+T SparseTable<T, BinOp>::FastQuery(int left, int right, BinOp op) const
+{
+
 }
 
 template <typename T, typename BinOp>
@@ -57,4 +88,10 @@ void SparseTable<T, BinOp>::PrintTable(int width) const
     }
 }
 
-//use default value from segment tree instead of custom init value
+
+
+template <typename T, typename BinOp>
+int SparseTable<T, BinOp>::Pow2(int power)
+{
+    return 1 << power;
+}
