@@ -64,28 +64,9 @@ using namespace cug::time;
 using namespace cug::random;
 
 
-struct Sum
-{
-    static constexpr double init_value = 0.0;
 
-    double operator()(double a, double b)
-    {
-        return a + b;
-    }
-};
 
 int main()
 {
-    vector<double> vec(15);
-    for (auto& n : vec)
-    {
-        n = GetRandom(0.0, 10.0);
-        auto str = std::to_string(n);
-        cout << str << '\n';
-        cout << str.size() << '\n';
-    }
 
-    SegmentTree<double, Sum> tree(vec);
-
-    tree.PrintTree(4);
 }

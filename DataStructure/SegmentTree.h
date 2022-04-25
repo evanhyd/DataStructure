@@ -15,6 +15,23 @@ concept binary_predicate = requires(BinOp op, T t)
     { op.operator()(t, t) } -> std::same_as<T>;
 };
 
+
+//EXAMPLE OF A BINARY OPERATOR
+//struct Sum
+//{
+//    //initial value of the query result
+//    static const int init_value = 0;
+//
+//    //binary operator for the segments
+//    int operator()(int a, int b)
+//    {
+//        return a + b;
+//    }
+//};
+
+
+
+
 template <typename T, binary_predicate<T> BinOp>
 class SegmentTree
 {

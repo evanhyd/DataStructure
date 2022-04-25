@@ -33,6 +33,9 @@
       <Filter>cug\random</Filter>
     </ClCompile>
     <ClCompile Include="main.c" />
+    <ClCompile Include="SparseTable.cpp">
+      <Filter>SparseTable</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="BinaryHeap">
@@ -114,6 +117,9 @@
     </ClInclude>
     <ClInclude Include="random.h">
       <Filter>cug\random</Filter>
+    </ClInclude>
+    <ClInclude Include="SparseTable.h">
+      <Filter>SparseTable</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
