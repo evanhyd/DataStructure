@@ -43,6 +43,7 @@
 #include "time.h"
 #include "random.h"
 
+
 using ll = long long;
 using ull = unsigned long long;
 using U32 = unsigned int;
@@ -65,39 +66,26 @@ using namespace cug::random;
 
 struct Sum
 {
-    ull operator()(const ull &a, const ull &b)
-    {
-        return lcm(a, b);
-    }
+    static constexpr double init_value = 0.0;
 
-    static constexpr ull init_value = INT_MAX;
+    double operator()(double a, double b)
+    {
+        return a + b;
+    }
 };
 
 int main()
 {
-    vector<ull> vec(16);
-    for_each(vec.begin(), vec.end(), [](auto& val) {val = GetRandom(1ull, 10ull); });
-    SegmentTree<ull, Sum> tree(vec);
-     
-    while (true)
+    vector<double> vec(15);
+    for (auto& n : vec)
     {
-        tree.PrintTree(4);
-        int opt;
-        Output("#1. Query\n#2. Update\n");
-        Input(opt);
-
-        if (opt == 1)
-        {
-            int a, b;
-            Input(a, b);
-            Output("Query Result: {}\n", tree.Query(a, b));
-        }
-        else
-        {
-            int a, b;
-            Input(a, b);
-            tree.Update(a, b);
-        }
+        n = GetRandom(0.0, 10.0);
+        auto str = std::to_string(n);
+        cout << str << '\n';
+        cout << str.size() << '\n';
     }
 
+    SegmentTree<double, Sum> tree(vec);
+
+    tree.PrintTree(4);
 }

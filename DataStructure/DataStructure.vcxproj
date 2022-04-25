@@ -167,6 +167,7 @@
     <ClCompile Include="io.cpp" />
     <ClCompile Include="ForwardList.cpp" />
     <ClCompile Include="LinkedList.cpp" />
+    <ClCompile Include="main.c" />
     <ClCompile Include="memory.cpp" />
     <ClCompile Include="PSDA.cpp" />
     <ClCompile Include="random.cpp" />

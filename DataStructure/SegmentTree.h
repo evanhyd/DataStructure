@@ -66,19 +66,14 @@ void SegmentTree<T, BinOp>::PrintTree(int width) const
         int segment_space = space / max_tw;
 
         //subtract the text length of the number
-        int num_len = 1;
-        T temp_num = tree_[i];
-        if (temp_num < 0) num_len += 1;
-        while (temp_num /= 10)
-        {
-            ++num_len;
-        }
+        std::string segment_text = std::to_string(tree_[i]);
 
-        segment_space -= num_len;
+        segment_space -= static_cast<int>(segment_text.size());
+        segment_space = std::max(0, segment_space);
         int left = segment_space / 2;
         int right = left + segment_space % 2;
 
-        std::cout << std::string(left, ' ') << tree_[i] << std::string(right, ' ');
+        std::cout << std::string(left, ' ') + segment_text + std::string(right, ' ');
 
         if (++curr_tw == max_tw)
         {
