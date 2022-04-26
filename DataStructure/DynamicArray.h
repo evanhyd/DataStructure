@@ -103,7 +103,7 @@ DynamicArray<T>::DynamicArray(const T* begin, const T* end) : DynamicArray(begin
 }
 
 template <typename T>
-DynamicArray<T>::DynamicArray(std::initializer_list<T> lst) : DynamicArray(lst.begin(), lst.size()) 
+DynamicArray<T>::DynamicArray(std::initializer_list<T> lst) : DynamicArray(lst.begin(), static_cast<int>(lst.size())) 
 {
     assert(lst.size() >= 0);
 }
