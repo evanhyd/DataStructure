@@ -315,7 +315,7 @@ void DynamicArray<T>::Resize(int new_size, const T& val)
         Reserve(new_size);
 
         //fill with the new objects
-        std::uninitialized_fill(data_ + size_, data_ + new_size, T());
+        std::uninitialized_fill(data_ + size_, data_ + new_size, val);
     }
 
     size_ = new_size;

@@ -74,31 +74,12 @@ struct Min
 
 int main()
 {
-    std::vector<int> arr(100000);
-    for (auto& n : arr)
+    DynamicArray<int> a;
+
+    a.Resize(5, 10);
+    for (int n : a)
     {
-        n = GetRandom(-10, 10);
-    }
-
-    
-    SparseTable<int, Min> table(arr);
-    SegmentTree<int, Min> tree(arr);
-
-    int left = GetRandom(0, int(arr.size()) - 1);
-    int right = GetRandom(left, int(arr.size()) - 1);
-
-    for (int i = 0; ; ++i)
-    {
-
-        bool result = (table.Query(left, right) == tree.Query(left, right));
-        if (!result)
-        {
-            Output("L:{:10},  R:{:10}\n", left, right);
-            break;
-        }
-
-        //Output("Test Case {:3}\n", i);
-        cout << "test case " << i << '\n';
+        cout << n << '\n';
     }
 
 }
