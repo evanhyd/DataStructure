@@ -21,10 +21,10 @@ public:
     using value_type = T;
 
     DynamicArray();
-    DynamicArray(const T* arr, int size);
-    DynamicArray(const T* begin, const T* end);
     DynamicArray(std::initializer_list<T> lst);
-    DynamicArray(int new_size, const T& val = T());
+    explicit DynamicArray(const T* arr, int size);
+    explicit DynamicArray(const T* begin, const T* end);
+    explicit DynamicArray(int new_size, const T& val = T());
     DynamicArray(const DynamicArray& rhs);
     DynamicArray(DynamicArray&& rhs) noexcept;
     ~DynamicArray();

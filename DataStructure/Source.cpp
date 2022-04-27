@@ -74,12 +74,14 @@ struct Min
 
 int main()
 {
-    DynamicArray<int> a;
+    DynamicArray<DynamicArray<int>> a(5, DynamicArray<int>(10));
 
-    a.Resize(5, 10);
-    for (int n : a)
+    for (const auto &n : a)
     {
-        cout << n << '\n';
+        for (const auto& m : n)
+        {
+            cout << m << ' ';
+        }
+        cout << '\n';
     }
-
 }
