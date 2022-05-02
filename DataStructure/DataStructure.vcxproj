@@ -176,6 +176,7 @@
     <ClCompile Include="DynamicArray.cpp" />
     <ClCompile Include="SparseTable.cpp" />
     <ClCompile Include="time.cpp" />
+    <ClCompile Include="Tuple.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryHeap.h" />
@@ -189,6 +190,7 @@
     <ClInclude Include="SegmentTree.h" />
     <ClInclude Include="SparseTable.h" />
     <ClInclude Include="time.h" />
+    <ClInclude Include="Tuple.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

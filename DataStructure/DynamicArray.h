@@ -2,6 +2,7 @@
 #include <iostream>
 #include <algorithm>
 #include <cassert>
+#include "io.h"
 
 template<typename T>
 class DynamicArray;
@@ -105,6 +106,7 @@ DynamicArray<T>::DynamicArray(const T* begin, const T* end) : DynamicArray(begin
 template <typename T>
 DynamicArray<T>::DynamicArray(std::initializer_list<T> lst) : DynamicArray(lst.begin(), static_cast<int>(lst.size())) 
 {
+    cug::io::Log("init list\n");
     assert(lst.size() >= 0);
 }
 
@@ -112,6 +114,7 @@ template <typename T>
 DynamicArray<T>::DynamicArray(int new_size, const T& val) : 
     data_(static_cast<T*>(operator new[](new_size * sizeof(T)))), capacity_(new_size), size_(new_size)
 {
+    cug::io::Log("filled \n");
     assert(new_size >= 0);
 
     //std::fill calls operator=, which is undefined behavior when used on uninitialized object)

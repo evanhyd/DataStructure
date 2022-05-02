@@ -36,6 +36,9 @@
     <ClCompile Include="SparseTable.cpp">
       <Filter>SparseTable</Filter>
     </ClCompile>
+    <ClCompile Include="Tuple.cpp">
+      <Filter>Tuple</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="BinaryHeap">
@@ -144,6 +147,9 @@
     </ClInclude>
     <ClInclude Include="SparseTable.h">
       <Filter>SparseTable</Filter>
+    </ClInclude>
+    <ClInclude Include="Tuple.h">
+      <Filter>Tuple</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

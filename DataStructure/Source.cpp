@@ -38,11 +38,13 @@
 #include "PSDA.h"
 #include "SegmentTree.h"
 #include "SparseTable.h"
+#include "Tuple.h"
 
 #include "io.h"
 #include "memory.h"
 #include "time.h"
 #include "random.h"
+
 
 
 using ll = long long;
@@ -59,29 +61,15 @@ static thread_local inline volatile constexpr const unsigned long long int* cons
 
 
 using namespace std;
+
 using namespace cug::io;
 using namespace cug::memory;
 using namespace cug::time;
 using namespace cug::random;
 
-struct Min
-{
-    int operator()(int a, int b)
-    {
-        return std::min(a, b);
-    }
-};
+
 
 int main()
 {
-    DynamicArray<DynamicArray<int>> a(5, DynamicArray<int>(10));
 
-    for (const auto &n : a)
-    {
-        for (const auto& m : n)
-        {
-            cout << m << ' ';
-        }
-        cout << '\n';
-    }
 }

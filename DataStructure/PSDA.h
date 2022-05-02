@@ -12,7 +12,7 @@ class PSDA
 
 public:
 
-    PSDA(const std::vector<T>& arr);
+    PSDA(std::vector<T> arr);
 
     int Size() const;
     T& operator[](int i);
@@ -36,7 +36,7 @@ public:
 
 
 template <typename T>
-PSDA<T>::PSDA(const std::vector<T>& arr) : data_(arr)
+PSDA<T>::PSDA(std::vector<T> arr) : data_(std::move(arr))
 {
     //empty
 }

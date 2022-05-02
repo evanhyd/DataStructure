@@ -17,7 +17,7 @@ class SegmentTree
 public:
 
     SegmentTree(std::initializer_list<T> lst);
-    SegmentTree(const std::vector<T>& lst);
+    SegmentTree(std::vector<T> lst);
 
 
     void PrintTree(int width) const;
@@ -37,9 +37,9 @@ SegmentTree<T, BinOp>::SegmentTree(std::initializer_list<T> lst) : tree_(lst.siz
 }
 
 template <typename T, typename BinOp>
-SegmentTree<T, BinOp>::SegmentTree(const std::vector<T>& lst) : tree_(lst.size() * 2)
+SegmentTree<T, BinOp>::SegmentTree(std::vector<T> lst) : tree_(std::move(lst))
 {
-    std::copy(lst.begin(), lst.end(), tree_.begin() + tree_.size() / 2);
+    tree_.resize(tree_.size() * 2);
     this->BuildParent();
 }
 

@@ -8,7 +8,7 @@ class BinaryHeap
 
 public:
     BinaryHeap() = default;
-    BinaryHeap(const std::vector<T>& arr);
+    BinaryHeap(std::vector<T> arr);
 
     bool IsEmpty() const;
     void Clear();
@@ -22,7 +22,7 @@ private:
 
 
 template <typename T, typename Predicate>
-BinaryHeap<T, Predicate>::BinaryHeap(const std::vector<T>& arr) : data_(arr)
+BinaryHeap<T, Predicate>::BinaryHeap(std::vector<T> arr) : data_(std::move(arr))
 {
     for (int i = 0; i < data_.size(); ++i)
     {

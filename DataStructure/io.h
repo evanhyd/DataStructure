@@ -35,13 +35,10 @@ namespace cug::io
                 int c_width = 0;
                 if (*hints == ':')
                 {
-                    ++hints;
-
-                    while (isdigit(*hints))
+                    while (isdigit(*++hints))
                     {
                         c_width *= 10;
                         c_width += *hints - '0';
-                        ++hints;
                     }
                 }
 
@@ -49,23 +46,17 @@ namespace cug::io
                 //check for float precision
                 if (*hints == '.')
                 {
-                    ++hints;
-
                     int f_precision = 0;
-                    while (isdigit(*hints))
+                    while (isdigit(*++hints))
                     {
                         f_precision *= 10;
                         f_precision += *hints - '0';
-                        ++hints;
                     }
                     std::cout << std::setprecision(f_precision);
 
                     //check for decimal fixed hint
-                    if (*hints == 'f')
-                    {
-                        std::cout << std::fixed;
-                        ++hints;
-                    }
+                    if (*hints == 'f') std::cout << std::fixed;
+                    ++hints;
                 }
 
 

@@ -12,7 +12,7 @@ class SparseTable
 
 public:
 
-    SparseTable(const std::vector<T>& arr, BinOp op = BinOp());
+    SparseTable(std::vector<T> arr, BinOp op = BinOp());
     T Query(int left, int right, BinOp op = BinOp()) const;
     T FastQuery(int left, int right, BinOp op = BinOp()) const;
     void PrintTable(int width) const;
@@ -21,10 +21,10 @@ public:
 };
 
 template <typename T, typename BinOp>
-SparseTable<T, BinOp>::SparseTable(const std::vector<T>& arr, BinOp op)
+SparseTable<T, BinOp>::SparseTable(std::vector<T> arr, BinOp op)
 {
     //base layer
-    data_.push_back(arr);
+    data_.push_back(std::move(arr));
 
     //increase height if the interval covering length <= arr size
     for (int h = 1; Pow2(h) <= data_[0].size(); ++h)
