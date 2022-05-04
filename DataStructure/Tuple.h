@@ -2,6 +2,7 @@
 #include <iostream>
 
 //Base Case
+//original template
 template <typename... Ts>
 class Tuple
 {
@@ -11,7 +12,7 @@ class Tuple
 
 //Recursive Definition
 template <typename T, typename... Ts>
-class Tuple<T, Ts...>
+class Tuple<T, Ts...> //partial specialization
 {
     T val_;
     [[no_unique_address]] Tuple<Ts...>  tup_; //doesn't work on MSVC lmao
