@@ -68,8 +68,23 @@ using namespace cug::time;
 using namespace cug::random;
 
 
-
 int main()
 {
+    Tuple tup(1, 3.1415, string("cat"));
 
+    cout << sizeof(tup) << '\n';
+
+    cout << tup.Get<0>() << '\n';
+    cout << tup.Get<1>() << '\n';
+    cout << tup.Get<2>() << '\n';
+
+    tup.Get<0>() = 123;
+    tup.Get<1>() = 456.345;
+    tup.Get<2>() = "UnboxTheCat";
+
+    cout << tup.Get<0>() << '\n';
+    cout << tup.Get<1>() << '\n';
+    cout << tup.Get<2>() << '\n';
+
+    cout << tup.Size() << '\n';
 }
