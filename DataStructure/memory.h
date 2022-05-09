@@ -50,6 +50,7 @@ namespace cug::memory
     class Pool
     {
     public:
+        //will replace this with explicit template deduction later
         class AllocInfo
         {
             const int num_;

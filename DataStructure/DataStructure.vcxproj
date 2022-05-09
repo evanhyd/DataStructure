@@ -164,6 +164,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BinaryHeap.cpp" />
+    <ClCompile Include="graph.cpp" />
     <ClCompile Include="io.cpp" />
     <ClCompile Include="ForwardList.cpp" />
     <ClCompile Include="LinkedList.cpp" />
@@ -180,6 +181,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryHeap.h" />
+    <ClInclude Include="graph.h" />
     <ClInclude Include="io.h" />
     <ClInclude Include="ForwardList.h" />
     <ClInclude Include="LinkedList.h" />

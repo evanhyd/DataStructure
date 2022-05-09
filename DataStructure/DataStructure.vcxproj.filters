@@ -39,6 +39,9 @@
     <ClCompile Include="Tuple.cpp">
       <Filter>Tuple</Filter>
     </ClCompile>
+    <ClCompile Include="graph.cpp">
+      <Filter>cug\graph</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="BinaryHeap">
@@ -113,6 +116,9 @@
     <Filter Include="Tuple">
       <UniqueIdentifier>{9f2541b4-19e0-4bf3-804e-d463c4f08a6a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="cug\graph">
+      <UniqueIdentifier>{0b8db180-6185-463d-8255-cca260dbf396}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryHeap.h">
@@ -150,6 +156,9 @@
     </ClInclude>
     <ClInclude Include="Tuple.h">
       <Filter>Tuple</Filter>
+    </ClInclude>
+    <ClInclude Include="graph.h">
+      <Filter>cug\graph</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

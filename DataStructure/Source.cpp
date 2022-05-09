@@ -44,7 +44,7 @@
 #include "memory.h"
 #include "time.h"
 #include "random.h"
-
+#include "graph.h"
 
 
 using ll = long long;
@@ -66,26 +66,10 @@ using namespace cug::io;
 using namespace cug::memory;
 using namespace cug::time;
 using namespace cug::random;
-
-
-template <typename T>
-class Bar
-{
-public:
-    bool GetRes()
-    {
-        return false;
-    }
-};
-
-template<>
-bool Bar<string>::GetRes() { return true; }
-
+using namespace cug::graph;
 
 int main()
 {
-    Bar<int> a;
-    Bar<string> b;
-    cout << a.GetRes() << '\n';
-    cout << b.GetRes() << '\n';
+    AdjacentList tree = GetTree(20);
+    PrintTreeDFS(tree);
 }

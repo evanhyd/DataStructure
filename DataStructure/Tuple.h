@@ -11,8 +11,9 @@ class Tuple
 
 
 //Recursive Definition
+//partial specialization, requires non empty template parameters
 template <typename T, typename... Ts>
-class Tuple<T, Ts...> //partial specialization
+class Tuple<T, Ts...> 
 {
     T val_;
     [[no_unique_address]] Tuple<Ts...>  tup_; //doesn't work on MSVC lmao
