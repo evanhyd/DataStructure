@@ -8,9 +8,6 @@ namespace cug::graph
     using AdjacentList = std::vector<std::vector<Vertex>>;
 
     AdjacentList GetTree(int size);
-    void PrintTreeDFS(const AdjacentList& tree);
-    static std::string PrintTreeDFSHelper(const AdjacentList& tree, const Vertex curr, const int depth, int &max_depth);
-    void PrintTreeBFS(const AdjacentList& tree);
-
+    void PrintTree(const AdjacentList& tree);
 }
 

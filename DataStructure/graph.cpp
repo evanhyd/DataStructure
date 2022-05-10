@@ -55,32 +55,9 @@ AdjacentList cug::graph::GetTree(int size)
 }
 
 
-void cug::graph::PrintTreeDFS(const AdjacentList& tree)
-{
-    //std::string tree_str;
 
-    //std::vector<Vertex> dfs_stack = {0};
-    //while (!dfs_stack.empty())
-    //{
-    //    //get the current vertex
-    //    Vertex curr = dfs_stack.back();
-    //    dfs_stack.pop_back();
 
-    //    cug::io::Output("{} -> ", curr);
-
-    //    //add to the stack
-    //    for (auto last = tree[curr].rbegin(); last != tree[curr].rend(); ++last)
-    //    {
-    //        dfs_stack.push_back(*last);
-    //    }
-
-    //}
-
-    int max_depth = 0;
-    cug::io::Output("{}\n Max Depth: {}", PrintTreeDFSHelper(tree, 0, 0, max_depth), max_depth);
-}
-
-static std::string cug::graph::PrintTreeDFSHelper(const AdjacentList& tree, const Vertex curr, const int depth, int &max_depth)
+static std::string PrintTreeHelper(const AdjacentList& tree, const cug::graph::Vertex curr, const int depth, int &max_depth, int &max_breadth)
 {
     std::string tree_str(std::to_string(curr));
     if (!tree[curr].empty()) tree_str += " -> ";
@@ -90,16 +67,19 @@ static std::string cug::graph::PrintTreeDFSHelper(const AdjacentList& tree, cons
     //reverse the order, smaller vertex id on the left
     for(auto child = tree[curr].rbegin(); child != tree[curr].rend(); ++child)
     {
-        tree_str +=  "\n" + space + PrintTreeDFSHelper(tree, *child, depth + 1, max_depth);
+        tree_str +=  "\n" + space + PrintTreeHelper(tree, *child, depth + 1, max_depth, max_breadth);
     }
 
     //update the max_depth
     max_depth = std::max(max_depth, depth);
+    max_breadth = std::max(max_breadth , static_cast<int>(tree[curr].size()));
 
     return tree_str;
 }
 
-void cug::graph::PrintTreeBFS(const AdjacentList& tree)
+void cug::graph::PrintTree(const AdjacentList& tree)
 {
-
+    int max_depth = 0;
+    int max_breadth = 0;
+    cug::io::Output("{}\nMax Depth: {}\nMax Breadth: {}\n", PrintTreeHelper(tree, 0, 0, max_depth, max_breadth), max_depth, max_breadth);
 }
