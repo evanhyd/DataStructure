@@ -19,13 +19,18 @@ public:
     SegmentTree(std::initializer_list<T> lst);
     SegmentTree(std::vector<T> lst);
 
-
-    void PrintTree(int width) const;
-    T Query(int left, int right, BinOp op = BinOp()) const;
-    void Update(int segment, const T& new_value, BinOp op = BinOp());
-
 private:
     void BuildParent(BinOp op = BinOp());
+
+
+public:
+    void PointUpdate(int segment, const T& new_value, BinOp op = BinOp());
+    T RangeQuery(int left, int right, BinOp op = BinOp()) const;
+
+    void RangeUpdate(int left, int right, const T& new_value, BinOp op = BinOp());
+    T PointQuery(int segment, BinOp op = BinOp()) const;
+    
+    void PrintTree(int width) const;
 };
 
 
@@ -42,6 +47,99 @@ SegmentTree<T, BinOp>::SegmentTree(std::vector<T> lst) : tree_(std::move(lst))
     tree_.resize(tree_.size() * 2);
     this->BuildParent();
 }
+
+template <typename T, typename BinOp>
+void SegmentTree<T, BinOp>::BuildParent(BinOp op)
+{
+    for (int i = static_cast<int>(tree_.size()) / 2 - 1; i >= 1; --i)
+    {
+        tree_[i] = op(tree_[i * 2], tree_[i * 2 + 1]);
+    }
+}
+
+
+
+
+
+
+
+//query type 0, point update + range query
+
+template <typename T, typename BinOp>
+void SegmentTree<T, BinOp>::PointUpdate(int segment, const T& new_value, BinOp op)
+{
+    segment += static_cast<int>(tree_.size()) / 2;
+    tree_[segment] = new_value;
+    while (segment >= 1)
+    {
+        segment /= 2;
+        tree_[segment] = op(tree_[segment * 2], tree_[segment * 2 + 1]);
+    }
+}
+
+template <typename T, typename BinOp>
+T SegmentTree<T, BinOp>::RangeQuery(int left, int right, BinOp op) const
+{
+    //convert to the child leaf index
+    left += static_cast<int>(tree_.size()) / 2;
+    right += static_cast<int>(tree_.size()) / 2;
+
+    //set up the initial query value
+    T res = tree_[left];
+
+    //check if left and right borders collide
+    while(left <= right)
+    {
+        //apply the operators to the edge segment
+        if (left % 2 == 1) res = op(res, tree_[left++]);
+        if (right % 2 == 0) res = op(res, tree_[right--]);
+
+        //climb up the tree
+        left /= 2;
+        right /= 2;
+    }
+
+    return res;
+}
+
+
+
+template <typename T, typename BinOp>
+void SegmentTree<T, BinOp>::RangeUpdate(int left, int right, const T& new_value, BinOp op)
+{
+    left += static_cast<int>(tree_.size() / 2);
+    right += static_cast<int>(tree_.size() / 2);
+
+    while(left <= right)
+    {
+        if (left % 2 == 1)
+        {
+            tree_[left] = op(tree_[left], new_value);
+            ++left;
+        }
+
+        if (right % 2 == 0)
+        {
+            tree_[right] = op(tree_[right], new_value);
+            --right;
+        }
+
+        left /= 2;
+        right /= 2;
+    }
+}
+
+template <typename T, typename BinOp>
+T SegmentTree<T, BinOp>::PointQuery(int segment, BinOp op) const
+{
+    segment += static_cast<int>(tree_.size() / 2);
+}
+
+
+
+
+
+
 
 
 template <typename T, typename BinOp>
@@ -75,51 +173,5 @@ void SegmentTree<T, BinOp>::PrintTree(int width) const
             max_tw *= 2;
             std::cout << '\n';
         }
-    }
-}
-
-template <typename T, typename BinOp>
-T SegmentTree<T, BinOp>::Query(int left, int right, BinOp op) const
-{
-    //convert to the child leaf index
-    left += static_cast<int>(tree_.size()) / 2;
-    right += static_cast<int>(tree_.size()) / 2;
-
-    //set up the initial query value
-    T res = tree_[left];
-
-    //check if left and right borders collide
-    while(left <= right)
-    {
-        //apply the operators to the edge segment
-        if (left % 2 == 1) res = op(res, tree_[left++]);
-        if (right % 2 == 0) res = op(res, tree_[right--]);
-
-        //climb up the tree
-        left /= 2;
-        right /= 2;
-    }
-
-    return res;
-}
-
-template <typename T, typename BinOp>
-void SegmentTree<T, BinOp>::Update(int segment, const T& new_value, BinOp op)
-{
-    segment += static_cast<int>(tree_.size()) / 2;
-    tree_[segment] = new_value;
-    while (segment >= 1)
-    {
-        segment /= 2;
-        tree_[segment] = op(tree_[segment * 2], tree_[segment * 2 + 1]);
-    }
-}
-
-template <typename T, typename BinOp>
-void SegmentTree<T, BinOp>::BuildParent(BinOp op)
-{
-    for (int i = static_cast<int>(tree_.size()) / 2 - 1; i >= 1; --i)
-    {
-        tree_[i] = op(tree_[i * 2], tree_[i * 2 + 1]);
     }
 }
