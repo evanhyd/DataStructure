@@ -120,31 +120,89 @@ public:
     }
 };
 
+struct BigInt
+{
+    string num;
+
+    BigInt& operator/=(int a)
+    {
+        string quotient;
+        int remainder = 0;
+
+        while (num.size())
+        {
+            if (num.back() == '0') num.pop_back();
+            else break;
+        }
+
+        for (int i = num.size() - 1; i >= 0; --i)
+        {
+            remainder = remainder * 10 + num[i] - '0';
+            num[i] = remainder / 2 + '0';
+            remainder = remainder % 2;
+        }
+
+        while (num.size())
+        {
+            if (num.back() == '0') num.pop_back();
+            else break;
+        }
+
+        return *this;
+    }
+
+    bool IsZero() const
+    {
+        return num.empty();
+    }
+
+    bool IsOdd() const
+    {
+        return num.front() % 2;
+    }
+};
+
 int main()
 {
     cin.tie(nullptr)->sync_with_stdio(false);
 
-    ull N;
-    cin >> N;
 
-    Matrix base{1, 1, 1, 0};
-    Matrix product{1, 0, 0, 1};
 
-    while (N > 0)
+    for (int kMod = 2; ; ++kMod)
     {
-        if (N % 2) product = product * base;
+        int n = 0;
+        int f0 = 0, f1 = 1;
+        while (++n)
+        {
+            int f2 = (f0 + f1) % kMod;
+            f0 = f1;
+            f1 = f2;
+            if (f0 == 0 && f1 == 1) break;
+        }
+
+        Log("{}\n", n);
+    }
+    
+
+
+    return 0;
+
+    BigInt N;
+
+
+    cin >> N.num;
+    reverse(N.num.begin(), N.num.end());
+
+    Matrix base{ 1, 1, 1, 0 };
+    Matrix product{ 1, 0, 0, 1 };
+
+    while (!N.IsZero())
+    {
+        if (N.IsOdd()) product = product * base;
 
         N /= 2;
-        base = base *  base;
+        base = base * base;
     }
 
     cout << product.m_[1] << '\n';
 }
-
-
-
-
-
-
-
-

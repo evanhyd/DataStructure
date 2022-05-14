@@ -103,7 +103,7 @@ namespace cug::io
     public:
         Log(const Args&... args, const std::source_location srce = std::source_location::current())
         {
-            std::cout << srce.function_name()<<'_'<<srce.line()<<">>";
+            std::cout << '(' << srce.function_name() << '_' << srce.line() << ')';
             Output(args...);
         }
     };

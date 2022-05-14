@@ -5,7 +5,7 @@ template <typename T>
 class ForwardList;
 
 template <typename T>
-void swap(ForwardList<T>& lst0, ForwardList<T>& lst1);
+void swap(ForwardList<T>& lhs, ForwardList<T>& rhs);
 
 
 
@@ -54,16 +54,16 @@ public:
     //void Sort();
 
 
-    friend void swap<T>(ForwardList<T>& lst0, ForwardList<T>& lst1);
+    friend void swap<T>(ForwardList<T>& lhs, ForwardList<T>& rhs);
 };
 
 
 template <typename T>
-void swap(ForwardList<T>& lst0, ForwardList<T>& lst1)
+void swap(ForwardList<T>& lhs, ForwardList<T>& rhs)
 {
     using std::swap;
-    swap(lst0.head_, lst1.head_);
-    swap(lst0.size_, lst1.size_);
+    swap(lhs.head_, rhs.head_);
+    swap(lhs.size_, rhs.size_);
 }
 
 

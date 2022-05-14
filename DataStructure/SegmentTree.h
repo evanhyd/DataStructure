@@ -161,7 +161,7 @@ void SegmentTree<T, BinOp>::PrintTree(int width) const
         std::string segment_text = std::to_string(tree_[i]);
 
         segment_space -= static_cast<int>(segment_text.size());
-        segment_space = std::max(0, segment_space);
+        segment_space = max(0, segment_space);
         int left = segment_space / 2;
         int right = left + segment_space % 2;
 
