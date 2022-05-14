@@ -34,6 +34,10 @@
 
 #ifndef ONLINE_JUDGE
 
+#if defined _WIN32 || defined _WIN64
+#include <Windows.h>
+#endif
+
 #include "DynamicArray.h"
 #include "ForwardList.h"
 #include "BinaryHeap.h"
@@ -49,8 +53,6 @@
 #include "graph.h"
 
 #endif // !ONLINE_JUDGE
-
-
 
 
 using ll = long long;
@@ -103,106 +105,9 @@ T Read()
 
 #endif
 
-class Matrix
-{
-public:
-    ull m_[4];
-
-    Matrix operator*(const Matrix& other)
-    {
-        Matrix copy{};
-        copy.m_[0] = (m_[0] * other.m_[0] % kMod + m_[1] * other.m_[2] % kMod) % kMod;
-        copy.m_[1] = (m_[0] * other.m_[1] % kMod + m_[1] * other.m_[3] % kMod) % kMod;
-        copy.m_[2] = (m_[2] * other.m_[0] % kMod + m_[3] * other.m_[2] % kMod) % kMod;
-        copy.m_[3] = (m_[2] * other.m_[1] % kMod + m_[3] * other.m_[3] % kMod) % kMod;
-
-        return copy;
-    }
-};
-
-struct BigInt
-{
-    string num;
-
-    BigInt& operator/=(int a)
-    {
-        string quotient;
-        int remainder = 0;
-
-        while (num.size())
-        {
-            if (num.back() == '0') num.pop_back();
-            else break;
-        }
-
-        for (int i = num.size() - 1; i >= 0; --i)
-        {
-            remainder = remainder * 10 + num[i] - '0';
-            num[i] = remainder / 2 + '0';
-            remainder = remainder % 2;
-        }
-
-        while (num.size())
-        {
-            if (num.back() == '0') num.pop_back();
-            else break;
-        }
-
-        return *this;
-    }
-
-    bool IsZero() const
-    {
-        return num.empty();
-    }
-
-    bool IsOdd() const
-    {
-        return num.front() % 2;
-    }
-};
 
 int main()
 {
     cin.tie(nullptr)->sync_with_stdio(false);
 
-
-
-    for (int kMod = 2; ; ++kMod)
-    {
-        int n = 0;
-        int f0 = 0, f1 = 1;
-        while (++n)
-        {
-            int f2 = (f0 + f1) % kMod;
-            f0 = f1;
-            f1 = f2;
-            if (f0 == 0 && f1 == 1) break;
-        }
-
-        Log("{}\n", n);
-    }
-    
-
-
-    return 0;
-
-    BigInt N;
-
-
-    cin >> N.num;
-    reverse(N.num.begin(), N.num.end());
-
-    Matrix base{ 1, 1, 1, 0 };
-    Matrix product{ 1, 0, 0, 1 };
-
-    while (!N.IsZero())
-    {
-        if (N.IsOdd()) product = product * base;
-
-        N /= 2;
-        base = base * base;
-    }
-
-    cout << product.m_[1] << '\n';
 }
