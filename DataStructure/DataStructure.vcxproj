@@ -163,6 +163,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AVLTree.cpp" />
     <ClCompile Include="BinaryHeap.cpp" />
     <ClCompile Include="graph.cpp" />
     <ClCompile Include="io.cpp" />
@@ -180,6 +181,7 @@
     <ClCompile Include="Tuple.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AVLTree.h" />
     <ClInclude Include="BinaryHeap.h" />
     <ClInclude Include="graph.h" />
     <ClInclude Include="io.h" />

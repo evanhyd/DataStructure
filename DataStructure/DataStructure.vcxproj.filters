@@ -42,6 +42,9 @@
     <ClCompile Include="graph.cpp">
       <Filter>cug\graph</Filter>
     </ClCompile>
+    <ClCompile Include="AVLTree.cpp">
+      <Filter>AVLTree</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="BinaryHeap">
@@ -159,6 +162,9 @@
     </ClInclude>
     <ClInclude Include="graph.h">
       <Filter>cug\graph</Filter>
+    </ClInclude>
+    <ClInclude Include="AVLTree.h">
+      <Filter>AVLTree</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

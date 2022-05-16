@@ -81,5 +81,8 @@ void cug::graph::PrintTree(const AdjacentList& tree)
 {
     int max_depth = 0;
     int max_breadth = 0;
-    cug::io::Output("{}\nMax Depth: {}\nMax Breadth: {}\n", PrintTreeHelper(tree, 0, 0, max_depth, max_breadth), max_depth, max_breadth);
+    std::string graph_str = PrintTreeHelper(tree, 0, 0, max_depth, max_breadth);
+    std::string line_break(max_depth * 6, '-');
+
+    cug::io::Output("\n{}\n{}\nMax Depth: {}\nMax Breadth: {}\n", graph_str, line_break, max_depth, max_breadth);
 }
