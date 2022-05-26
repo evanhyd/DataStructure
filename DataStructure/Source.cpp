@@ -105,36 +105,29 @@ using google_map = std::map<T, S>;
 static thread_local inline volatile constexpr const unsigned long long int* const __p = nullptr;
 
 
-constexpr ull kMod = 1000000007;
-constexpr ull kPrimes[] = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293};
+constexpr ull kMod = 545550894488357767;
+constexpr ull kPrimes[] = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293 };
+
+constexpr auto Pow(auto base, auto power)
+{
+    auto product = 1;
+    while (power > 0)
+    {
+        if (power % 2) product *= base;
+        base *= base;
+        power /= 2;
+    }
+
+    return product;
+}
 
 using namespace std;
 
 
 
 
+
 int main()
 {
-    SpeedUpIO();
 
-    int M, N, Q;
-    cin >> M >> N >> Q;
-
-    vector<vector<ull>> grid(M, vector<ull>(N, 0));
-
-    for (auto& r : grid)
-    {
-        for (auto& c : r)
-        {
-            char l;
-            cin >> l;
-            c = l - 'a';
-        }
-    }
-
-    for (int i = 0; i < M; ++i)
-    {
-        //build up horizontal rolling hash
-
-    }
 }
