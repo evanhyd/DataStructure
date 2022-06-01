@@ -166,11 +166,13 @@
   <ItemGroup>
     <ClCompile Include="AVLTree.cpp" />
     <ClCompile Include="BinaryHeap.cpp" />
+    <ClCompile Include="DisjointSet.cpp" />
     <ClCompile Include="graph.cpp" />
     <ClCompile Include="io.cpp" />
     <ClCompile Include="ForwardList.cpp" />
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="main2.cpp" />
     <ClCompile Include="memory.cpp" />
     <ClCompile Include="PSDA.cpp" />
     <ClCompile Include="random.cpp" />
@@ -184,6 +186,7 @@
   <ItemGroup>
     <ClInclude Include="AVLTree.h" />
     <ClInclude Include="BinaryHeap.h" />
+    <ClInclude Include="DisjointSet.h" />
     <ClInclude Include="graph.h" />
     <ClInclude Include="io.h" />
     <ClInclude Include="ForwardList.h" />

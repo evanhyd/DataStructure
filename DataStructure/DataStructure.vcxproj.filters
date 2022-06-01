@@ -45,6 +45,10 @@
     <ClCompile Include="AVLTree.cpp">
       <Filter>AVLTree</Filter>
     </ClCompile>
+    <ClCompile Include="main2.cpp" />
+    <ClCompile Include="DisjointSet.cpp">
+      <Filter>DisjointSet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="BinaryHeap">
@@ -165,6 +169,9 @@
     </ClInclude>
     <ClInclude Include="AVLTree.h">
       <Filter>AVLTree</Filter>
+    </ClInclude>
+    <ClInclude Include="DisjointSet.h">
+      <Filter>DisjointSet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

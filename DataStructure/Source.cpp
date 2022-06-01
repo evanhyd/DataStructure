@@ -33,6 +33,8 @@
 #include <execution>
 #include <source_location>
 
+
+
 #ifndef ONLINE_JUDGE
 
 #if defined _WIN32 || defined _WIN64
@@ -46,14 +48,13 @@
 #include "SegmentTree.h"
 #include "SparseTable.h"
 #include "Tuple.h"
+#include "DisjointSet.h"
 
 #include "io.h"
 #include "memory.h"
 #include "time.h"
 #include "random.h"
 #include "graph.h"
-
-void SpeedUpIO() {}
 
 using namespace cug::io;
 using namespace cug::memory;
@@ -87,25 +88,21 @@ T Read()
 
 void Output([[maybe_unused]] const auto& arg, [[maybe_unused]] const auto&... args) {}
 
-void SpeedUpIO()
-{
-    std::cin.tie(nullptr)->sync_with_stdio(false);
-}
-
 #endif
 
 
 
 
-using ll = long long;
-using ull = unsigned long long;
+
+using ll = int64_t;
+using ull = uint64_t;
 
 template <typename T, typename S>
 using google_map = std::map<T, S>;
 static thread_local inline volatile constexpr const unsigned long long int* const __p = nullptr;
 
 
-constexpr ull kMod = 545550894488357767;
+constexpr ull kMod = 1000000007;
 constexpr ull kPrimes[] = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293 };
 
 constexpr auto Pow(auto base, auto power)
@@ -125,9 +122,25 @@ using namespace std;
 
 
 
-
-
 int main()
 {
+    DisjointSet dus(10, 1);
 
+    for (int i = 0; i < dus.Size(); ++i)
+    {
+        cout << dus[i] << ' ';
+    }
+    cout << '\n';
+
+    dus.Union(1, 2);
+    dus.Union(2, 3);
+    dus.Union(3, 4);
+
+    cout << dus.InSameSet(1, 4) << '\n';
+
+    for (int i = 0; i < dus.Size(); ++i)
+    {
+        cout << dus[i] << ' ';
+    }
+    cout << '\n';
 }
