@@ -1,105 +1,154 @@
 #pragma once
 #include <vector>
+#include "io.h"
 
 template<typename T>
 class DisjointSet
 {
     struct Set
     {
-        int pos;
+        int parent;
+        int rank;
         T data;
     };
 
     std::vector<Set> sets_;
 
 public:
-    DisjointSet(int size, const T& value = T{});
+    DisjointSet() = default;
+    DisjointSet(int size, const T& val = T{});
 
-    T& operator[](int pos);
-    const T& operator[](int pos) const;
+    T& operator[](int setID);
+    const T& operator[](int setID) const;
 
-    int Size() const;
+    constexpr int Size() const;
+    constexpr bool Empty() const;
 
-    int Find(int pos);
-    void Union(int root, int child);
-    bool InSameSet(int s0, int s1);
+    int Find(int setID);
+    void Union(int set0, int set1);
+    bool InSameSet(int set0, int set1);
+
+
+    void PushBack(const T& val);
+    void PushBack(T&& val);
+    void Resize(int new_size, const T& val = T{});
+    void Reserve(int new_reserved);
 };
 
 
 template<typename T>
-DisjointSet<T>::DisjointSet(int size, const T& value) : sets_(size)
+DisjointSet<T>::DisjointSet(int size, const T& val) : sets_(size)
 {
     for (int i = 0; i < sets_.size(); ++i)
     {
-        sets_[i].pos = i;
-        sets_[i].data = value;
+        sets_[i].parent = i;
+        sets_[i].data = val;
     }
 }
 
 template <typename T>
-T& DisjointSet<T>::operator[](int pos)
+T& DisjointSet<T>::operator[](int setID)
 {
-    assert(0 <= pos && pos < sets_.size());
-    return sets_[pos].data;
+    assert(0 <= setID && setID < sets_.size());
+    return sets_[setID].data;
 }
 
 template <typename T>
-const T& DisjointSet<T>::operator[](int pos) const
+const T& DisjointSet<T>::operator[](int setID) const
 {
-    assert(0 <= pos && pos < sets_.size());
-    return sets_[pos].data;
+    assert(0 <= setID && setID < sets_.size());
+    return sets_[setID].data;
 }
 
 template <typename T>
-int DisjointSet<T>::Size() const
+constexpr int DisjointSet<T>::Size() const
 {
     return static_cast<int>(sets_.size());
+}
+
+template <typename T>
+constexpr bool DisjointSet<T>::Empty() const
+{
+    return sets_.empty();
 }
 
 
 
 
 template<typename T>
-int DisjointSet<T>::Find(int pos)
+int DisjointSet<T>::Find(int setID)
 {
-    assert(0 <= pos && pos < sets_.size());
+    assert(0 <= setID && setID < sets_.size());
 
-    std::vector<Set*> stack;
-    stack.push_back(&sets_[pos]);
-
+    std::vector<Set*> stack = { &sets_[setID] };
     while (true)
     {
         const Set& top = *stack.back();
-
-        //terminate when set's position == index
-        if (top.pos == sets_[top.pos].pos) break;
-        stack.push_back(&sets_[top.pos]);
+        cug::io::Log("{}\n", &top);
+        if (top.parent == setID) break;
+        setID = top.parent;
+        stack.push_back(&sets_[top.parent]);
+        cug::io::Log("{}\n", &top);
     }
 
     for (int i = 0; i < stack.size() - 1; ++i)
     {
-        stack[i]->pos = stack.back()->pos;
+        stack[i]->parent = setID;
     }
 
-    return stack.back()->pos;
+    return setID;
 }
 
 template <typename T>
-void DisjointSet<T>::Union(int root, int child)
+void DisjointSet<T>::Union(int set0, int set1)
 {
-    assert(0 <= root && root < sets_.size());
-    assert(0 <= child && child < sets_.size());
+    assert(0 <= set0 && set0 < sets_.size());
+    assert(0 <= set1 && set1 < sets_.size());
 
-    int root_pos = Find(root);
-    int child_pos = Find(child);
-    sets_[child_pos].pos = root_pos;
+    int root0 = Find(set0);
+    int root1 = Find(set1);
+
+    if (root0 == root1) return;
+
+    //add () since gcc believes rank is a template, wtf???
+    if ((sets_[root0].rank) < sets_[root1].rank)
+    {
+        sets_[root0].parent = root1;
+        ++sets_[root1].rank;
+    }
+    else
+    {
+        sets_[root1].parent = root0;
+        ++sets_[root0].rank;
+    }
 }
 
 template <typename T>
-bool DisjointSet<T>::InSameSet(int s0, int s1)
+bool DisjointSet<T>::InSameSet(int set0, int set1)
 {
-    assert(0 <= s0 && s0 < sets_.size());
-    assert(0 <= s1 && s1 < sets_.size());
+    return Find(set0) == Find(set1);
+}
 
-    return Find(s0) == Find(s1);
+template <typename T>
+void DisjointSet<T>::PushBack(const T& val)
+{
+    sets_.emplace_back(static_cast<int>(sets_.size()), 0, val);
+}
+
+template <typename T>
+void DisjointSet<T>::PushBack(T&& val)
+{
+    sets_.emplace_back(static_cast<int>(sets_.size()), 0, std::move(val));
+}
+
+template <typename T>
+void DisjointSet<T>::Resize(int new_size, const T& val)
+{
+    sets_.resize(new_size, val);
+}
+
+template <typename T>
+void DisjointSet<T>::Reserve(int new_reserved)
+{
+    sets_.reserve(new_reserved);
 }

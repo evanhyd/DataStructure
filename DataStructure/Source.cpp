@@ -121,26 +121,53 @@ constexpr auto Pow(auto base, auto power)
 using namespace std;
 
 
+class Solution
+{
+public:
+    vector<int> findRedundantConnection(vector<vector<int>>& edges)
+    {
+        DisjointSet<int> dus(edges.size() + 1);
+        vector<int> bad_edge(2);
+
+        for (auto& r : edges)
+        {
+            if (dus.InSameSet(0, r[0]) && dus.InSameSet(0, r[1]))
+            {
+                bad_edge[0] = r[0];
+                bad_edge[1] = r[1];
+            }
+            else
+            {
+                dus.Union(0, r[0]);
+                dus.Union(0, r[1]);
+            }
+        }
+
+        return bad_edge;
+    }
+};
 
 int main()
 {
-    DisjointSet dus(10, 1);
+    DisjointSet<string> dus;
+    Output("size {}\nemptiness {}\n", dus.Size(), dus.Empty());
+    dus.PushBack("cat");
+    Output("size {}\nemptiness {}\n", dus.Size(), dus.Empty());
 
-    for (int i = 0; i < dus.Size(); ++i)
-    {
-        cout << dus[i] << ' ';
-    }
-    cout << '\n';
+    dus.PushBack("cat owner");
+    dus.PushBack("cat maid");
+    dus.PushBack("cat girl");
+    dus.PushBack("cat woman");
 
-    dus.Union(1, 2);
+    Output("joined {}\n", dus.InSameSet(0, 3));
+    dus.Union(0, 3);
+    Output("joined {}\n", dus.InSameSet(0, 3));
+    Output("joined {}\n", dus.InSameSet(3, 4));
+
+    dus.Union(2, 4);
     dus.Union(2, 3);
-    dus.Union(3, 4);
 
-    cout << dus.InSameSet(1, 4) << '\n';
+    Output("joined {}\n", dus.InSameSet(3, 4));
+    
 
-    for (int i = 0; i < dus.Size(); ++i)
-    {
-        cout << dus[i] << ' ';
-    }
-    cout << '\n';
 }
