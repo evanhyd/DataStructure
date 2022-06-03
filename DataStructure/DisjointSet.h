@@ -111,12 +111,9 @@ void DisjointSet<T>::Union(int set0, int set1)
     if (root0 == root1) return;
 
     //add () since gcc believes rank is a template, wtf???
-    if ((sets_[root0].rank) < sets_[root1].rank)
-    {
-        sets_[root0].parent = root1;
-        ++sets_[root1].rank;
-    }
-    else
+    if ((sets_[root0].rank) < (sets_[root1].rank)) sets_[root0].parent = root1;
+    else if ((sets_[root0].rank) > (sets_[root1].rank)) sets_[root1].parent = root0;
+    else 
     {
         sets_[root1].parent = root0;
         ++sets_[root0].rank;
