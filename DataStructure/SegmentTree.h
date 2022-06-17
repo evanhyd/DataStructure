@@ -51,9 +51,9 @@ SegmentTree<T, BinOp>::SegmentTree(std::vector<T> lst) : tree_(std::move(lst))
 template <typename T, typename BinOp>
 void SegmentTree<T, BinOp>::BuildParent(BinOp op)
 {
-    for (int i = static_cast<int>(tree_.size()) / 2 - 1; i >= 1; --i)
+    for (int r = static_cast<int>(tree_.size()) / 2 - 1; r >= 1; --r)
     {
-        tree_[i] = op(tree_[i * 2], tree_[i * 2 + 1]);
+        tree_[r] = op(tree_[r * 2], tree_[r * 2 + 1]);
     }
 }
 
@@ -152,13 +152,13 @@ void SegmentTree<T, BinOp>::PrintTree(int width) const
     //get the number of elements at the bottom row
     int space = static_cast<int>(std::pow(2.0, height)) * width;
 
-    for (int curr_tw = 0, max_tw = 1, i = 1; i < tree_.size(); ++i)
+    for (int curr_tw = 0, max_tw = 1, r = 1; r < tree_.size(); ++r)
     {
         //get the length of each segment
         int segment_space = space / max_tw;
 
         //subtract the text length of the number
-        std::string segment_text = std::to_string(tree_[i]);
+        std::string segment_text = std::to_string(tree_[r]);
 
         segment_space -= static_cast<int>(segment_text.size());
         segment_space = max(0, segment_space);

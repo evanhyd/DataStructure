@@ -17,16 +17,16 @@ public:
     const T& Top() const;
 
 private:
-    void HeapSort(int i, Predicate p = Predicate());
+    void HeapSort(int r, Predicate p = Predicate());
 };
 
 
 template <typename T, typename Predicate>
 BinaryHeap<T, Predicate>::BinaryHeap(std::vector<T> arr) : data_(std::move(arr))
 {
-    for (int i = 0; i < data_.size(); ++i)
+    for (int r = 0; r < data_.size(); ++r)
     {
-        this->HeapSort(i);
+        this->HeapSort(r);
     }
 }
 
@@ -55,22 +55,22 @@ void BinaryHeap<T, Predicate>::Pop(Predicate p)
     data_.front() = data_.back();
     data_.pop_back();
 
-    int i = 0;
-    while (i < data_.size())
+    int r = 0;
+    while (r < data_.size())
     {
-        int left = i * 2 + 1;
+        int left = r * 2 + 1;
         int right = left + 1;
-        int next = i;
+        int next = r;
 
         //compare to the two child nodes
         if (left < data_.size() && p(data_[left], data_[next])) next = left;
         if (right < data_.size() && p(data_[right], data_[next])) next = right;
 
         //no larger element to swap
-        if (next == i) break;
+        if (next == r) break;
 
-        std::swap(data_[i], data_[next]);
-        i = next;
+        std::swap(data_[r], data_[next]);
+        r = next;
     }
 }
 
@@ -83,14 +83,14 @@ const T& BinaryHeap<T, Predicate>::Top() const
 
 
 template <typename T, typename Predicate>
-void BinaryHeap<T, Predicate>::HeapSort(int i, Predicate p)
+void BinaryHeap<T, Predicate>::HeapSort(int r, Predicate p)
 {
-    int parent = (i - 1) / 2;
+    int parent = (r - 1) / 2;
 
-    while (i && p(data_[i], data_[parent]))
+    while (r && p(data_[r], data_[parent]))
     {
-        std::swap(data_[i], data_[parent]);
-        i = parent;
-        parent = (i - 1) / 2;
+        std::swap(data_[r], data_[parent]);
+        r = parent;
+        parent = (r - 1) / 2;
     }
 }

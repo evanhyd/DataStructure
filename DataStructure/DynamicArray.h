@@ -32,8 +32,8 @@ public:
 
     DynamicArray& operator=(DynamicArray rhs);
 
-    T& operator[](int i);
-    const T& operator[](int i) const;
+    T& operator[](int r);
+    const T& operator[](int r) const;
 
 
     //basic container operators
@@ -43,8 +43,8 @@ public:
 
 
     //specialized container operators
-    T& At(int i);
-    const T& At(int i) const;
+    T& At(int r);
+    const T& At(int r) const;
     T& Front();
     const T& Front() const;
     T& Back();
@@ -158,17 +158,17 @@ DynamicArray<T>& DynamicArray<T>::operator=(DynamicArray<T> rhs)
 }
 
 template <typename T>
-T& DynamicArray<T>::operator[](int i)
+T& DynamicArray<T>::operator[](int r)
 {
-    assert(0 <= i && i < size_);
-    return data_[i];
+    assert(0 <= r && r < size_);
+    return data_[r];
 }
 
 template <typename T>
-const T& DynamicArray<T>::operator[](int i) const
+const T& DynamicArray<T>::operator[](int r) const
 {
-    assert(0 <= i && i < size_);
-    return data_[i];
+    assert(0 <= r && r < size_);
+    return data_[r];
 }
 
 
@@ -198,17 +198,17 @@ int DynamicArray<T>::Size() const
 
 //specialized container operators
 template <typename T>
-T& DynamicArray<T>::At(int i)
+T& DynamicArray<T>::At(int r)
 {
-    if (i < 0 || i >= size_) throw std::out_of_range("index out of bound");
-    else return data_[i];
+    if (r < 0 || r >= size_) throw std::out_of_range("index out of bound");
+    else return data_[r];
 }
 
 template <typename T>
-const T& DynamicArray<T>::At(int i) const
+const T& DynamicArray<T>::At(int r) const
 {
-    if (i < 0 || i >= size_) throw std::out_of_range("index out of bound");
-    else return data_[i];
+    if (r < 0 || r >= size_) throw std::out_of_range("index out of bound");
+    else return data_[r];
 }
 
 template <typename T>

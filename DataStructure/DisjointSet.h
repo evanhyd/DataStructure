@@ -39,10 +39,10 @@ public:
 template<typename T>
 DisjointSet<T>::DisjointSet(int size, const T& val) : sets_(size)
 {
-    for (int i = 0; i < sets_.size(); ++i)
+    for (int r = 0; r < sets_.size(); ++r)
     {
-        sets_[i].parent = i;
-        sets_[i].data = val;
+        sets_[r].parent = r;
+        sets_[r].data = val;
     }
 }
 
@@ -91,9 +91,9 @@ int DisjointSet<T>::Find(int setID)
         cug::io::Log("{}\n", &top);
     }
 
-    for (int i = 0; i < stack.size() - 1; ++i)
+    for (int r = 0; r < stack.size() - 1; ++r)
     {
-        stack[i]->parent = setID;
+        stack[r]->parent = setID;
     }
 
     return setID;

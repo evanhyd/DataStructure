@@ -15,8 +15,8 @@ public:
     PSDA(std::vector<T> arr);
 
     int Size() const;
-    T& operator[](int i);
-    const T& operator[](int i) const;
+    T& operator[](int r);
+    const T& operator[](int r) const;
 
     auto begin();
     const auto begin() const;
@@ -50,17 +50,17 @@ int PSDA<T>::Size() const
 }
 
 template <typename T>
-T& PSDA<T>::operator[](int i)
+T& PSDA<T>::operator[](int r)
 {
-    assert(0 <= i && i < data_.size());
-    return data_[i];
+    assert(0 <= r && r < data_.size());
+    return data_[r];
 }
 
 template <typename T>
-const T& PSDA<T>::operator[](int i) const
+const T& PSDA<T>::operator[](int r) const
 {
-    assert(0 <= i && i < data_.size());
-    return data_[i];
+    assert(0 <= r && r < data_.size());
+    return data_[r];
 }
 
 template <typename T>
@@ -123,9 +123,9 @@ void PSDA<T>::Integrate(int left, int right)
 {
     assert(0 <= left && left <= right && right < data_.size());
 
-    for (int i = left + 1; i <= right; ++i)
+    for (int r = left + 1; r <= right; ++r)
     {
-        data_[i] += data_[i - 1];
+        data_[r] += data_[r - 1];
     }
 }
 
@@ -136,10 +136,10 @@ void PSDA<T>::Differentiate(int left, int right)
 
     T prev = data_[left];
 
-    for (int i = left + 1; i <= right; ++i)
+    for (int r = left + 1; r <= right; ++r)
     {
-        data_[i] -= prev;
-        prev += data_[i];
+        data_[r] -= prev;
+        prev += data_[r];
     }
 }
 

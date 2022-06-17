@@ -32,9 +32,9 @@ SparseTable<T, BinOp>::SparseTable(std::vector<T> arr, BinOp op)
         //allocate table length with estimated size
         int inter_len = Pow2(h - 1);
         data_.push_back(std::vector<T>(data_[h - 1].size() - inter_len));
-        for (int i = 0; i < data_[h].size(); ++i)
+        for (int r = 0; r < data_[h].size(); ++r)
         {
-            data_[h][i] = op(data_[h - 1][i], data_[h - 1][i + inter_len]);
+            data_[h][r] = op(data_[h - 1][r], data_[h - 1][r + inter_len]);
         }
     }
 }

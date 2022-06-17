@@ -124,6 +124,7 @@ namespace cug::io
     //not portable
 #if defined _WIN32 || defined _WIN64
     inline char getchar_unlocked() { return static_cast<char>(_getchar_nolock()); }
+    inline void putchar_unlocked(char c) { _putchar_nolock(c); }
 #endif
     template <std::signed_integral T>
     T Read()
