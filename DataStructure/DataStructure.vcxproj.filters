@@ -49,6 +49,9 @@
     <ClCompile Include="DisjointSet.cpp">
       <Filter>DisjointSet</Filter>
     </ClCompile>
+    <ClCompile Include="Trie.cpp">
+      <Filter>Trie</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="BinaryHeap">
@@ -108,9 +111,6 @@
     <Filter Include="RedBlackTree">
       <UniqueIdentifier>{87c14074-f23b-4fcb-829d-8fdfd1b6f0b6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PrefixTrie">
-      <UniqueIdentifier>{15b2e04c-d015-4386-86f9-16ec8ebe439d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="LazySegmentTree">
       <UniqueIdentifier>{28df6f5d-2af6-4d37-b3a7-cb40b51b0bb1}</UniqueIdentifier>
     </Filter>
@@ -125,6 +125,9 @@
     </Filter>
     <Filter Include="cug\graph">
       <UniqueIdentifier>{0b8db180-6185-463d-8255-cca260dbf396}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Trie">
+      <UniqueIdentifier>{fa8a1ddc-80b1-4f8d-bdc2-67c357d3ee1c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +175,9 @@
     </ClInclude>
     <ClInclude Include="DisjointSet.h">
       <Filter>DisjointSet</Filter>
+    </ClInclude>
+    <ClInclude Include="Trie.h">
+      <Filter>Trie</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

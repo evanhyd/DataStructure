@@ -14,7 +14,6 @@ namespace cug::io
     }
 
     void Output(const char* hints);
-
     void Output(const char* hints, const auto& val, const auto&... param)
     {
         while (*hints)
@@ -115,7 +114,7 @@ namespace cug::io
 
 #else
 
-    class Log { public: Log(const auto&... args) {} };
+    class Log { public: Log([[maybe_unused]]const auto&... args) {} };
 
 #endif
 
