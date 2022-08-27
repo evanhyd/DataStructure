@@ -25,6 +25,10 @@ public:
   bool ContainPrefix(const T* arr, size_t len) const;
   void Insert(const T* arr, size_t len);
   void Erase(const T* arr, size_t len);
+  std::vector<std::vector<T>> GetAll() const;
+
+private:
+  static void Walk(std::vector< std::vector<T>>& res, std::vector<T>& seq, const Trie<T>::Node& curr);
 };
 
 
@@ -97,7 +101,8 @@ void Trie<T>::Erase(const T* arr, size_t len) {
   if (!curr->is_end_) return;
   curr->is_end_ = false;
 
-  for (int i = len - 1; i >= 0; --i) {
+  
+  for (int i = int(len) - 1; i >= 0; --i) {
     
     //erase from the parent if node is not ended and no child
     if (curr->child_.empty() && !curr->is_end_) {
@@ -106,5 +111,34 @@ void Trie<T>::Erase(const T* arr, size_t len) {
     } else {
       break;
     }
+  }
+}
+
+
+template <typename T>
+std::vector<std::vector<T>> Trie<T>::GetAll() const {
+
+  std::vector<std::vector<T>> res;
+  std::vector<T> seq;
+  Walk(res, seq, head_);
+  return res;
+}
+
+
+template <typename T>
+void Trie<T>::Walk(std::vector< std::vector<T>>& res, std::vector<T>& seq, const Trie<T>::Node& curr) {
+  for (const auto& child : curr.child_) {
+
+    //extend the trie sequence
+    seq.push_back(child.first);
+    if (child.second.is_end_) {
+      res.push_back(seq);
+    }
+
+    //keep walking down the tree
+    Walk(res, seq, child.second);
+
+    //go back to the parent
+    seq.pop_back();
   }
 }

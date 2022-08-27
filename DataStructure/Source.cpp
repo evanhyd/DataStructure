@@ -81,6 +81,15 @@ int main() {
 
   string hello = "hello";
   Trie<char> t;
+
+  auto res = t.GetAll();
+  for (auto& row : res) {
+    for (auto& col : row) {
+      cout << col;
+    }
+    cout << '\n';
+  }
+  
   cout << t.Contain(hello.c_str(), hello.size()) << '\n';
 
   t.Insert(hello.c_str(), hello.size());
@@ -92,13 +101,29 @@ int main() {
   cout << t.ContainPrefix("hel", 3) << '\n';
   cout << t.ContainPrefix("hea", 3) << '\n';
 
-  t.Erase(hello.c_str(), hello.size());
+  res = t.GetAll();
+  for (auto& row : res) {
+    for (auto& col : row) {
+      cout << col;
+    }
+    cout << '\n';
+  }
+
+  t.Erase("he", 2);
   cout << t.Contain(hello.c_str(), hello.size()) << '\n';
   cout << t.Contain("hel", 3) << '\n';
   cout << t.Contain("hea", 3) << '\n';
   cout << t.ContainPrefix(hello.c_str(), hello.size()) << '\n';
   cout << t.ContainPrefix("hel", 3) << '\n';
   cout << t.ContainPrefix("hea", 3) << '\n';
+
+  res = t.GetAll();
+  for (auto& row : res) {
+    for (auto& col : row) {
+      cout << col;
+    }
+    cout << '\n';
+  }
 }
 
 /*
