@@ -57,9 +57,9 @@ int main() {
   #endif
 
   AVLTree<int> tree;
-  auto res = tree.Find(10);
   tree.Insert(20, false);
-  printf("%p\n", res);
+  auto res = tree.Find(20);
+  printf("%p -> %d\n", res, *res);
 
 }
 
