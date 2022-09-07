@@ -40,13 +40,14 @@ int main() {
   #endif
 
   AVLTree<int> tree;
-  for (int i = 0; i < 32; ++i) {
-    int n = cug::random::GetRandom(-200, 200);
-    tree.Insert(n, false);
-    cout << n << '\n';
+  for (int i = 0; i < 128; ++i) {
+    if (i >= 65) {
+      int a = 20;
+    }
+    tree.Insert(i, false);
+    tree.Print();
   }
 
-  tree.Print();
 }
 
 /*

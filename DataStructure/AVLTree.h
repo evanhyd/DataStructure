@@ -113,6 +113,7 @@ void AVLTree<T>::Node::Insert(Arg&& key, bool replace, AVLTree<T>::Node** parent
     } else {
       this->RotateLeftRight(parent);
     }
+
   } else if (this->balance_factor_ >= 2) {
 
     //right heavy
@@ -125,6 +126,8 @@ void AVLTree<T>::Node::Insert(Arg&& key, bool replace, AVLTree<T>::Node** parent
       this->RotateRightLeft(parent);
     }
   }
+
+  assert((this->right_ ? this->right_->height_ : -1) - (this->left_ ? this->left_->height_ : -1) == this->balance_factor_);
 
   return;
 }
@@ -202,7 +205,8 @@ void AVLTree<T>::Node::RotateRightLeft(Node** parent) {
 template <typename T>
 std::string AVLTree<T>::Node::Print(const int depth, int& max_depth, int& max_breadth) {
 
-  std::string tree_str(std::to_string(this->height_));
+  //std::string tree_str(std::to_string(this->height_) + "(" + std::to_string(this->balance_factor_) + ")");
+  std::string tree_str(std::to_string(this->key_));
   if (this->left_ || this->right_) {
     tree_str += " -> ";
   }
