@@ -30,7 +30,7 @@ public:
     void RangeUpdate(int left, int right, const T& new_value, BinOp op = BinOp());
     T PointQuery(int segment, BinOp op = BinOp()) const;
     
-    void PrintTree(int width) const;
+    void Print(int width) const;
 };
 
 
@@ -143,7 +143,7 @@ T SegmentTree<T, BinOp>::PointQuery(int segment, BinOp op) const
 
 
 template <typename T, typename BinOp>
-void SegmentTree<T, BinOp>::PrintTree(int width) const
+void SegmentTree<T, BinOp>::Print(int width) const
 {
     //notice the log2 and pow 2 does not cancel out each other due to int trancation
     //get the height of the tree

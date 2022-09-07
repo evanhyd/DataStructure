@@ -12,7 +12,7 @@
 #include <numeric>
 
 #include "AVLTree.h"
-#include "Memory.h"
+#include "random.h"
 
 
 
@@ -29,23 +29,6 @@ constexpr ull kPrimes[] = {
 
 using namespace std;
 
-template <typename T>
-struct Bar {
-
-  void Jump(const T& t) {
-    Init(move(t));
-  }
-
-  void Init(const T& t) {
-    cout << "lvalue\n";
-  }
-
-  void Init(T&& t) {
-    cout << "rvalue\n";
-  }
-};
-
-
 
 #define IN_USE
 #ifdef IN_USE
@@ -57,10 +40,13 @@ int main() {
   #endif
 
   AVLTree<int> tree;
-  tree.Insert(20, false);
-  auto res = tree.Find(20);
-  printf("%p -> %d\n", res, *res);
+  for (int i = 0; i < 32; ++i) {
+    int n = cug::random::GetRandom(-200, 200);
+    tree.Insert(n, false);
+    cout << n << '\n';
+  }
 
+  tree.Print();
 }
 
 /*

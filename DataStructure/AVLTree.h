@@ -1,5 +1,7 @@
 #pragma once
 #include <utility>
+#include <string>
+#include <iostream>
 
 template <typename T>
 class AVLTree {
@@ -19,6 +21,7 @@ class AVLTree {
 
     template <typename Arg>
     void Insert(Arg&& key, bool replace, AVLTree<T>::Node** parent);
+    std::string Print(const int depth, int& max_depth, int& max_breadth);
 
   private:
     void UpdateInfo();
@@ -44,7 +47,7 @@ public:
   void Insert(Arg&& key, bool replace = false);
   bool Erase(const T& key);
 
-  void PrintTree() const;
+  void Print() const;
 };
 
 template <typename T>
@@ -128,8 +131,8 @@ void AVLTree<T>::Node::Insert(Arg&& key, bool replace, AVLTree<T>::Node** parent
 
 template <typename T>
 void AVLTree<T>::Node::UpdateInfo() {
-  const short left_height = (this->left_ ? this->left_->height_ : 0);
-  const short right_height = (this->right_ ? this->right_->height_ : 0);
+  const short left_height = (this->left_ ? this->left_->height_: -1);
+  const short right_height = (this->right_ ? this->right_->height_: -1);
   this->height_ = std::max(left_height, right_height) + 1;
   this->balance_factor_ = right_height - left_height;
 }
@@ -196,7 +199,29 @@ void AVLTree<T>::Node::RotateRightLeft(Node** parent) {
 }
 
 
+template <typename T>
+std::string AVLTree<T>::Node::Print(const int depth, int& max_depth, int& max_breadth) {
 
+  std::string tree_str(std::to_string(this->height_));
+  if (this->left_ || this->right_) {
+    tree_str += " -> ";
+  }
+
+  const std::string space = std::string((depth + 1) * 5, ' ') + "|";
+
+  if (this->right_) {
+    tree_str += "\n" + space + this->right_->Print(depth + 1, max_depth, max_breadth);
+  }
+  if (this->left_) {
+    tree_str += "\n" + space + this->left_->Print(depth + 1, max_depth, max_breadth);
+  }
+
+  //update the max_depth
+  max_depth = std::max(max_depth, depth);
+  max_breadth = std::max(max_breadth, int(this->height_));
+
+  return tree_str;
+}
 
 
 
@@ -253,4 +278,20 @@ template <typename T>
 bool AVLTree<T>::Erase(const T& key) {}
 
 template <typename T>
-void AVLTree<T>::PrintTree() const {}
+void AVLTree<T>::Print() const {
+
+  if (!this->root_) {
+    return;
+  }
+
+  int max_depth = 0;
+  int max_breadth = 0;
+  std::string graph_str = this->root_->Print(0, max_depth, max_breadth);
+  std::string line_break(max_depth * 6, '-');
+
+  std::cout << '\n'
+    << graph_str << '\n'
+    << line_break << '\n'
+    << "Max Depth: " << max_depth << '\n'
+    << "Max Breadth: " << max_breadth << '\n';
+}
