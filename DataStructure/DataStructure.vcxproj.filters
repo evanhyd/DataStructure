@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="practice.cpp" />
     <ClCompile Include="BinaryHeap.cpp">
       <Filter>BinaryHeap</Filter>
     </ClCompile>
@@ -32,7 +32,7 @@
     <ClCompile Include="random.cpp">
       <Filter>cug\random</Filter>
     </ClCompile>
-    <ClCompile Include="main.c" />
+    <ClCompile Include="pure_c.c" />
     <ClCompile Include="SparseTable.cpp">
       <Filter>SparseTable</Filter>
     </ClCompile>
@@ -45,7 +45,7 @@
     <ClCompile Include="AVLTree.cpp">
       <Filter>AVLTree</Filter>
     </ClCompile>
-    <ClCompile Include="main2.cpp" />
+    <ClCompile Include="usaco.cpp" />
     <ClCompile Include="DisjointSet.cpp">
       <Filter>DisjointSet</Filter>
     </ClCompile>

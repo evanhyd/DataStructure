@@ -15,7 +15,7 @@ class Trie {
   };
 
 private:
-  Node head_;
+  Node root_;
 
 public:
   Trie();
@@ -35,7 +35,7 @@ private:
 
 
 template <typename T>
-Trie<T>::Trie() : head_() {}
+Trie<T>::Trie() : root_() {}
 
 template<typename T>
 Trie<T>::Node::Node() : child_(), is_end_(false) {}
@@ -43,7 +43,7 @@ Trie<T>::Node::Node() : child_(), is_end_(false) {}
 
 template <typename T>
 Trie<T>::Node* Trie<T>::Find(const T* arr, size_t len) {
-  Trie<T>::Node* curr = &head_;
+  Trie<T>::Node* curr = &root_;
   for (size_t i = 0; i < len; ++i) {
     auto res = curr->child_.find(arr[i]);
     if (res == curr->child_.end()) return nullptr;
@@ -54,7 +54,7 @@ Trie<T>::Node* Trie<T>::Find(const T* arr, size_t len) {
 
 template <typename T>
 const typename Trie<T>::Node* Trie<T>::Find(const T* arr, size_t len) const {
-  const typename Trie<T>::Node* curr = &head_;
+  const typename Trie<T>::Node* curr = &root_;
   for (size_t i = 0; i < len; ++i) {
     const auto res = curr->child_.find(arr[i]);
     if (res == curr->child_.end()) return nullptr;
@@ -78,7 +78,7 @@ bool Trie<T>::ContainPrefix(const T* arr, size_t len) const {
 
 template <typename T>
 void Trie<T>::Insert(const T* arr, size_t len)  {
-  Trie<T>::Node* curr = &head_;
+  Trie<T>::Node* curr = &root_;
   for (size_t i = 0; i < len; ++i) {
     curr = &curr->child_[arr[i]];
   }
@@ -89,7 +89,7 @@ template <typename T>
 void Trie<T>::Erase(const T* arr, size_t len) {
 
   std::vector<Trie<T>::Node*> stk;
-  Trie<T>::Node* curr = &head_;
+  Trie<T>::Node* curr = &root_;
   for (size_t i = 0; i < len; ++i) {
     auto res = curr->child_.find(arr[i]);
     if (res == curr->child_.end()) return;
@@ -120,7 +120,7 @@ std::vector<std::vector<T>> Trie<T>::GetAll() const {
 
   std::vector<std::vector<T>> res;
   std::vector<T> seq;
-  Walk(res, seq, head_);
+  Walk(res, seq, root_);
   return res;
 }
 

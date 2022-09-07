@@ -20,7 +20,7 @@ class ForwardList
     };
 
 
-    Node *head_;
+    Node *root_;
     int size_; 
 
 public:
@@ -62,14 +62,14 @@ template <typename T>
 void swap(ForwardList<T>& lhs, ForwardList<T>& rhs)
 {
     using std::swap;
-    swap(lhs.head_, rhs.head_);
+    swap(lhs.root_, rhs.root_);
     swap(lhs.size_, rhs.size_);
 }
 
 
 //constructor
 template <typename T>
-ForwardList<T>::ForwardList() : head_(nullptr), size_(0)
+ForwardList<T>::ForwardList() : root_(nullptr), size_(0)
 {
     //empty
 }
@@ -77,9 +77,9 @@ ForwardList<T>::ForwardList() : head_(nullptr), size_(0)
 template <typename T>
 ForwardList<T>::ForwardList(const ForwardList<T>& lst) : ForwardList()
 {
-    Node** back_inserter = &head_;
+    Node** back_inserter = &root_;
 
-    Node* node = lst.head_;
+    Node* node = lst.root_;
     while (node)
     {
         (*back_inserter) = new Node(node->val_, nullptr);
@@ -134,16 +134,16 @@ bool ForwardList<T>::IsEmpty() const
 template <typename T>
 void ForwardList<T>::PushFront(const T& item)
 {
-    head_ = new Node{ item, head_ };
+    root_ = new Node{ item, root_ };
     ++size_;
 }
 
 template <typename T>
 void ForwardList<T>::PopFront()
 {
-    assert(head_);
-    auto old_head = head_;
-    head_ = head_->next_;
+    assert(root_);
+    auto old_head = root_;
+    root_ = root_->next_;
     delete old_head;
 
     --size_;
@@ -174,7 +174,7 @@ void ForwardList<T>::DeleteAfter(Node* node)
 template <typename T>
 void ForwardList<T>::Clear()
 {
-    while (head_)
+    while (root_)
     {
         this->PopFront();
     }
@@ -187,26 +187,26 @@ template <typename T>
 T& ForwardList<T>::Front()
 {
     assert(!this->IsEmpty());
-    return head_->val_;
+    return root_->val_;
 }
 
 template <typename T>
 const T& ForwardList<T>::Front() const
 {
     assert(!this->IsEmpty());
-    return head_->val_;
+    return root_->val_;
 }
 
 template <typename T>
 auto ForwardList<T>::Head() -> Node*
 {
-    return head_;
+    return root_;
 }
 
 template <typename T>
 auto ForwardList<T>::Head() const -> const Node*
 {
-    return head_;
+    return root_;
 }
 
 
@@ -218,15 +218,15 @@ void ForwardList<T>::Reverse()
     Node* prev = nullptr;
     Node* child = nullptr;
 
-    while (head_)
+    while (root_)
     {
-        child = head_->next_;
-        head_->next_ = prev;
-        prev = head_;
-        head_ = child;
+        child = root_->next_;
+        root_->next_ = prev;
+        prev = root_;
+        root_ = child;
     }
 
-    head_ = prev;
+    root_ = prev;
 }
 
 

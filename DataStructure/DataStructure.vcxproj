@@ -171,13 +171,13 @@
     <ClCompile Include="io.cpp" />
     <ClCompile Include="ForwardList.cpp" />
     <ClCompile Include="LinkedList.cpp" />
-    <ClCompile Include="main.c" />
-    <ClCompile Include="main2.cpp" />
+    <ClCompile Include="pure_c.c" />
+    <ClCompile Include="usaco.cpp" />
     <ClCompile Include="memory.cpp" />
     <ClCompile Include="PSDA.cpp" />
     <ClCompile Include="random.cpp" />
     <ClCompile Include="SegmentTree.cpp" />
-    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="practice.cpp" />
     <ClCompile Include="DynamicArray.cpp" />
     <ClCompile Include="SparseTable.cpp" />
     <ClCompile Include="time.cpp" />

@@ -14,6 +14,7 @@
 #include <cassert>
 #include <numeric>
 #include <cmath>
+#include <functional>
 
 using namespace std;
 
@@ -22,14 +23,23 @@ using ull = unsigned long long;
 
 
 
-//int main()
-//{
-//#if not defined _WIN32 && not defined _WIN64
-//    const string kFileName = "hps";
-//    ifstream in(kFileName + ".in");
-//    ofstream out(kFileName + ".out");
-//    cin.rdbuf(in.rdbuf());
-//    cout.rdbuf(out.rdbuf());
-//#endif
-//
-//}
+//#define IN_USE
+#ifdef IN_USE
+#define IN_USE
+
+
+
+
+int main()
+{
+#if not defined _WIN32 && not defined _WIN64
+    const string kFileName = "bcount";
+    ifstream in(kFileName + ".in");
+    ofstream out(kFileName + ".out");
+    cin.rdbuf(in.rdbuf());
+    cout.rdbuf(out.rdbuf());
+#endif
+
+}
+
+#endif
