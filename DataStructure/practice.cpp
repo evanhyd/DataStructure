@@ -10,7 +10,9 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <numeric>
+
 #include "AVLTree.h"
+#include "Memory.h"
 
 
 
@@ -27,6 +29,23 @@ constexpr ull kPrimes[] = {
 
 using namespace std;
 
+template <typename T>
+struct Bar {
+
+  void Jump(const T& t) {
+    Init(move(t));
+  }
+
+  void Init(const T& t) {
+    cout << "lvalue\n";
+  }
+
+  void Init(T&& t) {
+    cout << "rvalue\n";
+  }
+};
+
+
 
 #define IN_USE
 #ifdef IN_USE
@@ -39,9 +58,10 @@ int main() {
 
   AVLTree<int> tree;
   auto res = tree.Find(10);
+  tree.Insert(20, false);
   printf("%p\n", res);
-}
 
+}
 
 /*
 overflow

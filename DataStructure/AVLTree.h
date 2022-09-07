@@ -17,7 +17,9 @@ class AVLTree
 
     T* Find(const T& key);
     const T* Find(const T& key) const;
-    void Insert(const T& key, bool replace = false);
+
+    template <typename Arg>
+    void Insert(Arg&& key, bool replace = false);
   };
 
   int size_;
@@ -31,8 +33,9 @@ public:
 
   T* Find(const T& key);
   const T* Find(const T& key) const;
-  void Insert(const T& key, bool replace = false);
-  void Insert(T&& key, bool replace = false);
+
+  template <typename Arg>
+  void Insert(Arg&& key, bool replace = false);
   bool Erase(const T& key);
 
   void PrintTree() const;
@@ -67,33 +70,34 @@ const T* AVLTree<T>::Node::Find(const T& key) const {
 }
 
 template <typename T>
-void AVLTree<T>::Node::Insert(const T& key, bool replace) {
+template <typename Arg>
+void AVLTree<T>::Node::Insert(Arg&& key, bool replace) {
 
   //found
   if (key == this->key_) {
     if (replace) {
-      this->key_ = key;
+      this->key_ = std::forward<Arg>(key);
     }
     return;
 
   } else if (key < this->key_) {
     if (this->left_) {
-      this->left_->Insert(key, replace);
+      this->left_->Insert(std::forward<Arg>(key), replace);
     } else {
-      this->left_ = new Node(key);
+      this->left_ = new Node(std::forward<Arg>(key));
     }
 
   } else {
     if (this->right_) {
-      this->right_->Insert(key, replace);
+      this->right_->Insert(std::forward<Arg>(key), replace);
     } else {
-      this->right_ = new Node(key);
+      this->right_ = new Node(std::forward<Arg>(key));
     }
   }
 
   //update height
-  const int left_height = (this->left_ ? this->left_->height_ : 0);
-  const int right_height = (this->right_ ? this->right_->height_ : 0);
+  const short left_height = (this->left_ ? this->left_->height_ : 0);
+  const short right_height = (this->right_ ? this->right_->height_ : 0);
   this->height_ = std::max(left_height, right_height) + 1;
   this->balance_factor_ = right_height - left_height;
 
@@ -157,16 +161,14 @@ const T* AVLTree<T>::Find(const T& key) const {
 }
 
 template <typename T>
-void AVLTree<T>::Insert(const T& key, bool replace) {
+template <typename Arg>
+void AVLTree<T>::Insert(Arg&& key, bool replace) {
   if (root_) {
-    root_->Insert(key, replace);
+    root_->Insert(std::forward<Arg>(key), replace);
   } else {
-    root_ = new Node(key);
+    root_ = new Node(std::forward<Arg>(key));
   }
 }
-
-template <typename T>
-void AVLTree<T>::Insert(T&& key, bool replace) {}
 
 template <typename T>
 bool AVLTree<T>::Erase(const T& key) {}
