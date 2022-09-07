@@ -40,14 +40,19 @@ int main() {
   #endif
 
   AVLTree<int> tree;
-  for (int i = 0; i < 128; ++i) {
-    if (i >= 65) {
-      int a = 20;
-    }
-    tree.Insert(i, false);
-    tree.Print();
+  for (int i = 0; i < 200; ++i) {
+    tree.Insert(i);
   }
 
+  auto res = tree.Min();
+  auto res2 = tree.Max();
+
+  if (res) {
+    cout << *res << '\n';
+  }
+  if (res2) {
+    cout << *res2 << '\n';
+  }
 }
 
 /*

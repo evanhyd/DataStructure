@@ -56,8 +56,8 @@ public:
 
 
 
-    void PushBack(const T& val);
-    void PushBack(T&& val);
+    template <typename Arg>
+    void PushBack(Arg&& val);
     void PopBack();
     void Clear();
 
@@ -265,24 +265,14 @@ const T* DynamicArray<T>::end() const
 
 
 template <typename T>
-void DynamicArray<T>::PushBack(const T& val)
-{
-    //check if exceed capacity
-    if (size_ >= capacity_) Reserve(2 * capacity_);
-
-    //copy construct
-    new(data_ + size_) T(val);
-    ++size_;
-}
-
-template <typename T>
-void DynamicArray<T>::PushBack(T&& val)
+template <typename Arg>
+void DynamicArray<T>::PushBack(Arg&& val)
 {
     //check if exceed capacity
     if (size_ >= capacity_) Reserve(2 * capacity_);
 
     //move construct
-    new(data_ + size_) T(std::move(val));
+    new(data_ + size_) T(std::forward<Arg>(val));
     ++size_;
 }
 

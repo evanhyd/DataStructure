@@ -15,7 +15,7 @@ public:
     SparseTable(std::vector<T> arr, BinOp op = BinOp());
     T Query(int left, int right, BinOp op = BinOp()) const;
     T FastQuery(int left, int right, BinOp op = BinOp()) const;
-    void PrintTable(int width) const;
+    void Print(int width) const;
 
     static int Pow2(int power);
 };
@@ -76,7 +76,7 @@ T SparseTable<T, BinOp>::FastQuery(int left, int right, BinOp op) const
 }
 
 template <typename T, typename BinOp>
-void SparseTable<T, BinOp>::PrintTable(int width) const
+void SparseTable<T, BinOp>::Print(int width) const
 {
     for (const auto& row : data_)
     {

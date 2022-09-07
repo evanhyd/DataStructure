@@ -21,6 +21,12 @@ class AVLTree {
 
     template <typename Arg>
     void Insert(Arg&& key, bool replace, AVLTree<T>::Node** parent);
+
+    T* Min();
+    const T* Min() const;
+    T* Max();
+    const T* Max() const;
+
     std::string Print(const int depth, int& max_depth, int& max_breadth);
 
   private:
@@ -46,6 +52,11 @@ public:
   template <typename Arg>
   void Insert(Arg&& key, bool replace = false);
   bool Erase(const T& key);
+
+  T* Min();
+  const T* Min() const;
+  T* Max();
+  const T* Max() const;
 
   void Print() const;
 };
@@ -203,6 +214,27 @@ void AVLTree<T>::Node::RotateRightLeft(Node** parent) {
 
 
 template <typename T>
+T* AVLTree<T>::Node::Min() {
+  return const_cast<T*>(static_cast<const AVLTree<T>::Node&>(*this).Min());
+}
+
+template <typename T>
+const T* AVLTree<T>::Node::Min() const {
+  return (this->left_ ? this->left_->Min() : &this->key_);
+}
+
+template <typename T>
+T* AVLTree<T>::Node::Max() {
+  return const_cast<T*>(static_cast<const AVLTree<T>::Node&>(*this).Max());
+}
+
+template <typename T>
+const T* AVLTree<T>::Node::Max() const {
+  return (this->right_ ? this->right_->Max() : &this->key_);
+}
+
+
+template <typename T>
 std::string AVLTree<T>::Node::Print(const int depth, int& max_depth, int& max_breadth) {
 
   //std::string tree_str(std::to_string(this->height_) + "(" + std::to_string(this->balance_factor_) + ")");
@@ -226,7 +258,6 @@ std::string AVLTree<T>::Node::Print(const int depth, int& max_depth, int& max_br
 
   return tree_str;
 }
-
 
 
 
@@ -280,6 +311,27 @@ void AVLTree<T>::Insert(Arg&& key, bool replace) {
 
 template <typename T>
 bool AVLTree<T>::Erase(const T& key) {}
+
+
+template <typename T>
+T* AVLTree<T>::Min() {
+  return const_cast<T*>(static_cast<const AVLTree<T>&>(*this).Min());
+}
+
+template <typename T>
+const T* AVLTree<T>::Min() const {
+  return (root_ ? root_->Min() : nullptr);
+}
+
+template <typename T>
+T* AVLTree<T>::Max() {
+  return const_cast<T*>(static_cast<const AVLTree<T>&>(*this).Max());
+}
+
+template <typename T>
+const T* AVLTree<T>::Max() const {
+  return (root_ ? root_->Max() : nullptr);
+}
 
 template <typename T>
 void AVLTree<T>::Print() const {

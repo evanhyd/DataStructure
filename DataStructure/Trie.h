@@ -43,13 +43,7 @@ Trie<T>::Node::Node() : child_(), is_end_(false) {}
 
 template <typename T>
 Trie<T>::Node* Trie<T>::Find(const T* arr, size_t len) {
-  Trie<T>::Node* curr = &root_;
-  for (size_t i = 0; i < len; ++i) {
-    auto res = curr->child_.find(arr[i]);
-    if (res == curr->child_.end()) return nullptr;
-    curr = &res->second;
-  }
-  return curr;
+  return const_cast<Trie<T>::Node*>(static_cast<const Trie<T>&>(*this).Find(arr, len));
 }
 
 template <typename T>
