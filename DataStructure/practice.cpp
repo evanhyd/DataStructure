@@ -34,24 +34,35 @@ using namespace std;
 #ifdef IN_USE
 #define IN_USE
 
+/*
+
+Alex P, Josiah, Judy, Kevin Wei, Claudia, Karen, Bog, Justin, George
+
+*/
+
 int main() {
   #ifdef ONLINE_JUDGE
   std::cin.tie(nullptr)->sync_with_stdio(false);
   #endif
 
   AVLTree<int> tree;
-  for (int i = 0; i < 200; ++i) {
+
+  for (int i = 0; i < 100000000; ++i) {
+    if (i % (4096 << 10) == 0) {
+      cout << i << '\n';
+    }
     tree.Insert(i);
   }
 
-  auto res = tree.Min();
-  auto res2 = tree.Max();
-
-  if (res) {
-    cout << *res << '\n';
-  }
-  if (res2) {
-    cout << *res2 << '\n';
+  for (int i = 0; i < 5; ++i) {
+    int a;
+    cin >> a;
+    if (auto res = tree.Find(a); res) {
+      cout << "You guessed it\n";
+      break;
+    } else {
+      cout << "Opps, take another guess\n";
+    }
   }
 }
 

@@ -5,7 +5,9 @@
 
 template <typename T>
 class AVLTree {
+
   class Node {
+
     short height_;
     short balance_factor_;
     T key_;
@@ -15,6 +17,7 @@ class AVLTree {
   public:
     Node(const T& key);
     Node(T&& key);
+    ~Node();
 
     T* Find(const T& key);
     const T* Find(const T& key) const;
@@ -42,6 +45,7 @@ class AVLTree {
 
 public:
   AVLTree();
+  ~AVLTree();
 
   bool Empty() const;
   int Size() const;
@@ -66,6 +70,12 @@ AVLTree<T>::Node::Node(const T& key) : height_(0), balance_factor_(0), key_(key)
 
 template <typename T>
 AVLTree<T>::Node::Node(T&& key) : height_(0), balance_factor_(0), key_(std::move(key)), left_(nullptr), right_(nullptr) {}
+
+template <typename T>
+AVLTree<T>::Node::~Node() {
+  delete this->left_;
+  delete this->right_;
+}
 
 template <typename T>
 T* AVLTree<T>::Node::Find(const T& key) {
@@ -278,6 +288,11 @@ std::string AVLTree<T>::Node::Print(const int depth, int& max_depth, int& max_br
 
 template <typename T>
 AVLTree<T>::AVLTree() : size_(0), root_(nullptr) {}
+
+template <typename T>
+AVLTree<T>::~AVLTree() {
+  delete this->root_;
+}
 
 template <typename T>
 bool AVLTree<T>::Empty() const {
