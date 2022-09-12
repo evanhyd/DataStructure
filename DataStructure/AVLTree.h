@@ -135,10 +135,14 @@ template <typename T>
 const T* AVLTree<T>::Node::Find(const Node* curr, const T& key) {
   if (!curr) {
     return nullptr;
-  } else if (key == curr->key_) {
-    return &curr->key_;
+  } 
+
+  if (key < curr->key_) {
+    return Find(curr->left_, key);
+  } else if (curr->key_ < key) {
+    return Find(curr->right_, key);
   } else {
-    return (key < curr->key_ ? Find(curr->left_, key) : Find(curr->right_, key));
+    return &curr->key_;
   }
 }
 
@@ -157,16 +161,13 @@ void AVLTree<T>::Node::Insert(Node** parent, Node* curr, Arg&& key) {
     return;
   }
 
-  //found
-  if (key == curr->key_) {
-    return;
-  }
-
-  //in subtree
+  //check subtree
   if (key < curr->key_) {
     Insert(&curr->left_, curr->left_, std::forward<Arg>(key));
-  } else {
+  } else if(curr->key_ < key) {
     Insert(&curr->right_, curr->right_, std::forward<Arg>(key));
+  } else {
+    return;
   }
 
   //balance the subtree
