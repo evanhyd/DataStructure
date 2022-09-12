@@ -186,7 +186,7 @@ void AVLTree<T>::Node::Erase(Node** parent, Node* curr, const T& key) {
     //check left subtree
     Erase(&curr->left_, curr->left_, key);
 
-  } else if (key > curr->key_) {
+  } else if (curr->key_ < key) {
 
     //check right subtree
     Erase(&curr->right_, curr->right_, key);

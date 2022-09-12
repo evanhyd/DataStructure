@@ -36,25 +36,42 @@ using namespace std;
 #define IN_USE
 
 
-/*
+struct Num {
+  int n;
+  int i;
 
-0
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
+  bool operator<(const Num& rhs) const {
+    return n < rhs.n;
+  }
+
+  bool operator==(const Num& rhs) const {
+    return n == rhs.n;
+  }
+};
 
 
+class Solution {
+public:
+  bool containsNearbyDuplicate(const vector<int>& nums, int k) {
+    AVLTree<Num> tree;
+    for (int i = 0; i < nums.size(); ++i) {
+      auto res = tree.Find(Num{ nums[i], 0 });
 
+      if (res) {
+        if (abs(res->i - i) <= k) {
+          return true;
+        } else {
+          tree.Erase(Num{ res->n, 0 });
+          tree.Insert(Num{ nums[i], i });
+        }
+      }
 
-*/
+      tree.Insert(Num{ nums[i], i });
+    }
+    return false;
+  }
+};
+
 
 int main() {
   #ifdef ONLINE_JUDGE
@@ -63,20 +80,7 @@ int main() {
 
   MSVC_MEMORY_GUARD();
 
-  AVLTree<int> tree;
-
-  for (int a; cin >> a; ) {
-    tree.Insert(a);
-    cout << string(10, '\n');
-    tree.Print();
-  }
-  cin.clear();
-
-  for (int a; cin >> a; ) {
-    tree.Erase(a);
-    cout << string(10, '\n');
-    tree.Print();
-  }
+  cout<<Solution().containsNearbyDuplicate({ 1, 0, 1, 1 }, 1);
 
 }
 
