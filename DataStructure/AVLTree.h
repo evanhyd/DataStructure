@@ -3,52 +3,34 @@
 #include <string>
 #include <utility>
 
+
+/*
+
+AVL Tree Implementation
+
+*/
+
+template <typename T>
+class AVLTree;
+
+template <typename T>
+void swap(AVLTree<T>& lhs, AVLTree<T>& rhs);
+
 template <typename T>
 class AVLTree {
 
-  class Node {
-
-    short height_;
-    short balance_factor_;
-    T key_;
-    Node* left_;
-    Node* right_;
-
-  public:
-    Node(const T& key);
-    Node(T&& key);
-    ~Node();
-
-    T* Min();
-    T* Max();
-    const T* Min() const;
-    const T* Max() const;
-    std::string Print(const int depth, int& max_depth, int& max_breadth);
-
-
-    static T* Find(Node* curr, const T& key);
-    static const T* Find(const Node* curr, const T& key);
-
-    template <typename Arg>
-    static void Insert(Node** parent, Node* curr, Arg&& key);
-    static void Erase(Node** parent, Node* curr, const T& key);
-    static void EraseReplacement(Node** parent, Node* curr, Node* root);
-    static void BalanceSubtree(Node** parent, Node* root);
-
-  private:
-    void UpdateInfo();
-    void RotateLeftLeft(Node** parent);
-    void RotateLeftRight(Node** parent);
-    void RotateRightRight(Node** parent);
-    void RotateRightLeft(Node** parent);
-  };
+  class Node;
 
   int size_;
   Node* root_;
 
 public:
   AVLTree();
+  AVLTree(const AVLTree& tree);
+  AVLTree(AVLTree&& tree) noexcept;
   ~AVLTree();
+
+  AVLTree& operator=(AVLTree rhs) noexcept;
 
   bool Empty() const;
   int Size() const;
@@ -64,21 +46,190 @@ public:
   template <typename Arg>
   void Insert(Arg&& key);
   void Erase(const T& key);
+
+  friend void swap<T>(AVLTree& lhs, AVLTree& rhs);
+};
+
+
+template <typename T>
+void swap(AVLTree<T>& lhs, AVLTree<T>& rhs) {
+  using std::swap;
+  swap(lhs.size_, rhs.size_);
+  swap(lhs.root_, rhs.root_);
+}
+
+template <typename T>
+AVLTree<T>::AVLTree() : size_(0), root_(nullptr) {}
+
+template <typename T>
+AVLTree<T>::AVLTree(const AVLTree& tree) : size_(tree.size_) {
+  if (tree.root_) {
+    root_ = new Node(*tree.root_);
+  }
+}
+
+template <typename T>
+AVLTree<T>::AVLTree(AVLTree&& tree) noexcept : size_(tree.size_), root_(std::exchange(tree.root_, nullptr)) {}
+
+template <typename T>
+AVLTree<T>::~AVLTree() {
+  delete this->root_;
+}
+
+template <typename T>
+AVLTree<T>& AVLTree<T>::operator=(AVLTree<T> tree) noexcept {
+  swap(*this, tree);
+  return *this;
+}
+
+template <typename T>
+bool AVLTree<T>::Empty() const {
+  return size_ == 0;
+}
+
+template <typename T>
+int AVLTree<T>::Size() const {
+  return size_;
+}
+
+template <typename T>
+const T* AVLTree<T>::Min() const {
+  return (root_ ? root_->Min() : nullptr);
+}
+
+template <typename T>
+T* AVLTree<T>::Min() {
+  return const_cast<T*>(static_cast<const AVLTree<T>&>(*this).Min());
+}
+
+template <typename T>
+const T* AVLTree<T>::Max() const {
+  return (root_ ? root_->Max() : nullptr);
+}
+
+template <typename T>
+T* AVLTree<T>::Max() {
+  return const_cast<T*>(static_cast<const AVLTree<T>&>(*this).Max());
+}
+
+template <typename T>
+void AVLTree<T>::Print() const {
+
+  if (!this->root_) {
+    std::cout << "Empty Tree\n";
+    return;
+  }
+
+  int max_depth = 0;
+  int max_breadth = 0;
+  std::string graph_str = this->root_->Print(0, max_depth, max_breadth);
+  std::string line_break(max_depth * 6, '-');
+
+  std::cout << '\n'
+    << graph_str << '\n'
+    << line_break << '\n'
+    << "Max Depth: " << max_depth << '\n'
+    << "Max Breadth: " << max_breadth << '\n';
+}
+
+template <typename T>
+const T* AVLTree<T>::Find(const T& key) const {
+  return Node::Find(root_, key);
+}
+
+template <typename T>
+T* AVLTree<T>::Find(const T& key) {
+  return const_cast<T*>(static_cast<const AVLTree<T>&>(*this).Find(key));
+}
+
+template <typename T>
+template <typename Arg>
+void AVLTree<T>::Insert(Arg&& key) {
+  Node::Insert(&root_, root_, std::forward<Arg>(key));
+}
+
+template <typename T>
+void AVLTree<T>::Erase(const T& key) {
+  Node::Erase(&root_, root_, key);
+}
+
+
+
+
+
+
+
+
+/*
+
+AVL Tree Node implementation
+
+*/
+
+
+template <typename T>
+class AVLTree<T>::Node {
+
+  short height_;
+  short balance_factor_;
+  T key_;
+  Node* left_;
+  Node* right_;
+
+public:
+  Node(const T& key);
+  Node(T&& key);
+  Node(const Node& rhs);
+  Node(Node&& rhs) noexcept;
+  ~Node();
+
+  Node& operator=(const Node& rhs) = delete;
+  Node& operator=(Node&& rhs) = delete;
+
+  T* Min();
+  T* Max();
+  const T* Min() const;
+  const T* Max() const;
+  std::string Print(const int depth, int& max_depth, int& max_breadth);
+
+
+  static T* Find(Node* curr, const T& key);
+  static const T* Find(const Node* curr, const T& key);
+
+  template <typename Arg>
+  static void Insert(Node** parent, Node* curr, Arg&& key);
+  static void Erase(Node** parent, Node* curr, const T& key);
+  static void EraseReplacement(Node** parent, Node* curr, Node* root);
+  static void BalanceSubtree(Node** parent, Node* root);
+
+private:
+  void UpdateInfo();
+  void RotateLeftLeft(Node** parent);
+  void RotateLeftRight(Node** parent);
+  void RotateRightRight(Node** parent);
+  void RotateRightLeft(Node** parent);
 };
 
 
 
-
-
-
-
-
+template <typename T>
+AVLTree<T>::Node::Node(const T& key) : 
+  height_(0), balance_factor_(0), key_(key), left_(nullptr), right_(nullptr) {}
 
 template <typename T>
-AVLTree<T>::Node::Node(const T& key) : height_(0), balance_factor_(0), key_(key), left_(nullptr), right_(nullptr) {}
+AVLTree<T>::Node::Node(T&& key) : 
+  height_(0), balance_factor_(0), key_(std::move(key)), left_(nullptr), right_(nullptr) {}
 
 template <typename T>
-AVLTree<T>::Node::Node(T&& key) : height_(0), balance_factor_(0), key_(std::move(key)), left_(nullptr), right_(nullptr) {}
+AVLTree<T>::Node::Node(const Node& rhs) : 
+  height_(rhs.height_), balance_factor_(rhs.balance_factor_), key_(rhs.key_) {
+  left_ = (rhs.left_ ? new Node(*rhs.left_) : nullptr);
+  right_ = (rhs.right_ ? new Node(*rhs.right_) : nullptr);
+}
+
+template <typename T>
+AVLTree<T>::Node::Node(Node&& rhs) noexcept :
+  height_(rhs.height_), balance_factor_(rhs.balance_factor_), key_(std::move(rhs.key_)), left_(std::exchange(rhs.left_, nullptr), right_(std::exchange(rhs.right_, nullptr))) {}
 
 template <typename T>
 AVLTree<T>::Node::~Node() {
@@ -87,23 +238,23 @@ AVLTree<T>::Node::~Node() {
 }
 
 template <typename T>
-T* AVLTree<T>::Node::Min() {
-  return const_cast<T*>(static_cast<const AVLTree<T>::Node&>(*this).Min());
-}
-
-template <typename T>
 const T* AVLTree<T>::Node::Min() const {
   return (this->left_ ? this->left_->Min() : &this->key_);
 }
 
 template <typename T>
-T* AVLTree<T>::Node::Max() {
-  return const_cast<T*>(static_cast<const AVLTree<T>::Node&>(*this).Max());
+T* AVLTree<T>::Node::Min() {
+  return const_cast<T*>(static_cast<const AVLTree<T>::Node&>(*this).Min());
 }
 
 template <typename T>
 const T* AVLTree<T>::Node::Max() const {
   return (this->right_ ? this->right_->Max() : &this->key_);
+}
+
+template <typename T>
+T* AVLTree<T>::Node::Max() {
+  return const_cast<T*>(static_cast<const AVLTree<T>::Node&>(*this).Max());
 }
 
 template <typename T>
@@ -135,7 +286,7 @@ template <typename T>
 const T* AVLTree<T>::Node::Find(const Node* curr, const T& key) {
   if (!curr) {
     return nullptr;
-  } 
+  }
 
   if (key < curr->key_) {
     return Find(curr->left_, key);
@@ -164,7 +315,7 @@ void AVLTree<T>::Node::Insert(Node** parent, Node* curr, Arg&& key) {
   //check subtree
   if (key < curr->key_) {
     Insert(&curr->left_, curr->left_, std::forward<Arg>(key));
-  } else if(curr->key_ < key) {
+  } else if (curr->key_ < key) {
     Insert(&curr->right_, curr->right_, std::forward<Arg>(key));
   } else {
     return;
@@ -217,7 +368,7 @@ void AVLTree<T>::Node::Erase(Node** parent, Node* curr, const T& key) {
     return;
   }
 
-  BalanceSubtree(parent, curr);  
+  BalanceSubtree(parent, curr);
 }
 
 template <typename T>
@@ -234,12 +385,11 @@ void AVLTree<T>::Node::EraseReplacement(Node** parent, Node* curr, Node* root) {
   }
 }
 
-
 template <typename T>
 void AVLTree<T>::Node::BalanceSubtree(Node** parent, Node* root) {
 
   //update height and balance factor
-   root->UpdateInfo();
+  root->UpdateInfo();
 
   //rotate based on balanced factor
   if (root->balance_factor_ <= -2) {
@@ -273,8 +423,8 @@ void AVLTree<T>::Node::BalanceSubtree(Node** parent, Node* root) {
 
 template <typename T>
 void AVLTree<T>::Node::UpdateInfo() {
-  const short left_height = (this->left_ ? this->left_->height_: -1);
-  const short right_height = (this->right_ ? this->right_->height_: -1);
+  const short left_height = (this->left_ ? this->left_->height_ : -1);
+  const short right_height = (this->right_ ? this->right_->height_ : -1);
   this->height_ = std::max(left_height, right_height) + 1;
   this->balance_factor_ = right_height - left_height;
 }
@@ -332,106 +482,10 @@ void AVLTree<T>::Node::RotateRightLeft(Node** parent) {
   *parent = RL;
   R->left_ = RL->right_;
   this->right_ = RL->left_;
-  RL->right_= R;
+  RL->right_ = R;
   RL->left_ = this;
 
   this->UpdateInfo();
   (*parent)->right_->UpdateInfo();
   (*parent)->UpdateInfo();
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-template <typename T>
-AVLTree<T>::AVLTree() : size_(0), root_(nullptr) {}
-
-template <typename T>
-AVLTree<T>::~AVLTree() {
-  delete this->root_;
-}
-
-template <typename T>
-bool AVLTree<T>::Empty() const {
-  return size_ == 0;
-}
-
-template <typename T>
-int AVLTree<T>::Size() const {
-  return size_;
-}
-
-template <typename T>
-const T* AVLTree<T>::Min() const {
-  return (root_ ? root_->Min() : nullptr);
-}
-
-template <typename T>
-T* AVLTree<T>::Min() {
-  return const_cast<T*>(static_cast<const AVLTree<T>&>(*this).Min());
-}
-
-template <typename T>
-const T* AVLTree<T>::Max() const {
-  return (root_ ? root_->Max() : nullptr);
-}
-
-template <typename T>
-T* AVLTree<T>::Max() {
-  return const_cast<T*>(static_cast<const AVLTree<T>&>(*this).Max());
-}
-
-template <typename T>
-void AVLTree<T>::Print() const {
-
-  if (!this->root_) {
-    return;
-  }
-
-  int max_depth = 0;
-  int max_breadth = 0;
-  std::string graph_str = this->root_->Print(0, max_depth, max_breadth);
-  std::string line_break(max_depth * 6, '-');
-
-  std::cout << '\n'
-    << graph_str << '\n'
-    << line_break << '\n'
-    << "Max Depth: " << max_depth << '\n'
-    << "Max Breadth: " << max_breadth << '\n';
-}
-
-template <typename T>
-const T* AVLTree<T>::Find(const T& key) const {
-  return Node::Find(root_, key);
-}
-
-template <typename T>
-T* AVLTree<T>::Find(const T& key) {
-  return const_cast<T*>(static_cast<const AVLTree<T>&>(*this).Find(key));
-}
-
-template <typename T>
-template <typename Arg>
-void AVLTree<T>::Insert(Arg&& key) {
-  Node::Insert(&root_, root_, std::forward<Arg>(key));
-}
-
-template <typename T>
-void AVLTree<T>::Erase(const T& key) {
-  Node::Erase(&root_, root_, key);
 }

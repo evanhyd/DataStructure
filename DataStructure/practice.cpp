@@ -36,42 +36,52 @@ using namespace std;
 #define IN_USE
 
 
-struct Num {
-  int n;
-  int i;
+//#define TEST
+#ifdef TEST
+template <typename T>
+class Tree;
 
-  bool operator<(const Num& rhs) const {
-    return n < rhs.n;
-  }
+template <typename T>
+void swap(Tree<T>& lhs, Tree<T>& rhs);
 
-  bool operator==(const Num& rhs) const {
-    return n == rhs.n;
-  }
+template <typename T>
+class Tree {
+  class Node;
+  int a;
+
+  friend void swap<T>(Tree& lhs, Tree& rhs);
 };
 
+template <typename T>
+void swap(Tree<T>& lhs, Tree<T>& rhs) {
+  lhs.a = rhs.a;
+}
 
-class Solution {
+
+
+template <typename T>
+void swap(typename Tree<T>::Node& lhs, typename Tree<T>::Node& rhs);
+
+// definition of inner
+template <typename T>
+class Tree<T>::Node {
+  int b;
+
 public:
-  bool containsNearbyDuplicate(const vector<int>& nums, int k) {
-    AVLTree<Num> tree;
-    for (int i = 0; i < nums.size(); ++i) {
-      auto res = tree.Find(Num{ nums[i], 0 });
-
-      if (res) {
-        if (abs(res->i - i) <= k) {
-          return true;
-        } else {
-          tree.Erase(Num{ res->n, 0 });
-          tree.Insert(Num{ nums[i], i });
-        }
-      }
-
-      tree.Insert(Num{ nums[i], i });
-    }
-    return false;
-  }
+  friend void swap<T>(Tree<T>::Node& lhs, Tree<T>::Node& rhs);
 };
 
+template <typename T>
+void swap(typename Tree<T>::Node& lhs, typename Tree<T>::Node& rhs) {
+  lhs.b = rhs.b;
+}
+
+int main() {
+  Tree<int> o1, o2;
+  swap(o1, o2);
+}
+
+#else
 
 int main() {
   #ifdef ONLINE_JUDGE
@@ -79,10 +89,22 @@ int main() {
   #endif
 
   MSVC_MEMORY_GUARD();
+  AVLTree<int> t1, t2;
 
-  cout<<Solution().containsNearbyDuplicate({ 1, 0, 1, 1 }, 1);
+  for (int i = 0; i < 10; ++i) {
+    t1.Insert(i);
+    t2.Insert(i * i);
+  }
 
+  t1.Print();
+  t2.Print();
+
+  t1 = std::move(t2);
+  t1.Print();
+  t2.Print();
 }
+
+#endif
 
 /*
 overflow
