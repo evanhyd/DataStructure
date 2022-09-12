@@ -13,6 +13,7 @@
 
 #include "AVLTree.h"
 #include "random.h"
+#include "memory.h"
 
 
 
@@ -34,36 +35,21 @@ using namespace std;
 #ifdef IN_USE
 #define IN_USE
 
-/*
-
-Alex P, Josiah, Judy, Kevin Wei, Claudia, Karen, Bog, Justin, George
-
-*/
+struct Bar {
+  int* ptr;
+};
 
 int main() {
   #ifdef ONLINE_JUDGE
   std::cin.tie(nullptr)->sync_with_stdio(false);
   #endif
 
-  AVLTree<int> tree;
+  MSVC_MEMORY_GUARD();
 
-  for (int i = 0; i < 100000000; ++i) {
-    if (i % (4096 << 10) == 0) {
-      cout << i << '\n';
-    }
-    tree.Insert(i);
-  }
+  const Bar b{ new int(10) };
+  (*b.ptr) = 10;
+  cout << (*b.ptr) << '\n';
 
-  for (int i = 0; i < 5; ++i) {
-    int a;
-    cin >> a;
-    if (auto res = tree.Find(a); res) {
-      cout << "You guessed it\n";
-      break;
-    } else {
-      cout << "Opps, take another guess\n";
-    }
-  }
 }
 
 /*
