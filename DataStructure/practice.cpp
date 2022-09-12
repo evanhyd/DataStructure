@@ -35,9 +35,26 @@ using namespace std;
 #ifdef IN_USE
 #define IN_USE
 
-struct Bar {
-  int* ptr;
-};
+
+/*
+
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+
+
+
+
+*/
 
 int main() {
   #ifdef ONLINE_JUDGE
@@ -46,9 +63,20 @@ int main() {
 
   MSVC_MEMORY_GUARD();
 
-  const Bar b{ new int(10) };
-  (*b.ptr) = 10;
-  cout << (*b.ptr) << '\n';
+  AVLTree<int> tree;
+
+  for (int a; cin >> a; ) {
+    tree.Insert(a);
+    cout << string(10, '\n');
+    tree.Print();
+  }
+  cin.clear();
+
+  for (int a; cin >> a; ) {
+    tree.Erase(a);
+    cout << string(10, '\n');
+    tree.Print();
+  }
 
 }
 

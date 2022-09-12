@@ -153,7 +153,7 @@ void AVLTree<T>::Node::Insert(Node** parent, Node* curr, Arg&& key) {
 
   //null leaf
   if (!curr) {
-    (*parent)->key_ = std::forward<Arg>(key);
+    (*parent) = new Node(std::forward<Arg>(key));
     return;
   }
 
@@ -238,16 +238,15 @@ template <typename T>
 void AVLTree<T>::Node::BalanceSubtree(Node** parent, Node* root) {
 
   //update height and balance factor
-  root->UpdateInfo();
+   root->UpdateInfo();
 
   //rotate based on balanced factor
   if (root->balance_factor_ <= -2) {
 
     //left heavy
     assert(root->left_);
-    assert(root->left_->balance_factor_ != 0);
 
-    if (root->left_->balance_factor_ < 0) {
+    if (root->left_->balance_factor_ <= 0) {
       root->RotateLeftLeft(parent);
     } else {
       root->RotateLeftRight(parent);
@@ -257,9 +256,8 @@ void AVLTree<T>::Node::BalanceSubtree(Node** parent, Node* root) {
 
     //right heavy
     assert(root->right_);
-    assert(root->right_->balance_factor_ != 0);
 
-    if (root->right_->balance_factor_ > 0) {
+    if (root->right_->balance_factor_ >= 0) {
       root->RotateRightRight(parent);
     } else {
       root->RotateRightLeft(parent);
@@ -267,7 +265,7 @@ void AVLTree<T>::Node::BalanceSubtree(Node** parent, Node* root) {
   }
 
   //check post balance factor
-  assert((root->right_ ? root->right_->height_ : -1) - (root->left_ ? root->left_->height_ : -1) == this->balance_factor_);
+  assert((root->right_ ? root->right_->height_ : -1) - (root->left_ ? root->left_->height_ : -1) == root->balance_factor_);
 }
 
 
