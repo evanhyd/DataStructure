@@ -9,13 +9,12 @@
 #include <set>
 #include <unordered_map>
 #include <unordered_set>
+#include <queue>
 #include <numeric>
-
-#include "AVLTree.h"
-#include "random.h"
-#include "memory.h"
-
-
+#include <bitset>
+#include <chrono>
+#include <random>
+#include <functional>
 
 using ll = long long;
 using ull = unsigned long long;
@@ -26,7 +25,8 @@ constexpr ull kPrimes[] = {
     43,  47,  53,  59,  61,  67,  71,  73,  79,  83,  89,  97,  101,
     103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167,
     173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239,
-    241, 251, 257, 263, 269, 271, 277, 281, 283, 293 };
+    241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313,
+};
 
 using namespace std;
 
@@ -35,76 +35,43 @@ using namespace std;
 #ifdef IN_USE
 #define IN_USE
 
-
-//#define TEST
-#ifdef TEST
-template <typename T>
-class Tree;
+#include "DynamicArray.h"
+#include "memory.h"
 
 template <typename T>
-void swap(Tree<T>& lhs, Tree<T>& rhs);
+void Print(const T& arr) {
 
-template <typename T>
-class Tree {
-  class Node;
-  int a;
-
-  friend void swap<T>(Tree& lhs, Tree& rhs);
-};
-
-template <typename T>
-void swap(Tree<T>& lhs, Tree<T>& rhs) {
-  lhs.a = rhs.a;
+  cout << std::format("Size: {}, Capacity: {}\n Front: {}, Back: {}\n", arr.Size(), arr.Capacity(), arr.Front(), arr.Back());
+  for (const auto& e : arr) {
+    cout << e << ' ';
+  }
+  cout << '\n';
 }
 
 
-
 template <typename T>
-void swap(typename Tree<T>::Node& lhs, typename Tree<T>::Node& rhs);
-
-// definition of inner
-template <typename T>
-class Tree<T>::Node {
-  int b;
-
-public:
-  friend void swap<T>(Tree<T>::Node& lhs, Tree<T>::Node& rhs);
-};
-
-template <typename T>
-void swap(typename Tree<T>::Node& lhs, typename Tree<T>::Node& rhs) {
-  lhs.b = rhs.b;
-}
-
-int main() {
-  Tree<int> o1, o2;
-  swap(o1, o2);
-}
-
-#else
+using DA = DynamicArray<T>;
 
 int main() {
   #ifdef ONLINE_JUDGE
   std::cin.tie(nullptr)->sync_with_stdio(false);
   #endif
 
-  MSVC_MEMORY_GUARD();
-  AVLTree<int> t1, t2;
+  cug::memory::MemoryGuard();
 
-  for (int i = 0; i < 10; ++i) {
-    t1.Insert(i);
-    t2.Insert(i * i);
-  }
 
-  t1.Print();
-  t2.Print();
+  DA<string> arr;
 
-  t1 = std::move(t2);
-  t1.Print();
-  t2.Print();
+  arr.PushBack("haha");
+  arr.PushBack("unbox");
+  arr.PushBack("the");
+  arr.PushBack("cat");
+  Print(arr);
 }
 
+
 #endif
+
 
 /*
 overflow
@@ -112,5 +79,3 @@ array bounds
 edge case n = 0, n = 1
 reset between test cases
 */
-
-#endif
