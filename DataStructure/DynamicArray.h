@@ -239,7 +239,7 @@ DynamicArray<T>::DynamicArray(const T* begin, const T* end) {
   assert(begin && end && begin <= end);
 
   //allocate the array
-  std::size_t count = end - begin;
+  const std::size_t count = end - begin;
   begin_ = static_cast<T*>(operator new[](count * sizeof(T)));
   end_ = begin_ + count;
   capacity_ = end_;
@@ -394,7 +394,8 @@ void DynamicArray<T>::Clear() {
 
 template <typename T>
 void DynamicArray<T>::Resize(std::size_t new_size, const T& default_value) {
-  std::size_t old_sz = Size();
+
+  const std::size_t old_sz = Size();
 
   //appending elements
   if (old_sz < new_size) {
@@ -423,7 +424,7 @@ void DynamicArray<T>::Reserve(std::size_t new_capacity) {
   if (Size() <= new_capacity) {
 
     //save old size
-    std::size_t old_sz = Size();
+    const std::size_t old_sz = Size();
 
     //allocate new memory
     T* new_mem = static_cast<T*>(operator new[](new_capacity * sizeof(T)));

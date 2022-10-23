@@ -35,38 +35,27 @@ using namespace std;
 #ifdef IN_USE
 #define IN_USE
 
-#include "DynamicArray.h"
-#include "memory.h"
+#include "chapter1.h"
+#include "random.h"
 
-template <typename T>
-void Print(const T& arr) {
-
-  cout << std::format("Size: {}, Capacity: {}\n Front: {}, Back: {}\n", arr.Size(), arr.Capacity(), arr.Front(), arr.Back());
-  for (const auto& e : arr) {
-    cout << e << ' ';
-  }
-  cout << '\n';
-}
-
-
-template <typename T>
-using DA = DynamicArray<T>;
 
 int main() {
   #ifdef ONLINE_JUDGE
   std::cin.tie(nullptr)->sync_with_stdio(false);
   #endif
 
-  cug::memory::MemoryGuard();
+  
+  int nums[20] = {};
+  for (int& n : nums) {
+    n = cug::random::GetRandom(1, 50);
+  }
 
+  chapter1::MergeSort<int>(nums, nums + sizeof(nums) / sizeof(int));
 
-  DA<string> arr;
-
-  arr.PushBack("haha");
-  arr.PushBack("unbox");
-  arr.PushBack("the");
-  arr.PushBack("cat");
-  Print(arr);
+  for (int& n : nums) {
+    cout << n << ' ';
+  }
+  cout << '\n';
 }
 
 

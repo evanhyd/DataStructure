@@ -3,19 +3,19 @@
   <ItemGroup>
     <ClCompile Include="practice.cpp" />
     <ClCompile Include="BinaryHeap.cpp">
-      <Filter>BinaryHeap</Filter>
+      <Filter>DataStructure\BinaryHeap</Filter>
     </ClCompile>
     <ClCompile Include="DynamicArray.cpp">
-      <Filter>DynamicArray</Filter>
+      <Filter>DataStructure\DynamicArray</Filter>
     </ClCompile>
     <ClCompile Include="ForwardList.cpp">
-      <Filter>ForwardList</Filter>
+      <Filter>DataStructure\ForwardList</Filter>
     </ClCompile>
     <ClCompile Include="LinkedList.cpp">
-      <Filter>LinkedList</Filter>
+      <Filter>DataStructure\LinkedList</Filter>
     </ClCompile>
     <ClCompile Include="PSDA.cpp">
-      <Filter>PSDA</Filter>
+      <Filter>DataStructure\PSDA</Filter>
     </ClCompile>
     <ClCompile Include="io.cpp">
       <Filter>cug\io</Filter>
@@ -27,66 +27,36 @@
       <Filter>cug\time</Filter>
     </ClCompile>
     <ClCompile Include="SegmentTree.cpp">
-      <Filter>SegmentTree</Filter>
+      <Filter>DataStructure\SegmentTree</Filter>
     </ClCompile>
     <ClCompile Include="random.cpp">
       <Filter>cug\random</Filter>
     </ClCompile>
     <ClCompile Include="pure_c.c" />
     <ClCompile Include="SparseTable.cpp">
-      <Filter>SparseTable</Filter>
+      <Filter>DataStructure\SparseTable</Filter>
     </ClCompile>
     <ClCompile Include="Tuple.cpp">
-      <Filter>Tuple</Filter>
+      <Filter>DataStructure\Tuple</Filter>
     </ClCompile>
     <ClCompile Include="graph.cpp">
       <Filter>cug\graph</Filter>
     </ClCompile>
     <ClCompile Include="AVLTree.cpp">
-      <Filter>AVLTree</Filter>
+      <Filter>DataStructure\AVLTree</Filter>
     </ClCompile>
     <ClCompile Include="usaco.cpp" />
     <ClCompile Include="DisjointSet.cpp">
-      <Filter>DisjointSet</Filter>
+      <Filter>DataStructure\DisjointSet</Filter>
     </ClCompile>
     <ClCompile Include="Trie.cpp">
-      <Filter>Trie</Filter>
+      <Filter>DataStructure\Trie</Filter>
+    </ClCompile>
+    <ClCompile Include="chapter1.cpp">
+      <Filter>ITA4</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="BinaryHeap">
-      <UniqueIdentifier>{4a7df4f6-f78d-4cdf-91f9-bf33a705eebe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ForwardList">
-      <UniqueIdentifier>{9cdf970f-208f-425a-ab66-1ec250edd34d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="SparseTable">
-      <UniqueIdentifier>{4607936a-fefe-4945-aac3-bd021d7834cf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="SegmentTree">
-      <UniqueIdentifier>{de117e4e-1cfa-4945-ad79-f29894844827}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="DisjointSet">
-      <UniqueIdentifier>{5dcbd076-1cd4-4479-82a1-577114fae98e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="AVLTree">
-      <UniqueIdentifier>{845f6a9c-ba21-4373-914f-fbd20469a60c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="HashTable">
-      <UniqueIdentifier>{1207a45f-33c8-4044-9198-cbdc36abba55}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="SplayTree">
-      <UniqueIdentifier>{d52737c4-9a2f-4411-881d-12801d302600}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="LinkedList">
-      <UniqueIdentifier>{08b7cfa7-f8ec-4b1c-9daf-032d351ea90e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="DynamicArray">
-      <UniqueIdentifier>{017f88f7-d72d-48f7-8275-a1555c3933bd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PSDA">
-      <UniqueIdentifier>{a74e04ad-bd41-4f5e-8488-e93ad6bce616}</UniqueIdentifier>
-    </Filter>
     <Filter Include="cug">
       <UniqueIdentifier>{bd0ac8b8-d301-4000-aa62-f7d68cb3ccc0}</UniqueIdentifier>
     </Filter>
@@ -102,49 +72,88 @@
     <Filter Include="cug\random">
       <UniqueIdentifier>{a376bd1f-92bb-41f0-b781-302d9d9ffae5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FenwickTree">
-      <UniqueIdentifier>{3ddcdfa4-a727-4266-bc41-92974f6c2865}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FibonacciHeap">
-      <UniqueIdentifier>{a42e59f8-f82b-43cd-a0df-8c616e129599}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="RedBlackTree">
-      <UniqueIdentifier>{87c14074-f23b-4fcb-829d-8fdfd1b6f0b6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="LazySegmentTree">
-      <UniqueIdentifier>{28df6f5d-2af6-4d37-b3a7-cb40b51b0bb1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="XORLinkedList">
-      <UniqueIdentifier>{bbf39ca2-2faf-490b-8205-c8edb231d173}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="BTree">
-      <UniqueIdentifier>{e498e734-73db-4d5d-91e2-1f23a6560f48}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Tuple">
-      <UniqueIdentifier>{9f2541b4-19e0-4bf3-804e-d463c4f08a6a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="cug\graph">
       <UniqueIdentifier>{0b8db180-6185-463d-8255-cca260dbf396}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Trie">
+    <Filter Include="DataStructure">
+      <UniqueIdentifier>{3683ffae-e6ce-425e-8060-5492b7018102}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructure\AVLTree">
+      <UniqueIdentifier>{845f6a9c-ba21-4373-914f-fbd20469a60c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructure\BinaryHeap">
+      <UniqueIdentifier>{4a7df4f6-f78d-4cdf-91f9-bf33a705eebe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructure\BTree">
+      <UniqueIdentifier>{e498e734-73db-4d5d-91e2-1f23a6560f48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructure\DisjointSet">
+      <UniqueIdentifier>{5dcbd076-1cd4-4479-82a1-577114fae98e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructure\DynamicArray">
+      <UniqueIdentifier>{017f88f7-d72d-48f7-8275-a1555c3933bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructure\FenwickTree">
+      <UniqueIdentifier>{3ddcdfa4-a727-4266-bc41-92974f6c2865}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructure\FibonacciHeap">
+      <UniqueIdentifier>{a42e59f8-f82b-43cd-a0df-8c616e129599}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructure\ForwardList">
+      <UniqueIdentifier>{9cdf970f-208f-425a-ab66-1ec250edd34d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructure\HashTable">
+      <UniqueIdentifier>{1207a45f-33c8-4044-9198-cbdc36abba55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructure\LazySegmentTree">
+      <UniqueIdentifier>{28df6f5d-2af6-4d37-b3a7-cb40b51b0bb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructure\LinkedList">
+      <UniqueIdentifier>{08b7cfa7-f8ec-4b1c-9daf-032d351ea90e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructure\PSDA">
+      <UniqueIdentifier>{a74e04ad-bd41-4f5e-8488-e93ad6bce616}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructure\RedBlackTree">
+      <UniqueIdentifier>{87c14074-f23b-4fcb-829d-8fdfd1b6f0b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructure\SegmentTree">
+      <UniqueIdentifier>{de117e4e-1cfa-4945-ad79-f29894844827}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructure\SparseTable">
+      <UniqueIdentifier>{4607936a-fefe-4945-aac3-bd021d7834cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructure\SplayTree">
+      <UniqueIdentifier>{d52737c4-9a2f-4411-881d-12801d302600}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructure\Trie">
       <UniqueIdentifier>{fa8a1ddc-80b1-4f8d-bdc2-67c357d3ee1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructure\Tuple">
+      <UniqueIdentifier>{9f2541b4-19e0-4bf3-804e-d463c4f08a6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructure\XORLinkedList">
+      <UniqueIdentifier>{bbf39ca2-2faf-490b-8205-c8edb231d173}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ITA4">
+      <UniqueIdentifier>{df46baa8-529e-4294-87df-803ae0813578}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryHeap.h">
-      <Filter>BinaryHeap</Filter>
+      <Filter>DataStructure\BinaryHeap</Filter>
     </ClInclude>
     <ClInclude Include="DynamicArray.h">
-      <Filter>DynamicArray</Filter>
+      <Filter>DataStructure\DynamicArray</Filter>
     </ClInclude>
     <ClInclude Include="ForwardList.h">
-      <Filter>ForwardList</Filter>
+      <Filter>DataStructure\ForwardList</Filter>
     </ClInclude>
     <ClInclude Include="LinkedList.h">
-      <Filter>LinkedList</Filter>
+      <Filter>DataStructure\LinkedList</Filter>
     </ClInclude>
     <ClInclude Include="PSDA.h">
-      <Filter>PSDA</Filter>
+      <Filter>DataStructure\PSDA</Filter>
     </ClInclude>
     <ClInclude Include="io.h">
       <Filter>cug\io</Filter>
@@ -156,28 +165,31 @@
       <Filter>cug\time</Filter>
     </ClInclude>
     <ClInclude Include="SegmentTree.h">
-      <Filter>SegmentTree</Filter>
+      <Filter>DataStructure\SegmentTree</Filter>
     </ClInclude>
     <ClInclude Include="random.h">
       <Filter>cug\random</Filter>
     </ClInclude>
     <ClInclude Include="SparseTable.h">
-      <Filter>SparseTable</Filter>
+      <Filter>DataStructure\SparseTable</Filter>
     </ClInclude>
     <ClInclude Include="Tuple.h">
-      <Filter>Tuple</Filter>
+      <Filter>DataStructure\Tuple</Filter>
     </ClInclude>
     <ClInclude Include="graph.h">
       <Filter>cug\graph</Filter>
     </ClInclude>
     <ClInclude Include="AVLTree.h">
-      <Filter>AVLTree</Filter>
+      <Filter>DataStructure\AVLTree</Filter>
     </ClInclude>
     <ClInclude Include="DisjointSet.h">
-      <Filter>DisjointSet</Filter>
+      <Filter>DataStructure\DisjointSet</Filter>
     </ClInclude>
     <ClInclude Include="Trie.h">
-      <Filter>Trie</Filter>
+      <Filter>DataStructure\Trie</Filter>
+    </ClInclude>
+    <ClInclude Include="chapter1.h">
+      <Filter>ITA4</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
