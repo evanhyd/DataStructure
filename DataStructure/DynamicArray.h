@@ -11,6 +11,12 @@ void swap(DynamicArray<T>& lhs, DynamicArray<T>& rhs);
 
 template <typename T>
 class DynamicArray {
+
+public:
+  using Type = T;
+
+
+private:
   T* begin_;
   T* end_;
   T* capacity_;
@@ -210,11 +216,45 @@ public:
   /// </summary>
   void ShrinkToFit();
 
+
 private:
   /// <summary>
   /// Reallocate the dynamic array with a magic capacity number, so it can reuse the memory.
   /// </summary>
   void Grow();
+
+
+public:
+  /// <summary>
+  /// <para>Map all elements specified by the mapping function.</para>
+  /// </summary>
+  /// <typeparam name="MappingFn"></typeparam>
+  /// <param name="map_fn">: a unary callable that maps input to output</param>
+  /// <returns>A copy of the mapped dynamic array</returns>
+  template <typename MappingFn>
+  auto Map(MappingFn map_fn) const->DynamicArray<std::invoke_result_t<MappingFn, const T&>>;
+
+
+  /// <summary>
+  /// <para>Apply the function to all elements.</para>
+  /// </summary>
+  /// <typeparam name="ForEachFn"></typeparam>
+  /// <param name="foreach_fn">: a unary callable</param>
+  template <typename ForEachFn>
+  void ForEach(ForEachFn foreach_fn);
+
+
+  /// <summary>
+  /// <para>Return a dynamic array contains all the elements that the filter function evaluates to true.</para>
+  /// </summary>
+  /// <typeparam name="FilterFn"></typeparam>
+  /// <param name="filter_fn">: a unary prediate function that returns a bool.</param>
+  /// <returns>A copy of the filtered dynamic array.</returns>
+  template <typename FilterFn>
+  requires std::is_same_v<std::invoke_result_t<FilterFn, const T&>, bool>
+  DynamicArray Filter(FilterFn filter_fn) const;
+
+
 
   friend void swap<T>(DynamicArray& lhs, DynamicArray& rhs);
 };
@@ -460,4 +500,44 @@ void DynamicArray<T>::Grow() {
   //+1 to avoid 0 * x == 0 issue
   //magic number close to golden ratio, allows to reuse previously allocated memory
   Reserve(static_cast<std::size_t>((Size() + 1) * 1.5));
+}
+
+
+
+
+
+template<typename T>
+template<typename MappingFn>
+auto DynamicArray<T>::Map(MappingFn map_fn) const -> DynamicArray<std::invoke_result_t<MappingFn, const T&>> {
+  using MappedType = std::invoke_result_t<MappingFn, const T&>;
+
+  DynamicArray<MappedType> mapped;
+  mapped.Reserve(Size());
+  for (const T& obj : *this) {
+    mapped.PushBack(std::move(map_fn(obj)));
+  }
+  return mapped;
+}
+
+
+template<typename T>
+template<typename ForEachFn>
+void DynamicArray<T>::ForEach(ForEachFn foreach_fn) {
+  for (auto& obj : *this) {
+    foreach_fn(obj);
+  }
+}
+
+
+template<typename T>
+template<typename FilterFn>
+  requires std::is_same_v<std::invoke_result_t<FilterFn, const T&>, bool>
+DynamicArray<T> DynamicArray<T>::Filter(FilterFn filter_fn) const {
+  DynamicArray<T> filtered;
+  for (const auto& obj : *this) {
+    if (filter_fn(obj)) {
+      filtered.PushBack(obj);
+    }
+  }
+  return filtered;
 }

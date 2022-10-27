@@ -35,8 +35,11 @@ using namespace std;
 #ifdef IN_USE
 #define IN_USE
 
-#include "chapter1.h"
-#include "random.h"
+#include "DynamicArray.h"
+
+void Print(const auto& arr) {
+  cout << arr << ' ';
+}
 
 
 int main() {
@@ -44,17 +47,29 @@ int main() {
   std::cin.tie(nullptr)->sync_with_stdio(false);
   #endif
 
-  
-  int nums[20] = {};
-  for (int& n : nums) {
-    n = cug::random::GetRandom(1, 50);
-  }
 
-  chapter1::MergeSort<int>(nums, nums + sizeof(nums) / sizeof(int));
+  //create an array of ten "0"
+  DynamicArray<int> arr0(10);
+  arr0.ForEach(Print<int>);
+  cout << '\n';
 
-  for (int& n : nums) {
-    cout << n << ' ';
-  }
+
+  //fill the array with increasing int value  starting from 2
+  int val = 2;
+  auto arr1 = arr0.Map([&](auto x) { return x + val++; });
+  arr1.ForEach(Print<int>);
+  cout << '\n';
+
+
+  //filter out all the odd numbers
+  auto arr2 = arr1.Filter([](auto x) { return x % 2 == 0; });
+  arr2.ForEach(Print<int>);
+  cout << '\n';
+
+
+  //create strings with x repeated 'a'
+  auto arr3 = arr2.Map([](auto x) {return string(x, 'a'); });
+  arr3.ForEach(Print<string>);
   cout << '\n';
 }
 
