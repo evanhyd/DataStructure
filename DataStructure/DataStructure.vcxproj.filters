@@ -53,7 +53,10 @@
       <Filter>DataStructure\Trie</Filter>
     </ClCompile>
     <ClCompile Include="chapter1.cpp">
-      <Filter>ITA4</Filter>
+      <Filter>ITA4\chapter1</Filter>
+    </ClCompile>
+    <ClCompile Include="chapter4.cpp">
+      <Filter>ITA4\chapter4</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -138,6 +141,12 @@
     <Filter Include="ITA4">
       <UniqueIdentifier>{df46baa8-529e-4294-87df-803ae0813578}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ITA4\chapter1">
+      <UniqueIdentifier>{3163d33d-1462-4963-9db6-bbc34f071763}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ITA4\chapter4">
+      <UniqueIdentifier>{3ce53c5c-2ca8-4145-8d76-de689e268ac5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryHeap.h">
@@ -189,7 +198,10 @@
       <Filter>DataStructure\Trie</Filter>
     </ClInclude>
     <ClInclude Include="chapter1.h">
-      <Filter>ITA4</Filter>
+      <Filter>ITA4\chapter1</Filter>
+    </ClInclude>
+    <ClInclude Include="chapter4.h">
+      <Filter>ITA4\chapter4</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

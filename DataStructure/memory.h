@@ -21,6 +21,10 @@ namespace cug::memory
   }
   #endif
 
+
+
+
+
   class DebugClass {
     int id_;
 
@@ -45,6 +49,7 @@ namespace cug::memory
 
 
 
+
   class Pool {
   public:
     //will replace this with explicit template deduction later
@@ -64,11 +69,11 @@ namespace cug::memory
 
   public:
 
+    //Allocate objects in the memory pool.
+    //Usage: Allocate<Type>(count, constructor parameters...)
     template <typename T, typename... Args>
     static T* Allocate(const AllocInfo& alloc_info, Args&&... args) {
-      if (alloc_info.num_ <= 0) {
-        throw std::runtime_error("Invalid heap size requested: " + std::to_string(static_cast<int>(alloc_info.num_ * sizeof(T))));
-      }
+      if (alloc_info.num_ <= 0) throw std::runtime_error("Invalid heap size requested: " + std::to_string(static_cast<int>(alloc_info.num_ * sizeof(T))));
 
       T* addr = new T[alloc_info.num_]{ std::forward<Args>(args)... };
       allocated_.insert
@@ -80,17 +85,12 @@ namespace cug::memory
       return addr;
     }
 
+    //Deallocate objects in the memory pool.
+    //Usage: Deallocate(address)
     template <typename T>
     static void Deallocate(T* addr, const std::source_location srce = std::source_location::current()) {
       auto entry = allocated_.find(static_cast<void*>(addr));
-      if (entry == allocated_.end()) {
-        throw std::runtime_error
-        (
-          "Deallocated invalid address " + (std::stringstream() << addr).str() +
-          " at " + srce.function_name() + "_" + std::to_string(srce.line())
-        );
-      }
-
+      if (entry == allocated_.end()) throw std::runtime_error("Deallocated invalid address " + (std::stringstream() << addr).str() + " at " + srce.function_name() + "_" + std::to_string(srce.line()));
       allocated_.erase(entry);
       delete[] addr;
     }
@@ -98,9 +98,27 @@ namespace cug::memory
     static void PrintPool() {
       std::cout << "Memory Pool Status:\n";
       for (const auto& entry : allocated_) {
-        std::cout << entry.second.second << ": " << entry.second.first << " bytes allocated at " << entry.first << '\n';
+        std::cout << "  " << entry.second.second << ": " << entry.second.first << "B at " << entry.first << '\n';
       }
       std::cout << std::flush;
+    }
+  };
+
+
+
+
+
+  template <typename T>
+  class Pointer {
+    T* data_;
+    std::size_t counter_;
+
+  public:
+    Pointer() : data_(nullptr), counter_(0) {}
+
+    template <typename... Args>
+    Pointer(Args... args) {
+
     }
   };
 }

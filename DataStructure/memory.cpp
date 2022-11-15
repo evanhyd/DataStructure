@@ -8,7 +8,7 @@ using namespace cug::memory;
 //DEBUG CLASS
 DebugClass::DebugClass() : id_(global_id_++)
 {
-    cout << "Def-Ctr: " << id_ << endl;
+    cout << "Def_Ctr: " << id_ << endl;
 }
 
 DebugClass::DebugClass(int id) : id_(id)

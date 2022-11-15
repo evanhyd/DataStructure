@@ -167,6 +167,7 @@
     <ClCompile Include="AVLTree.cpp" />
     <ClCompile Include="BinaryHeap.cpp" />
     <ClCompile Include="chapter1.cpp" />
+    <ClCompile Include="chapter4.cpp" />
     <ClCompile Include="DisjointSet.cpp" />
     <ClCompile Include="graph.cpp" />
     <ClCompile Include="io.cpp" />
@@ -189,6 +190,7 @@
     <ClInclude Include="AVLTree.h" />
     <ClInclude Include="BinaryHeap.h" />
     <ClInclude Include="chapter1.h" />
+    <ClInclude Include="chapter4.h" />
     <ClInclude Include="DisjointSet.h" />
     <ClInclude Include="graph.h" />
     <ClInclude Include="io.h" />
