@@ -46,11 +46,11 @@ int main() {
   std::cin.tie(nullptr)->sync_with_stdio(false);
   #endif
 
-  DynamicArray<int> d1, d2;
-  cout << (d1 == d2) << '\n';
-  cout << (d1 != d2) << '\n';
-
-  vector<int> a;
+  DynamicArray<int> d1 = { 10 };
+  d1.Reserve(100);
+  d1.Reserve(100);
+  d1.Reserve(100);
+  d1.Reserve(100);
 
 
 

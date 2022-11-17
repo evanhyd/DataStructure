@@ -190,6 +190,15 @@ public:
 
 
   /// <summary>
+  /// <para>Insert an array of elements into the dynamic array at dest position.</para>
+  /// </summary>
+  /// <param name="begin">: the begin of the elements array to be inserted</param>
+  /// <param name="end">: the end of the elements array to be inserted</param>
+  /// <param name="dest">: position to be insert in</param>
+  void Insert(const T* begin, const T* end, const T* dest);
+
+
+  /// <summary>
   /// <para>Destroy all the elements in the dynamic array.</para>
   /// <para>This does not affect the capacity.</para>
   /// </summary>
@@ -440,6 +449,12 @@ void DynamicArray<T>::PopBack() {
   (--end_)->~T();
 }
 
+template<typename T>
+void DynamicArray<T>::Insert(const T* begin, const T* end, const T* dest) {
+  assert(begin <= end);
+  const std::size_t insert_pos = dest - begin_;
+}
+
 template <typename T>
 void DynamicArray<T>::Clear() {
 
@@ -480,7 +495,7 @@ void DynamicArray<T>::Resize(std::size_t new_size, const T& default_value) {
 
 template <typename T>
 void DynamicArray<T>::Reserve(std::size_t new_capacity) {
-  if (Size() <= new_capacity) {
+  if (Capacity() < new_capacity) {
 
     //save old size
     const std::size_t old_sz = Size();
