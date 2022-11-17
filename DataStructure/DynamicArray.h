@@ -475,7 +475,9 @@ void DynamicArray<T>::Resize(std::size_t new_size, const T& default_value) {
   if (old_sz < new_size) {
 
     //check if exceed capacity
-    Reserve(new_size);
+    if (Capacity() < new_size) {
+      Reserve(new_size);
+    }
 
     //construct new elements
     const T* new_end = begin_ + new_size;
@@ -495,7 +497,9 @@ void DynamicArray<T>::Resize(std::size_t new_size, const T& default_value) {
 
 template <typename T>
 void DynamicArray<T>::Reserve(std::size_t new_capacity) {
-  if (Capacity() < new_capacity) {
+
+  //compare to the size, because shrink to fit may reduce the capacity
+  if (Size() <= new_capacity) {
 
     //save old size
     const std::size_t old_sz = Size();
@@ -533,7 +537,7 @@ void DynamicArray<T>::Grow() {
 
   //+1 to avoid 0 * x == 0 issue
   //magic number close to golden ratio, allows to reuse previously allocated memory
-  Reserve(static_cast<std::size_t>((Size() + 1) * 1.5));
+  Reserve(static_cast<std::size_t>(Capacity() * 3 / 2 + 1));
 }
 
 
@@ -547,6 +551,8 @@ auto DynamicArray<T>::Map(MappingFn map_fn) const -> DynamicArray<std::invoke_re
 
   DynamicArray<MappedType> mapped;
   mapped.Reserve(Size());
+
+  //apply mapping function to each element
   for (const T& obj : *this) {
     mapped.PushBack(std::move(map_fn(obj)));
   }
@@ -556,6 +562,8 @@ auto DynamicArray<T>::Map(MappingFn map_fn) const -> DynamicArray<std::invoke_re
 template<typename T>
 template<typename ForEachFn>
 void DynamicArray<T>::ForEach(ForEachFn foreach_fn) {
+
+  //apply function to each element
   for (auto& obj : *this) {
     foreach_fn(obj);
   }
@@ -566,6 +574,8 @@ template<typename FilterFn>
   requires std::is_same_v<std::invoke_result_t<FilterFn, const T&>, bool>
 DynamicArray<T> DynamicArray<T>::Filter(FilterFn filter_fn) const {
   DynamicArray<T> filtered;
+
+  //keep the element if filter function evaluates to true
   for (const auto& obj : *this) {
     if (filter_fn(obj)) {
       filtered.PushBack(obj);

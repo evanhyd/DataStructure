@@ -46,11 +46,11 @@ int main() {
   std::cin.tie(nullptr)->sync_with_stdio(false);
   #endif
 
-  DynamicArray<int> d1 = { 10 };
-  d1.Reserve(100);
-  d1.Reserve(100);
-  d1.Reserve(100);
-  d1.Reserve(100);
+  DynamicArray<int> d1;
+  d1.Reserve(1000);
+  d1.Resize(10);
+  d1.Resize(20);
+  d1.Resize(30);
 
 
 
