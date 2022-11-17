@@ -46,7 +46,7 @@ AdjacentList cug::graph::GetTree(int size)
 
         default:
         {
-            cug::io::Log("Error switch cases {}", action);
+            cug::io::Info("Error switch cases {}", action);
         }
         }
     }

@@ -190,12 +190,21 @@ public:
 
 
   /// <summary>
-  /// <para>Insert an array of elements into the dynamic array at dest position.</para>
+  /// <para>Insert elements into the dynamic array.</para>
   /// </summary>
-  /// <param name="begin">: the begin of the elements array to be inserted</param>
-  /// <param name="end">: the end of the elements array to be inserted</param>
-  /// <param name="dest">: position to be insert in</param>
-  void Insert(const T* begin, const T* end, const T* dest);
+  /// <param name="pos">: position to insert</param>
+  /// <param name="first">: the begin address of the elements array to be inserted, inclusive</param>
+  /// <param name="last">: the end address of the elements array to be inserted, exclusive</param>
+  void Insert(T* pos, const T* first, const T* last);
+
+
+  /// <summary>
+  /// <para>Insert elements into the dynamic array.</para>
+  /// </summary>
+  /// <param name="pos">: position to insert</param>
+  /// <param name="count">: number of elements to insert</param>
+  /// <param name="value">: value of each elements</param>
+  void Insert(T* pos, std::size_t count, const T& value = T{});
 
 
   /// <summary>
@@ -231,6 +240,20 @@ public:
   /// <para>Reallocation is required.</para>
   /// </summary>
   void ShrinkToFit();
+
+  #ifdef _DEBUG
+  void Log() const {
+    for (auto b = begin_; b != end_; ++b) {
+      std::cout << *b << ' ';
+    }
+    for (auto b = end_; b != capacity_; ++b) {
+      std::cout << *b << "? ";
+    }
+    std::cout << '\n';
+    std::cout << "size: " << Size() << '\n';
+    std::cout << "capacity: " << Capacity() << '\n';
+  }
+  #endif
 
 
 private:
@@ -319,7 +342,7 @@ DynamicArray<T>::DynamicArray(const T* begin, const T* end) {
 }
 
 template <typename T>
-DynamicArray<T>::DynamicArray(std::size_t count, const T& default_value) {
+DynamicArray<T>::DynamicArray(std::size_t count, const T& value) {
 
   assert(count >= 0);
 
@@ -330,7 +353,7 @@ DynamicArray<T>::DynamicArray(std::size_t count, const T& default_value) {
 
   //copying the elements
   for (T* addr = begin_; addr != end_; ++addr) {
-    new(addr) T(default_value);
+    new(addr) T(value);
   }
 }
 
@@ -450,9 +473,62 @@ void DynamicArray<T>::PopBack() {
 }
 
 template<typename T>
-void DynamicArray<T>::Insert(const T* begin, const T* end, const T* dest) {
-  assert(begin <= end);
-  const std::size_t insert_pos = dest - begin_;
+void DynamicArray<T>::Insert(T* pos, const T* first, const T* last) {
+  assert(first <= last);
+  assert(begin_ <= pos && pos <= end_);
+
+  const std::size_t insert_index = pos - begin_;
+  const std::size_t insert_size = last - first;
+
+  DynamicArray<T> result_array;
+  result_array.Reserve(Size() + insert_size);
+  result_array.end_ = result_array.capacity_;
+
+  //copy the inserted elements
+  for (T* dest = result_array.begin_ + insert_index; first != last; ++first, ++dest) {
+    new(dest) T(*first);
+  }
+
+  //move the elements before insertion interval
+  for (T* begin = begin_, *dest = result_array.begin_; begin != pos; ++begin, ++dest) {
+    new(dest) T(std::move(*begin));
+  }
+
+  //move the elements after insertion interval
+  for (T* begin = begin_ + insert_index, *dest = result_array.begin_ + insert_index + insert_size; begin != end_; ++begin, ++dest) {
+    new(dest) T(std::move(*begin));
+  }
+
+  swap(*this, result_array);
+}
+
+template<typename T>
+void DynamicArray<T>::Insert(T* pos, std::size_t count, const T& value){
+  assert(begin_ <= pos && pos <= end_);
+
+  const std::size_t insert_index = pos - begin_;
+  const std::size_t insert_size = count;
+
+  DynamicArray<T> result_array;
+  result_array.Reserve(Size() + insert_size);
+  result_array.end_ = result_array.capacity_;
+
+  //copy the inserted elements
+  for (T* dest = result_array.begin_ + insert_index; count > 0; --count, ++dest) {
+    new(dest) T(value);
+  }
+
+  //move the elements before insertion interval
+  for (T* begin = begin_, *dest = result_array.begin_; begin != pos; ++begin, ++dest) {
+    new(dest) T(std::move(*begin));
+  }
+
+  //move the elements after insertion interval
+  for (T* begin = begin_ + insert_index, *dest = result_array.begin_ + insert_index + insert_size; begin != end_; ++begin, ++dest) {
+    new(dest) T(std::move(*begin));
+  }
+
+  swap(*this, result_array);
 }
 
 template <typename T>

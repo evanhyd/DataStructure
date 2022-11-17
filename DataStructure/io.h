@@ -97,10 +97,10 @@ namespace cug::io
 #ifdef _DEBUG
 
     template <typename... Args>
-    class Log
+    class Info
     {
     public:
-        Log(const Args&... args, const std::source_location srce = std::source_location::current())
+        Info(const Args&... args, const std::source_location srce = std::source_location::current())
         {
             std::cout << '(' << srce.function_name() << '_' << srce.line() << ')';
             Output(args...);
@@ -109,7 +109,7 @@ namespace cug::io
 
     //require explicit template deduction
     template <typename... Args>
-    Log(const Args&...)->Log<Args...>;
+    Info(const Args&...)->Info<Args...>;
 
 
 #else

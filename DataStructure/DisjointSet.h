@@ -84,11 +84,11 @@ int DisjointSet<T>::Find(int setID)
     while (true)
     {
         const Set& top = *stack.back();
-        cug::io::Log("{}\n", &top);
+        cug::io::Info("{}\n", &top);
         if (top.parent == setID) break;
         setID = top.parent;
         stack.push_back(&sets_[top.parent]);
-        cug::io::Log("{}\n", &top);
+        cug::io::Info("{}\n", &top);
     }
 
     for (int r = 0; r < stack.size() - 1; ++r)

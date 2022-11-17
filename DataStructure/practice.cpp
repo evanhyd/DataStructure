@@ -39,6 +39,7 @@ using namespace std;
 #include "chapter4.h"
 #include "random.h"
 #include "DynamicArray.h"
+#include "memory.h"
 
 
 int main() {
@@ -46,13 +47,18 @@ int main() {
   std::cin.tie(nullptr)->sync_with_stdio(false);
   #endif
 
-  DynamicArray<int> d1;
-  d1.Reserve(1000);
-  d1.Resize(10);
-  d1.Resize(20);
-  d1.Resize(30);
+  DynamicArray<int> d1(5);
+  iota(d1.begin(), d1.end(), 1);
+  for (auto& n : d1) {
+    cout << n << ' ';
+  }
+  cout << '\n';
 
-
+  d1.Insert(d1.begin() + 2, 1);
+  for (auto& n : d1) {
+    cout << n << ' ';
+  }
+  cout << '\n';
 
   return 0;
 
