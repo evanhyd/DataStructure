@@ -255,6 +255,22 @@ public:
   DynamicArray Filter(FilterFn filter_fn) const;
 
 
+  /// <summary>
+  /// <para>Compare the equality of left-hand side array and right-hand side array.</para>
+  /// </summary>
+  /// <param name="lhs">: left-hand side array</param>
+  /// <param name="rhs">: right-hand side array</param>
+  /// <returns>True if both array have the same size and contain the same elements.</returns>
+  static bool operator==(const DynamicArray& lhs, const DynamicArray& rhs);
+
+  /// <summary>
+  /// <para>Compare the equality of left-hand side array and right-hand side array.</para>
+  /// </summary>
+  /// <param name="lhs">: left-hand side array</param>
+  /// <param name="rhs">: right-hand side array</param>
+  /// <returns>False if both array have the same size and contain the same elements.</returns>
+  static bool operator!=(const DynamicArray& lhs, const DynamicArray& rhs);
+
 
   friend void swap<T>(DynamicArray& lhs, DynamicArray& rhs);
 };
@@ -540,4 +556,21 @@ DynamicArray<T> DynamicArray<T>::Filter(FilterFn filter_fn) const {
     }
   }
   return filtered;
+}
+
+
+template<typename T>
+bool DynamicArray<T>::operator==(const DynamicArray& lhs, const DynamicArray& rhs)
+{
+  if (lhs.Size() != rhs.Size()) return false;
+  for (const T* left = lhs.begin_, *right = rhs.begin_; left != lhs.end_; ++left, ++right) {
+    if (*left != *right) return false;
+  }
+  return true;
+}
+
+template<typename T>
+bool DynamicArray<T>::operator!=(const DynamicArray& lhs, const DynamicArray& rhs)
+{
+  return !(lhs == rhs);
 }
