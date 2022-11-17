@@ -38,6 +38,7 @@ using namespace std;
 
 #include "chapter4.h"
 #include "random.h"
+#include "DynamicArray.h"
 
 
 int main() {
@@ -45,20 +46,34 @@ int main() {
   std::cin.tie(nullptr)->sync_with_stdio(false);
   #endif
 
+  DynamicArray<int> d1, d2;
+  cout << (d1 == d2) << '\n';
+  cout << (d1 != d2) << '\n';
+
+  vector<int> a;
+
+
+
+  return 0;
+
+
+
+
+
   using namespace chapter4;
 
   Matrix<int> a = {
-    {1, 2, 3, 4},
-    {5, 6, 7, 8},
-    {9, 10, 11, 12},
-    {13, 14, 15 ,16},
+    vector<int>(4,0),
+    vector<int>(4,0),
+    vector<int>(4,0),
+    vector<int>(4,0),
   };
 
   Matrix<int> b = {
-    {1, 2, -3, 4},
-    {5, 6, 7, 8},
-    {9, -10, 11, 12},
-    {13, 14, 15 ,-16},
+    vector<int>(4,0),
+    vector<int>(4,0),
+    vector<int>(4,0),
+    vector<int>(4,0),
   };
 
   for (auto& row : a) {

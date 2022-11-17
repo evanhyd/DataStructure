@@ -47,6 +47,7 @@ namespace chapter4 {
     Matrix<T> c(I, std::vector<T>(K, T{}));
 
     auto mult = [&](const Range& c_r, const Range& a_r, const Range& b_r, auto&& mult) {
+
       const size_t kLen = c_r.bot - c_r.top;
       const size_t kHLen = kLen / 2;
 
@@ -56,17 +57,20 @@ namespace chapter4 {
         return;
       }
 
-      const Range c_r00{ c_r.top, c_r.left, c_r.bot - kHLen, c_r.right - kHLen };
-      const Range c_r01{ c_r.top, c_r.left + kHLen, c_r.bot - kHLen, c_r.right };
-      const Range c_r10{ c_r.top + kHLen, c_r.left, c_r.bot, c_r.right - kHLen };
+
+      const Range c_r00{ c_r.top, c_r.left, c_r.top + kHLen, c_r.left + kHLen };
+      const Range c_r01{ c_r.top, c_r.left + kHLen, c_r.top + kHLen, c_r.right };
+      const Range c_r10{ c_r.top + kHLen, c_r.left, c_r.bot, c_r.left + kHLen };
       const Range c_r11{ c_r.top + kHLen, c_r.left + kHLen, c_r.bot, c_r.right };
-      const Range a_r00{ a_r.top, a_r.left, a_r.bot - kHLen, a_r.right - kHLen };
-      const Range a_r01{ a_r.top, a_r.left + kHLen, a_r.bot - kHLen, a_r.right };
-      const Range a_r10{ a_r.top + kHLen, a_r.left, a_r.bot, a_r.right - kHLen };
+
+      const Range a_r00{ a_r.top, a_r.left, a_r.top + kHLen, a_r.left + kHLen };
+      const Range a_r01{ a_r.top, a_r.left + kHLen, a_r.top + kHLen, a_r.right };
+      const Range a_r10{ a_r.top + kHLen, a_r.left, a_r.bot, a_r.left + kHLen };
       const Range a_r11{ a_r.top + kHLen, a_r.left + kHLen, a_r.bot, a_r.right };
-      const Range b_r00{ b_r.top, b_r.left, b_r.bot - kHLen, b_r.right - kHLen };
-      const Range b_r01{ b_r.top, b_r.left + kHLen, b_r.bot - kHLen, b_r.right };
-      const Range b_r10{ b_r.top + kHLen, b_r.left, b_r.bot, b_r.right - kHLen };
+
+      const Range b_r00{ b_r.top, b_r.left, b_r.top + kHLen, b_r.left + kHLen };
+      const Range b_r01{ b_r.top, b_r.left + kHLen, b_r.top + kHLen, b_r.right };
+      const Range b_r10{ b_r.top + kHLen, b_r.left, b_r.bot, b_r.left + kHLen };
       const Range b_r11{ b_r.top + kHLen, b_r.left + kHLen, b_r.bot, b_r.right };
 
       //recursively multiply the matrix by dividing into smaller square

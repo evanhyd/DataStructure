@@ -6,6 +6,13 @@ template <typename T>
 class DynamicArray;
 
 template <typename T>
+bool operator==(const DynamicArray<T>& lhs, const DynamicArray<T>& rhs);
+
+template <typename T>
+bool operator!=(const DynamicArray<T>& lhs, const DynamicArray<T>& rhs);
+
+
+template <typename T>
 void swap(DynamicArray<T>& lhs, DynamicArray<T>& rhs);
 
 
@@ -255,19 +262,31 @@ public:
   DynamicArray Filter(FilterFn filter_fn) const;
 
 
-
+  /// <summary>
+  /// <para>Swap the elements between left-hand side and right-hand side array.</para>
+  /// </summary>
+  /// <typeparam name="T"></typeparam>
   friend void swap<T>(DynamicArray& lhs, DynamicArray& rhs);
+
+
+  /// <summary>
+  /// <para>Compare the equality of left-hand side array and right-hand side array.</para>
+  /// </summary>
+  /// <param name="lhs">: left-hand side array</param>
+  /// <param name="rhs">: right-hand side array</param>
+  /// <returns>True if both array have the same size and contain the same elements.</returns>
+  friend bool operator==<T>(const DynamicArray& lhs, const DynamicArray& rhs);
+
+
+  /// <summary>
+  /// <para>Compare the equality of left-hand side array and right-hand side array.</para>
+  /// </summary>
+  /// <param name="lhs">: left-hand side array</param>
+  /// <param name="rhs">: right-hand side array</param>
+  /// <returns>False if both array have the same size and contain the same elements.</returns>
+  friend bool operator!=<T>(const DynamicArray& lhs, const DynamicArray& rhs);
 };
 
-template <typename T>
-void swap(DynamicArray<T>& lhs, DynamicArray<T>& rhs) {
-
-  //swap internal pointers
-  using std::swap;
-  swap(lhs.begin_, rhs.begin_);
-  swap(lhs.end_, rhs.end_);
-  swap(lhs.capacity_, rhs.capacity_);
-}
 
 template <typename T>
 DynamicArray<T>::DynamicArray() : 
@@ -519,7 +538,6 @@ auto DynamicArray<T>::Map(MappingFn map_fn) const -> DynamicArray<std::invoke_re
   return mapped;
 }
 
-
 template<typename T>
 template<typename ForEachFn>
 void DynamicArray<T>::ForEach(ForEachFn foreach_fn) {
@@ -527,7 +545,6 @@ void DynamicArray<T>::ForEach(ForEachFn foreach_fn) {
     foreach_fn(obj);
   }
 }
-
 
 template<typename T>
 template<typename FilterFn>
@@ -540,4 +557,36 @@ DynamicArray<T> DynamicArray<T>::Filter(FilterFn filter_fn) const {
     }
   }
   return filtered;
+}
+
+
+
+
+
+
+
+
+
+template <typename T>
+void swap(DynamicArray<T>& lhs, DynamicArray<T>& rhs) {
+
+  //swap internal pointers
+  using std::swap;
+  swap(lhs.begin_, rhs.begin_);
+  swap(lhs.end_, rhs.end_);
+  swap(lhs.capacity_, rhs.capacity_);
+}
+
+template<typename T>
+bool operator==(const DynamicArray<T>& lhs, const DynamicArray<T>& rhs) {
+  if (lhs.Size() != rhs.Size()) return false;
+  for (const T* left = lhs.begin_, *right = rhs.begin_; left != lhs.end_; ++left, ++right) {
+    if (*left != *right) return false;
+  }
+  return true;
+}
+
+template<typename T>
+bool operator!=(const DynamicArray<T>& lhs, const DynamicArray<T>& rhs) {
+  return !(lhs == rhs);
 }
