@@ -46,8 +46,8 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
-    <EnableASAN>false</EnableASAN>
-    <EnableFuzzer>false</EnableFuzzer>
+    <EnableASAN>true</EnableASAN>
+    <EnableFuzzer>true</EnableFuzzer>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -168,6 +168,7 @@
     <ClCompile Include="BinaryHeap.cpp" />
     <ClCompile Include="chapter1.cpp" />
     <ClCompile Include="chapter4.cpp" />
+    <ClCompile Include="Playground.cpp" />
     <ClCompile Include="DisjointSet.cpp" />
     <ClCompile Include="graph.cpp" />
     <ClCompile Include="io.cpp" />
@@ -191,6 +192,7 @@
     <ClInclude Include="BinaryHeap.h" />
     <ClInclude Include="chapter1.h" />
     <ClInclude Include="chapter4.h" />
+    <ClInclude Include="Playground.h" />
     <ClInclude Include="DisjointSet.h" />
     <ClInclude Include="graph.h" />
     <ClInclude Include="io.h" />

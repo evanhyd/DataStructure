@@ -40,76 +40,15 @@ using namespace std;
 #include "random.h"
 #include "DynamicArray.h"
 #include "memory.h"
-
+#include "Playground.h"
 
 int main() {
   #ifdef ONLINE_JUDGE
   std::cin.tie(nullptr)->sync_with_stdio(false);
   #endif
 
-  DynamicArray<int> d1(5);
-  iota(d1.begin(), d1.end(), 1);
-  for (auto& n : d1) {
-    cout << n << ' ';
-  }
-  cout << '\n';
-
-  d1.Insert(d1.begin() + 2, 1);
-  for (auto& n : d1) {
-    cout << n << ' ';
-  }
-  cout << '\n';
-
-  return 0;
-
-
-
-
-
-  using namespace chapter4;
-
-  Matrix<int> a = {
-    vector<int>(4,0),
-    vector<int>(4,0),
-    vector<int>(4,0),
-    vector<int>(4,0),
-  };
-
-  Matrix<int> b = {
-    vector<int>(4,0),
-    vector<int>(4,0),
-    vector<int>(4,0),
-    vector<int>(4,0),
-  };
-
-  for (auto& row : a) {
-    for (auto& col : row) {
-      col = cug::random::GetRandom(1, 100);
-    }
-  }
-
-  for (auto& row : b) {
-    for (auto& col : row) {
-      col = cug::random::GetRandom(1, 100);
-    }
-  }
-
-  auto c = MatrixMultiplyRecursive(a, b);
-  for (auto& row : c) {
-    for (auto& col : row) {
-      cout << col << ' ';
-    }
-    cout << '\n';
-  }
-  cout << '\n';
-
-  c = chapter4::MatrixMultiplyIterative(a, b);
-  for (auto& row : c) {
-    for (auto& col : row) {
-      cout << col << ' ';
-    }
-    cout << '\n';
-  }
+  playground::Entry();
+  cout << "exited entry" << endl;
 }
 
 /*

@@ -58,6 +58,9 @@
     <ClCompile Include="chapter4.cpp">
       <Filter>ITA4\chapter4</Filter>
     </ClCompile>
+    <ClCompile Include="Playground.cpp">
+      <Filter>Playground</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="cug">
@@ -147,6 +150,9 @@
     <Filter Include="ITA4\chapter4">
       <UniqueIdentifier>{3ce53c5c-2ca8-4145-8d76-de689e268ac5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Playground">
+      <UniqueIdentifier>{bb8c7733-5239-498e-a094-9d1f87e35d62}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryHeap.h">
@@ -202,6 +208,9 @@
     </ClInclude>
     <ClInclude Include="chapter4.h">
       <Filter>ITA4\chapter4</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground.h">
+      <Filter>Playground</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
