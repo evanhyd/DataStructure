@@ -60,10 +60,5 @@ int DebugClass::global_id_ = 1;
 
 
 
-
-
-
-
-
 //POOL
-std::unordered_map<void*, std::pair<size_t, std::string>> Pool::allocated_;
+std::unordered_map<void*, std::string> Pool::pool_;

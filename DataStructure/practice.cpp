@@ -1,10 +1,10 @@
 #include <iostream>
 #include <fstream>
+#include <filesystem>
 #include <algorithm>
 #include <cassert>
 #include <array>
 #include <vector>
-#include <string>
 #include <map>
 #include <set>
 #include <unordered_map>
@@ -15,10 +15,19 @@
 #include <chrono>
 #include <random>
 #include <functional>
+#include <regex>
+#include <climits>
+#include <type_traits>
+
+#include "time.h"
+
+#define IN_USE
+#ifdef IN_USE
 
 using ll = long long;
 using ull = unsigned long long;
 
+constexpr float kPi = 3.1415926535f;
 constexpr ull kMod = 1000000007;
 constexpr ull kPrimes[] = {
     2,   3,   5,   7,   11,  13,  17,  19,  23,  29,  31,  37,  41,
@@ -28,33 +37,34 @@ constexpr ull kPrimes[] = {
     241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313,
 };
 
-using namespace std;
-
-
-#define IN_USE
-#ifdef IN_USE
-#define IN_USE
-
-
-#include "chapter4.h"
-#include "random.h"
-#include "DynamicArray.h"
-#include "memory.h"
-#include "Playground.h"
-
-int main() {
-  #ifdef ONLINE_JUDGE
-  std::cin.tie(nullptr)->sync_with_stdio(false);
+template <typename T>
+constexpr T popcount(T n) {
+  #ifdef _HAS_CXX20
+  return std::popcount(n);
+  #else
+  return __builtin__popcount(n);
   #endif
-
-  playground::Entry();
-  cout << "exited entry" << endl;
 }
 
-/*
-overflow
-array bounds
-edge case n = 0, n = 1
-reset between test cases
-*/
+using namespace std;
+
+int main(){ 
+  box::Timer timer;
+  timer.Start();
+  vector<int> vec;
+  for (int i = 0; i < 100000; ++i) {
+    vec.push_back(i);
+  }
+  timer.Stop();
+  timer.Print<chrono::nanoseconds>();
+}
+
+
+
+
 #endif
+
+/*
+priority queue is a max heap
+sort the data to find the pattern
+*/

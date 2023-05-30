@@ -69,27 +69,25 @@ namespace {
 
 
   //future
-  void Fib(int x, int n, unsigned long long & res) {
+  unsigned long long Fib(int n) {
     auto fib = [](int n, auto&& fib) {
       if (n <= 2) return 1;
       else return fib(n - 1, fib) + fib(n - 2, fib);
     };
-    res = fib(n, fib);
+    return fib(n, fib);
   }
 }
 
 void playground::Entry() {
 
   constexpr int kSize = 5;
-  std::vector<std::thread> f;
-  std::vector<unsigned long long> f1(kSize, 0);
+  std::vector<std::future<unsigned long long>> f;
   for (int i = 0; i < kSize; ++i) {
-    f.push_back(std::thread(Fib, i, 47, std::ref(f1[i])));
+    f.push_back(std::async(std::launch::async ,Fib, 47));
   }
   
   cout << "calculating...\n";
   for (int i = 0; i < kSize; ++i) {
-    f[i].join();
-    cout << f1[i]<<'\n';
+    cout << f[i].get() <<'\n';
   }
 }

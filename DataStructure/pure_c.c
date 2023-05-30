@@ -9,7 +9,6 @@
 
 //#define IN_USE
 #ifdef IN_USE
-#define IN_USE
 
 int main() {
 

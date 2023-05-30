@@ -1,19 +1,12 @@
 #include "time.h"
-#include <iostream>
 
-//TIMER
+using namespace std;
 using namespace std::chrono;
-using namespace cug::time;
 
-void Timer::Start()
-{
-    begin_ = high_resolution_clock::now();
+void box::Timer::Start() {
+  _begin = high_resolution_clock::now(); 
 }
-void Timer::Stop()
-{
-    end_ = high_resolution_clock::now();
-}
-void Timer::Result() const
-{
-    std::cout << duration_cast<milliseconds>(end_ - begin_).count() << " ms\n";
+
+void box::Timer::Stop() { 
+  _end = high_resolution_clock::now(); 
 }

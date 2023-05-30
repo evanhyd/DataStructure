@@ -21,10 +21,6 @@ namespace cug::memory
   }
   #endif
 
-
-
-
-
   class DebugClass {
     int id_;
 
@@ -51,74 +47,78 @@ namespace cug::memory
 
 
   class Pool {
-  public:
+
     //will replace this with explicit template deduction later
     class AllocInfo {
       const int num_;
       const std::source_location srce_;
-
     public:
       AllocInfo(const int num, const std::source_location srce = std::source_location::current()) : num_(num), srce_(srce) {}
       friend class Pool;
     };
 
-
-  private:
     //address, byte size, location
-    static std::unordered_map<void*, std::pair<size_t, std::string>> allocated_;
+    static std::unordered_map<void*, std::string> pool_;
+
 
   public:
 
-    //Allocate objects in the memory pool.
-    //Usage: Allocate<Type>(count, constructor parameters...)
+    /// <summary>
+    /// Allocate objects on the pool. 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="...Args"></typeparam>
+    /// <param name="alloc_info">: number of objects to allocate</param>
+    /// <param name="...args">: constructor arguments for each object</param>
+    /// <returns>the address of the allocated objects</returns>
     template <typename T, typename... Args>
     static T* Allocate(const AllocInfo& alloc_info, Args&&... args) {
       if (alloc_info.num_ <= 0) throw std::runtime_error("Invalid heap size requested: " + std::to_string(static_cast<int>(alloc_info.num_ * sizeof(T))));
 
       T* addr = new T[alloc_info.num_]{ std::forward<Args>(args)... };
-      allocated_.insert
+
+      //let's pray it doesn't throw
+      pool_.insert
       ({
           static_cast<void*>(addr), //address
-          { alloc_info.num_ * sizeof(T), std::string(alloc_info.srce_.function_name()) + std::to_string(alloc_info.srce_.line()) } //byte size + location
+          std::string(typeid(T).name()) + ": " + std::to_string(alloc_info.num_) + " * " + std::to_string(sizeof(T)) + "b = " + std::to_string(alloc_info.num_ * sizeof(T)) + "b" +
+          " | " + alloc_info.srce_.function_name() + "(" + std::to_string(alloc_info.srce_.line()) + ")"
        });
 
       return addr;
     }
 
-    //Deallocate objects in the memory pool.
-    //Usage: Deallocate(address)
+    /// <summary>
+    /// Deallocate the address allocated by Pool::Allocate.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="addr">: address to deallocate</param>
     template <typename T>
     static void Deallocate(T* addr, const std::source_location srce = std::source_location::current()) {
-      auto entry = allocated_.find(static_cast<void*>(addr));
-      if (entry == allocated_.end()) throw std::runtime_error("Deallocated invalid address " + (std::stringstream() << addr).str() + " at " + srce.function_name() + "_" + std::to_string(srce.line()));
-      allocated_.erase(entry);
+      auto entry = pool_.find(static_cast<void*>(addr));
+      if (entry == pool_.end()) throw std::runtime_error("Deallocated invalid address " + (std::stringstream() << addr).str() + " at " + srce.function_name() + "_" + std::to_string(srce.line()));
+      pool_.erase(entry);
       delete[] addr;
     }
 
+    /// <summary>
+    /// Deallocate all the allocated resources.
+    /// </summary>
+    static void ClearPool() {
+      for (const auto& entry : pool_) {
+        delete[] entry.first;
+      }
+      pool_.clear();
+    }
+
+    /// <summary>
+    /// Print the information about the allocated objects in the memory pool.
+    /// </summary>
     static void PrintPool() {
       std::cout << "Memory Pool Status:\n";
-      for (const auto& entry : allocated_) {
-        std::cout << "  " << entry.second.second << ": " << entry.second.first << "B at " << entry.first << '\n';
+      for (const auto& entry : pool_) {
+        std::cout << "  " << entry.second << '\n';
       }
-      std::cout << std::flush;
-    }
-  };
-
-
-
-
-
-  template <typename T>
-  class Pointer {
-    T* data_;
-    std::size_t counter_;
-
-  public:
-    Pointer() : data_(nullptr), counter_(0) {}
-
-    template <typename... Args>
-    Pointer(Args... args) {
-
     }
   };
 }

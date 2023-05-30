@@ -44,7 +44,7 @@ public:
   const T* Find(const T& key) const;
 
   template <typename Arg>
-  void Insert(Arg&& key);
+  void Push(Arg&& key);
   void Erase(const T& key);
 
   friend void swap<T>(AVLTree& lhs, AVLTree& rhs);
@@ -144,8 +144,8 @@ T* AVLTree<T>::Find(const T& key) {
 
 template <typename T>
 template <typename Arg>
-void AVLTree<T>::Insert(Arg&& key) {
-  Node::Insert(&root_, root_, std::forward<Arg>(key));
+void AVLTree<T>::Push(Arg&& key) {
+  Node::Push(&root_, root_, std::forward<Arg>(key));
 }
 
 template <typename T>
@@ -197,7 +197,7 @@ public:
   static const T* Find(const Node* curr, const T& key);
 
   template <typename Arg>
-  static void Insert(Node** parent, Node* curr, Arg&& key);
+  static void Push(Node** parent, Node* curr, Arg&& key);
   static void Erase(Node** parent, Node* curr, const T& key);
   static void EraseReplacement(Node** parent, Node* curr, Node* root);
   static void BalanceSubtree(Node** parent, Node* root);
@@ -304,7 +304,7 @@ T* AVLTree<T>::Node::Find(Node* curr, const T& key) {
 
 template <typename T>
 template <typename Arg>
-void AVLTree<T>::Node::Insert(Node** parent, Node* curr, Arg&& key) {
+void AVLTree<T>::Node::Push(Node** parent, Node* curr, Arg&& key) {
 
   //null leaf
   if (!curr) {
@@ -314,9 +314,9 @@ void AVLTree<T>::Node::Insert(Node** parent, Node* curr, Arg&& key) {
 
   //check subtree
   if (key < curr->key_) {
-    Insert(&curr->left_, curr->left_, std::forward<Arg>(key));
+    Push(&curr->left_, curr->left_, std::forward<Arg>(key));
   } else if (curr->key_ < key) {
-    Insert(&curr->right_, curr->right_, std::forward<Arg>(key));
+    Push(&curr->right_, curr->right_, std::forward<Arg>(key));
   } else {
     return;
   }

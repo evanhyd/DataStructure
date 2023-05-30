@@ -40,8 +40,8 @@ public:
     void PushFront(const T& item);
     void PopFront();
 
-    void InsertAfter(Node* node, const T& item);
-    void DeleteAfter(Node* node);
+    void InsertAfter(Node* vx, const T& item);
+    void DeleteAfter(Node* vx);
     void Clear();
 
 
@@ -79,12 +79,12 @@ ForwardList<T>::ForwardList(const ForwardList<T>& lst) : ForwardList()
 {
     Node** back_inserter = &root_;
 
-    Node* node = lst.root_;
-    while (node)
+    Node* vx = lst.root_;
+    while (vx)
     {
-        (*back_inserter) = new Node(node->val_, nullptr);
+        (*back_inserter) = new Node(vx->val_, nullptr);
         back_inserter = (*back_inserter)->next_;
-        node = node->next_;
+        vx = vx->next_;
     }
 }
 
@@ -153,21 +153,21 @@ void ForwardList<T>::PopFront()
 
 
 template <typename T>
-void ForwardList<T>::InsertAfter(Node* node, const T& item)
+void ForwardList<T>::InsertAfter(Node* vx, const T& item)
 {
-    assert(node);
-    Node* next_child = node->next_;
-    node->next_ = new Node{ item, next_child };
+    assert(vx);
+    Node* next_child = vx->next_;
+    vx->next_ = new Node{ item, next_child };
 }
 
 template <typename T>
-void ForwardList<T>::DeleteAfter(Node* node)
+void ForwardList<T>::DeleteAfter(Node* vx)
 {
-    assert(node);
-    Node* to_delete = node->next_;
+    assert(vx);
+    Node* to_delete = vx->next_;
     if (to_delete == nullptr) return;
     
-    node->next_ = to_delete->next_;
+    vx->next_ = to_delete->next_;
     delete to_delete;
 }
 

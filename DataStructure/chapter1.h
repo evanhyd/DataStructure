@@ -78,12 +78,12 @@ namespace chapter1 {
     const T* const left_end = left_begin + left_sz;
     const T* const right_end = right_begin + right_sz;
 
-    for (T* srce = begin, *dest = left_begin; dest != left_end; ++srce, ++dest) { // N/2
-      new(dest) T(std::move(*srce));
+    for (T* srce = begin, *vx = left_begin; vx != left_end; ++srce, ++vx) { // N/2
+      new(vx) T(std::move(*srce));
     }
 
-    for (T* srce = mid, *dest = right_begin; dest != right_end; ++srce, ++dest) { // N/2
-      new(dest) T(std::move(*srce));
+    for (T* srce = mid, *vx = right_begin; vx != right_end; ++srce, ++vx) { // N/2
+      new(vx) T(std::move(*srce));
     }
     
     /*
@@ -93,21 +93,21 @@ namespace chapter1 {
     */
     T* left = left_begin;
     T* right = right_begin;
-    T* dest = begin;
+    T* vx = begin;
     while (left != left_end && right != right_end) { // N
       if (*left < *right) {
-        *(dest++) = std::move(*left++);
+        *(vx++) = std::move(*left++);
       } else {
-        *(dest++) = std::move(*right++);
+        *(vx++) = std::move(*right++);
       }
     }
 
     while (left != left_end) { // N/2
-      *(dest++) = std::move(*left++);
+      *(vx++) = std::move(*left++);
     }
 
     while (right != right_end) { // N/2
-      *(dest++) = std::move(*right++);
+      *(vx++) = std::move(*right++);
     }
 
     delete[] left_begin;

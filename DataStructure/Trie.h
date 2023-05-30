@@ -23,7 +23,7 @@ public:
   const Node* Find(const T* arr, size_t len) const;
   bool Contain(const T* arr, size_t len) const;
   bool ContainPrefix(const T* arr, size_t len) const;
-  void Insert(const T* arr, size_t len);
+  void Push(const T* arr, size_t len);
   void Erase(const T* arr, size_t len);
   std::vector<std::vector<T>> GetAll() const;
 
@@ -71,7 +71,7 @@ bool Trie<T>::ContainPrefix(const T* arr, size_t len) const {
 }
 
 template <typename T>
-void Trie<T>::Insert(const T* arr, size_t len)  {
+void Trie<T>::Push(const T* arr, size_t len)  {
   Trie<T>::Node* curr = &root_;
   for (size_t i = 0; i < len; ++i) {
     curr = &curr->child_[arr[i]];

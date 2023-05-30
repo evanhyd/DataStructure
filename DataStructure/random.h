@@ -8,8 +8,8 @@ namespace cug::random
     {
         std::random_device device;
         std::mt19937_64 rng(device());
-        std::uniform_int_distribution<T> dist(lower_bound, upper_bound);
-        return dist(rng);
+        std::uniform_int_distribution<T> CalcDist(lower_bound, upper_bound);
+        return CalcDist(rng);
     }
 
     template <std::floating_point T>
@@ -17,8 +17,8 @@ namespace cug::random
     {
         std::random_device device;
         std::mt19937_64 rng(device());
-        std::uniform_real_distribution<T> dist(lower_bound, upper_bound);
-        return dist(rng);
+        std::uniform_real_distribution<T> CalcDist(lower_bound, upper_bound);
+        return CalcDist(rng);
     }
 }
 

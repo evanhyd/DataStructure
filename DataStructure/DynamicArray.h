@@ -480,23 +480,24 @@ void DynamicArray<T>::Insert(T* pos, const T* first, const T* last) {
   const std::size_t insert_index = pos - begin_;
   const std::size_t insert_size = last - first;
 
+  //allocate new buffer
   DynamicArray<T> result_array;
   result_array.Reserve(Size() + insert_size);
   result_array.end_ = result_array.capacity_;
 
   //copy the inserted elements
-  for (T* dest = result_array.begin_ + insert_index; first != last; ++first, ++dest) {
-    new(dest) T(*first);
+  for (T* node = result_array.begin_ + insert_index; first != last; ++first, ++node) {
+    new(node) T(*first);
   }
 
   //move the elements before insertion interval
-  for (T* begin = begin_, *dest = result_array.begin_; begin != pos; ++begin, ++dest) {
-    new(dest) T(std::move(*begin));
+  for (T* begin = begin_, *node = result_array.begin_; begin != pos; ++begin, ++node) {
+    new(node) T(std::move(*begin));
   }
 
   //move the elements after insertion interval
-  for (T* begin = begin_ + insert_index, *dest = result_array.begin_ + insert_index + insert_size; begin != end_; ++begin, ++dest) {
-    new(dest) T(std::move(*begin));
+  for (T* begin = begin_ + insert_index, *node = result_array.begin_ + insert_index + insert_size; begin != end_; ++begin, ++node) {
+    new(node) T(std::move(*begin));
   }
 
   swap(*this, result_array);
@@ -514,18 +515,18 @@ void DynamicArray<T>::Insert(T* pos, std::size_t count, const T& value){
   result_array.end_ = result_array.capacity_;
 
   //copy the inserted elements
-  for (T* dest = result_array.begin_ + insert_index; count > 0; --count, ++dest) {
-    new(dest) T(value);
+  for (T* node = result_array.begin_ + insert_index; count > 0; --count, ++node) {
+    new(node) T(value);
   }
 
   //move the elements before insertion interval
-  for (T* begin = begin_, *dest = result_array.begin_; begin != pos; ++begin, ++dest) {
-    new(dest) T(std::move(*begin));
+  for (T* begin = begin_, *node = result_array.begin_; begin != pos; ++begin, ++node) {
+    new(node) T(std::move(*begin));
   }
 
   //move the elements after insertion interval
-  for (T* begin = begin_ + insert_index, *dest = result_array.begin_ + insert_index + insert_size; begin != end_; ++begin, ++dest) {
-    new(dest) T(std::move(*begin));
+  for (T* begin = begin_ + insert_index, *node = result_array.begin_ + insert_index + insert_size; begin != end_; ++begin, ++node) {
+    new(node) T(std::move(*begin));
   }
 
   swap(*this, result_array);
@@ -584,8 +585,8 @@ void DynamicArray<T>::Reserve(std::size_t new_capacity) {
     T* new_mem = static_cast<T*>(operator new[](new_capacity * sizeof(T)));
 
     //realloate elements
-    for (T* srce = begin_, *dest = new_mem; srce != end_; ++srce, ++dest) {
-      new(dest) T(std::move(*srce));
+    for (T* srce = begin_, *node = new_mem; srce != end_; ++srce, ++node) {
+      new(node) T(std::move(*srce));
     }
 
     //destroy old elements

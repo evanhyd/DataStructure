@@ -17,20 +17,8 @@
     <ClCompile Include="PSDA.cpp">
       <Filter>DataStructure\PSDA</Filter>
     </ClCompile>
-    <ClCompile Include="io.cpp">
-      <Filter>cug\io</Filter>
-    </ClCompile>
-    <ClCompile Include="memory.cpp">
-      <Filter>cug\memory</Filter>
-    </ClCompile>
-    <ClCompile Include="time.cpp">
-      <Filter>cug\time</Filter>
-    </ClCompile>
     <ClCompile Include="SegmentTree.cpp">
       <Filter>DataStructure\SegmentTree</Filter>
-    </ClCompile>
-    <ClCompile Include="random.cpp">
-      <Filter>cug\random</Filter>
     </ClCompile>
     <ClCompile Include="pure_c.c" />
     <ClCompile Include="SparseTable.cpp">
@@ -38,9 +26,6 @@
     </ClCompile>
     <ClCompile Include="Tuple.cpp">
       <Filter>DataStructure\Tuple</Filter>
-    </ClCompile>
-    <ClCompile Include="graph.cpp">
-      <Filter>cug\graph</Filter>
     </ClCompile>
     <ClCompile Include="AVLTree.cpp">
       <Filter>DataStructure\AVLTree</Filter>
@@ -52,35 +37,26 @@
     <ClCompile Include="Trie.cpp">
       <Filter>DataStructure\Trie</Filter>
     </ClCompile>
-    <ClCompile Include="chapter1.cpp">
-      <Filter>ITA4\chapter1</Filter>
-    </ClCompile>
-    <ClCompile Include="chapter4.cpp">
-      <Filter>ITA4\chapter4</Filter>
-    </ClCompile>
     <ClCompile Include="Playground.cpp">
       <Filter>Playground</Filter>
     </ClCompile>
+    <ClCompile Include="time.cpp">
+      <Filter>Box</Filter>
+    </ClCompile>
+    <ClCompile Include="random.cpp">
+      <Filter>Box</Filter>
+    </ClCompile>
+    <ClCompile Include="memory.cpp">
+      <Filter>Box</Filter>
+    </ClCompile>
+    <ClCompile Include="io.cpp">
+      <Filter>Box</Filter>
+    </ClCompile>
+    <ClCompile Include="graph.cpp">
+      <Filter>Box</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="cug">
-      <UniqueIdentifier>{bd0ac8b8-d301-4000-aa62-f7d68cb3ccc0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="cug\io">
-      <UniqueIdentifier>{33161442-5503-4c08-8f92-89dce88b94be}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="cug\memory">
-      <UniqueIdentifier>{eef857e0-232f-494b-8295-83087e42c803}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="cug\time">
-      <UniqueIdentifier>{b860c2e4-228d-439c-ad32-7ba3d4adeea2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="cug\random">
-      <UniqueIdentifier>{a376bd1f-92bb-41f0-b781-302d9d9ffae5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="cug\graph">
-      <UniqueIdentifier>{0b8db180-6185-463d-8255-cca260dbf396}</UniqueIdentifier>
-    </Filter>
     <Filter Include="DataStructure">
       <UniqueIdentifier>{3683ffae-e6ce-425e-8060-5492b7018102}</UniqueIdentifier>
     </Filter>
@@ -141,17 +117,11 @@
     <Filter Include="DataStructure\XORLinkedList">
       <UniqueIdentifier>{bbf39ca2-2faf-490b-8205-c8edb231d173}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ITA4">
-      <UniqueIdentifier>{df46baa8-529e-4294-87df-803ae0813578}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ITA4\chapter1">
-      <UniqueIdentifier>{3163d33d-1462-4963-9db6-bbc34f071763}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ITA4\chapter4">
-      <UniqueIdentifier>{3ce53c5c-2ca8-4145-8d76-de689e268ac5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Playground">
       <UniqueIdentifier>{bb8c7733-5239-498e-a094-9d1f87e35d62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Box">
+      <UniqueIdentifier>{bd0ac8b8-d301-4000-aa62-f7d68cb3ccc0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -170,29 +140,14 @@
     <ClInclude Include="PSDA.h">
       <Filter>DataStructure\PSDA</Filter>
     </ClInclude>
-    <ClInclude Include="io.h">
-      <Filter>cug\io</Filter>
-    </ClInclude>
-    <ClInclude Include="memory.h">
-      <Filter>cug\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="time.h">
-      <Filter>cug\time</Filter>
-    </ClInclude>
     <ClInclude Include="SegmentTree.h">
       <Filter>DataStructure\SegmentTree</Filter>
-    </ClInclude>
-    <ClInclude Include="random.h">
-      <Filter>cug\random</Filter>
     </ClInclude>
     <ClInclude Include="SparseTable.h">
       <Filter>DataStructure\SparseTable</Filter>
     </ClInclude>
     <ClInclude Include="Tuple.h">
       <Filter>DataStructure\Tuple</Filter>
-    </ClInclude>
-    <ClInclude Include="graph.h">
-      <Filter>cug\graph</Filter>
     </ClInclude>
     <ClInclude Include="AVLTree.h">
       <Filter>DataStructure\AVLTree</Filter>
@@ -203,14 +158,23 @@
     <ClInclude Include="Trie.h">
       <Filter>DataStructure\Trie</Filter>
     </ClInclude>
-    <ClInclude Include="chapter1.h">
-      <Filter>ITA4\chapter1</Filter>
-    </ClInclude>
-    <ClInclude Include="chapter4.h">
-      <Filter>ITA4\chapter4</Filter>
-    </ClInclude>
     <ClInclude Include="Playground.h">
       <Filter>Playground</Filter>
+    </ClInclude>
+    <ClInclude Include="time.h">
+      <Filter>Box</Filter>
+    </ClInclude>
+    <ClInclude Include="random.h">
+      <Filter>Box</Filter>
+    </ClInclude>
+    <ClInclude Include="memory.h">
+      <Filter>Box</Filter>
+    </ClInclude>
+    <ClInclude Include="io.h">
+      <Filter>Box</Filter>
+    </ClInclude>
+    <ClInclude Include="graph.h">
+      <Filter>Box</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
