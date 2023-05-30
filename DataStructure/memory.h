@@ -12,14 +12,14 @@
 #define _CRTDBG_MAP_ALLOC
 #endif
 
-namespace cug::memory
+namespace box
 {
   //incompatiable with address sanitizer
-  #if defined _DEBUG && (defined _WIN32 || defined _WIN64)
   inline void MemoryGuard() {
-    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+#if defined _DEBUG && (defined _WIN32 || defined _WIN64)
+  _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+#endif
   }
-  #endif
 
   class DebugClass {
     int id_;
@@ -62,7 +62,6 @@ namespace cug::memory
 
 
   public:
-
     /// <summary>
     /// Allocate objects on the pool. 
     /// </summary>
@@ -73,17 +72,22 @@ namespace cug::memory
     /// <returns>the address of the allocated objects</returns>
     template <typename T, typename... Args>
     static T* Allocate(const AllocInfo& alloc_info, Args&&... args) {
-      if (alloc_info.num_ <= 0) throw std::runtime_error("Invalid heap size requested: " + std::to_string(static_cast<int>(alloc_info.num_ * sizeof(T))));
+      if (alloc_info.num_ <= 0) {
+        throw std::runtime_error(
+            "Invalid heap size requested: " +
+            std::to_string(static_cast<int>(alloc_info.num_ * sizeof(T))));
+      }
 
+      // let's pray it doesn't throw
       T* addr = new T[alloc_info.num_]{ std::forward<Args>(args)... };
 
-      //let's pray it doesn't throw
-      pool_.insert
-      ({
-          static_cast<void*>(addr), //address
-          std::string(typeid(T).name()) + ": " + std::to_string(alloc_info.num_) + " * " + std::to_string(sizeof(T)) + "b = " + std::to_string(alloc_info.num_ * sizeof(T)) + "b" +
-          " | " + alloc_info.srce_.function_name() + "(" + std::to_string(alloc_info.srce_.line()) + ")"
-       });
+      pool_.insert({static_cast<void*>(addr),
+                    std::string(typeid(T).name()) + ": " +
+                    std::to_string(alloc_info.num_) + " * " +
+                    std::to_string(sizeof(T)) +
+                    "b = " + std::to_string(alloc_info.num_ * sizeof(T)) +
+                    "b" + " | " + alloc_info.srce_.function_name() + "(" +
+                    std::to_string(alloc_info.srce_.line()) + ")"});
 
       return addr;
     }
@@ -96,7 +100,12 @@ namespace cug::memory
     template <typename T>
     static void Deallocate(T* addr, const std::source_location srce = std::source_location::current()) {
       auto entry = pool_.find(static_cast<void*>(addr));
-      if (entry == pool_.end()) throw std::runtime_error("Deallocated invalid address " + (std::stringstream() << addr).str() + " at " + srce.function_name() + "_" + std::to_string(srce.line()));
+      if (entry == pool_.end()) {
+      throw std::runtime_error("Deallocated invalid address " +
+                                 (std::stringstream() << addr).str() + " at " +
+                                 srce.function_name() + "_" +
+                                 std::to_string(srce.line()));
+      }
       pool_.erase(entry);
       delete[] addr;
     }

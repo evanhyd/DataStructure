@@ -3,7 +3,7 @@
 using std::cin;
 using std::cout;
 using std::endl;
-using namespace cug::memory;
+using namespace box;
 
 //DEBUG CLASS
 DebugClass::DebugClass() : id_(global_id_++)
@@ -49,7 +49,7 @@ DebugClass& DebugClass::operator=(DebugClass&& rhs) noexcept
     return *this;
 }
 
-std::ostream& cug::memory::operator<<(std::ostream& output, const DebugClass& obj)
+std::ostream& box::operator<<(std::ostream& output, const DebugClass& obj)
 {
     output << obj.id_;
     return output;

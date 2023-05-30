@@ -52,9 +52,6 @@
     <ClCompile Include="io.cpp">
       <Filter>Box</Filter>
     </ClCompile>
-    <ClCompile Include="graph.cpp">
-      <Filter>Box</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="DataStructure">
@@ -171,9 +168,6 @@
       <Filter>Box</Filter>
     </ClInclude>
     <ClInclude Include="io.h">
-      <Filter>Box</Filter>
-    </ClInclude>
-    <ClInclude Include="graph.h">
       <Filter>Box</Filter>
     </ClInclude>
   </ItemGroup>

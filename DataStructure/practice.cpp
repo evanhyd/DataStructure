@@ -20,6 +20,8 @@
 #include <type_traits>
 
 #include "time.h"
+#include "random.h"
+#include "memory.h"
 
 #define IN_USE
 #ifdef IN_USE
@@ -49,14 +51,17 @@ constexpr T popcount(T n) {
 using namespace std;
 
 int main(){ 
+  box::MemoryGuard();
+
   box::Timer timer;
   timer.Start();
-  vector<int> vec;
-  for (int i = 0; i < 100000; ++i) {
-    vec.push_back(i);
+  vector<int*> vec(1000);
+  for (auto n : vec) {
+    n = box::Pool::Allocate<int>(1, 10);
   }
   timer.Stop();
-  timer.Print<chrono::nanoseconds>();
+  timer.Print();
+  box::Pool::PrintPool();
 }
 
 
