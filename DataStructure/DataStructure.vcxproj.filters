@@ -8,9 +8,6 @@
     <ClCompile Include="DynamicArray.cpp">
       <Filter>DataStructure\DynamicArray</Filter>
     </ClCompile>
-    <ClCompile Include="ForwardList.cpp">
-      <Filter>DataStructure\ForwardList</Filter>
-    </ClCompile>
     <ClCompile Include="LinkedList.cpp">
       <Filter>DataStructure\LinkedList</Filter>
     </ClCompile>
@@ -75,9 +72,6 @@
     <Filter Include="DataStructure\FibonacciHeap">
       <UniqueIdentifier>{a42e59f8-f82b-43cd-a0df-8c616e129599}</UniqueIdentifier>
     </Filter>
-    <Filter Include="DataStructure\ForwardList">
-      <UniqueIdentifier>{9cdf970f-208f-425a-ab66-1ec250edd34d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="DataStructure\HashTable">
       <UniqueIdentifier>{1207a45f-33c8-4044-9198-cbdc36abba55}</UniqueIdentifier>
     </Filter>
@@ -124,9 +118,6 @@
     </ClInclude>
     <ClInclude Include="DynamicArray.h">
       <Filter>DataStructure\DynamicArray</Filter>
-    </ClInclude>
-    <ClInclude Include="ForwardList.h">
-      <Filter>DataStructure\ForwardList</Filter>
     </ClInclude>
     <ClInclude Include="LinkedList.h">
       <Filter>DataStructure\LinkedList</Filter>

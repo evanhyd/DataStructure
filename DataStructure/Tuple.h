@@ -12,14 +12,14 @@ class Tuple {
 //partial specialization, requires non empty template parameters
 template <typename T, typename... Ts>
 class Tuple<T, Ts...> {
-  T val_;
+  T data_;
   [[no_unique_address]] Tuple<Ts...>  tup_; //doesn't work on MSVC lmao
 
 public:
   Tuple() = default;
 
   Tuple(T&& new_val, Ts&&... new_vals) :
-    tup_(std::forward<Ts>(new_vals)...), val_(std::forward<T>(new_val)) {
+    tup_(std::forward<Ts>(new_vals)...), data_(std::forward<T>(new_val)) {
     //empty
   }
 
@@ -29,7 +29,7 @@ public:
 
   template <int N>
   auto& Get() {
-    if constexpr (N == 0) return val_;
+    if constexpr (N == 0) return data_;
 
     //explicit template keyword requires for the parser
     //who tf designed the language syntax
@@ -38,7 +38,7 @@ public:
 
   template <int N>
   const auto& Get() const {
-    if constexpr (N == 0) return val_;
+    if constexpr (N == 0) return data_;
     else return tup_.template Get<N - 1>();
   }
 };

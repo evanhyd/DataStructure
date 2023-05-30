@@ -22,6 +22,7 @@
 #include "time.h"
 #include "random.h"
 #include "memory.h"
+#include "LinkedList.h"
 
 #define IN_USE
 #ifdef IN_USE
@@ -50,24 +51,27 @@ constexpr T popcount(T n) {
 
 using namespace std;
 
+void Print(const auto& lst) {
+  for (auto& e : lst) {
+    cout << e << '\n';
+  }
+
+  for (const int& e : lst) {
+    cout << e << '\n';
+  }
+}
+
 int main(){ 
   box::MemoryGuard();
 
-  box::Timer timer;
-  timer.Start();
-  vector<int*> vec;
+  LinkedList<int> lst;
   int n;
   while (cin >> n) {
-    vec.push_back(box::Pool::Allocate<int>(n, box::GetRandom(1, 100)));
+    lst.PushBack(n);
   }
-  timer.Stop();
-  timer.Print();
-  box::Pool::PrintPool();
-  for (auto n : vec) {
-    box::Pool::Deallocate(n);
-  }
-  box::Pool::PrintPool();
-  cin >> n;
+
+  Print(lst);
+  
 }
 
 
