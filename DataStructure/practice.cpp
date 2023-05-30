@@ -23,6 +23,7 @@
 #include "random.h"
 #include "memory.h"
 #include "LinkedList.h"
+#include "BinaryHeap.h"
 
 #define IN_USE
 #ifdef IN_USE
@@ -51,27 +52,20 @@ constexpr T popcount(T n) {
 
 using namespace std;
 
-void Print(const auto& lst) {
-  for (auto& e : lst) {
-    cout << e << '\n';
-  }
-
-  for (const int& e : lst) {
-    cout << e << '\n';
-  }
-}
-
-int main(){ 
+int main() {
   box::MemoryGuard();
 
-  LinkedList<int> lst;
+  auto sorter = [](int a, int b) { return to_string(a) < to_string(b); };
+
+  BinaryHeap<int, decltype(sorter)> heap;
   int n;
   while (cin >> n) {
-    lst.PushBack(n);
+    heap.Push(n);
   }
-
-  Print(lst);
-  
+  while (heap.Size()) {
+    cout << heap.Top() << '\n';
+    heap.Pop();
+  }
 }
 
 
