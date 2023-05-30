@@ -49,9 +49,6 @@
     <ClCompile Include="memory.cpp">
       <Filter>Box</Filter>
     </ClCompile>
-    <ClCompile Include="io.cpp">
-      <Filter>Box</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="DataStructure">
@@ -165,9 +162,6 @@
       <Filter>Box</Filter>
     </ClInclude>
     <ClInclude Include="memory.h">
-      <Filter>Box</Filter>
-    </ClInclude>
-    <ClInclude Include="io.h">
       <Filter>Box</Filter>
     </ClInclude>
   </ItemGroup>

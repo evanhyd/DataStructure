@@ -168,7 +168,6 @@
     <ClCompile Include="BinaryHeap.cpp" />
     <ClCompile Include="Playground.cpp" />
     <ClCompile Include="DisjointSet.cpp" />
-    <ClCompile Include="io.cpp" />
     <ClCompile Include="ForwardList.cpp" />
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="pure_c.c" />
@@ -189,7 +188,6 @@
     <ClInclude Include="BinaryHeap.h" />
     <ClInclude Include="Playground.h" />
     <ClInclude Include="DisjointSet.h" />
-    <ClInclude Include="io.h" />
     <ClInclude Include="ForwardList.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="DynamicArray.h" />

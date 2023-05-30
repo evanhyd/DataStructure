@@ -55,13 +55,19 @@ int main(){
 
   box::Timer timer;
   timer.Start();
-  vector<int*> vec(1000);
-  for (auto n : vec) {
-    n = box::Pool::Allocate<int>(1, 10);
+  vector<int*> vec;
+  int n;
+  while (cin >> n) {
+    vec.push_back(box::Pool::Allocate<int>(n, box::GetRandom(1, 100)));
   }
   timer.Stop();
   timer.Print();
   box::Pool::PrintPool();
+  for (auto n : vec) {
+    box::Pool::Deallocate(n);
+  }
+  box::Pool::PrintPool();
+  cin >> n;
 }
 
 

@@ -4,10 +4,6 @@
 #include <vector>
 #include <string>
 #include <cmath>
-#include "io.h"
-
-using namespace cug::io;
-
 
 template <typename T, typename BinOp>
 class SegmentTree

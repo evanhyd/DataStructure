@@ -82,12 +82,9 @@ namespace box
       T* addr = new T[alloc_info.num_]{ std::forward<Args>(args)... };
 
       pool_.insert({static_cast<void*>(addr),
-                    std::string(typeid(T).name()) + ": " +
-                    std::to_string(alloc_info.num_) + " * " +
-                    std::to_string(sizeof(T)) +
-                    "b = " + std::to_string(alloc_info.num_ * sizeof(T)) +
-                    "b" + " | " + alloc_info.srce_.function_name() + "(" +
-                    std::to_string(alloc_info.srce_.line()) + ")"});
+                   std::string(alloc_info.srce_.function_name()) + "(" + std::to_string(alloc_info.srce_.line()) + ") " + 
+                   std::string(typeid(T).name()) + "[" + std::to_string(alloc_info.num_) + "] " + 
+                   std::to_string(alloc_info.num_ * sizeof(T)) + " bytes"});
 
       return addr;
     }
