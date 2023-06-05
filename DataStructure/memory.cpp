@@ -58,7 +58,17 @@ std::ostream& box::operator<<(std::ostream& output, const DebugClass& obj)
 int DebugClass::global_id_ = 1;
 
 
-
-
-//POOL
-std::unordered_map<void*, std::string> Pool::pool_;
+////POOL
+//std::unordered_map<void*, std::source_location> box::Pool::pool_;
+//
+//void* box::operator new(std::size_t bytes, const std::source_location location) {
+//  void* address = malloc(bytes);
+//  Pool::pool_.insert({ address,
+//                   std::string(location.function_name()) + "(" + std::to_string(location.line()) + ") " +
+//                   //std::string(typeid(T).name()) + "[" + std::to_string(alloc_info.num_) + "] " +
+//                   //std::to_string(alloc_info.num_ * sizeof(T)) + " bytes" });
+//}
+//
+//void box::operator delete(void* address, std::size_t size, const std::source_location location) {
+//
+//}

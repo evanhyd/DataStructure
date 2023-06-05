@@ -1,64 +1,92 @@
 #pragma once
 #include <utility>
+#include <cassert>
+
+#include "memory.h"
 
 template <typename T>
 class LinkedList {
-  class Node {
+  struct Node {
     T data_;
     Node* next_;
     Node(T&& data, Node* next) : data_(std::move(data)), next_(next) {}
-    friend class LinkedList;
   };
 
-  template <typename NodeType, typename ValueType>
-  class IteratorImpl {
+  template <typename ValueType, typename NodeType>
+  struct IteratorImpl {
     NodeType* node_;
+
     IteratorImpl(NodeType* node) : node_(node) {}
 
-   public:
-      ValueType& operator*() {
+    ValueType& operator*() {
       assert(node_ && "dereference null iterator");
       return node_->data_;
-     }
+    }
 
-     IteratorImpl& operator++() {
+    IteratorImpl& operator++() {
       assert(node_ && "dereference null iterator");
       node_ = node_->next_;
       return *this;
-     }
+    }
 
-     IteratorImpl operator++(int) {
-      Iterator old = *this;
+    IteratorImpl operator++(int) {
+      IteratorImpl old = *this;
       ++this;
       return old;
-     }
+    }
 
-     bool operator==(const IteratorImpl& rhs) const {
+    bool operator==(const IteratorImpl& rhs) const {
       return node_ == rhs.node_;
-     }
+    }
 
-     bool operator!=(const IteratorImpl& rhs) const {
+    bool operator!=(const IteratorImpl& rhs) const {
       return !(node_ == rhs.node_);
-     }
-
-     friend class LinkedList;
+    }
   };
 
 public:
-  using Iterator = IteratorImpl<Node, T>;
-  using ConstIterator = IteratorImpl<const Node, const T>;
+  using Iterator = IteratorImpl<T, Node>;
+  using ConstIterator = IteratorImpl<const T, const Node>;
 
 private:
-  size_t size_;
   Node* front_;
   Node* back_;
+  size_t size_;
 
 public:
-  LinkedList() : size_(0), front_(), back_(){};
+  LinkedList() : size_(0), front_(), back_(){
+  };
+
+  LinkedList(const LinkedList& rhs) {
+    for (const auto& node : rhs) {
+      PushBack(node);
+    }
+  }
+
+  LinkedList(LinkedList&& rhs) noexcept : 
+    front_(std::exchange(rhs.front_, nullptr)),
+    back_(std::exchange(rhs.back_, nullptr)),
+    size_(std::exchange(rhs.size_, 0)) {
+  }
+
+  ~LinkedList() {
+    while (front_) {
+      Node* next = front_->next_;
+      delete front_;
+      front_ = next;
+    }
+  }
+
+  LinkedList& operator=(LinkedList rhs) {
+    LinkedList temp(std::move(rhs));
+    std::swap(*this, temp);
+    return *this;
+  }
 
   template <typename ...Args>
   void PushFront(Args&&... args) {
     front_ = new Node(T(std::forward<Args>(args)...), front_);
+    //front_ = box::Pool::Allocate<Node>(1, T(std::forward<Args>(args)...), front_);
     if (size_ == 0) {
       assert(!back_);
       back_ = front_;
@@ -68,15 +96,26 @@ public:
 
   template <typename... Args>
   void PushBack(Args&&... args) {
+    Node* node = new Node(T(std::forward<Args>(args)...), nullptr);
+    //Node* node = box::Pool::Allocate<Node>(1, T(std::forward<Args>(args)...), nullptr);
     if (size_ == 0) {
       assert(!front_);
-      back_ = new Node(T(std::forward<Args>(args)...), nullptr);
-      front_ = back_;
+      front_ = node;
     } else {
-      back_->next_ = new Node(T(std::forward<Args>(args)...), nullptr);
-      back_ = back_->next_;
+      back_->next_ = node;
     }
+    back_ = node;
     ++size_;
+  }
+
+  void PopFront() {
+    assert(size_ > 0 && "pop front from an empty list");
+    Node* old = front_;
+    front_ = front_->next_;
+    if (--size_ == 0) {
+      back_ = nullptr;
+    }
+    delete old;
   }
   
   Iterator begin() { return Iterator(front_); }
