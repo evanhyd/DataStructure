@@ -27,15 +27,11 @@
     <ClCompile Include="AVLTree.cpp">
       <Filter>DataStructure\AVLTree</Filter>
     </ClCompile>
-    <ClCompile Include="usaco.cpp" />
     <ClCompile Include="DisjointSet.cpp">
       <Filter>DataStructure\DisjointSet</Filter>
     </ClCompile>
     <ClCompile Include="Trie.cpp">
       <Filter>DataStructure\Trie</Filter>
-    </ClCompile>
-    <ClCompile Include="Playground.cpp">
-      <Filter>Playground</Filter>
     </ClCompile>
     <ClCompile Include="time.cpp">
       <Filter>Box</Filter>
@@ -45,6 +41,9 @@
     </ClCompile>
     <ClCompile Include="memory.cpp">
       <Filter>Box</Filter>
+    </ClCompile>
+    <ClCompile Include="RandomMeldableHeap.cpp">
+      <Filter>DataStructure\RandomMeldableHeap</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -57,26 +56,11 @@
     <Filter Include="DataStructure\BinaryHeap">
       <UniqueIdentifier>{4a7df4f6-f78d-4cdf-91f9-bf33a705eebe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="DataStructure\BTree">
-      <UniqueIdentifier>{e498e734-73db-4d5d-91e2-1f23a6560f48}</UniqueIdentifier>
-    </Filter>
     <Filter Include="DataStructure\DisjointSet">
       <UniqueIdentifier>{5dcbd076-1cd4-4479-82a1-577114fae98e}</UniqueIdentifier>
     </Filter>
     <Filter Include="DataStructure\DynamicArray">
       <UniqueIdentifier>{017f88f7-d72d-48f7-8275-a1555c3933bd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="DataStructure\FenwickTree">
-      <UniqueIdentifier>{3ddcdfa4-a727-4266-bc41-92974f6c2865}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="DataStructure\FibonacciHeap">
-      <UniqueIdentifier>{a42e59f8-f82b-43cd-a0df-8c616e129599}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="DataStructure\HashTable">
-      <UniqueIdentifier>{1207a45f-33c8-4044-9198-cbdc36abba55}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="DataStructure\LazySegmentTree">
-      <UniqueIdentifier>{28df6f5d-2af6-4d37-b3a7-cb40b51b0bb1}</UniqueIdentifier>
     </Filter>
     <Filter Include="DataStructure\LinkedList">
       <UniqueIdentifier>{08b7cfa7-f8ec-4b1c-9daf-032d351ea90e}</UniqueIdentifier>
@@ -84,17 +68,11 @@
     <Filter Include="DataStructure\PSDA">
       <UniqueIdentifier>{a74e04ad-bd41-4f5e-8488-e93ad6bce616}</UniqueIdentifier>
     </Filter>
-    <Filter Include="DataStructure\RedBlackTree">
-      <UniqueIdentifier>{87c14074-f23b-4fcb-829d-8fdfd1b6f0b6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="DataStructure\SegmentTree">
       <UniqueIdentifier>{de117e4e-1cfa-4945-ad79-f29894844827}</UniqueIdentifier>
     </Filter>
     <Filter Include="DataStructure\SparseTable">
       <UniqueIdentifier>{4607936a-fefe-4945-aac3-bd021d7834cf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="DataStructure\SplayTree">
-      <UniqueIdentifier>{d52737c4-9a2f-4411-881d-12801d302600}</UniqueIdentifier>
     </Filter>
     <Filter Include="DataStructure\Trie">
       <UniqueIdentifier>{fa8a1ddc-80b1-4f8d-bdc2-67c357d3ee1c}</UniqueIdentifier>
@@ -102,14 +80,14 @@
     <Filter Include="DataStructure\Tuple">
       <UniqueIdentifier>{9f2541b4-19e0-4bf3-804e-d463c4f08a6a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="DataStructure\XORLinkedList">
-      <UniqueIdentifier>{bbf39ca2-2faf-490b-8205-c8edb231d173}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Playground">
-      <UniqueIdentifier>{bb8c7733-5239-498e-a094-9d1f87e35d62}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Box">
       <UniqueIdentifier>{bd0ac8b8-d301-4000-aa62-f7d68cb3ccc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructure\BinomialHeap">
+      <UniqueIdentifier>{8b3f79c2-9df2-4636-babf-3ef5bd075957}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructure\RandomMeldableHeap">
+      <UniqueIdentifier>{195c4a6c-ba4a-42c0-84c3-014d59f78b3b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -143,9 +121,6 @@
     <ClInclude Include="Trie.h">
       <Filter>DataStructure\Trie</Filter>
     </ClInclude>
-    <ClInclude Include="Playground.h">
-      <Filter>Playground</Filter>
-    </ClInclude>
     <ClInclude Include="time.h">
       <Filter>Box</Filter>
     </ClInclude>
@@ -154,6 +129,9 @@
     </ClInclude>
     <ClInclude Include="memory.h">
       <Filter>Box</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomMeldableHeap.h">
+      <Filter>DataStructure\RandomMeldableHeap</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

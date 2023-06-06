@@ -166,11 +166,10 @@
   <ItemGroup>
     <ClCompile Include="AVLTree.cpp" />
     <ClCompile Include="BinaryHeap.cpp" />
-    <ClCompile Include="Playground.cpp" />
     <ClCompile Include="DisjointSet.cpp" />
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="pure_c.c" />
-    <ClCompile Include="usaco.cpp" />
+    <ClCompile Include="RandomMeldableHeap.cpp" />
     <ClCompile Include="memory.cpp" />
     <ClCompile Include="PSDA.cpp" />
     <ClCompile Include="random.cpp" />
@@ -185,13 +184,13 @@
   <ItemGroup>
     <ClInclude Include="AVLTree.h" />
     <ClInclude Include="BinaryHeap.h" />
-    <ClInclude Include="Playground.h" />
     <ClInclude Include="DisjointSet.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="memory.h" />
     <ClInclude Include="PSDA.h" />
     <ClInclude Include="random.h" />
+    <ClInclude Include="RandomMeldableHeap.h" />
     <ClInclude Include="SegmentTree.h" />
     <ClInclude Include="SparseTable.h" />
     <ClInclude Include="time.h" />

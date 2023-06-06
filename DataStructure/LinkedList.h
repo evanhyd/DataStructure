@@ -86,7 +86,6 @@ public:
   template <typename ...Args>
   void PushFront(Args&&... args) {
     front_ = new Node(T(std::forward<Args>(args)...), front_);
-    //front_ = box::Pool::Allocate<Node>(1, T(std::forward<Args>(args)...), front_);
     if (size_ == 0) {
       assert(!back_);
       back_ = front_;
@@ -97,7 +96,6 @@ public:
   template <typename... Args>
   void PushBack(Args&&... args) {
     Node* node = new Node(T(std::forward<Args>(args)...), nullptr);
-    //Node* node = box::Pool::Allocate<Node>(1, T(std::forward<Args>(args)...), nullptr);
     if (size_ == 0) {
       assert(!front_);
       front_ = node;
