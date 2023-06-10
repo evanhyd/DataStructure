@@ -12,13 +12,13 @@ class LinkedList {
     Node(T&& data, Node* next) : data_(std::move(data)), next_(next) {}
   };
 
-  template <typename ValueType, typename NodeType>
+  template <typename ReturnType>
   struct IteratorImpl {
-    NodeType* node_;
+    Node* node_;
 
-    IteratorImpl(NodeType* node) : node_(node) {}
+    IteratorImpl(Node* node) : node_(node) {}
 
-    ValueType& operator*() {
+    ReturnType& operator*() {
       assert(node_ && "dereference null iterator");
       return node_->data_;
     }
@@ -45,8 +45,8 @@ class LinkedList {
   };
 
 public:
-  using Iterator = IteratorImpl<T, Node>;
-  using ConstIterator = IteratorImpl<const T, const Node>;
+  using Iterator = IteratorImpl<T&>;
+  using ConstIterator = IteratorImpl<const T&>;
 
 private:
   Node* front_;
