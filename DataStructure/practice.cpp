@@ -63,16 +63,27 @@ int main() {
   cin.tie(nullptr)->sync_with_stdio(false);
   box::MemoryGuard();
 
-  LinkedList<Bar> lst;
-  lst.PushBack(10, 40);
-  lst.PushFront(20, 10);
+  BinomialHeap<int> heap;
+  heap.Push(1);
+  heap.Push(2);
+  heap.Push(3);
+  heap.Push(4);
+  
+  BinomialHeap<int> heap2;
+  heap2.Push(10);
+  heap2.Push(11);
+  heap2.Push(12);
+  heap2.Push(13);
+  heap.Merge(std::move(heap2));
 
-  /*BinomialHeap<int> heap;
-  int a;
-  while (cin >> a) {
-    heap.Push(a);
-    heap.Debug();
-  }*/
+  BinomialHeap heap3 = heap;
+  BinomialHeap heap4 = std::move(heap);
+  heap3 = heap4;
+  heap4 = std::move(heap3);
+  heap4 = heap4;
+  heap4 = std::move(heap4);
+  heap3.Debug();
+  heap4.Debug();
 }
 
 #endif
