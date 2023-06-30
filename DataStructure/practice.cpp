@@ -52,7 +52,6 @@ using namespace std;
 #include "BinomialHeap.h"
 #include "LinkedList.h"
 
-
 struct Bar {
 
   Bar(int a, int b) {
@@ -63,7 +62,7 @@ int main() {
   cin.tie(nullptr)->sync_with_stdio(false);
   box::MemoryGuard();
 
-  BinomialHeap<int> heap;
+  /*BinomialHeap<int> heap;
   heap.Push(1);
   heap.Push(2);
   heap.Push(3);
@@ -83,7 +82,12 @@ int main() {
   heap4 = heap4;
   heap4 = std::move(heap4);
   heap3.Debug();
-  heap4.Debug();
+  heap4.Debug();*/
+
+  LinkedList<int> a, b;
+  a.PushBack(10);
+  b = a;
+  LinkedList<int> c = a;
 }
 
 #endif

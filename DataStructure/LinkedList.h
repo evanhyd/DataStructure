@@ -3,6 +3,12 @@
 #include <cassert>
 
 template <typename T>
+class LinkedList;
+
+template <typename T>
+void swap(LinkedList<T>& lhs, LinkedList<T>& rhs);
+
+template <typename T>
 class LinkedList {
   class Node {
     T _data;
@@ -56,11 +62,12 @@ public:
   using Iterator = IteratorImpl<T&>;
   using ConstIterator = IteratorImpl<const T&>;
 
-  LinkedList() : _size(0), _front(), _back() {};
+  LinkedList() : _front(), _back(), _size(0) {};
 
-  LinkedList(const LinkedList& rhs) {
-    for (const auto& node : rhs) {
-      PushBack(node);
+  LinkedList(const LinkedList& rhs) : 
+    LinkedList() {
+    for (const T& data : rhs) {
+      PushBack(data);
     }
   }
 
@@ -79,8 +86,7 @@ public:
   }
 
   LinkedList& operator=(LinkedList rhs) {
-    LinkedList temp(std::move(rhs));
-    std::swap(*this, temp);
+    swap(*this, rhs);
     return *this;
   }
 
@@ -124,4 +130,14 @@ public:
   ConstIterator begin() const { return ConstIterator(_front); }
   ConstIterator end() const { return ConstIterator(nullptr); }
   size_t size() const { return _size; }
+
+  friend void swap<T>(LinkedList& lhs, LinkedList& rhs);
 };
+
+template <typename T>
+void swap(LinkedList<T>& lhs, LinkedList<T>& rhs) {
+  using std::swap;
+  swap(lhs._front, rhs._front);
+  swap(lhs._back, rhs._back);
+  swap(lhs._size, rhs._size);
+}
