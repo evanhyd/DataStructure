@@ -45,6 +45,9 @@
     <ClCompile Include="RandomMeldableHeap.cpp">
       <Filter>DataStructure\RandomMeldableHeap</Filter>
     </ClCompile>
+    <ClCompile Include="BinomialHeap.cpp">
+      <Filter>DataStructure\BinomialHeap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="DataStructure">
@@ -132,6 +135,9 @@
     </ClInclude>
     <ClInclude Include="RandomMeldableHeap.h">
       <Filter>DataStructure\RandomMeldableHeap</Filter>
+    </ClInclude>
+    <ClInclude Include="BinomialHeap.h">
+      <Filter>DataStructure\BinomialHeap</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

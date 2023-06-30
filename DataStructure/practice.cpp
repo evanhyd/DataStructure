@@ -19,6 +19,8 @@
 #include <unordered_set>
 #include <vector>
 #include "memory.h"
+#include "random.h"
+#include "time.h"
 
 #define IN_USE
 #ifdef IN_USE
@@ -47,23 +49,20 @@ constexpr T popcount(T n) {
 
 using namespace std;
 
-#include "LinkedList.h"
+#include "BinomialHeap.h"
 
-void Bar(LinkedList<int>& l) {
-  for (int& n : l) {
-    //n = 10;
-  }
-}
 
-void Foo(const LinkedList<int>& l) {
-  for (const int& n : l) {
-  }
-}
 
 int main() {
   cin.tie(nullptr)->sync_with_stdio(false);
   box::MemoryGuard();
 
+  BinomialHeap<int> heap;
+  int a;
+  while (cin >> a) {
+    heap.Push(a);
+    heap.Debug();
+  }
 }
 
 #endif
