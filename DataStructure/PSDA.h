@@ -8,7 +8,7 @@
 template <typename T>
 class PSDA
 {
-    std::vector<T> data_;
+    std::vector<T> _data;
 
 public:
 
@@ -36,7 +36,7 @@ public:
 
 
 template <typename T>
-PSDA<T>::PSDA(std::vector<T> arr) : data_(std::move(arr))
+PSDA<T>::PSDA(std::vector<T> arr) : _data(std::move(arr))
 {
     //empty
 }
@@ -46,45 +46,45 @@ PSDA<T>::PSDA(std::vector<T> arr) : data_(std::move(arr))
 template <typename T>
 int PSDA<T>::Size() const
 {
-    return data_.size();
+    return _data.size();
 }
 
 template <typename T>
 T& PSDA<T>::operator[](int r)
 {
-    assert(0 <= r && r < data_.size());
-    return data_[r];
+    assert(0 <= r && r < _data.size());
+    return _data[r];
 }
 
 template <typename T>
 const T& PSDA<T>::operator[](int r) const
 {
-    assert(0 <= r && r < data_.size());
-    return data_[r];
+    assert(0 <= r && r < _data.size());
+    return _data[r];
 }
 
 template <typename T>
 auto PSDA<T>::begin()
 {
-    return data_.begin();
+    return _data.begin();
 }
 
 template <typename T>
 const auto PSDA<T>::begin() const
 {
-    return data_.cbegin();
+    return _data.cbegin();
 }
 
 template <typename T>
 auto PSDA<T>::end()
 {
-    return data_.end();
+    return _data.end();
 }
 
 template <typename T>
 const auto PSDA<T>::end() const
 {
-    return data_.cend();
+    return _data.cend();
 }
 
 
@@ -92,25 +92,25 @@ const auto PSDA<T>::end() const
 template <typename T>
 T& PSDA<T>::Front()
 {
-    return data_.front();
+    return _data.front();
 }
 
 template <typename T>
 const T& PSDA<T>::Front() const
 {
-    return data_.front();
+    return _data.front();
 }
 
 template <typename T>
 T& PSDA<T>::Back()
 {
-    return data_.back();
+    return _data.back();
 }
 
 template <typename T>
 const T& PSDA<T>::Back() const
 {
-    return data_.back();
+    return _data.back();
 }
 
 
@@ -121,44 +121,44 @@ const T& PSDA<T>::Back() const
 template <typename T>
 void PSDA<T>::Integrate(int left, int right)
 {
-    assert(0 <= left && left <= right && right < data_.size());
+    assert(0 <= left && left <= right && right < _data.size());
 
     for (int r = left + 1; r <= right; ++r)
     {
-        data_[r] += data_[r - 1];
+        _data[r] += _data[r - 1];
     }
 }
 
 template <typename T>
 void PSDA<T>::Differentiate(int left, int right)
 {
-    assert(0 <= left && left <= right && right < data_.size());
+    assert(0 <= left && left <= right && right < _data.size());
 
-    T prev = data_[left];
+    T prev = _data[left];
 
     for (int r = left + 1; r <= right; ++r)
     {
-        data_[r] -= prev;
-        prev += data_[r];
+        _data[r] -= prev;
+        prev += _data[r];
     }
 }
 
 template <typename T>
 void PSDA<T>::LazyIncrement(int left, int right, const T& val)
 {
-    assert(0 <= left && left <= right && right < data_.size());
+    assert(0 <= left && left <= right && right < _data.size());
 
-    data_[left] += val;
-    if (right + 1 < data_.size()) data_[right + 1] -= val;
+    _data[left] += val;
+    if (right + 1 < _data.size()) _data[right + 1] -= val;
 }
 
 template <typename T>
 const T& PSDA<T>::Query(int left, int right) const
 {
-    assert(0 <= left && left <= right && right < data_.size());
+    assert(0 <= left && left <= right && right < _data.size());
 
-    T total = data_[right];
-    if (left - 1 >= 0) total -= data_[left - 1];
+    T total = _data[right];
+    if (left - 1 >= 0) total -= _data[left - 1];
 
     return total;
 }

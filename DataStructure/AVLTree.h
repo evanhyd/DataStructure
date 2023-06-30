@@ -21,7 +21,7 @@ class AVLTree {
 
   class Node;
 
-  int size_;
+  int _size;
   Node* root_;
 
 public:
@@ -54,22 +54,22 @@ public:
 template <typename T>
 void swap(AVLTree<T>& lhs, AVLTree<T>& rhs) {
   using std::swap;
-  swap(lhs.size_, rhs.size_);
+  swap(lhs._size, rhs._size);
   swap(lhs.root_, rhs.root_);
 }
 
 template <typename T>
-AVLTree<T>::AVLTree() : size_(0), root_(nullptr) {}
+AVLTree<T>::AVLTree() : _size(0), root_(nullptr) {}
 
 template <typename T>
-AVLTree<T>::AVLTree(const AVLTree& tree) : size_(tree.size_) {
+AVLTree<T>::AVLTree(const AVLTree& tree) : _size(tree._size) {
   if (tree.root_) {
     root_ = new Node(*tree.root_);
   }
 }
 
 template <typename T>
-AVLTree<T>::AVLTree(AVLTree&& tree) noexcept : size_(tree.size_), root_(std::exchange(tree.root_, nullptr)) {}
+AVLTree<T>::AVLTree(AVLTree&& tree) noexcept : _size(tree._size), root_(std::exchange(tree.root_, nullptr)) {}
 
 template <typename T>
 AVLTree<T>::~AVLTree() {
@@ -84,12 +84,12 @@ AVLTree<T>& AVLTree<T>::operator=(AVLTree<T> tree) noexcept {
 
 template <typename T>
 bool AVLTree<T>::Empty() const {
-  return size_ == 0;
+  return _size == 0;
 }
 
 template <typename T>
 int AVLTree<T>::Size() const {
-  return size_;
+  return _size;
 }
 
 template <typename T>

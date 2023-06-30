@@ -4,26 +4,30 @@
 
 template <typename T>
 class LinkedList {
-  struct Node {
-    T data_;
-    Node* next_;
-    Node(T&& data, Node* next) : data_(std::move(data)), next_(next) {}
+  class Node {
+    T _data;
+    Node* _next;
+
+    template <typename ...Args>
+    Node(Args&&... args) : _data(std::forward<Args>(args)...), _next(nullptr) {}
+
+    friend class LinkedList;
   };
 
   template <typename ReturnType>
-  struct IteratorImpl {
+  class IteratorImpl {
     Node* node_;
-
     IteratorImpl(Node* node) : node_(node) {}
 
+  public:
     ReturnType& operator*() {
       assert(node_ && "dereference null iterator");
-      return node_->data_;
+      return node_->_data;
     }
 
     IteratorImpl& operator++() {
       assert(node_ && "dereference null iterator");
-      node_ = node_->next_;
+      node_ = node_->_next;
       return *this;
     }
 
@@ -40,20 +44,19 @@ class LinkedList {
     bool operator!=(const IteratorImpl& rhs) const {
       return !(node_ == rhs.node_);
     }
+
+    friend class LinkedList;
   };
+
+  Node* _front;
+  Node* _back;
+  size_t _size;
 
 public:
   using Iterator = IteratorImpl<T&>;
   using ConstIterator = IteratorImpl<const T&>;
 
-private:
-  Node* front_;
-  Node* back_;
-  size_t size_;
-
-public:
-  LinkedList() : size_(0), front_(), back_(){
-  };
+  LinkedList() : _size(0), _front(), _back() {};
 
   LinkedList(const LinkedList& rhs) {
     for (const auto& node : rhs) {
@@ -62,16 +65,16 @@ public:
   }
 
   LinkedList(LinkedList&& rhs) noexcept : 
-    front_(std::exchange(rhs.front_, nullptr)),
-    back_(std::exchange(rhs.back_, nullptr)),
-    size_(std::exchange(rhs.size_, 0)) {
+    _front(std::exchange(rhs._front, nullptr)),
+    _back(std::exchange(rhs._back, nullptr)),
+    _size(std::exchange(rhs._size, 0)) {
   }
 
   ~LinkedList() {
-    while (front_) {
-      Node* next = front_->next_;
-      delete front_;
-      front_ = next;
+    while (_front) {
+      Node* next = _front->_next;
+      delete _front;
+      _front = next;
     }
   }
 
@@ -83,40 +86,42 @@ public:
 
   template <typename ...Args>
   void PushFront(Args&&... args) {
-    front_ = new Node(T(std::forward<Args>(args)...), front_);
-    if (size_ == 0) {
-      assert(!back_);
-      back_ = front_;
+    Node* node = new Node(std::forward<Args>(args)...);
+    node->_next = _front;
+    _front = node;
+    if (_size == 0) {
+      assert(!_back);
+      _back = _front;
     }
-    ++size_;
+    ++_size;
   }
 
   template <typename... Args>
   void PushBack(Args&&... args) {
-    Node* node = new Node(T(std::forward<Args>(args)...), nullptr);
-    if (size_ == 0) {
-      assert(!front_);
-      front_ = node;
+    Node* node = new Node(std::forward<Args>(args)...);
+    if (_size == 0) {
+      assert(!_front);
+      _front = node;
     } else {
-      back_->next_ = node;
+      _back->_next = node;
     }
-    back_ = node;
-    ++size_;
+    _back = node;
+    ++_size;
   }
 
   void PopFront() {
-    assert(size_ > 0 && "pop front from an empty list");
-    Node* old = front_;
-    front_ = front_->next_;
-    if (--size_ == 0) {
-      back_ = nullptr;
+    assert(_size > 0 && "pop front from an empty list");
+    Node* old = _front;
+    _front = _front->_next;
+    if (--_size == 0) {
+      _back = nullptr;
     }
     delete old;
   }
   
-  Iterator begin() { return Iterator(front_); }
+  Iterator begin() { return Iterator(_front); }
   Iterator end() { return Iterator(nullptr); }
-  ConstIterator begin() const { return ConstIterator(front_); }
+  ConstIterator begin() const { return ConstIterator(_front); }
   ConstIterator end() const { return ConstIterator(nullptr); }
-  size_t size() const { return size_; }
+  size_t size() const { return _size; }
 };

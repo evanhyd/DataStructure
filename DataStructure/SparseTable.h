@@ -8,7 +8,7 @@
 template <typename T, typename BinOp>
 class SparseTable
 {
-    std::vector<std::vector<T>> data_;
+    std::vector<std::vector<T>> _data;
 
 public:
 
@@ -24,17 +24,17 @@ template <typename T, typename BinOp>
 SparseTable<T, BinOp>::SparseTable(std::vector<T> arr, BinOp op)
 {
     //base layer
-    data_.push_back(std::move(arr));
+    _data.push_back(std::move(arr));
 
     //increase height if the interval covering length <= arr size
-    for (int h = 1; Pow2(h) <= data_[0].size(); ++h)
+    for (int h = 1; Pow2(h) <= _data[0].size(); ++h)
     {
         //allocate table length with estimated size
         int inter_len = Pow2(h - 1);
-        data_.push_back(std::vector<T>(data_[h - 1].size() - inter_len));
-        for (int r = 0; r < data_[h].size(); ++r)
+        _data.push_back(std::vector<T>(_data[h - 1].size() - inter_len));
+        for (int r = 0; r < _data[h].size(); ++r)
         {
-            data_[h][r] = op(data_[h - 1][r], data_[h - 1][r + inter_len]);
+            _data[h][r] = op(_data[h - 1][r], _data[h - 1][r + inter_len]);
         }
     }
 }
@@ -43,13 +43,13 @@ template <typename T, typename BinOp>
 T SparseTable<T, BinOp>::Query(int left, int right, BinOp op) const
 {
     //initial query result
-    T res = data_[0][left];
+    T res = _data[0][left];
 
     //top down
-    for (int h = static_cast<int>(data_.size()) - 1; h >= 0; --h)
+    for (int h = static_cast<int>(_data.size()) - 1; h >= 0; --h)
     {
         //check if the table includes the left index
-        if (left < data_[h].size())
+        if (left < _data[h].size())
         {
             int inter_len = Pow2(h);
             int require_len = right - left + 1;
@@ -58,7 +58,7 @@ T SparseTable<T, BinOp>::Query(int left, int right, BinOp op) const
             if (inter_len <= require_len)
             {
                 //query
-                res = op(res, data_[h][left]);
+                res = op(res, _data[h][left]);
 
                 //update range
                 left += inter_len;
@@ -78,7 +78,7 @@ T SparseTable<T, BinOp>::FastQuery(int left, int right, BinOp op) const
 template <typename T, typename BinOp>
 void SparseTable<T, BinOp>::Print(int width) const
 {
-    for (const auto& row : data_)
+    for (const auto& row : _data)
     {
         for (const auto& column : row)
         {

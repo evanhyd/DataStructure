@@ -3,36 +3,36 @@
 
 template <typename T, typename Predicate = std::greater<T>>
 class BinaryHeap {
-  std::vector<T> data_;
+  std::vector<T> _data;
 
  public:
   BinaryHeap() = default;
 
-  BinaryHeap(std::vector<T> arr) : data_(std::move(arr)) {
-    for (int r = Parent(data_.size() - 1); r >= 0; --r) {
+  BinaryHeap(std::vector<T> arr) : _data(std::move(arr)) {
+    for (int r = Parent(_data.size() - 1); r >= 0; --r) {
       FixDown(r);
     }
   }
 
   template <typename ...Args>
   void Push(Args&&... args) {
-    data_.emplace_back(std::forward<Args>(args)...);
-    FixUp(data_.size() - 1);
+    _data.emplace_back(std::forward<Args>(args)...);
+    FixUp(_data.size() - 1);
   }
 
   void Pop() {
-    data_.front() = std::move(data_.back());
-    data_.pop_back();
+    _data.front() = std::move(_data.back());
+    _data.pop_back();
     FixDown(0);
   }
 
   const T& Top() const { 
-    assert(!data_.empty() && "access empty heap top");
-    return data_[0];
+    assert(!_data.empty() && "access empty heap top");
+    return _data[0];
   }
 
   size_t Size() const { 
-    return data_.size();
+    return _data.size();
   }
 
  private:
@@ -43,8 +43,8 @@ class BinaryHeap {
    void FixUp(int n, Predicate p = Predicate()) { 
      while (n > 0) {
       int parent = Parent(n);
-      if (p(data_[n], data_[parent])) {
-        std::swap(data_[n], data_[parent]);
+      if (p(_data[n], _data[parent])) {
+        std::swap(_data[n], _data[parent]);
         n = parent;
       } else {
         break;
@@ -55,15 +55,15 @@ class BinaryHeap {
    void FixDown(int n, Predicate p = Predicate()) {
      while (true) {
       int child = LeftChild(n);
-      if (child >= data_.size()) {
+      if (child >= _data.size()) {
         break;
       }
       if (int rightChild = RightChild(n);
-          rightChild < data_.size() && p(data_[rightChild], data_[child])) {
+          rightChild < _data.size() && p(_data[rightChild], _data[child])) {
         child = rightChild;
       }
-      if (p(data_[child], data_[n])) {
-        std::swap(data_[n], data_[child]);
+      if (p(_data[child], _data[n])) {
+        std::swap(_data[n], _data[child]);
         n = child;
       } else {
         break;

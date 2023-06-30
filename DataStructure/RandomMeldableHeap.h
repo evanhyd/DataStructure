@@ -23,12 +23,12 @@ class RandomMeldableHeap {
   };
 
   Node* root_;
-  size_t size_;
+  size_t _size;
 
 public:
-  RandomMeldableHeap() : root_(), size_() {}
+  RandomMeldableHeap() : root_(), _size() {}
   RandomMeldableHeap(const RandomMeldableHeap&) = delete;
-  RandomMeldableHeap(RandomMeldableHeap&& heap) : root_(std::exchange(heap.root_, nullptr)), size_(std::exchange(heap.size_, 0)) {}
+  RandomMeldableHeap(RandomMeldableHeap&& heap) : root_(std::exchange(heap.root_, nullptr)), _size(std::exchange(heap._size, 0)) {}
   RandomMeldableHeap& operator=(const RandomMeldableHeap&) = delete;
   RandomMeldableHeap& operator=(RandomMeldableHeap&&) = delete;
   ~RandomMeldableHeap() {
@@ -56,24 +56,24 @@ private:
 public:
   void Merge(RandomMeldableHeap&& heap) {
     root_ = MergeRoots(root_, heap.root_);
-    size_ += heap.size_;
+    _size += heap._size;
     heap.root_ = nullptr;
-    heap.size_ = 0;
+    heap._size = 0;
   }
 
   template <typename ...Args>
   void Push(Args&&... args) {
     root_ = MergeRoots(root_, new Node(T(std::forward<Args>(args)...)));
-    ++size_;
+    ++_size;
   }
 
   T& Top() {
-    assert(size_ >= 0 && "access empty heap top");
+    assert(_size >= 0 && "access empty heap top");
     return root_->val_;
   }
 
   const T& Top() const {
-    assert(size_ >= 0 && "access empty heap top");
+    assert(_size >= 0 && "access empty heap top");
     return root_->val_;
   }
 
@@ -85,11 +85,11 @@ public:
     oldRoot->left_ = nullptr;
     oldRoot->right_ = nullptr;
     delete oldRoot;
-    --size_;
+    --_size;
   }
 
   size_t Size() const {
-    return size_;
+    return _size;
   }
 
 private:

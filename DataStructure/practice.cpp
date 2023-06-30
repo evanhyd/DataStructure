@@ -50,19 +50,29 @@ constexpr T popcount(T n) {
 using namespace std;
 
 #include "BinomialHeap.h"
+#include "LinkedList.h"
 
 
+struct Bar {
+
+  Bar(int a, int b) {
+  }
+};
 
 int main() {
   cin.tie(nullptr)->sync_with_stdio(false);
   box::MemoryGuard();
 
-  BinomialHeap<int> heap;
+  LinkedList<Bar> lst;
+  lst.PushBack(10, 40);
+  lst.PushFront(20, 10);
+
+  /*BinomialHeap<int> heap;
   int a;
   while (cin >> a) {
     heap.Push(a);
     heap.Debug();
-  }
+  }*/
 }
 
 #endif
