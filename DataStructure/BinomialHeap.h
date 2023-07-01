@@ -1,19 +1,20 @@
 #pragma once
 #include <vector>
 #include <utility>
+#include <cassert>
 
 #ifdef _DEBUG
 #include <iostream>
 #include <string>
 #endif
 
-template <typename T>
+template <typename T, typename Predicate = std::greater<T>>
 class BinomialHeap;
 
-template <typename T>
-void swap(BinomialHeap<T>& lhs, BinomialHeap<T>& rhs);
+template <typename T, typename Predicate>
+void swap(BinomialHeap<T, Predicate>& lhs, BinomialHeap<T, Predicate>& rhs);
 
-template <typename T>
+template <typename T, typename Predicate>
 class BinomialHeap {
   class FlagTree {
     T _data;
@@ -86,13 +87,21 @@ public:
     return _size;
   }
 
+  const T& Top() const {
+    return _trees[GetMaxIndex()]->_data;
+  }
+
+  T& Top() {
+    return _trees[GetMaxIndex()]->_data;
+  }
+
   template <typename... Args>
   void Push(Args&&... args) {
     MergeToHeight(new FlagTree(std::forward<Args>(args)...), 0);
     ++_size;
   }
 
-  void Merge(BinomialHeap&& heap) {
+  void Merge(BinomialHeap heap) {
     for (int h = 0; h < heap._trees.size(); ++h) {
       if (FlagTree* tree = heap._trees[h]; tree) {
         MergeToHeight(tree, h);
@@ -104,9 +113,30 @@ public:
     heap._size = 0;
   }
 
+  void Pop() {
+    int h = GetMaxIndex();
+    FlagTree* tree = _trees[h]->_left;
+    _trees[h]->_left = nullptr;
+    delete _trees[h];
+    _trees[h] = nullptr;
+
+    BinomialHeap heap;
+    heap._trees.resize(h);
+
+    while (tree) {
+      --h;
+      heap._trees[h] = tree;
+      tree = tree->_right;
+      heap._trees[h]->_right = nullptr;
+    }
+
+    Merge(std::move(heap));
+    --_size;
+  }
+
   void Debug() const {
     #ifdef _DEBUG 
-    std::cout << "size: " << _trees.size() << '\n';
+    std::cout << "size: " << _size << '\n';
     for (const FlagTree* tree : _trees) {
       Print("", tree, false);
     }
@@ -114,17 +144,8 @@ public:
   }
 
 private:
-  #ifdef _DEBUG
-  void Print(const std::string& prefix, const FlagTree* node, bool isRight) const {
-    if (node) {
-      std::cout << prefix << (isRight ? "|--" : "L--") << node->_data << '\n';
-      Print(prefix + (isRight ? "    " : "|   "), node->_right, true);
-      Print(prefix + (isRight ? "    " : "|   "), node->_left, false);
-    }
-  }
-  #endif
-
   void MergeToHeight(FlagTree* tree0, int height) {
+    const Predicate cmp{};
     while (true) {
       if (height >= _trees.size()) {
         _trees.resize(height + 1);
@@ -132,7 +153,7 @@ private:
       }
 
       if (FlagTree* tree1 = _trees[height]; tree1) {
-        if (tree0->_data < tree1->_data) {
+        if (cmp(tree1->_data, tree0->_data)) {
           std::swap(tree0, tree1);
         }
         tree1->_right = tree0->_left;
@@ -146,11 +167,33 @@ private:
     _trees[height] = tree0;
   }
 
-  friend void swap<T>(BinomialHeap& lhs, BinomialHeap& rhs);
+  int GetMaxIndex() const {
+    assert(_size != 0);
+    const Predicate cmp{};
+    int m = -1;
+    for (int h = 0; h < _trees.size(); ++h) {
+      if (_trees[h] && (m == -1 || cmp(_trees[h]->_data, _trees[m]->_data))) {
+        m = h;
+      }
+    }
+    return m;
+  }
+
+  #ifdef _DEBUG
+  void Print(const std::string& prefix, const FlagTree* node, bool isRight) const {
+    if (node) {
+      std::cout << prefix << (isRight ? "|--" : "L--") << node->_data << '\n';
+      Print(prefix + (isRight ? "    " : "|   "), node->_right, true);
+      Print(prefix + (isRight ? "    " : "|   "), node->_left, false);
+    }
+  }
+  #endif
+
+  friend void swap<T, Predicate>(BinomialHeap& lhs, BinomialHeap& rhs);
 };
 
-template <typename T>
-void swap(BinomialHeap<T>& lhs, BinomialHeap<T>& rhs) {
+template <typename T, typename Predicate>
+void swap(BinomialHeap<T, Predicate>& lhs, BinomialHeap<T, Predicate>& rhs) {
   using std::swap;
   swap(lhs._trees, rhs._trees);
   swap(lhs._size, rhs._size);

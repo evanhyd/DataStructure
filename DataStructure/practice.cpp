@@ -52,42 +52,47 @@ using namespace std;
 #include "BinomialHeap.h"
 #include "LinkedList.h"
 
-struct Bar {
-
-  Bar(int a, int b) {
-  }
-};
-
 int main() {
   cin.tie(nullptr)->sync_with_stdio(false);
   box::MemoryGuard();
 
-  /*BinomialHeap<int> heap;
-  heap.Push(1);
-  heap.Push(2);
-  heap.Push(3);
-  heap.Push(4);
-  
-  BinomialHeap<int> heap2;
-  heap2.Push(10);
-  heap2.Push(11);
-  heap2.Push(12);
-  heap2.Push(13);
-  heap.Merge(std::move(heap2));
+  BinomialHeap<int> h1;
+  BinomialHeap<int> h2;
 
-  BinomialHeap heap3 = heap;
-  BinomialHeap heap4 = std::move(heap);
-  heap3 = heap4;
-  heap4 = std::move(heap3);
-  heap4 = heap4;
-  heap4 = std::move(heap4);
-  heap3.Debug();
-  heap4.Debug();*/
+  h1.Push(3);
+  h1.Push(5);
+  h1.Push(0);
+  h1.Push(1);
+  h1.Push(6);
+  h1.Push(2);
+  h1.Push(4);
 
-  LinkedList<int> a, b;
-  a.PushBack(10);
-  b = a;
-  LinkedList<int> c = a;
+  h2.Push(10);
+  h2.Push(20);
+  h2.Push(30);
+
+  h1.Debug();
+  h2.Debug();
+
+  h1.Merge(std::move(h2));
+
+  h1.Debug();
+  h1.Pop();
+  h1.Debug();
+  h1.Pop();
+  h1.Debug();
+  h1.Pop();
+  h1.Debug();
+  h1.Pop();
+  h1.Debug();
+  h1.Pop();
+  h1.Debug();
+  h1.Pop();
+  h1.Debug();
+  h1.Pop();
+  h1.Debug();
+  h1.Pop();
+  h1.Debug();
 }
 
 #endif
