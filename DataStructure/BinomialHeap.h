@@ -87,6 +87,10 @@ public:
     return _size;
   }
 
+  bool Empty() const {
+    return _size == 0;
+  }
+
   const T& Top() const {
     return _trees[GetMaxIndex()]->_data;
   }
@@ -120,17 +124,14 @@ public:
     delete _trees[h];
     _trees[h] = nullptr;
 
-    BinomialHeap heap;
-    heap._trees.resize(h);
-
     while (tree) {
       --h;
-      heap._trees[h] = tree;
-      tree = tree->_right;
-      heap._trees[h]->_right = nullptr;
+      FlagTree* const next = tree->_right;
+      tree->_right = nullptr;
+      MergeToHeight(tree, h);
+      tree = next;
     }
 
-    Merge(std::move(heap));
     --_size;
   }
 

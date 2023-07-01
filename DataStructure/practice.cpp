@@ -18,9 +18,6 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
-#include "memory.h"
-#include "random.h"
-#include "time.h"
 
 #define IN_USE
 #ifdef IN_USE
@@ -49,50 +46,31 @@ constexpr T popcount(T n) {
 
 using namespace std;
 
+#include "memory.h"
+#include "random.h"
+#include "time.h"
+
 #include "BinomialHeap.h"
-#include "LinkedList.h"
 
 int main() {
   cin.tie(nullptr)->sync_with_stdio(false);
   box::MemoryGuard();
 
-  BinomialHeap<int> h1;
-  BinomialHeap<int> h2;
+  BinomialHeap<int> h;
+  box::Timer timer;
+  timer.Start();
+  for (int i = 0; i < 1000000; ++i) {
+    h.Push(i % 1024);
+  }
+  timer.Stop();
+  timer.Print();
 
-  h1.Push(3);
-  h1.Push(5);
-  h1.Push(0);
-  h1.Push(1);
-  h1.Push(6);
-  h1.Push(2);
-  h1.Push(4);
-
-  h2.Push(10);
-  h2.Push(20);
-  h2.Push(30);
-
-  h1.Debug();
-  h2.Debug();
-
-  h1.Merge(std::move(h2));
-
-  h1.Debug();
-  h1.Pop();
-  h1.Debug();
-  h1.Pop();
-  h1.Debug();
-  h1.Pop();
-  h1.Debug();
-  h1.Pop();
-  h1.Debug();
-  h1.Pop();
-  h1.Debug();
-  h1.Pop();
-  h1.Debug();
-  h1.Pop();
-  h1.Debug();
-  h1.Pop();
-  h1.Debug();
+  timer.Start();
+  while (!h.Empty()) {
+    h.Pop();
+  }
+  timer.Stop();
+  timer.Print();
 }
 
 #endif
