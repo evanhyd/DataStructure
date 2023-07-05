@@ -48,6 +48,7 @@
     <ClCompile Include="BinomialHeap.cpp">
       <Filter>DataStructure\BinomialHeap</Filter>
     </ClCompile>
+    <ClCompile Include="SkipList.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="DataStructure">
@@ -91,6 +92,9 @@
     </Filter>
     <Filter Include="DataStructure\RandomMeldableHeap">
       <UniqueIdentifier>{195c4a6c-ba4a-42c0-84c3-014d59f78b3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructure\SkipList">
+      <UniqueIdentifier>{eaf3ab8f-2a1c-4f6d-8576-cda8b9a5e282}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -139,5 +143,6 @@
     <ClInclude Include="BinomialHeap.h">
       <Filter>DataStructure\BinomialHeap</Filter>
     </ClInclude>
+    <ClInclude Include="SkipList.h" />
   </ItemGroup>
 </Project>

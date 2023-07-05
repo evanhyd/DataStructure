@@ -49,28 +49,38 @@ using namespace std;
 #include "memory.h"
 #include "random.h"
 #include "time.h"
+#include "SkipList.h"
 
-#include "BinomialHeap.h"
+class Solution {
+public:
+  int longestSubarray(vector<int>& nums) {
+    for (int i = 0, cnt = 0; i < nums.size(); ++i) {
+      if (nums[i]) {
+        ++cnt;
+        nums[i] = cnt;
+      } else {
+        cnt = 0;
+      }
+    }
+
+    for (int i = int(nums.size()) - 2; i >= 0; --i) {
+      if (nums[i] && nums[i + 1]) {
+        nums[i] = nums[i + 1];
+      }
+    }
+
+    int mValue = 0;
+    for (int i = 1)
+  }
+};
 
 int main() {
   cin.tie(nullptr)->sync_with_stdio(false);
   box::MemoryGuard();
 
-  BinomialHeap<int> h;
-  box::Timer timer;
-  timer.Start();
-  for (int i = 0; i < 1000000; ++i) {
-    h.Push(i % 1024);
-  }
-  timer.Stop();
-  timer.Print();
+  using namespace box;
 
-  timer.Start();
-  while (!h.Empty()) {
-    h.Pop();
-  }
-  timer.Stop();
-  timer.Print();
+  SkipList<int, int> lst;
 }
 
 #endif

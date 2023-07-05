@@ -177,6 +177,7 @@
     <ClCompile Include="SegmentTree.cpp" />
     <ClCompile Include="practice.cpp" />
     <ClCompile Include="DynamicArray.cpp" />
+    <ClCompile Include="SkipList.cpp" />
     <ClCompile Include="SparseTable.cpp" />
     <ClCompile Include="time.cpp" />
     <ClCompile Include="Trie.cpp" />
@@ -194,6 +195,7 @@
     <ClInclude Include="random.h" />
     <ClInclude Include="RandomMeldableHeap.h" />
     <ClInclude Include="SegmentTree.h" />
+    <ClInclude Include="SkipList.h" />
     <ClInclude Include="SparseTable.h" />
     <ClInclude Include="time.h" />
     <ClInclude Include="Trie.h" />
