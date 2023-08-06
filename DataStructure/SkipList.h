@@ -1,101 +1,66 @@
 #pragma once
 #include <vector>
-#include <utility>
+#include <memory>
+#include <chrono>
+#include <random>
 #include <cassert>
 
 template <typename Key, typename Value, typename Predicate = std::less<Key>>
 class SkipList {
-  class Node {
-    Key _key;
-    Node* _next;
-    Node* _below;
-    Node(const Key& key) : _key(key) {}
-    friend class SkipList;
-  };
 
-  class ValueNode : Node {
-    Value _value;
-    ValueNode(const Key& key, const Value value) : Node(key), _value(value) {}
-    friend class SkipList;
-  };
+  struct Tower {
+    std::unique_ptr<Key> _key;
+    std::unique_ptr<Value> _value;
+    std::unique_ptr<int[]> _nodes; //denote the "next tower index" that it connects to
+    int _size; //height = size - 1
 
-  template <typename ReturnType>
-  class IteratorImpl {
-    ValueNode* _node;
-    IteratorImpl(ValueNode* node) : _node(node) {}
+    //sentinel
+    Tower() : _key(nullptr), _value(nullptr), _nodes(std::make_unique<int[]>(1)), _size(1) {}
 
-  public:
-    IteratorImpl& operator++() {
-      assert(_node && "increment pass the end iterator");
-      _node = _node->_next;
-    }
-
-    bool operator==(const IteratorImpl& other) const {
-      return _node == other._node;
-    }
-
-    bool operator!=(const IteratorImpl& rhs) const {
-      return !(*this == rhs);
-    }
-
-    ReturnType operator*() {
-      assert(_node && "dereference end iterator");
-      return { _node->_key, _node->_value };
-    }
-
-    friend class SkipList;
-  };
-
-  Node* _root;
-  size_t _size;
-
-  std::vector<Node*> GetPredecessors(const Key& key) const {
-    const Predicate cmp{};
-    std::vector<Node*> predecessors;
-    Node* curr = _root;
-    while (curr) {
-      while (curr->_next && cmp(curr->_next->_key, key)) {
-        curr = curr->_next;
+    Tower(const std::pair<Key, Value>& keyValue)
+      : _key(std::make_unique<Key>(keyValue.first)), _value(std::make_unique<Value>(keyValue.second)), _nodes(), _size(1) {
+      static std::default_random_engine engine(std::chrono::system_clock().now().time_since_epoch().count());
+      static std::bernoulli_distribution dist;
+      while (dist(engine)) {
+        ++_size;
       }
-      predecessors.push_back(curr);
-      curr = curr->_below;
+      _nodes = std::make_unique<int[]>(_size);
+    }
+
+    bool IsSentinel() const {
+      return !_key;
+    }
+
+    Key& GetKey() {
+      return *_key;
+    }
+
+    Value& GetValue() {
+      return *_value;
+    }
+  };
+
+  std::vector<Tower> towers;
+
+  std::vector<int> GetPredecessors(const Key& key) {
+    using namespace std;
+    const Predicate predicate{};
+    int index = 0;
+    int height = towers.front()._size - 1;
+    vector<int> predecessors = { 0 };
+    while (height > 0) {
+      --height;
+      while (true) {
+        int nextIndex = towers[index].nodes[height];
+        if (!towers[nextIndex].IsSentinel() && predicate(towers[nextIndex].GetKey(), towers[index].GetKey())) {
+          index = nextIndex;
+        } else {
+          break;
+        }
+      }
+      predecessors.push_back(index);
     }
     return predecessors;
-  }
-
-public:
-  using Iterator = IteratorImpl<std::pair<const Key&, Value&>>;
-  using ConstIterator = IteratorImpl<std::pair<const Key&, const Value&>>;
-
-  Iterator Search(const Key& key) {
-    Node* node = GetPredecessors(key).back()->_next;
-    if (node && node->_key == key) {
-      while (node->_below) {
-        node = node->_below;
-      }
-      return Iterator(static_cast<ValueNode*>(node));
-    }
-    return Iterator(nullptr);
-  }
-
-  ConstIterator Search(const Key& key) const {
-    Node* node = GetPredecessors(key).back()->_next;
-    if (node && node->_key == key) {
-      while (node->_below) {
-        node = node->_below;
-      }
-      return ConstIterator(static_cast<ValueNode*>(node));
-    }
-    return ConstIterator(nullptr);
-  }
-
-  void Insert(const Key& key, const Value& value) {
-
-    ++_size;
-  }
-
-  SkipList() {
-
   }
 };
 

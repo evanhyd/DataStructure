@@ -631,7 +631,7 @@ auto DynamicArray<T>::Map(MappingFn map_fn) const -> DynamicArray<std::invoke_re
 
   //apply mapping function to each element
   for (const T& obj : *this) {
-    mapped.PushBack(std::move(map_fn(obj)));
+    mapped.PushBack(map_fn(obj));
   }
   return mapped;
 }

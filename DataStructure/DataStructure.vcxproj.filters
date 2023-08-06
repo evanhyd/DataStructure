@@ -48,7 +48,9 @@
     <ClCompile Include="BinomialHeap.cpp">
       <Filter>DataStructure\BinomialHeap</Filter>
     </ClCompile>
-    <ClCompile Include="SkipList.cpp" />
+    <ClCompile Include="SkipList.cpp">
+      <Filter>DataStructure\SkipList</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="DataStructure">
@@ -143,6 +145,8 @@
     <ClInclude Include="BinomialHeap.h">
       <Filter>DataStructure\BinomialHeap</Filter>
     </ClInclude>
-    <ClInclude Include="SkipList.h" />
+    <ClInclude Include="SkipList.h">
+      <Filter>DataStructure\SkipList</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

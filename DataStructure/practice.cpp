@@ -18,6 +18,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
+#include <type_traits>
 
 #define IN_USE
 #ifdef IN_USE
@@ -37,50 +38,25 @@ constexpr ull kPrimes[] = {
 
 template <typename T>
 constexpr T popcount(T n) {
-#ifdef _HAS_CXX20
+  #ifdef _HAS_CXX20
   return std::popcount(n);
-#else
-  return __builtin__popcount(n);
-#endif
+  #else
+  return __builtin_popcount(n);
+  #endif
 }
-
-using namespace std;
 
 #include "memory.h"
 #include "random.h"
 #include "time.h"
-#include "SkipList.h"
 
-class Solution {
-public:
-  int longestSubarray(vector<int>& nums) {
-    for (int i = 0, cnt = 0; i < nums.size(); ++i) {
-      if (nums[i]) {
-        ++cnt;
-        nums[i] = cnt;
-      } else {
-        cnt = 0;
-      }
-    }
+using namespace std;
+using namespace box;
 
-    for (int i = int(nums.size()) - 2; i >= 0; --i) {
-      if (nums[i] && nums[i + 1]) {
-        nums[i] = nums[i + 1];
-      }
-    }
-
-    int mValue = 0;
-    for (int i = 1)
-  }
-};
 
 int main() {
-  cin.tie(nullptr)->sync_with_stdio(false);
-  box::MemoryGuard();
+  MemoryGuard();
 
-  using namespace box;
-
-  SkipList<int, int> lst;
+  auto a = make_unique<int[]>(1);
 }
 
 #endif
