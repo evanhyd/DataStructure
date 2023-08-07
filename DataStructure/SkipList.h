@@ -152,9 +152,11 @@ public:
     }
   }
 
-  SkipList() : _root(new Tower()) {
+  SkipList() : _root(new Tower()) {}
 
-  }
+  SkipList(const SkipList& other) = delete;
+
+  SkipList(SkipList&& other) noexcept : _root(std::exchange(other._root, nullptr)) {}
 
   ~SkipList() {
     for (Tower* curr = _root; curr; ) {
@@ -162,5 +164,11 @@ public:
       delete curr;
       curr = next;
     }
+  }
+
+  SkipList& operator=(const SkipList& other) = delete;
+
+  SkipList& operator=(SkipList&& other) noexcept {
+    std::swap(_root, other._root);
   }
 };

@@ -65,7 +65,7 @@ int main() {
     list.Insert({ n, n * n });
     list.Print();
     cout << endl << endl;
-    auto result = list.Search(n);
+    auto result = list.Find(n);
     
     cout << (*result).first << endl;
     cout << (*result).second << endl;
