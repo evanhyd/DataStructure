@@ -48,6 +48,7 @@ constexpr T popcount(T n) {
 #include "memory.h"
 #include "random.h"
 #include "time.h"
+#include "SkipList.h"
 
 using namespace std;
 using namespace box;
@@ -56,7 +57,20 @@ using namespace box;
 int main() {
   MemoryGuard();
 
-  auto a = make_unique<int[]>(1);
+  SkipList<int, int> list;
+
+  vector<int> nums(10);
+  iota(nums.begin(), nums.end(), 0);
+  for (int n : nums) {
+    list.Insert({ n, n * n });
+    list.Print();
+    cout << endl << endl;
+    auto result = list.Search(n);
+    
+    cout << (*result).first << endl;
+    cout << (*result).second << endl;
+    (*result).second = 10;
+  }
 }
 
 #endif
