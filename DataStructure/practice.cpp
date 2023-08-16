@@ -53,15 +53,26 @@ constexpr T popcount(T n) {
 using namespace std;
 using namespace box;
 
-#include "DynamicArray.h"
+class A {
+  virtual void Bar() {};
+};
+
+class B : public A {
+  
+};
+
+class C : public A {
+
+};
+
 
 int main() {
   MemoryGuard();
 
-  DynamicArray<DebugClass> arr;
-  for (int i = 0; i < 32; ++i) {
-    arr.PushBack();
-  }
+  B b{};
+  C c{};
+
+  return 0;
 }
 
 #endif
