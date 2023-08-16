@@ -53,23 +53,14 @@ constexpr T popcount(T n) {
 using namespace std;
 using namespace box;
 
+#include "DynamicArray.h"
 
 int main() {
   MemoryGuard();
 
-  SkipList<int, int> list;
-
-  vector<int> nums(10);
-  iota(nums.begin(), nums.end(), 0);
-  for (int n : nums) {
-    list.Insert({ n, n * n });
-    list.Print();
-    cout << endl << endl;
-    auto result = list.Find(n);
-    
-    cout << (*result).first << endl;
-    cout << (*result).second << endl;
-    (*result).second = 10;
+  DynamicArray<DebugClass> arr;
+  for (int i = 0; i < 32; ++i) {
+    arr.PushBack();
   }
 }
 
@@ -78,4 +69,5 @@ int main() {
 /*
 priority queue is a max heap
 sort the data to find the pattern
+vec.size() - 1 may underflow
 */

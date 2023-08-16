@@ -1,5 +1,5 @@
 #pragma once
-#include <iostream>
+#include <utility>
 #include <cassert>
 
 template <typename T>
@@ -255,14 +255,6 @@ public:
   }
   #endif
 
-
-private:
-  /// <summary>
-  /// Reallocate the dynamic array with a magic capacity number, so it can reuse the memory.
-  /// </summary>
-  void Grow();
-
-
 public:
   /// <summary>
   /// <para>Map all elements specified by the mapping function.</para>
@@ -458,7 +450,9 @@ void DynamicArray<T>::PushBack(Args&&... args) {
 
   //reallocate if exceed capacity
   if (end_ == capacity_) {
-    Grow();
+    //+1 to avoid 0 * x == 0 issue
+    //growing ratio < 2, so the sum of previous deallocated memory is greater than the next allocated memory
+    Reserve(static_cast<std::size_t>(Capacity() * 3 / 2 + 1));
   }
 
   //append the new element
@@ -584,7 +578,7 @@ void DynamicArray<T>::Reserve(std::size_t new_capacity) {
     //allocate new memory
     T* new_mem = static_cast<T*>(operator new[](new_capacity * sizeof(T)));
 
-    //realloate elements
+    //reallocate elements
     for (T* srce = begin_, *node = new_mem; srce != end_; ++srce, ++node) {
       new(node) T(std::move(*srce));
     }
@@ -607,14 +601,6 @@ void DynamicArray<T>::Reserve(std::size_t new_capacity) {
 template <typename T>
 void DynamicArray<T>::ShrinkToFit() {
   Reserve(Size());
-}
-
-template <typename T>
-void DynamicArray<T>::Grow() {
-
-  //+1 to avoid 0 * x == 0 issue
-  //magic number close to golden ratio, allows to reuse previously allocated memory
-  Reserve(static_cast<std::size_t>(Capacity() * 3 / 2 + 1));
 }
 
 

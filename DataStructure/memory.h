@@ -14,7 +14,7 @@
 
 namespace box
 {
-  //incompatiable with address sanitizer
+  //incompatible with address sanitizer
   inline void MemoryGuard() {
 #if defined _DEBUG && (defined _WIN32 || defined _WIN64)
   _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
