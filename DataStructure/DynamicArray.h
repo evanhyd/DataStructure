@@ -254,6 +254,8 @@ public:
     std::cout << "size: " << Size() << '\n';
     std::cout << "capacity: " << Capacity() << '\n';
   }
+  #else
+  void Log() const {}
   #endif
 
 public:

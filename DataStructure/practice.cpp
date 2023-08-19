@@ -53,24 +53,17 @@ constexpr T popcount(T n) {
 using namespace std;
 using namespace box;
 
-class A {
-  virtual void Bar() {};
-};
-
-class B : public A {
-  
-};
-
-class C : public A {
-
-};
-
 
 int main() {
   MemoryGuard();
+  SkipList<int, string> list;
+  list.Insert({ 10, "a" });
+  list.Insert({ 5, "b" });
+  list.Insert({ 7, "c" });
+  list.Print();
+  list.Erase(101);
+  list.Print();
 
-  B b{};
-  C c{};
 
   return 0;
 }

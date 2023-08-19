@@ -1,13 +1,16 @@
 #pragma once
 #include <iostream>
+#include <utility>
 #include <vector>
-#include <memory>
 #include <chrono>
 #include <random>
 #include <cassert>
 
 template <typename KeyType, typename ValueType, typename Predicate = std::less<KeyType>>
 class SkipList {
+  using KeyValueType = std::pair<const KeyType, ValueType>;
+
+  static inline const Predicate comp{};
 
   struct Tower;
 
@@ -17,14 +20,12 @@ class SkipList {
   };
 
   struct Tower {
-    const std::unique_ptr<KeyType> _key;
-    std::unique_ptr<ValueType> _value;
+    std::optional<KeyValueType> _keyValue;
     std::vector<Node> _nodes; //height = size - 1, first node owns the tower
 
-    Tower() : _key(), _value(), _nodes(1) {}
+    Tower() : _keyValue(), _nodes(1) {}
 
-    Tower(const std::pair<KeyType, ValueType>& keyValue)
-      : _key(std::make_unique<KeyType>(keyValue.first)), _value(std::make_unique<ValueType>(keyValue.second)) {
+    Tower(const KeyValueType& keyValue) : _keyValue(keyValue) {
       static std::default_random_engine engine(unsigned(std::chrono::system_clock().now().time_since_epoch().count()));
       static std::bernoulli_distribution dist(1.0 / 2.71828182846); // 1/e
       int size = 1;
@@ -33,19 +34,25 @@ class SkipList {
       }
       _nodes.resize(size);
     }
+
+    const KeyType& Key() {
+      return _keyValue->first;
+    }
+
+    ValueType& Value() {
+      return _keyValue->second;
+    }
   };
 
-  template <typename ReturnValueType>
+  template <typename ReturnType>
   class IteratorImpl {
     Tower* tower;
-
     IteratorImpl(Tower* tower) : tower(tower) {}
 
   public:
-
     IteratorImpl& operator++() {
-      assert((*tower)[0] && "incrementing pass the end");
-      tower = (*tower)[0];
+      assert(tower->_nodes.at(0) && "incrementing pass the end");
+      tower = tower->_nodes[0];
       return *this;
     }
 
@@ -57,19 +64,16 @@ class SkipList {
       return !(*this == other);
     }
 
-    std::pair<const KeyType&, ReturnValueType&> operator*() {
-      assert(tower && "dereference sentinel node");
-      return { *tower->_key, *tower->_value };
+    ReturnType operator*() {
+      assert(tower && tower->_keyValue && "dereference sentinel node");
+      return *tower->_keyValue;
     }
     friend class SkipList;
   };
 
-private:
   Tower* _root;
 
   std::vector<Node*> GetPredecessors(const KeyType& key) const {
-    const Predicate pre{};
-
     Tower* currTower = _root;
     int height = int(_root->_nodes.size()) - 1;
 
@@ -80,7 +84,7 @@ private:
 
       //search horizontally until reaches the upper bound or sentinel
       Node* currNode = &currTower->_nodes[height];
-      while (currNode->_next && pre(*currNode->_next->_key, key)) {
+      while (currNode->_next && comp(currNode->_next->Key(), key)) {
         currNode = &currNode->_next->_nodes[height];
       }
       predecessors.push_back(currNode);
@@ -89,8 +93,8 @@ private:
   }
 
 public:
-  using Iterator = IteratorImpl<ValueType>;
-  using ConstIterator = IteratorImpl<const ValueType>;
+  using Iterator = IteratorImpl<KeyValueType&>;
+  using ConstIterator = IteratorImpl<const KeyValueType&>;
 
   Iterator begin() {
     return Iterator(_root->_nodes.front()->_next);
@@ -110,29 +114,26 @@ public:
 
   Iterator Find(const KeyType& key) {
     Tower* const tower = GetPredecessors(key).back()->_next;
-    return Iterator((tower && *tower->_key == key) ? tower : nullptr);
+    return Iterator((tower && !comp(tower->Key(), key) && !comp(key, tower->Key())) ? tower : nullptr); //is == defined?, should I use < instead?
   }
 
   ConstIterator Find(const KeyType& key) const {
     Tower* const tower = GetPredecessors(key).back()->_next;
-    return ConstIterator((tower && *tower->_key == key) ? tower : nullptr);
+    return ConstIterator((tower && !comp(tower->Key(), key) && !comp(key, tower->Key())) ? tower : nullptr);
   }
 
-  void Insert(const std::pair<KeyType, ValueType>& keyValue) {
-    auto predecessors = GetPredecessors(keyValue.first);
-
-    //check if already exists
-    if (Tower* const tower = predecessors.back()->_next; tower && *tower->_key == keyValue.first) {
-      *tower->_value = keyValue.second;
+  void Insert(const KeyValueType& keyValue) {
+    if (auto result = Find(keyValue.first); result != end()) {
+      (*result).second = keyValue.second;
       return;
     }
 
     //insert the new tower
     Tower* newTower = new Tower(keyValue); //pray it doesn't throw, this strategy always works
-    if (newTower->_nodes.size() >= _root->_nodes.size()) {
+    if (_root->_nodes.size() <= newTower->_nodes.size()) {
       _root->_nodes.resize(newTower->_nodes.size() + 1);
     }
-    predecessors = GetPredecessors(keyValue.first);
+    auto predecessors = GetPredecessors(keyValue.first);
 
     for (Node& node : newTower->_nodes) {
       node._next = predecessors.back()->_next;
@@ -141,22 +142,43 @@ public:
     }
   }
 
+  void Erase(const KeyType& key) {
+    auto predecessors = GetPredecessors(key);
+    Tower* const tower = predecessors.back()->_next;
+    bool found = false;
+
+    int height = 0;
+    for (auto iter = predecessors.rbegin(); iter != predecessors.rend(); ++iter, ++height) {
+      Tower* const candidate = (*iter)->_next;
+      if (candidate && !comp(candidate->Key(), key) && !comp(key, candidate->Key())) {
+        (*iter)->_next = candidate->_nodes[height]._next;
+        found = true;
+      } else {
+        break;
+      }
+    }
+
+    if (found) {
+      delete tower;
+    }
+  }
+
   void Print() const {
     for (int i = int(_root->_nodes.size()) - 1; i >= 0; --i) {
       Node node = _root->_nodes[i];
       for (Tower* tower = node._next; tower; ) {
-        std::cout << "_(" << *tower->_key << ", " << *tower->_value << ")";
+        std::cout << "_(" << tower->Key() << ", " << tower->Value() << ")";
         tower = tower->_nodes[i]._next;
       }
       std::cout << '\n';
     }
   }
 
-  SkipList() : _root(new Tower()) {}
+  explicit SkipList() : _root(new Tower()) {}
 
-  SkipList(const SkipList& other) = delete;
+  explicit SkipList(const SkipList& other) = delete;
 
-  SkipList(SkipList&& other) noexcept : _root(std::exchange(other._root, nullptr)) {}
+  explicit SkipList(SkipList&& other) noexcept : _root(std::exchange(other._root, nullptr)) {}
 
   ~SkipList() {
     for (Tower* curr = _root; curr; ) {
