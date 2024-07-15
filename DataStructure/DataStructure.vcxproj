@@ -31,8 +31,8 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
-    <EnableASAN>false</EnableASAN>
-    <EnableFuzzer>false</EnableFuzzer>
+    <EnableASAN>true</EnableASAN>
+    <EnableFuzzer>true</EnableFuzzer>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -46,8 +46,8 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
-    <EnableFuzzer>false</EnableFuzzer>
-    <EnableASAN>false</EnableASAN>
+    <EnableFuzzer>true</EnableFuzzer>
+    <EnableASAN>true</EnableASAN>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -116,6 +116,7 @@
       <OmitFramePointers>true</OmitFramePointers>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -155,6 +156,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <AdditionalOptions>/constexpr:steps10000000 %(AdditionalOptions)</AdditionalOptions>
+      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -164,24 +166,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AVLTree.cpp" />
-    <ClCompile Include="BinaryHeap.cpp" />
-    <ClCompile Include="BinomialHeap.cpp" />
-    <ClCompile Include="DisjointSet.cpp" />
-    <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="pure_c.c" />
-    <ClCompile Include="RandomMeldableHeap.cpp" />
     <ClCompile Include="memory.cpp" />
-    <ClCompile Include="PSDA.cpp" />
     <ClCompile Include="random.cpp" />
-    <ClCompile Include="SegmentTree.cpp" />
     <ClCompile Include="practice.cpp" />
-    <ClCompile Include="DynamicArray.cpp" />
-    <ClCompile Include="SkipList.cpp" />
-    <ClCompile Include="SparseTable.cpp" />
     <ClCompile Include="time.cpp" />
-    <ClCompile Include="Trie.cpp" />
-    <ClCompile Include="Tuple.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AVLTree.h" />
