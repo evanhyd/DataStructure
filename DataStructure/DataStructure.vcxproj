@@ -181,7 +181,7 @@
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="memory.h" />
-    <ClInclude Include="ValueIterator.h" />
+    <ClInclude Include="IntegerIterator.h" />
     <ClInclude Include="PSDA.h" />
     <ClInclude Include="random.h" />
     <ClInclude Include="RandomMeldableHeap.h" />

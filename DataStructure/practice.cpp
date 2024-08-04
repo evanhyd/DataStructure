@@ -123,20 +123,21 @@ const auto _ = std::cin.tie(nullptr)->sync_with_stdio(false);
 
 using namespace std;
 
-#include "ValueIterator.h"
+#include "IntegerIterator.h"
 
-constexpr i64 THRESHOLD = 177013;
+using Number = i64;
+constexpr Number THRESHOLD = 124;
 
 //A mysterious api call that does not explicitly tell us the threshold.
 //It costs 1.00000000 bitcoin per call.
-bool p(i64 x) {
+bool p(Number x) {
   return x < THRESHOLD;
 }
 
 int main() {
-  i64 X = -123456789;
-  i64 Y = 123456789;
-  auto it = partition_point(ValueIterator(X), ValueIterator(Y), p);
+  Number X = -10;
+  Number Y = 1000;
+  auto it = partition_point(IntegerIterator(X), IntegerIterator(Y), p);
   cout << *it << '\n';
 }
 
