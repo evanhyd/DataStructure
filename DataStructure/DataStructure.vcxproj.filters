@@ -2,7 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="practice.cpp" />
-    <ClCompile Include="pure_c.c" />
     <ClCompile Include="time.cpp">
       <Filter>Box</Filter>
     </ClCompile>
@@ -68,6 +67,9 @@
       <Filter>DataStructure</Filter>
     </ClInclude>
     <ClInclude Include="SegmentTree.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include="ValueIterator.h">
       <Filter>DataStructure</Filter>
     </ClInclude>
   </ItemGroup>

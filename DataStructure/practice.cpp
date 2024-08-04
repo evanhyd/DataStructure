@@ -32,6 +32,7 @@
 #include <cctype>
 #include <climits>
 #include <cstdint>
+#include <random>
 #include <memory>
 #include <numeric>
 #include <type_traits>
@@ -50,10 +51,10 @@ using u32 = std::uint32_t;
 using u64 = std::uint64_t;
 using f32 = float;
 using f64 = double;
-using pii = std::pair<int, int>;
-using pll = std::pair<long long, long long>;
+using pii = std::pair<i32, i32>;
+using pll = std::pair<i64, i64>;
 
-constexpr f32 kPi = 3.1415926535f;
+constexpr f64 kPi = 3.1415926535;
 constexpr u64 kMod = 1000000007ull;
 constexpr u64 kPrimes[] = {
     2,   3,   5,   7,   11,  13,  17,  19,  23,  29,  31,  37,  41,
@@ -62,6 +63,27 @@ constexpr u64 kPrimes[] = {
     173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239,
     241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313,
 };
+
+namespace std {
+  template<typename T>
+  struct hash<pair<T, T>> {
+    typename std::enable_if_t<std::is_same_v<T, int> || std::is_same_v<T, i32> || std::is_same_v<T, u32>, std::size_t>
+    operator()(const pair<T, T>& p) const {
+      return std::hash<T>{}(p.first) ^ (std::hash<T>{}(p.second) << 1);
+    }
+  };
+}
+
+template <typename T>
+std::ostream& operator<<(std::ostream& out, const std::vector<T>& vec) {
+  for (int i = 0; i < vec.size(); ++i) {
+    out << vec[i];
+    if (i < vec.size() - 1) {
+      out << ' ';
+    }
+  }
+  return out;
+}
 
 template <typename T, std::enable_if_t<std::is_integral_v<T>, int> = 0>
 constexpr T popcount(T n) {
@@ -81,6 +103,14 @@ constexpr int countDigits(T x) {
   return digits;
 }
 
+template <typename T>
+T* buildTree(const std::vector<int>& vals, int i = 0) {
+  if (i < vals.size() && vals[i] != -1) {
+    return new T{ vals[i], buildTree<T>(vals, i * 2 + 1), buildTree<T>(vals, i * 2 + 2) };
+  }
+  return nullptr;
+}
+
 const auto _ = std::cin.tie(nullptr)->sync_with_stdio(false);
 
 #if defined _WIN32 || defined _WIN64
@@ -93,8 +123,21 @@ const auto _ = std::cin.tie(nullptr)->sync_with_stdio(false);
 
 using namespace std;
 
-int main() {
+#include "ValueIterator.h"
 
+constexpr i64 THRESHOLD = 177013;
+
+//A mysterious api call that does not explicitly tell us the threshold.
+//It costs 1.00000000 bitcoin per call.
+bool p(i64 x) {
+  return x < THRESHOLD;
+}
+
+int main() {
+  i64 X = -123456789;
+  i64 Y = 123456789;
+  auto it = partition_point(ValueIterator(X), ValueIterator(Y), p);
+  cout << *it << '\n';
 }
 
 /*
