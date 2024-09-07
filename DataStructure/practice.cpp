@@ -8,7 +8,6 @@
 #include <fstream>
 #include <sstream>
 #include <iomanip>
-#include <iosfwd>
 #include <cstdio>
 
 //DS && ADT
@@ -28,13 +27,15 @@
 
 //algorithm && helper
 #include <algorithm>
+#include <cassert>
 #include <cmath>
 #include <cctype>
 #include <climits>
-#include <cstdint>
+#include <chrono>
 #include <random>
 #include <memory>
 #include <numeric>
+#include <thread>
 #include <type_traits>
 #include <utility>
 #ifdef _HAS_CXX20
@@ -53,9 +54,12 @@ using f32 = float;
 using f64 = double;
 using pii = std::pair<i32, i32>;
 using pll = std::pair<i64, i64>;
+using puu = std::pair<u64, u64>;
 
 constexpr f64 kPi = 3.1415926535;
 constexpr u64 kMod = 1000000007ull;
+constexpr i32 kDx[] = { 0, 0, -1, 1 };
+constexpr i32 kDy[] = { -1, 1, 0, 0 };
 constexpr u64 kPrimes[] = {
     2,   3,   5,   7,   11,  13,  17,  19,  23,  29,  31,  37,  41,
     43,  47,  53,  59,  61,  67,  71,  73,  79,  83,  89,  97,  101,
@@ -85,6 +89,12 @@ std::ostream& operator<<(std::ostream& out, const std::vector<T>& vec) {
   return out;
 }
 
+template <typename T, typename U>
+std::ostream& operator<<(std::ostream& out, const std::pair<T, U>& vec) {
+  out << '(' << vec.first << ' ' << vec.second << ')';
+  return out;
+}
+
 template <typename T, std::enable_if_t<std::is_integral_v<T>, int> = 0>
 constexpr T popcount(T n) {
   #ifdef _HAS_CXX20
@@ -97,48 +107,26 @@ constexpr T popcount(T n) {
 template <typename T, std::enable_if_t<std::is_integral_v<T>, int> = 0>
 constexpr int countDigits(T x) {
   int digits = 1;
-  for (; x >= 10; x /= 10) {
+  for (; x >= T{ 10 }; x /= T{ 10 }) {
     ++digits;
   }
   return digits;
 }
 
-template <typename T>
-T* buildTree(const std::vector<int>& vals, int i = 0) {
-  if (i < vals.size() && vals[i] != -1) {
-    return new T{ vals[i], buildTree<T>(vals, i * 2 + 1), buildTree<T>(vals, i * 2 + 2) };
-  }
-  return nullptr;
-}
-
 const auto _ = std::cin.tie(nullptr)->sync_with_stdio(false);
 
 #if defined _WIN32 || defined _WIN64
-#define USACO_OPEN(filename) 0
+#define USACO(filename) 0
 #else
-#define USACO_OPEN(filename) freopen(filename".in", "r", stdin); freopen(filename".out", "w", stdout)
+#define USACO(filename) freopen(filename".in", "r", stdin); freopen(filename".out", "w", stdout)
 #endif
 
 #endif
 
 using namespace std;
 
-#include "IntegerIterator.h"
-
-using Number = i64;
-constexpr Number THRESHOLD = 124;
-
-//A mysterious api call that does not explicitly tell us the threshold.
-//It costs 1.00000000 bitcoin per call.
-bool p(Number x) {
-  return x < THRESHOLD;
-}
-
 int main() {
-  Number X = -10;
-  Number Y = 1000;
-  auto it = partition_point(IntegerIterator(X), IntegerIterator(Y), p);
-  cout << *it << '\n';
+  
 }
 
 /*
