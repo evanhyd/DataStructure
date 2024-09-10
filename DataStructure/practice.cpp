@@ -56,7 +56,7 @@ using pii = std::pair<i32, i32>;
 using pll = std::pair<i64, i64>;
 using puu = std::pair<u64, u64>;
 
-constexpr f64 kPi = 3.1415926535;
+constexpr f64 kPI = 3.1415926535;
 constexpr u64 kMod = 1000000007ull;
 constexpr i32 kDx[] = { 0, 0, -1, 1 };
 constexpr i32 kDy[] = { -1, 1, 0, 0 };
@@ -126,7 +126,7 @@ const auto _ = std::cin.tie(nullptr)->sync_with_stdio(false);
 using namespace std;
 
 int main() {
-  
+
 }
 
 /*
