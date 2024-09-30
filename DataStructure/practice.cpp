@@ -32,6 +32,7 @@
 #include <cctype>
 #include <climits>
 #include <chrono>
+#include <iterator>
 #include <random>
 #include <memory>
 #include <numeric>
@@ -72,19 +73,22 @@ namespace std {
   template<typename T>
   struct hash<pair<T, T>> {
     typename std::enable_if_t<std::is_same_v<T, int> || std::is_same_v<T, i32> || std::is_same_v<T, u32>, std::size_t>
-    operator()(const pair<T, T>& p) const {
+      operator()(const pair<T, T>& p) const {
       return std::hash<T>{}(p.first) ^ (std::hash<T>{}(p.second) << 1);
     }
   };
 }
 
-template <typename T>
-std::ostream& operator<<(std::ostream& out, const std::vector<T>& vec) {
-  for (int i = 0; i < vec.size(); ++i) {
-    out << vec[i];
-    if (i < vec.size() - 1) {
-      out << ' ';
-    }
+template <typename T,
+          std::enable_if_t<std::is_base_of_v<std::input_iterator_tag, typename std::iterator_traits<typename T::iterator>::iterator_category>>* = nullptr>
+std::ostream& operator<<(std::ostream& out, const T& vec) {
+  auto it = vec.begin();
+  if (it == vec.end()) {
+    return out;
+  }
+  out << *it;
+  while (++it != vec.end()) {
+    out << ' ' << *it;
   }
   return out;
 }
@@ -97,11 +101,11 @@ std::ostream& operator<<(std::ostream& out, const std::pair<T, U>& vec) {
 
 template <typename T, std::enable_if_t<std::is_integral_v<T>, int> = 0>
 constexpr T popcount(T n) {
-  #ifdef _HAS_CXX20
+#ifdef _HAS_CXX20
   return std::popcount(n);
-  #else
+#else
   return __builtin_popcount(n);
-  #endif
+#endif
 }
 
 template <typename T, std::enable_if_t<std::is_integral_v<T>, int> = 0>
@@ -126,7 +130,7 @@ const auto _ = std::cin.tie(nullptr)->sync_with_stdio(false);
 using namespace std;
 
 int main() {
-
+  
 }
 
 /*
