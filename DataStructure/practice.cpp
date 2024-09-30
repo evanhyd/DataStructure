@@ -80,7 +80,7 @@ namespace std {
 }
 
 template <typename T,
-          std::enable_if_t<std::is_base_of_v<std::input_iterator_tag, typename std::iterator_traits<typename T::iterator>::iterator_category>>* = nullptr>
+          std::enable_if_t<std::is_base_of_v<std::input_iterator_tag, typename std::iterator_traits<typename T::iterator>::iterator_category>, int> = 0>
 std::ostream& operator<<(std::ostream& out, const T& vec) {
   auto it = vec.begin();
   if (it == vec.end()) {
@@ -99,8 +99,8 @@ std::ostream& operator<<(std::ostream& out, const std::pair<T, U>& vec) {
   return out;
 }
 
-template <typename T, std::enable_if_t<std::is_integral_v<T>, int> = 0>
-constexpr T popcount(T n) {
+template <typename T, std::enable_if_t<std::is_unsigned_v<T>, int> = 0>
+constexpr T PopCount(T n) {
 #ifdef _HAS_CXX20
   return std::popcount(n);
 #else
@@ -109,7 +109,7 @@ constexpr T popcount(T n) {
 }
 
 template <typename T, std::enable_if_t<std::is_integral_v<T>, int> = 0>
-constexpr int countDigits(T x) {
+constexpr int CountDigits(T x) {
   int digits = 1;
   for (; x >= T{ 10 }; x /= T{ 10 }) {
     ++digits;
@@ -130,7 +130,7 @@ const auto _ = std::cin.tie(nullptr)->sync_with_stdio(false);
 using namespace std;
 
 int main() {
-  
+
 }
 
 /*
