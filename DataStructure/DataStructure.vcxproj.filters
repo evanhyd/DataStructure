@@ -19,6 +19,9 @@
     <Filter Include="Box">
       <UniqueIdentifier>{bd0ac8b8-d301-4000-aa62-f7d68cb3ccc0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Flow">
+      <UniqueIdentifier>{d88a89bd-39df-40eb-8b11-7b801d84ca2b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="time.h">
@@ -71,6 +74,12 @@
     </ClInclude>
     <ClInclude Include="IntegerIterator.h">
       <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.h">
+      <Filter>Flow</Filter>
+    </ClInclude>
+    <ClInclude Include="Allocator.h">
+      <Filter>Flow</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

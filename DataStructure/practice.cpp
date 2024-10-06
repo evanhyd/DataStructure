@@ -79,8 +79,12 @@ namespace std {
   };
 }
 
-template <typename T,
-          std::enable_if_t<std::is_base_of_v<std::input_iterator_tag, typename std::iterator_traits<typename T::iterator>::iterator_category>, int> = 0>
+#if defined _WIN32 || defined _WIN64
+template <
+  typename T,
+  std::enable_if_t<!std::is_same_v<T, std::string>, int> = 0,
+  std::enable_if_t<std::is_base_of_v<std::input_iterator_tag, typename std::iterator_traits<typename T::iterator>::iterator_category>, int> = 0
+>
 std::ostream& operator<<(std::ostream& out, const T& vec) {
   auto it = vec.begin();
   if (it == vec.end()) {
@@ -98,6 +102,7 @@ std::ostream& operator<<(std::ostream& out, const std::pair<T, U>& vec) {
   out << '(' << vec.first << ' ' << vec.second << ')';
   return out;
 }
+#endif
 
 template <typename T, std::enable_if_t<std::is_unsigned_v<T>, int> = 0>
 constexpr T PopCount(T n) {
@@ -129,7 +134,22 @@ const auto _ = std::cin.tie(nullptr)->sync_with_stdio(false);
 
 using namespace std;
 
+#include "memory.h"
+#include "Vector.h"
+#include "Allocator.h"
+
 int main() {
+  box::MemoryGuard();
+
+  flow::Vector<int> a = { 1, 2, 3, 4 };
+  auto b = a.map([](int n) {
+    string s = string(n, 'a');
+    return s;
+    });
+
+  for (int i = 0; i < b.size(); ++i) {
+    cout << b[i] << '\n';
+  }
 
 }
 
