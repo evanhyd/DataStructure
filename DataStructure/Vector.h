@@ -113,7 +113,7 @@ namespace flow {
     template<typename MappingFn, typename MappedType = std::invoke_result_t<MappingFn, const T&>>
     Vector<MappedType, Allocator> map(MappingFn fn) const {
       Vector<MappedType, Allocator> mapped;
-      mapped.reserve(size_);
+      mapped.reallocate(size_);
       for (std::size_t i = 0; i < size_; ++i) {
         mapped.push_back(fn(buf_[i]));
       }
@@ -145,5 +145,7 @@ namespace flow {
       swap(lhs.size_, rhs.size_);
       swap(lhs.capacity_, rhs.capacity_);
     }
+
+    friend class Vector;
   };
 }
