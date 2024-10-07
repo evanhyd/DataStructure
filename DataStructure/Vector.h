@@ -1,7 +1,8 @@
 #pragma once
 #include <cassert>
-#include <type_traits>
 #include <initializer_list>
+#include <iterator>
+#include <type_traits>
 #include <utility>
 
 #include "Allocator.h"
@@ -15,7 +16,7 @@ namespace flow {
     std::size_t capacity_;
 
     void reallocate(std::size_t capacity) {
-      assert(capacity > 0 && "requested 0 capacity");
+      assert(capacity != 0 && "requested 0 capacity");
       
       //copy to the new buffer
       //move constructor should not throw
@@ -31,37 +32,67 @@ namespace flow {
       capacity_ = capacity;
     }
 
-    void deleteAll() noexcept {
+    void destroyAll() noexcept {
       for (std::size_t i = 0; i < size_; ++i) {
         allocator_.destroy(&buf_[i]);
       }
+    }
+
+    void deleteAll() noexcept {
+      destroyAll();
       allocator_.deallocate(buf_, capacity_);
     }
 
   public:
     using value_type = T;
+    using iterator = T*;
+    using const_iterator = const T*;
 
-    Vector()
+    constexpr Vector()
       : allocator_(Allocator<T>()), buf_(nullptr), size_(0), capacity_(0) {
     }
 
-    Vector(const Vector<T>& rhs) 
-      : allocator_(Allocator<T>()), buf_(allocator_.allocate(rhs.size_)), size_(rhs.size_), capacity_(rhs.size_) {
-      for (std::size_t i = 0; i < size_; ++i) {
-        allocator_.construct(&buf_[i], rhs.buf_[i]);
-      }
+    constexpr Vector(const Vector<T>& rhs)
+      : Vector(rhs.begin(), rhs.end()) {
     }
 
-    Vector(Vector<T>&& rhs) noexcept
+    constexpr Vector(Vector<T>&& rhs) noexcept
       : allocator_(std::exchange(rhs.allocator_, Allocator<T>())),
         buf_(std::exchange(rhs.buf_, nullptr)), size_(std::exchange(rhs.size_, 0)), capacity_(std::exchange(rhs.capacity_, 0)) {
     }
 
-    Vector(std::initializer_list<T> list)
-      : allocator_(Allocator<T>()), buf_(allocator_.allocate(list.size())), size_(list.size()), capacity_(list.size()) {
-      std::size_t i = 0;
-      for (auto it = list.begin(); it != list.end(); ++it) {
-        allocator_.construct(&buf_[i++], *it);
+    explicit constexpr Vector(std::size_t count, const T& value = T{})
+      : allocator_(Allocator<T>()), buf_(allocator_.allocate(count)), size_(count), capacity_(count) {
+      for (std::size_t i = 0; i < size_; ++i) {
+        allocator_.construct(&buf_[i], value);
+      }
+    }
+
+    constexpr Vector(std::initializer_list<T> list)
+      : Vector(list.begin(), list.end()) {
+    }
+
+    template <
+      typename Iterator,
+      std::enable_if_t<std::is_same_v<std::random_access_iterator_tag, typename std::iterator_traits<Iterator>::iterator_category>, int> = 0
+    >
+    explicit constexpr Vector(Iterator begin, Iterator end)
+      : allocator_(Allocator<T>()), buf_(allocator_.allocate(end - begin)), size_(end - begin), capacity_(end - begin) {
+      for (T* ptr = buf_; begin != end; ++ptr, ++begin) {
+        allocator_.construct(ptr, *begin);
+      }
+    }
+
+    template <
+      typename Iterator,
+      std::enable_if_t<
+        !std::is_same_v<std::random_access_iterator_tag, typename std::iterator_traits<Iterator>::iterator_category> && 
+        std::is_base_of_v<std::input_iterator_tag, typename std::iterator_traits<Iterator>::iterator_category>, int> = 0
+    >
+    explicit Vector(Iterator begin, Iterator end)
+      : allocator_(Allocator<T>()), buf_(nullptr), size_(0), capacity_(0) {
+      for (; begin != end; ++begin) {
+        push_back(*begin);
       }
     }
 
@@ -84,8 +115,80 @@ namespace flow {
       return buf_[i];
     }
 
+    iterator begin() {
+      return iterator{ buf_ };
+    }
+
+    constexpr const_iterator begin() const {
+      return const_iterator{ buf_ };
+    }
+
+    iterator end() {
+      return iterator{ buf_ + size_ };
+    }
+
+    constexpr const_iterator end() const {
+      return const_iterator{ buf_ + size_ };
+    }
+
     constexpr std::size_t size() const {
       return size_;
+    }
+
+    constexpr std::size_t capacity() const {
+      return capacity_;
+    }
+
+    constexpr bool empty() const {
+      return size_ == 0;
+    }
+
+    void clear() const {
+      destroyAll();
+    }
+
+    T& front() {
+      assert(size_ != 0 && "access empty Vector front");
+      return buf_[0];
+    }
+
+    constexpr const T& front() const {
+      assert(size_ != 0 && "access empty Vector front");
+      return buf_[0];
+    }
+
+    T& back() {
+      assert(size_ != 0 && "access empty Vector back");
+      return buf_[size_ - 1];
+    }
+
+    constexpr const T& back() const {
+      assert(size_ != 0 && "access empty Vector back");
+      return buf_[size_ - 1];
+    }
+
+    void reserve(std::size_t capacity) {
+      if (capacity_ < capacity) {
+        reallocate(capacity);
+      }
+    }
+
+    void resize(std::size_t size) {
+      if (size_ < size) {
+        //expand
+        if (capacity_ < size) {
+          reallocate(size);
+        }
+        for (std::size_t i = size_; i < size; ++i) {
+          allocator_.construct(&buf_[i], T{});
+        }
+      } else {
+        //shrink
+        for (std::size_t i = size; i < size_; ++i) {
+          allocator_.destroy(&buf_[i]);
+        }
+      }
+      size_ = size;
     }
 
     template <typename ...Args>
@@ -104,12 +207,6 @@ namespace flow {
       --size_;
     }
 
-    void reserve(std::size_t capacity) {
-      if (capacity > capacity_) {
-        reallocate(capacity);
-      }
-    }
-
     template<typename MappingFn, typename MappedType = std::invoke_result_t<MappingFn, const T&>>
     Vector<MappedType, Allocator> map(MappingFn fn) const {
       Vector<MappedType, Allocator> mapped;
@@ -120,22 +217,16 @@ namespace flow {
       return mapped;
     }
 
-
-    //friend functions
-    friend bool operator==(const Vector& lhs, const Vector& rhs) {
-      if (lhs.size() != rhs.size()) {
-        return false;
-      }
-      for (std::size_t i = 0; i < lhs.size(); ++i) {
-        if (lhs.buf_[i] != rhs.buf_[i]) {
-          return false;
+    template <typename FilterFn>
+    Vector filter(FilterFn fn) const {
+      static_assert(std::is_same_v<std::invoke_result_t<FilterFn, const T&>, bool>, "filter function must evaluate to bool");
+      Vector filtered;
+      for (std::size_t i = 0; i < size_; ++i) {
+        if (fn(buf_[i])) {
+          filtered.push_back(buf_[i]);
         }
       }
-      return true;
-    }
-
-    friend bool operator!=(const Vector& lhs, const Vector& rhs) {
-      return !(lhs == rhs);
+      return filtered;
     }
 
     friend void swap(Vector& lhs, Vector& rhs) {
@@ -148,4 +239,22 @@ namespace flow {
 
     friend class Vector;
   };
+}
+
+template <typename T, template<typename> typename A, template<typename> typename B>
+bool operator==(const flow::Vector<T, A>& lhs, const flow::Vector<T, B>& rhs) {
+  if (lhs.size() != rhs.size()) {
+    return false;
+  }
+  for (std::size_t i = 0; i < lhs.size(); ++i) {
+    if (lhs[i] != rhs[i]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+template <typename T, template<typename> typename A, template<typename> typename B>
+bool operator!=(const flow::Vector<T, A>& lhs, const flow::Vector<T, B>& rhs) {
+  return !(lhs == rhs);
 }

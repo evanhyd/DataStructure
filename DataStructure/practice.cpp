@@ -136,21 +136,16 @@ using namespace std;
 
 #include "memory.h"
 #include "Vector.h"
-#include "Allocator.h"
 
 int main() {
   box::MemoryGuard();
 
-  flow::Vector<int> a = { 1, 2, 3, 4 };
-  auto b = a.map([](int n) {
-    string s = string(n, 'a');
-    return s;
-    });
-
-  for (int i = 0; i < b.size(); ++i) {
-    cout << b[i] << '\n';
-  }
-
+  flow::Vector<int> v(istream_iterator<int>{cin}, istream_iterator<int>());
+  flow::Vector<int> a = { 1, 2, 3, 4, 5 };
+  flow::Vector<int> b(10, 2);
+  cout << v << '\n';
+  cout << a << '\n';
+  cout << b << '\n';
 }
 
 /*
