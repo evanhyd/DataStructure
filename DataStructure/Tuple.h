@@ -1,53 +1,74 @@
 #pragma once
-#include <iostream>
+#include <type_traits>
 
-//Base Case
-template <typename... Ts>
-class Tuple {
-public:
-  constexpr int Size() const {
-    return 0;
-  }
-};
-
-//Recursive Definition
-//partial specialization, requires non empty template parameters
-template <typename T, typename... Ts>
-class Tuple<T, Ts...> : Tuple<Ts...> {
-  T _data;
-
-public:
-  Tuple() = default;
-
-  Tuple(T&& new_val, Ts&&... new_vals)
-    : Tuple<Ts...>(std::forward<Ts>(new_vals)...), _data(std::forward<T>(new_val)) {
-    //empty
-  }
-
-  constexpr int Size() const {
-    return sizeof...(Ts) + 1;
-  }
-
-  template <int N>
-  auto& Get() {
-    if constexpr (N == 0) {
-      return _data;
-    } else {
-      //explicit template keyword requires for the parser
-      //who tf designed the language syntax
-      return Tuple<Ts...>::template Get<N - 1>();
+namespace flow {
+  template <typename... Ts>
+  class Tuple {
+  public:
+    constexpr int size() const {
+      return 0;
     }
-  }
+  };
 
-  template <int N>
-  const auto& Get() const {
-    if constexpr (N == 0) {
-      return _data;
-    } else {
-      return Tuple<Ts...>::template Get<N - 1>();
+  template <typename T, typename... Ts>
+  class Tuple<T, Ts...> : Tuple<Ts...> {
+    T value_;
+
+  public:
+    constexpr Tuple() 
+      : Tuple<Ts...>{}, value_{} {
+    };
+
+    explicit constexpr Tuple(T&& value, Ts&&... values)
+      : Tuple<Ts...>(std::forward<Ts>(values)...), value_(std::forward<T>(value)) {
     }
-  }
-};
 
-template <typename T, typename... Ts>
-Tuple(T&&, Ts&&...)->Tuple<T, Ts...>;
+    constexpr int size() const {
+      return sizeof...(Ts) + 1;
+    }
+
+    template <std::size_t N>
+    auto& get() {
+      if constexpr (N == 0) {
+        return value_;
+      } else {
+        //explicit template keyword requires for the parser
+        //who tf designed the language syntax
+        return Tuple<Ts...>::template get<N - 1>();
+      }
+    }
+
+    template <std::size_t N>
+    const auto& get() const {
+      if constexpr (N == 0) {
+        return value_;
+      } else {
+        return Tuple<Ts...>::template get<N - 1>();
+      }
+    }
+  };
+
+  template <typename T, typename... Ts>
+  Tuple(T&&, Ts&&...) -> Tuple<T, Ts...>;
+
+  template <typename T>
+  struct IsTuple {
+    static constexpr bool value = false;
+  };
+
+  template <typename ...Args>
+  struct IsTuple<Tuple<Args...>> {
+    static constexpr bool value = true;
+  };
+
+  template <typename T, typename ...Ts>
+  struct TupleCat {
+    static_assert(IsTuple<T>::value && sizeof...(Ts) == 0);
+    using type = T;
+  };
+
+  template <typename ...Args1, typename ...Args2, typename ...Tuples>
+  struct TupleCat<Tuple<Args1...>, Tuple<Args2...>, Tuples...> {
+    using type = TupleCat<Tuple<Args1..., Args2...>, Tuples...>::type;
+  };
+}

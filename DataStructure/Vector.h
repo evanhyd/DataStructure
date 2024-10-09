@@ -48,9 +48,7 @@ namespace flow {
     using iterator = T*;
     using const_iterator = const T*;
 
-    constexpr Vector()
-      : allocator_(Allocator<T>()), buf_(nullptr), size_(0), capacity_(0) {
-    }
+    constexpr Vector() = default;
 
     constexpr Vector(const Vector<T>& rhs)
       : Vector(rhs.begin(), rhs.end()) {
@@ -116,19 +114,19 @@ namespace flow {
     }
 
     iterator begin() {
-      return iterator{ buf_ };
+      return buf_;
     }
 
     constexpr const_iterator begin() const {
-      return const_iterator{ buf_ };
+      return buf_;
     }
 
     iterator end() {
-      return iterator{ buf_ + size_ };
+      return buf_ + size_;
     }
 
     constexpr const_iterator end() const {
-      return const_iterator{ buf_ + size_ };
+      return buf_ + size_;
     }
 
     constexpr std::size_t size() const {

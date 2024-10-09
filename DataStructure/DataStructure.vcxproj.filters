@@ -33,9 +33,6 @@
     <ClInclude Include="memory.h">
       <Filter>Box</Filter>
     </ClInclude>
-    <ClInclude Include="Tuple.h">
-      <Filter>DataStructure</Filter>
-    </ClInclude>
     <ClInclude Include="AVLTree.h">
       <Filter>DataStructure</Filter>
     </ClInclude>
@@ -79,6 +76,9 @@
       <Filter>Flow</Filter>
     </ClInclude>
     <ClInclude Include="Allocator.h">
+      <Filter>Flow</Filter>
+    </ClInclude>
+    <ClInclude Include="Tuple.h">
       <Filter>Flow</Filter>
     </ClInclude>
   </ItemGroup>

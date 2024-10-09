@@ -136,16 +136,44 @@ using namespace std;
 
 #include "memory.h"
 #include "Vector.h"
+#include "Tuple.h"
+
+using flow::Tuple;
+
+struct Bar {
+  Bar() = delete;
+};
+
+
+
+
 
 int main() {
+  using namespace flow;
   box::MemoryGuard();
 
-  flow::Vector<int> v(istream_iterator<int>{cin}, istream_iterator<int>());
-  flow::Vector<int> a = { 1, 2, 3, 4, 5 };
-  flow::Vector<int> b(10, 2);
-  cout << v << '\n';
-  cout << a << '\n';
-  cout << b << '\n';
+  Tuple<int, int> a{ 1, 21 };
+  Tuple<string, double> b{ "hello", 13.324 };
+
+  using T0 = TupleCat<Tuple<>>::type;
+  T0 t0{};
+
+  using T1 = TupleCat<Tuple<int, long>>::type;
+  T1 t1{};
+
+  using T2 = TupleCat<Tuple<int, long>, Tuple<float, double>>::type;
+  T2 t2{};
+
+  using T3 = TupleCat<Tuple<int, long>, Tuple<float, double>, Tuple<char*, string>>::type;
+  T3 t3{};
+
+  using T4 = TupleCat<Tuple<int, long>, Tuple<float, double>, Tuple<char*, string>, Tuple<int, float, char*>>::type;
+  T4 t4{};
+
+  using T5 = TupleCat<Tuple<int, int>, Tuple<Tuple<float>, Tuple<double>>>::type;
+  T5 t5{};
+
+
 }
 
 /*
