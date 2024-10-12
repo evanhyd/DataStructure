@@ -10,6 +10,12 @@
 namespace flow {
   template <typename T, template<typename> typename Allocator = BasicAllocator>
   class Vector {
+  public:
+    using value_type = T;
+    using iterator = T*;
+    using const_iterator = const T*;
+
+  private:
     Allocator<T> allocator_;
     T* buf_;
     std::size_t size_;
@@ -25,29 +31,26 @@ namespace flow {
         allocator_.construct(&buf[i], std::move(buf_[i]));
       }
 
-      //destroy and deallocate the old buffer
-      deleteAll();
-
+      delete_all();
       buf_ = buf;
       capacity_ = capacity;
     }
 
-    void destroyAll() noexcept {
-      for (std::size_t i = 0; i < size_; ++i) {
-        allocator_.destroy(&buf_[i]);
+    void destroy_range(iterator first, iterator last) noexcept {
+      assert(begin() <= first && first <= end() && "first interator out of bound");
+      assert(begin() <= last && last <= end() && "last iterator out of bound");
+      assert(first <= last && "first iterator denotes a position after last iterator");
+      for (; first < last; ++first) {
+        allocator_.destroy(first);
       }
     }
 
-    void deleteAll() noexcept {
-      destroyAll();
+    void delete_all() noexcept {
+      destroy_range(begin(), end());
       allocator_.deallocate(buf_, capacity_);
     }
 
   public:
-    using value_type = T;
-    using iterator = T*;
-    using const_iterator = const T*;
-
     constexpr Vector() = default;
 
     constexpr Vector(const Vector<T>& rhs)
@@ -61,8 +64,8 @@ namespace flow {
 
     explicit constexpr Vector(std::size_t count, const T& value = T{})
       : allocator_(Allocator<T>()), buf_(allocator_.allocate(count)), size_(count), capacity_(count) {
-      for (std::size_t i = 0; i < size_; ++i) {
-        allocator_.construct(&buf_[i], value);
+      for (T* first = buf_, *last = buf_ + size_; first != last; ++first) {
+        allocator_.construct(first, value);
       }
     }
 
@@ -72,30 +75,30 @@ namespace flow {
 
     template <
       typename Iterator,
-      std::enable_if_t<std::is_same_v<std::random_access_iterator_tag, typename std::iterator_traits<Iterator>::iterator_category>, int> = 0
+      std::enable_if_t<std::is_base_of_v<std::random_access_iterator_tag, typename std::iterator_traits<Iterator>::iterator_category>, int> = 0
     >
-    explicit constexpr Vector(Iterator begin, Iterator end)
-      : allocator_(Allocator<T>()), buf_(allocator_.allocate(end - begin)), size_(end - begin), capacity_(end - begin) {
-      for (T* ptr = buf_; begin != end; ++ptr, ++begin) {
-        allocator_.construct(ptr, *begin);
+    explicit constexpr Vector(Iterator first, Iterator last)
+      : allocator_(Allocator<T>()), buf_(allocator_.allocate(last - first)), size_(last - first), capacity_(last - first) {
+      for (T* dst = buf_; first != last; ++dst, ++first) {
+        allocator_.construct(dst, *first);
       }
     }
 
     template <
       typename Iterator,
       std::enable_if_t<
-        !std::is_same_v<std::random_access_iterator_tag, typename std::iterator_traits<Iterator>::iterator_category> && 
+        !std::is_base_of_v<std::random_access_iterator_tag, typename std::iterator_traits<Iterator>::iterator_category> &&
         std::is_base_of_v<std::input_iterator_tag, typename std::iterator_traits<Iterator>::iterator_category>, int> = 0
     >
-    explicit Vector(Iterator begin, Iterator end)
+    explicit Vector(Iterator first, Iterator last)
       : allocator_(Allocator<T>()), buf_(nullptr), size_(0), capacity_(0) {
-      for (; begin != end; ++begin) {
-        push_back(*begin);
+      for (; first != last; ++first) {
+        push_back(*first);
       }
     }
 
     ~Vector() {
-      deleteAll();
+      delete_all();
     }
 
     Vector& operator=(Vector rhs) noexcept {
@@ -142,7 +145,8 @@ namespace flow {
     }
 
     void clear() const {
-      destroyAll();
+      destroy_range(begin(), end());
+      size_ = 0;
     }
 
     T& front() {
@@ -177,14 +181,12 @@ namespace flow {
         if (capacity_ < size) {
           reallocate(size);
         }
-        for (std::size_t i = size_; i < size; ++i) {
-          allocator_.construct(&buf_[i], T{});
+        for (T* first = buf_ + size_, *last = buf_ + size; first != last; ++first) {
+          allocator_.construct(first, T{});
         }
       } else {
         //shrink
-        for (std::size_t i = size; i < size_; ++i) {
-          allocator_.destroy(&buf_[i]);
-        }
+        destroy_range(buf_ + size, buf_ + size_);
       }
       size_ = size;
     }
@@ -195,7 +197,7 @@ namespace flow {
         //consider using a growing ratio < 2, so the sum of previous deallocated memory is greater than the next allocated memory
         reallocate(capacity_ * 2 + 1);
       }
-      allocator_.construct(&buf_[size_], std::forward<Args&&>(args)...);
+      allocator_.construct(&buf_[size_], std::forward<Args>(args)...);
       ++size_;
     }
 
@@ -205,23 +207,66 @@ namespace flow {
       --size_;
     }
 
+    void erase(iterator first, iterator last) {
+      //replace the erased elements then destroy the rest
+      const iterator endIt = end();
+      destroy_range(std::move(last, endIt, first), endIt);
+      size_ -= last - first;
+    }
+
+    template <
+      typename Iterator,
+      std::enable_if_t<std::is_base_of_v<std::random_access_iterator_tag, typename std::iterator_traits<Iterator>::iterator_category>, int> = 0
+    >
+    void insert(iterator dst, Iterator first, Iterator last) {
+      assert(begin() <= dst && dst <= end() && "destination iterator out of bound");
+      assert(first <= last && "first iterator denotes a position after last iterator");
+
+      const std::ptrdiff_t count = last - first;
+      const std::size_t available = capacity_ - size_;
+      if (available >= count) {
+        T* from = buf_ + size_ - 1;
+        T* to = from + count;
+        for (T* last = from; to != last; --from, --to) {
+          allocator_.construct(to, std::move(*from));
+        }
+        /*for (T* last = dst + count - 1; last < to; --to, --from) {
+          *to = std::move(*from);
+          *from = 
+        }*/
+      } else {
+
+      }
+    }
+
+    template <
+      typename Iterator,
+      std::enable_if_t<
+      !std::is_base_of_v<std::random_access_iterator_tag, typename std::iterator_traits<Iterator>::iterator_category>&&
+      std::is_base_of_v<std::input_iterator_tag, typename std::iterator_traits<Iterator>::iterator_category>, int> = 0
+    >
+    void insert(iterator dst, Iterator first, Iterator last) {
+      assert(begin() <= dst && dst <= end() && "destination iterator out of bound");
+      static_assert(false, "not implemented");
+    }
+
     template<typename MappingFn, typename MappedType = std::invoke_result_t<MappingFn, const T&>>
     Vector<MappedType, Allocator> map(MappingFn fn) const {
       Vector<MappedType, Allocator> mapped;
       mapped.reallocate(size_);
-      for (std::size_t i = 0; i < size_; ++i) {
-        mapped.push_back(fn(buf_[i]));
+      for (const T& val : *this) {
+        mapped.push_back(fn(val));
       }
       return mapped;
     }
 
     template <typename FilterFn>
     Vector filter(FilterFn fn) const {
-      static_assert(std::is_same_v<std::invoke_result_t<FilterFn, const T&>, bool>, "filter function must evaluate to bool");
+      static_assert(std::is_base_of_v<std::invoke_result_t<FilterFn, const T&>, bool>, "filter function must evaluate to bool");
       Vector filtered;
-      for (std::size_t i = 0; i < size_; ++i) {
-        if (fn(buf_[i])) {
-          filtered.push_back(buf_[i]);
+      for (const T& val : *this) {
+        if (fn(val)) {
+          filtered.push_back(val);
         }
       }
       return filtered;
@@ -244,8 +289,12 @@ bool operator==(const flow::Vector<T, A>& lhs, const flow::Vector<T, B>& rhs) {
   if (lhs.size() != rhs.size()) {
     return false;
   }
-  for (std::size_t i = 0; i < lhs.size(); ++i) {
-    if (lhs[i] != rhs[i]) {
+
+  typename flow::Vector<T, A>::iterator left = lhs.begin();
+  typename flow::Vector<T, A>::iterator end = lhs.end();
+  typename flow::Vector<T, B>::iterator right = rhs.begin();
+  for (; left != end; ++left, ++right) {
+    if (*left != *right) {
       return false;
     }
   }

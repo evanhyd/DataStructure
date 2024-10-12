@@ -63,7 +63,7 @@ namespace flow {
 
   template <typename T, typename ...Ts>
   struct TupleCat {
-    static_assert(IsTuple<T>::value && sizeof...(Ts) == 0);
+    static_assert(IsTuple<T>::value && sizeof...(Ts) == 0, "concatenate non-tuple types");
     using type = T;
   };
 

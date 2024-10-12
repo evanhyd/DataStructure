@@ -23,7 +23,7 @@ namespace flow {
 
     template <typename U, typename ...Args>
     void construct(U* ptr, Args&&... args) const {
-      new(ptr) U(std::forward<Args&&>(args)...);
+      new(ptr) U(std::forward<Args>(args)...);
     }
 
     template <typename U>
