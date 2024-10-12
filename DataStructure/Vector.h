@@ -262,7 +262,7 @@ namespace flow {
 
     template <typename FilterFn>
     Vector filter(FilterFn fn) const {
-      static_assert(std::is_base_of_v<std::invoke_result_t<FilterFn, const T&>, bool>, "filter function must evaluate to bool");
+      static_assert(std::is_same_v<std::invoke_result_t<FilterFn, const T&>, bool>, "filter function must evaluate to bool");
       Vector filtered;
       for (const T& val : *this) {
         if (fn(val)) {

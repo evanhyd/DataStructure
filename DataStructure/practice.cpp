@@ -134,91 +134,18 @@ const auto _ = std::cin.tie(nullptr)->sync_with_stdio(false);
 
 using namespace std;
 
-class Solution {
-public:
-  int minimumSum(int n, int k) {
-    bool bad[1000] = {};
-    for (int i = 1; i <= k / 2; ++i) {
-      if (i == k - i) {
-        continue;
-      }
-      bad[k - i] = true;
-    }
 
-    int ans = 0;
-    for (int i = 1; n > 0; ++i) {
-      if (bad[i]) {
-        continue;
-      }
-      ans += i;
-      --n;
-    }
-    return ans;
-  }
-};
 
 //#include "memory.h"
 //#include "Vector.h"
 //#include "Tuple.h"
 //
-//using flow::Tuple
+//using namespace flow;
 //
 //int main() {
 //  using namespace flow;
 //  box::MemoryGuard();
 //
-//  Tuple<int, int> a{ 1, 21 };
-//  Tuple<string, double> b{ "hello", 13.324 };
-//
-//  using T0 = TupleCat<Tuple<>>::type;
-//  T0 t0{};
-//
-//  using T1 = TupleCat<Tuple<int, long>>::type;
-//  T1 t1{};
-//
-//  using T2 = TupleCat<Tuple<int, long>, Tuple<float, double>>::type;
-//  T2 t2{};
-//
-//  using T3 = TupleCat<Tuple<int, long>, Tuple<float, double>, Tuple<char*, string>>::type;
-//  T3 t3{};
-//
-//  using T4 = TupleCat<Tuple<int, long>, Tuple<float, double>, Tuple<char*, string>, Tuple<int, float, char*>>::type;
-//  T4 t4{};
-//
-//  using T5 = TupleCat<Tuple<int, int>, Tuple<Tuple<float>, Tuple<double>>>::type;
-//  T5 t5{};
-//
-//  {
-//    Vector<int> vec = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-//    vec.erase(vec.begin(), vec.end());
-//    cout << vec << '\n';
-//  }
-//  {
-//    Vector<int> vec = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-//    vec.erase(vec.begin(), vec.begin() + 2);
-//    cout << vec << '\n';
-//  }
-//  {
-//    Vector<int> vec = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-//    vec.erase(vec.begin(), vec.begin() + 8);
-//    cout << vec << '\n';
-//  }
-//  {
-//    Vector<int> vec = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-//    vec.erase(vec.begin() + 7, vec.begin() + 9);
-//    cout << vec << '\n';
-//  }
-//  {
-//    Vector<int> vec = {};
-//    vec.erase(vec.begin(), vec.end());
-//    cout << vec << '\n';
-//  }
-//  {
-//    Vector<int> vec = {1,2,3,4,5};
-//    vec.erase(vec.end(), vec.end());
-//    cout << vec << '\n';
-//  }
-//  
 //}
 
 /*
