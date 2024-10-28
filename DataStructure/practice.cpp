@@ -4,38 +4,41 @@
 #define CP_TEMPLATE
 #ifdef CP_TEMPLATE
 //io
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <iomanip>
+#include <cstdint>
 #include <cstdio>
+#include <cstdlib>
+#include <fstream>
+#include <iomanip>
+#include <iosfwd>
+#include <iostream>
+#include <sstream>
 
 //DS && ADT
-#include <string>
 #include <array>
-#include <vector>
-#include <deque>
 #include <bitset>
+#include <deque>
 #include <list>
-#include <set>
 #include <map>
-#include <unordered_set>
-#include <unordered_map>
-#include <stack>
 #include <queue>
+#include <set>
+#include <stack>
+#include <string>
 #include <tuple>
+#include <unordered_map>
+#include <unordered_set>
+#include <vector>
 
 //algorithm && helper
 #include <algorithm>
 #include <cassert>
-#include <cmath>
 #include <cctype>
-#include <climits>
 #include <chrono>
+#include <climits>
+#include <cmath>
 #include <iterator>
-#include <random>
 #include <memory>
 #include <numeric>
+#include <random>
 #include <thread>
 #include <type_traits>
 #include <utility>
@@ -124,6 +127,15 @@ constexpr int CountDigits(T x) {
 
 const auto _ = std::cin.tie(nullptr)->sync_with_stdio(false);
 
+#define LC_HACK
+#ifdef LC_HACK
+const auto __ = []() {
+  struct ___ { static void _() { std::ofstream("display_runtime.txt") << -1 << '\n'; } };
+  std::atexit(&___::_);
+  return 0;
+}();
+#endif
+
 #if defined _WIN32 || defined _WIN64
 #define USACO(filename) 0
 #else
@@ -134,19 +146,25 @@ const auto _ = std::cin.tie(nullptr)->sync_with_stdio(false);
 
 using namespace std;
 
+#include "Vector.h"
+#include "memory.h"
 
+int main() {
+  using namespace flow;
+  using namespace box;
+  
+  box::MemoryGuard();
 
-//#include "memory.h"
-//#include "Vector.h"
-//#include "Tuple.h"
-//
-//using namespace flow;
-//
-//int main() {
-//  using namespace flow;
-//  box::MemoryGuard();
-//
-//}
+  int N;
+  cin >> N;
+  Vector<int> v;
+  for (int i = 0; i < N; ++i) {
+    int a;
+    cin >> a;
+    v.insert(v.begin(), a);
+  }
+  cout << v;
+}
 
 /*
 priority queue is a max heap

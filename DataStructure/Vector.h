@@ -2,6 +2,8 @@
 #include <cassert>
 #include <initializer_list>
 #include <iterator>
+#include <algorithm>
+#include <memory>
 #include <type_traits>
 #include <utility>
 
@@ -9,7 +11,7 @@
 
 namespace flow {
   template <typename T, template<typename> typename Allocator = BasicAllocator>
-  class Vector {
+  class Vector final {
   public:
     using value_type = T;
     using iterator = T*;
@@ -21,33 +23,66 @@ namespace flow {
     std::size_t size_;
     std::size_t capacity_;
 
-    void reallocate(std::size_t capacity) {
-      assert(capacity != 0 && "requested 0 capacity");
-      
-      //copy to the new buffer
-      //move constructor should not throw
-      T* buf = allocator_.allocate(capacity);
-      for (std::size_t i = 0; i < size_; ++i) {
-        allocator_.construct(&buf[i], std::move(buf_[i]));
-      }
-
-      delete_all();
-      buf_ = buf;
-      capacity_ = capacity;
-    }
-
-    void destroy_range(iterator first, iterator last) noexcept {
+    void range_check(iterator first, iterator last) {
       assert(begin() <= first && first <= end() && "first interator out of bound");
       assert(begin() <= last && last <= end() && "last iterator out of bound");
       assert(first <= last && "first iterator denotes a position after last iterator");
-      for (; first < last; ++first) {
+    }
+
+    template <typename It>
+    iterator copy_uninit(It first, It last, iterator output) {
+      for (; first != last; ++output, ++first) {
+        allocator_.construct(output, *first);
+      }
+      return output;
+    }
+
+    template <typename It>
+    iterator move_uninit(It first, It last, iterator output) {
+      for (; first != last; ++output, ++first) {
+        allocator_.construct(output, std::move(*first));
+      }
+      return output;
+    }
+
+    void fill_uninit(iterator first, iterator last, const T& value) {
+      range_check(first, last);
+      for (; first != last; ++first) {
+        allocator_.construct(first, value);
+      }
+    }
+
+    void destroy(iterator first, iterator last) noexcept {
+      range_check(first, last);
+      for (; first != last; ++first) {
         allocator_.destroy(first);
       }
     }
 
     void delete_all() noexcept {
-      destroy_range(begin(), end());
+      destroy(begin(), end());
       allocator_.deallocate(buf_, capacity_);
+    }
+
+    void relocate(std::size_t capacity) {
+      T* buf = allocator_.allocate(capacity);
+      move_uninit(begin(), end(), buf);
+      delete_all();
+      buf_ = buf;
+      capacity_ = capacity;
+    }
+
+    template <typename It>
+    void insert_relocate(iterator pos, It first, It last, std::size_t insertSize) {
+      //move to a larger buffer
+      T* buf = allocator_.allocate(insertSize);
+      move_uninit(pos, end(), copy_uninit(first, last, move_uninit(begin(), pos, buf)));
+
+      //update
+      delete_all();
+      buf_ = buf;
+      capacity_ = insertSize;
+      size_ = insertSize;
     }
 
   public:
@@ -59,42 +94,30 @@ namespace flow {
 
     constexpr Vector(Vector<T>&& rhs) noexcept
       : allocator_(std::exchange(rhs.allocator_, Allocator<T>())),
-        buf_(std::exchange(rhs.buf_, nullptr)), size_(std::exchange(rhs.size_, 0)), capacity_(std::exchange(rhs.capacity_, 0)) {
-    }
-
-    explicit constexpr Vector(std::size_t count, const T& value = T{})
-      : allocator_(Allocator<T>()), buf_(allocator_.allocate(count)), size_(count), capacity_(count) {
-      for (T* first = buf_, *last = buf_ + size_; first != last; ++first) {
-        allocator_.construct(first, value);
-      }
+        buf_(std::exchange(rhs.buf_, nullptr)), 
+        size_(std::exchange(rhs.size_, 0)), 
+        capacity_(std::exchange(rhs.capacity_, 0)) {
     }
 
     constexpr Vector(std::initializer_list<T> list)
       : Vector(list.begin(), list.end()) {
     }
 
-    template <
-      typename Iterator,
-      std::enable_if_t<std::is_base_of_v<std::random_access_iterator_tag, typename std::iterator_traits<Iterator>::iterator_category>, int> = 0
-    >
-    explicit constexpr Vector(Iterator first, Iterator last)
-      : allocator_(Allocator<T>()), buf_(allocator_.allocate(last - first)), size_(last - first), capacity_(last - first) {
-      for (T* dst = buf_; first != last; ++dst, ++first) {
-        allocator_.construct(dst, *first);
-      }
+    template <typename It>
+    explicit constexpr Vector(It first, It last)
+      : allocator_(Allocator<T>()), 
+        size_(std::distance(first, last)), 
+        capacity_(size_) {
+      buf_ = allocator_.allocate(size_);
+      copy_uninit(first, last, begin());
     }
 
-    template <
-      typename Iterator,
-      std::enable_if_t<
-        !std::is_base_of_v<std::random_access_iterator_tag, typename std::iterator_traits<Iterator>::iterator_category> &&
-        std::is_base_of_v<std::input_iterator_tag, typename std::iterator_traits<Iterator>::iterator_category>, int> = 0
-    >
-    explicit Vector(Iterator first, Iterator last)
-      : allocator_(Allocator<T>()), buf_(nullptr), size_(0), capacity_(0) {
-      for (; first != last; ++first) {
-        push_back(*first);
-      }
+    explicit constexpr Vector(std::size_t count, const T& value = T{})
+      : allocator_(Allocator<T>()),
+        buf_(allocator_.allocate(count)),
+        size_(count),
+        capacity_(count) {
+      fill_uninit(begin(), end(), value);
     }
 
     ~Vector() {
@@ -171,7 +194,7 @@ namespace flow {
 
     void reserve(std::size_t capacity) {
       if (capacity_ < capacity) {
-        reallocate(capacity);
+        relocate(capacity);
       }
     }
 
@@ -179,14 +202,12 @@ namespace flow {
       if (size_ < size) {
         //expand
         if (capacity_ < size) {
-          reallocate(size);
+          relocate(size);
         }
-        for (T* first = buf_ + size_, *last = buf_ + size; first != last; ++first) {
-          allocator_.construct(first, T{});
-        }
+        fill_uninit(begin() + size_, begin() + size, T{});
       } else {
         //shrink
-        destroy_range(buf_ + size, buf_ + size_);
+        destroy(begin() + size, begin() + size_);
       }
       size_ = size;
     }
@@ -194,8 +215,8 @@ namespace flow {
     template <typename ...Args>
     void push_back(Args&&... args) {
       if (size_ == capacity_) {
-        //consider using a growing ratio < 2, so the sum of previous deallocated memory is greater than the next allocated memory
-        reallocate(capacity_ * 2 + 1);
+        //https://stackoverflow.com/questions/5232198/how-does-the-capacity-of-stdvector-grow-automatically-what-is-the-rate
+        relocate(capacity_ * 2 + 1);
       }
       allocator_.construct(&buf_[size_], std::forward<Args>(args)...);
       ++size_;
@@ -203,57 +224,44 @@ namespace flow {
 
     void pop_back() noexcept {
       assert(size_ == 0 && "can not pop back from an empty vector");
-      allocator_.destroy(&buf_[size_]);
       --size_;
+      allocator_.destroy(end());
     }
 
     void erase(iterator first, iterator last) {
+      range_check(first, last);
       //replace the erased elements then destroy the rest
       const iterator endIt = end();
-      destroy_range(std::move(last, endIt, first), endIt);
+      destroy(std::move(last, endIt, first), endIt);
       size_ -= last - first;
     }
 
-    template <
-      typename Iterator,
-      std::enable_if_t<std::is_base_of_v<std::random_access_iterator_tag, typename std::iterator_traits<Iterator>::iterator_category>, int> = 0
-    >
-    void insert(iterator dst, Iterator first, Iterator last) {
-      assert(begin() <= dst && dst <= end() && "destination iterator out of bound");
+    template <typename It>
+    void insert(iterator pos, It first, It last) {
+      range_check(pos, pos);
       assert(first <= last && "first iterator denotes a position after last iterator");
 
-      const std::ptrdiff_t count = last - first;
-      const std::size_t available = capacity_ - size_;
-      if (available >= count) {
-        T* from = buf_ + size_ - 1;
-        T* to = from + count;
-        for (T* last = from; to != last; --from, --to) {
-          allocator_.construct(to, std::move(*from));
-        }
-        /*for (T* last = dst + count - 1; last < to; --to, --from) {
-          *to = std::move(*from);
-          *from = 
-        }*/
-      } else {
-
+      //special case: directly append to the vector end without reallocation.
+      //reallocation must not occur, otherwise it may invalidate the input iterators if self-inserting.
+      const std::size_t requiredSize = size_ + std::distance(first, last);
+      if (pos == end() && requiredSize <= capacity_) {
+        copy_uninit(first, last, end());
+        size_ = requiredSize;
+        return;
       }
+
+      //otherwise, allocate new buffer so we don't need to check for self-inserting or other edge cases.
+      insert_relocate(pos, first, last, requiredSize);
     }
 
-    template <
-      typename Iterator,
-      std::enable_if_t<
-      !std::is_base_of_v<std::random_access_iterator_tag, typename std::iterator_traits<Iterator>::iterator_category>&&
-      std::is_base_of_v<std::input_iterator_tag, typename std::iterator_traits<Iterator>::iterator_category>, int> = 0
-    >
-    void insert(iterator dst, Iterator first, Iterator last) {
-      assert(begin() <= dst && dst <= end() && "destination iterator out of bound");
-      static_assert(false, "not implemented");
+    void insert(iterator pos, const T& value) {
+      insert(pos, &value, &value + 1);
     }
 
     template<typename MappingFn, typename MappedType = std::invoke_result_t<MappingFn, const T&>>
     Vector<MappedType, Allocator> map(MappingFn fn) const {
       Vector<MappedType, Allocator> mapped;
-      mapped.reallocate(size_);
+      mapped.relocate(size_);
       for (const T& val : *this) {
         mapped.push_back(fn(val));
       }
