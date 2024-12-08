@@ -48,22 +48,18 @@ namespace flow {
     }
   };
 
-  template <typename T, typename... Ts>
+  template <typename T, typename ...Ts>
   Tuple(T&&, Ts&&...) -> Tuple<T, Ts...>;
 
   template <typename T>
-  struct IsTuple {
-    static constexpr bool value = false;
-  };
+  constexpr bool is_tuple = false;
 
   template <typename ...Args>
-  struct IsTuple<Tuple<Args...>> {
-    static constexpr bool value = true;
-  };
+  constexpr bool is_tuple<Tuple<Args...>> = true;
 
   template <typename T, typename ...Ts>
   struct TupleCat {
-    static_assert(IsTuple<T>::value && sizeof...(Ts) == 0, "concatenate non-tuple types");
+    static_assert(is_tuple<T> && sizeof...(Ts) == 0, "concatenate non-tuple types");
     using type = T;
   };
 

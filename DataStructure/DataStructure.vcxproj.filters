@@ -45,9 +45,6 @@
     <ClInclude Include="DisjointSet.h">
       <Filter>DataStructure</Filter>
     </ClInclude>
-    <ClInclude Include="DynamicArray.h">
-      <Filter>DataStructure</Filter>
-    </ClInclude>
     <ClInclude Include="LinkedList.h">
       <Filter>DataStructure</Filter>
     </ClInclude>
@@ -72,13 +69,16 @@
     <ClInclude Include="IntegerIterator.h">
       <Filter>DataStructure</Filter>
     </ClInclude>
-    <ClInclude Include="Vector.h">
+    <ClInclude Include="vector.h">
       <Filter>Flow</Filter>
     </ClInclude>
-    <ClInclude Include="Allocator.h">
+    <ClInclude Include="allocator.h">
       <Filter>Flow</Filter>
     </ClInclude>
-    <ClInclude Include="Tuple.h">
+    <ClInclude Include="tuple.h">
+      <Filter>Flow</Filter>
+    </ClInclude>
+    <ClInclude Include="algorithm.h">
       <Filter>Flow</Filter>
     </ClInclude>
   </ItemGroup>

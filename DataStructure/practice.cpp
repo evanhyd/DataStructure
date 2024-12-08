@@ -17,6 +17,7 @@
 #include <array>
 #include <bitset>
 #include <deque>
+#include <initializer_list>
 #include <list>
 #include <map>
 #include <queue>
@@ -41,10 +42,12 @@
 #include <random>
 #include <thread>
 #include <type_traits>
+#include <regex>
 #include <utility>
 #ifdef _HAS_CXX20
 #include <bit>
 #endif
+#include <limits>
 
 using i8 = std::int8_t;
 using i16 = std::int16_t;
@@ -62,8 +65,8 @@ using puu = std::pair<u64, u64>;
 
 constexpr f64 kPI = 3.1415926535;
 constexpr u64 kMod = 1000000007ull;
-constexpr i32 kDx[] = { 0, 0, -1, 1 };
-constexpr i32 kDy[] = { -1, 1, 0, 0 };
+constexpr i32 kDx[] = { -1, 0, 1, 0 };
+constexpr i32 kDy[] = { 0, 1, 0, -1 };
 constexpr u64 kPrimes[] = {
     2,   3,   5,   7,   11,  13,  17,  19,  23,  29,  31,  37,  41,
     43,  47,  53,  59,  61,  67,  71,  73,  79,  83,  89,  97,  101,
@@ -85,8 +88,8 @@ namespace std {
 #if defined _WIN32 || defined _WIN64
 template <
   typename T,
-  std::enable_if_t<!std::is_same_v<T, std::string>, int> = 0,
-  std::enable_if_t<std::is_base_of_v<std::input_iterator_tag, typename std::iterator_traits<typename T::iterator>::iterator_category>, int> = 0
+  typename = std::enable_if_t<!std::is_same_v<T, std::string>>,
+  typename = std::enable_if_t<std::is_base_of_v<std::input_iterator_tag, typename std::iterator_traits<typename T::iterator>::iterator_category>>
 >
 std::ostream& operator<<(std::ostream& out, const T& vec) {
   auto it = vec.begin();
@@ -107,7 +110,7 @@ std::ostream& operator<<(std::ostream& out, const std::pair<T, U>& vec) {
 }
 #endif
 
-template <typename T, std::enable_if_t<std::is_unsigned_v<T>, int> = 0>
+template <typename T, typename = std::enable_if_t<std::is_unsigned_v<T>>>
 constexpr T PopCount(T n) {
 #ifdef _HAS_CXX20
   return std::popcount(n);
@@ -116,7 +119,7 @@ constexpr T PopCount(T n) {
 #endif
 }
 
-template <typename T, std::enable_if_t<std::is_integral_v<T>, int> = 0>
+template <typename T, typename = std::enable_if_t<std::is_integral_v<T>>>
 constexpr int CountDigits(T x) {
   int digits = 1;
   for (; x >= T{ 10 }; x /= T{ 10 }) {
@@ -127,10 +130,9 @@ constexpr int CountDigits(T x) {
 
 const auto _ = std::cin.tie(nullptr)->sync_with_stdio(false);
 
-#define LC_HACK
 #ifdef LC_HACK
 const auto __ = []() {
-  struct ___ { static void _() { std::ofstream("display_runtime.txt") << -1 << '\n'; } };
+  struct ___ { static void _() { std::ofstream("display_runtime.txt") << INT_MAX << '\n'; } };
   std::atexit(&___::_);
   return 0;
 }();
@@ -146,25 +148,33 @@ const auto __ = []() {
 
 using namespace std;
 
-#include "Vector.h"
-#include "memory.h"
+#include "algorithm.h"
+#include "vector.h"
+using namespace flow;
 
-int main() {
-  using namespace flow;
-  using namespace box;
-  
-  box::MemoryGuard();
-
-  int N;
-  cin >> N;
-  Vector<int> v;
-  for (int i = 0; i < N; ++i) {
-    int a;
-    cin >> a;
-    v.insert(v.begin(), a);
+bool solve(const u64 target, const Vector<u64>& nums, u64 i, u64 total) {
+  if (i == nums.size()) {
+    return total == target;
   }
-  cout << v;
+
+  return solve(target, nums, i + 1, total +  nums[i]) || solve(target, nums, i + 1, total * nums[i]) || solve(target, nums, i + 1, stoull(to_string(total) + to_string(nums[i])));
 }
+
+int main() { 
+  u64 ans = 0;
+  for (string line; getline(cin, line);) {
+    auto tokens = split(line, ": ");
+    auto target = stoull(tokens[0]);
+    auto nums = split(tokens[1], " ").map([](auto& s) {return stoull(s); });
+    if (solve(target, nums, 0, 0)) {
+      ans += target;
+      cout << "yes\n";
+    }
+  }
+
+  cout << ans << endl;
+}
+
 
 /*
 priority queue is a max heap

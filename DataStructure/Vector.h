@@ -1,13 +1,13 @@
 #pragma once
+#include <algorithm>
 #include <cassert>
 #include <initializer_list>
 #include <iterator>
-#include <algorithm>
 #include <memory>
 #include <type_traits>
 #include <utility>
 
-#include "Allocator.h"
+#include "allocator.h"
 
 namespace flow {
   template <typename T, template<typename> typename Allocator = BasicAllocator>
@@ -23,9 +23,9 @@ namespace flow {
     std::size_t size_;
     std::size_t capacity_;
 
-    void range_check(iterator first, iterator last) {
-      assert(begin() <= first && first <= end() && "first interator out of bound");
-      assert(begin() <= last && last <= end() && "last iterator out of bound");
+    [[maybe_unused]] void range_check([[maybe_unused]] iterator first, [[maybe_unused]] iterator last) {
+      assert(buf_ <= first && first <= buf_ + capacity_ && "first interator out of bound");
+      assert(buf_ <= last && last <= buf_ + capacity_ && "last iterator out of bound");
       assert(first <= last && "first iterator denotes a position after last iterator");
     }
 
@@ -236,6 +236,10 @@ namespace flow {
       size_ -= last - first;
     }
 
+    void erase(iterator pos) {
+      erase(pos, pos + 1);
+    }
+
     template <typename It>
     void insert(iterator pos, It first, It last) {
       range_check(pos, pos);
@@ -258,9 +262,9 @@ namespace flow {
       insert(pos, &value, &value + 1);
     }
 
-    template<typename MappingFn, typename MappedType = std::invoke_result_t<MappingFn, const T&>>
-    Vector<MappedType, Allocator> map(MappingFn fn) const {
-      Vector<MappedType, Allocator> mapped;
+    template<typename MappingFn, template<typename> typename Alloc = Allocator>
+    Vector<std::invoke_result_t<MappingFn, const T&>, Alloc> map(const MappingFn& fn) const {
+      Vector<std::invoke_result_t<MappingFn, const T&>, Alloc> mapped;
       mapped.relocate(size_);
       for (const T& val : *this) {
         mapped.push_back(fn(val));
@@ -268,16 +272,30 @@ namespace flow {
       return mapped;
     }
 
-    template <typename FilterFn>
-    Vector filter(FilterFn fn) const {
+    template <typename FilterFn, template<typename> typename Alloc = Allocator>
+    Vector<T, Alloc> filter(const FilterFn& fn) const {
       static_assert(std::is_same_v<std::invoke_result_t<FilterFn, const T&>, bool>, "filter function must evaluate to bool");
-      Vector filtered;
+      Vector<T, Alloc> filtered;
       for (const T& val : *this) {
         if (fn(val)) {
           filtered.push_back(val);
         }
       }
       return filtered;
+    }
+
+    template <typename CallbackFn>
+    void for_each(const CallbackFn& fn) const {
+      for (const T& val : *this) {
+        fn(val);
+      }
+    }
+
+    template <typename CallbackFn>
+    void for_each(const CallbackFn& fn) {
+      for (T& val : *this) {
+        fn(val);
+      }
     }
 
     friend void swap(Vector& lhs, Vector& rhs) {
@@ -290,26 +308,26 @@ namespace flow {
 
     friend class Vector;
   };
-}
 
-template <typename T, template<typename> typename A, template<typename> typename B>
-bool operator==(const flow::Vector<T, A>& lhs, const flow::Vector<T, B>& rhs) {
-  if (lhs.size() != rhs.size()) {
-    return false;
-  }
-
-  typename flow::Vector<T, A>::iterator left = lhs.begin();
-  typename flow::Vector<T, A>::iterator end = lhs.end();
-  typename flow::Vector<T, B>::iterator right = rhs.begin();
-  for (; left != end; ++left, ++right) {
-    if (*left != *right) {
+  template <typename T, template<typename> typename A, template<typename> typename B>
+  bool operator==(const flow::Vector<T, A>& lhs, const flow::Vector<T, B>& rhs) {
+    if (lhs.size() != rhs.size()) {
       return false;
     }
-  }
-  return true;
-}
 
-template <typename T, template<typename> typename A, template<typename> typename B>
-bool operator!=(const flow::Vector<T, A>& lhs, const flow::Vector<T, B>& rhs) {
-  return !(lhs == rhs);
+    typename flow::Vector<T, A>::const_iterator left = lhs.begin();
+    typename flow::Vector<T, A>::const_iterator end = lhs.end();
+    typename flow::Vector<T, B>::const_iterator right = rhs.begin();
+    for (; left != end; ++left, ++right) {
+      if (*left != *right) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  template <typename T, template<typename> typename A, template<typename> typename B>
+  bool operator!=(const flow::Vector<T, A>& lhs, const flow::Vector<T, B>& rhs) {
+    return !(lhs == rhs);
+  }
 }

@@ -243,13 +243,13 @@
     <ClCompile Include="time.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Allocator.h" />
+    <ClInclude Include="algorithm.h" />
+    <ClInclude Include="allocator.h" />
     <ClInclude Include="AVLTree.h" />
     <ClInclude Include="BinaryHeap.h" />
     <ClInclude Include="BinomialHeap.h" />
     <ClInclude Include="DisjointSet.h" />
     <ClInclude Include="LinkedList.h" />
-    <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="memory.h" />
     <ClInclude Include="IntegerIterator.h" />
     <ClInclude Include="PSDA.h" />
@@ -260,8 +260,8 @@
     <ClInclude Include="SparseTable.h" />
     <ClInclude Include="time.h" />
     <ClInclude Include="Trie.h" />
-    <ClInclude Include="Tuple.h" />
-    <ClInclude Include="Vector.h" />
+    <ClInclude Include="tuple.h" />
+    <ClInclude Include="vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
