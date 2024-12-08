@@ -148,31 +148,17 @@ const auto __ = []() {
 
 using namespace std;
 
-#include "algorithm.h"
 #include "vector.h"
+#include "tuple.h"
+
 using namespace flow;
 
-bool solve(const u64 target, const Vector<u64>& nums, u64 i, u64 total) {
-  if (i == nums.size()) {
-    return total == target;
-  }
 
-  return solve(target, nums, i + 1, total +  nums[i]) || solve(target, nums, i + 1, total * nums[i]) || solve(target, nums, i + 1, stoull(to_string(total) + to_string(nums[i])));
-}
-
-int main() { 
-  u64 ans = 0;
-  for (string line; getline(cin, line);) {
-    auto tokens = split(line, ": ");
-    auto target = stoull(tokens[0]);
-    auto nums = split(tokens[1], " ").map([](auto& s) {return stoull(s); });
-    if (solve(target, nums, 0, 0)) {
-      ans += target;
-      cout << "yes\n";
-    }
-  }
-
-  cout << ans << endl;
+int main() {
+  Tuple<int, float> t1{1, 2.3f};
+  Tuple<vector<int>, string> t2{ vector{1, 1, 2, 3, 5, 8}, "hello world" };
+  auto t3 = merge_tuple(t1, t2);
+  cout << t3.get<0>() << '\n' <<   t3.get<1>() << '\n' << t3.get<2>() << '\n' << t3.get<3>() << '\n';
 }
 
 

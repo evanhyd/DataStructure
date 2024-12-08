@@ -4,7 +4,10 @@
 #include <initializer_list>
 #include <iterator>
 #include <memory>
+#include <sstream>
+#include <string>
 #include <type_traits>
+#include <utility>
 #include <utility>
 
 #include "allocator.h"
@@ -329,5 +332,37 @@ namespace flow {
   template <typename T, template<typename> typename A, template<typename> typename B>
   bool operator!=(const flow::Vector<T, A>& lhs, const flow::Vector<T, B>& rhs) {
     return !(lhs == rhs);
+  }
+
+  Vector<std::string> split(const std::string& line, const std::string& delimiter) {
+    Vector<std::string> tokens;
+    for (std::size_t pos = 0;;) {
+      std::size_t nextPos = line.find(delimiter, pos);
+      tokens.push_back(line.substr(pos, nextPos - pos));
+      if (nextPos == std::string::npos) {
+        break;
+      }
+      pos = nextPos + delimiter.size();
+    }
+    return tokens;
+  }
+
+  std::string join(const Vector<std::string>& tokens, const std::string& separator) {
+    if (tokens.empty()) {
+      return "";
+    }
+
+    std::size_t sz = (tokens.size() - 1) * separator.size();
+    for (const std::string& token : tokens) {
+      sz += token.size();
+    }
+
+    std::string line;
+    line.reserve(sz);
+    for (std::size_t i = 0; i + 1 < tokens.size(); ++i) {
+      line += tokens[i] + separator;
+    }
+    line += tokens.back();
+    return line;
   }
 }

@@ -243,7 +243,6 @@
     <ClCompile Include="time.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="algorithm.h" />
     <ClInclude Include="allocator.h" />
     <ClInclude Include="AVLTree.h" />
     <ClInclude Include="BinaryHeap.h" />

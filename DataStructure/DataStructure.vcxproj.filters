@@ -78,8 +78,5 @@
     <ClInclude Include="tuple.h">
       <Filter>Flow</Filter>
     </ClInclude>
-    <ClInclude Include="algorithm.h">
-      <Filter>Flow</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
