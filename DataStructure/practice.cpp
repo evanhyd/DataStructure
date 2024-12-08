@@ -150,14 +150,17 @@ using namespace std;
 
 #include "vector.h"
 #include "tuple.h"
+#include "memory.h"
 
 using namespace flow;
 
 
 int main() {
-  Tuple<int, float> t1{1, 2.3f};
-  Tuple<vector<int>, string> t2{ vector{1, 1, 2, 3, 5, 8}, "hello world" };
-  auto t3 = merge_tuple(t1, t2);
+  int a = 10;
+  Tuple<int, float> t1{a, 2.3f};
+  Tuple<vector<box::DebugClass>, string> t2{ 3, "hello world"};
+  auto t3 = merge_tuple(t1, std::move(t2));
+  cout << t2.get<0>() << '\n' << t2.get<1>() << '\n';
   cout << t3.get<0>() << '\n' <<   t3.get<1>() << '\n' << t3.get<2>() << '\n' << t3.get<3>() << '\n';
 }
 
