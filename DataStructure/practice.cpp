@@ -156,12 +156,7 @@ using namespace flow;
 
 
 int main() {
-  int a = 10;
-  Tuple<int, float> t1{a, 2.3f};
-  Tuple<vector<box::DebugClass>, string> t2{ 3, "hello world"};
-  auto t3 = merge_tuple(t1, std::move(t2));
-  cout << t2.get<0>() << '\n' << t2.get<1>() << '\n';
-  cout << t3.get<0>() << '\n' <<   t3.get<1>() << '\n' << t3.get<2>() << '\n' << t3.get<3>() << '\n';
+  Vector<int> v1;
 }
 
 

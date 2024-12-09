@@ -8,9 +8,9 @@
 #include <string>
 #include <type_traits>
 #include <utility>
-#include <utility>
 
 #include "allocator.h"
+#include "tuple.h"
 
 namespace flow {
   template <typename T, template<typename> typename Allocator = BasicAllocator>
@@ -21,10 +21,10 @@ namespace flow {
     using const_iterator = const T*;
 
   private:
-    Allocator<T> allocator_;
-    T* buf_;
-    std::size_t size_;
-    std::size_t capacity_;
+    Allocator<T> allocator_{};
+    std::size_t size_{};
+    std::size_t capacity_{};
+    T* buf_{};
 
     [[maybe_unused]] void range_check([[maybe_unused]] iterator first, [[maybe_unused]] iterator last) {
       assert(buf_ <= first && first <= buf_ + capacity_ && "first interator out of bound");
@@ -32,7 +32,7 @@ namespace flow {
       assert(first <= last && "first iterator denotes a position after last iterator");
     }
 
-    template <typename It>
+    template <std::input_iterator It>
     iterator copy_uninit(It first, It last, iterator output) {
       for (; first != last; ++output, ++first) {
         allocator_.construct(output, *first);
@@ -41,7 +41,7 @@ namespace flow {
     }
 
     template <typename It>
-    iterator move_uninit(It first, It last, iterator output) {
+    iterator move_uninit(It first, It last, iterator output) noexcept {
       for (; first != last; ++output, ++first) {
         allocator_.construct(output, std::move(*first));
       }
@@ -75,7 +75,7 @@ namespace flow {
       capacity_ = capacity;
     }
 
-    template <typename It>
+    template <std::input_iterator It>
     void insert_relocate(iterator pos, It first, It last, std::size_t insertSize) {
       //move to a larger buffer
       T* buf = allocator_.allocate(insertSize);
@@ -97,29 +97,29 @@ namespace flow {
 
     constexpr Vector(Vector<T>&& rhs) noexcept
       : allocator_(std::exchange(rhs.allocator_, Allocator<T>())),
-        buf_(std::exchange(rhs.buf_, nullptr)), 
         size_(std::exchange(rhs.size_, 0)), 
-        capacity_(std::exchange(rhs.capacity_, 0)) {
+        capacity_(std::exchange(rhs.capacity_, 0)),
+        buf_(std::exchange(rhs.buf_, nullptr)) {
     }
 
     constexpr Vector(std::initializer_list<T> list)
       : Vector(list.begin(), list.end()) {
     }
 
-    template <typename It>
+    template <std::input_iterator It>
     explicit constexpr Vector(It first, It last)
       : allocator_(Allocator<T>()), 
         size_(std::distance(first, last)), 
-        capacity_(size_) {
-      buf_ = allocator_.allocate(size_);
+        capacity_(size_),
+        buf_(allocator_.allocate(size_)) {
       copy_uninit(first, last, begin());
     }
 
     explicit constexpr Vector(std::size_t count, const T& value = T{})
       : allocator_(Allocator<T>()),
-        buf_(allocator_.allocate(count)),
         size_(count),
-        capacity_(count) {
+        capacity_(count),
+        buf_(allocator_.allocate(count)) {
       fill_uninit(begin(), end(), value);
     }
 
@@ -171,7 +171,7 @@ namespace flow {
     }
 
     void clear() const {
-      destroy_range(begin(), end());
+      destroy(begin(), end());
       size_ = 0;
     }
 
@@ -226,7 +226,7 @@ namespace flow {
     }
 
     void pop_back() noexcept {
-      assert(size_ == 0 && "can not pop back from an empty vector");
+      assert(size_ > 0 && "can not pop back from an empty vector");
       --size_;
       allocator_.destroy(end());
     }
@@ -243,7 +243,7 @@ namespace flow {
       erase(pos, pos + 1);
     }
 
-    template <typename It>
+    template <std::input_iterator It>
     void insert(iterator pos, It first, It last) {
       range_check(pos, pos);
       assert(first <= last && "first iterator denotes a position after last iterator");
@@ -332,6 +332,20 @@ namespace flow {
   template <typename T, template<typename> typename A, template<typename> typename B>
   bool operator!=(const flow::Vector<T, A>& lhs, const flow::Vector<T, B>& rhs) {
     return !(lhs == rhs);
+  }
+
+
+  //TODO: support move semantics
+  template <typename ...Vec>
+  Vector<Tuple<typename Vec::value_type...>> zip(const Vec&... vec) {
+    using ZipType = Tuple<typename Vec::value_type...>;
+    std::size_t minSize = std::min({vec.size()...});
+    Vector<ZipType> zipped;
+    zipped.reserve(minSize);
+    for (std::size_t i = 0; i < minSize; ++i) {
+      zipped.push_back(ZipType{vec[i]...});
+    }
+    return zipped;
   }
 
   Vector<std::string> split(const std::string& line, const std::string& delimiter) {

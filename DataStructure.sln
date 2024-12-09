@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32113.165
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DataStructure", "DataStructure\DataStructure.vcxproj", "{06D6ABF4-AC82-4A05-8AE7-193496F0384D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FlowUnitTest", "FlowUnitTest\FlowUnitTest.vcxproj", "{84211CA0-FD53-4FE7-98F7-FE81490462BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -27,6 +29,18 @@ Global
 		{06D6ABF4-AC82-4A05-8AE7-193496F0384D}.Release|x64.Build.0 = Release|x64
 		{06D6ABF4-AC82-4A05-8AE7-193496F0384D}.Release|x86.ActiveCfg = Release|Win32
 		{06D6ABF4-AC82-4A05-8AE7-193496F0384D}.Release|x86.Build.0 = Release|Win32
+		{84211CA0-FD53-4FE7-98F7-FE81490462BC}.Debug|x64.ActiveCfg = Debug|x64
+		{84211CA0-FD53-4FE7-98F7-FE81490462BC}.Debug|x64.Build.0 = Debug|x64
+		{84211CA0-FD53-4FE7-98F7-FE81490462BC}.Debug|x86.ActiveCfg = Debug|Win32
+		{84211CA0-FD53-4FE7-98F7-FE81490462BC}.Debug|x86.Build.0 = Debug|Win32
+		{84211CA0-FD53-4FE7-98F7-FE81490462BC}.DebugMemoryLeak|x64.ActiveCfg = Debug|x64
+		{84211CA0-FD53-4FE7-98F7-FE81490462BC}.DebugMemoryLeak|x64.Build.0 = Debug|x64
+		{84211CA0-FD53-4FE7-98F7-FE81490462BC}.DebugMemoryLeak|x86.ActiveCfg = Debug|Win32
+		{84211CA0-FD53-4FE7-98F7-FE81490462BC}.DebugMemoryLeak|x86.Build.0 = Debug|Win32
+		{84211CA0-FD53-4FE7-98F7-FE81490462BC}.Release|x64.ActiveCfg = Release|x64
+		{84211CA0-FD53-4FE7-98F7-FE81490462BC}.Release|x64.Build.0 = Release|x64
+		{84211CA0-FD53-4FE7-98F7-FE81490462BC}.Release|x86.ActiveCfg = Release|Win32
+		{84211CA0-FD53-4FE7-98F7-FE81490462BC}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

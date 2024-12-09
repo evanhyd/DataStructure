@@ -8,7 +8,7 @@ namespace flow {
   public:
     using value_type = T;
 
-    BasicAllocator() = default;
+    constexpr BasicAllocator() = default;
 
     template <typename U>
     constexpr BasicAllocator(const BasicAllocator<U>&) noexcept { }

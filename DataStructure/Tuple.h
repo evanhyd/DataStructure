@@ -101,6 +101,7 @@ namespace flow {
   template <typename ...Ts>
   using merged_tuple_t = detail::MergedTuple<std::decay_t<Ts>...>::type;
 
+  //TODO: generalize to N tuples and properly trigger the move semantics.
   template<typename T1, typename T2>
   merged_tuple_t<T1, T2> merge_tuple(T1&& t1, T2&& t2) {
     return [&]<std::size_t ...INDEX1, std::size_t ...INDEX2>
