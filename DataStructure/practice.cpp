@@ -148,17 +148,9 @@ const auto __ = []() {
 
 using namespace std;
 
-#include "vector.h"
-#include "tuple.h"
-#include "memory.h"
-
-using namespace flow;
-
-
 int main() {
-  Vector<int> v1;
-}
 
+}
 
 /*
 priority queue is a max heap

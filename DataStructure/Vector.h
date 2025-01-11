@@ -142,22 +142,6 @@ namespace flow {
       return buf_[i];
     }
 
-    iterator begin() {
-      return buf_;
-    }
-
-    constexpr const_iterator begin() const {
-      return buf_;
-    }
-
-    iterator end() {
-      return buf_ + size_;
-    }
-
-    constexpr const_iterator end() const {
-      return buf_ + size_;
-    }
-
     constexpr std::size_t size() const {
       return size_;
     }
@@ -170,7 +154,7 @@ namespace flow {
       return size_ == 0;
     }
 
-    void clear() const {
+    void clear() noexcept {
       destroy(begin(), end());
       size_ = 0;
     }
@@ -195,19 +179,35 @@ namespace flow {
       return buf_[size_ - 1];
     }
 
+    iterator begin() {
+      return buf_;
+    }
+
+    constexpr const_iterator begin() const {
+      return buf_;
+    }
+
+    iterator end() {
+      return buf_ + size_;
+    }
+
+    constexpr const_iterator end() const {
+      return buf_ + size_;
+    }
+
     void reserve(std::size_t capacity) {
       if (capacity_ < capacity) {
         relocate(capacity);
       }
     }
 
-    void resize(std::size_t size) {
+    void resize(std::size_t size, T value = T{}) {
       if (size_ < size) {
         //expand
         if (capacity_ < size) {
           relocate(size);
         }
-        fill_uninit(begin() + size_, begin() + size, T{});
+        fill_uninit(begin() + size_, begin() + size, value);
       } else {
         //shrink
         destroy(begin() + size, begin() + size_);
