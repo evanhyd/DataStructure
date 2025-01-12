@@ -289,14 +289,7 @@ namespace flow {
 
     template <typename CallbackFn>
     void for_each(const CallbackFn& fn) const {
-      for (const T& val : *this) {
-        fn(val);
-      }
-    }
-
-    template <typename CallbackFn>
-    void for_each(const CallbackFn& fn) {
-      for (T& val : *this) {
+      for (auto& val : *this) {
         fn(val);
       }
     }
@@ -317,12 +310,8 @@ namespace flow {
     if (lhs.size() != rhs.size()) {
       return false;
     }
-
-    typename flow::Vector<T, A>::const_iterator left = lhs.begin();
-    typename flow::Vector<T, A>::const_iterator end = lhs.end();
-    typename flow::Vector<T, B>::const_iterator right = rhs.begin();
-    for (; left != end; ++left, ++right) {
-      if (*left != *right) {
+    for (size_t i = 0, j = lhs.size(); i < j; ++i) {
+      if (lhs[i] != rhs[i]) {
         return false;
       }
     }
@@ -349,6 +338,10 @@ namespace flow {
   }
 
   Vector<std::string> split(const std::string& line, const std::string& delimiter) {
+    if (delimiter.empty()) {
+      return { line };
+    }
+
     Vector<std::string> tokens;
     for (std::size_t pos = 0;;) {
       std::size_t nextPos = line.find(delimiter, pos);
@@ -367,7 +360,7 @@ namespace flow {
     }
 
     std::size_t sz = (tokens.size() - 1) * separator.size();
-    for (const std::string& token : tokens) {
+    for (auto& token : tokens) {
       sz += token.size();
     }
 
