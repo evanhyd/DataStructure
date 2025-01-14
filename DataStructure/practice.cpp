@@ -148,8 +148,38 @@ const auto __ = []() {
 
 using namespace std;
 
-int main() {
+#include "timer.h"
+#include <vector>
+#include "vector.h"
 
+using namespace flow;
+using namespace box;
+
+struct Matrix {
+  int num[3][3]{};
+
+  Matrix(int n) {
+    for (int i = 0; i < 3; ++i) {
+      for (int j = 0; j < 3; ++j) {
+        num[i][j] = n;
+      }
+    }
+  }
+};
+
+int main() {
+  Timer timer{};
+  vector<Matrix> vec;
+
+  int a;
+  cin >> a;
+
+  timer.start();
+  for (int i = 0; i < a; ++i) {
+    vec.insert(vec.begin() + vec.size()/2, i);
+  }
+  timer.record();
+  timer.dump();
 }
 
 /*

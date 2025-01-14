@@ -2,12 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="practice.cpp" />
-    <ClCompile Include="time.cpp">
-      <Filter>Box</Filter>
-    </ClCompile>
-    <ClCompile Include="random.cpp">
-      <Filter>Box</Filter>
-    </ClCompile>
     <ClCompile Include="memory.cpp">
       <Filter>Box</Filter>
     </ClCompile>
@@ -24,7 +18,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="time.h">
+    <ClInclude Include="timer.h">
       <Filter>Box</Filter>
     </ClInclude>
     <ClInclude Include="random.h">

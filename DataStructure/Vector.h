@@ -26,66 +26,81 @@ namespace flow {
     std::size_t capacity_{};
     T* buf_{};
 
-    [[maybe_unused]] void range_check([[maybe_unused]] iterator first, [[maybe_unused]] iterator last) {
-      assert(buf_ <= first && first <= buf_ + capacity_ && "first interator out of bound");
-      assert(buf_ <= last && last <= buf_ + capacity_ && "last iterator out of bound");
-      assert(first <= last && "first iterator denotes a position after last iterator");
+    // Calculate the new capacity from the given capacity.
+    static constexpr std::size_t next_capacity(std::size_t currentCapacity) {
+      return currentCapacity * 2 + 1;
     }
 
+    // Copy construct a range of elements at the output destination.
     template <std::input_iterator It>
-    iterator copy_uninit(It first, It last, iterator output) {
-      for (; first != last; ++output, ++first) {
-        allocator_.construct(output, *first);
+    iterator copy_uninit(It first, It last, iterator out) {
+      for (; first != last; ++out, ++first) {
+        allocator_.construct(out, *first);
       }
-      return output;
+      return out;
     }
 
-    template <typename It>
-    iterator move_uninit(It first, It last, iterator output) noexcept {
-      for (; first != last; ++output, ++first) {
-        allocator_.construct(output, std::move(*first));
+    // Move construct a range of elements at the output destination.
+    template <std::input_iterator It>
+    iterator move_uninit(It first, It last, iterator out) noexcept {
+      for (; first != last; ++out, ++first) {
+        allocator_.construct(out, std::move(*first));
       }
-      return output;
+      return out;
     }
 
+    // Copy value and construct the elements at the output destination.
     void fill_uninit(iterator first, iterator last, const T& value) {
-      range_check(first, last);
       for (; first != last; ++first) {
         allocator_.construct(first, value);
       }
     }
 
+    // Destroy the elements at the given range.
     void destroy(iterator first, iterator last) noexcept {
-      range_check(first, last);
       for (; first != last; ++first) {
         allocator_.destroy(first);
       }
     }
 
+    // Destroy and deallocate all the elements.
     void delete_all() noexcept {
       destroy(begin(), end());
       allocator_.deallocate(buf_, capacity_);
     }
 
+    // Relocate the array.
     void relocate(std::size_t capacity) {
       T* buf = allocator_.allocate(capacity);
       move_uninit(begin(), end(), buf);
+
       delete_all();
       buf_ = buf;
       capacity_ = capacity;
     }
 
-    template <std::input_iterator It>
-    void insert_relocate(iterator pos, It first, It last, std::size_t insertSize) {
-      //move to a larger buffer
-      T* buf = allocator_.allocate(insertSize);
-      move_uninit(pos, end(), copy_uninit(first, last, move_uninit(begin(), pos, buf)));
+    // Relocate the array, then right shift the elements to reserve buffer in the middle.
+    void relocate_with_hole(std::size_t capacity, iterator pos, std::size_t holeSize) {
+      T* buf = allocator_.allocate(capacity);
+      move_uninit(pos, end(), move_uninit(begin(), pos, buf) + holeSize);
 
-      //update
       delete_all();
       buf_ = buf;
-      capacity_ = insertSize;
-      size_ = insertSize;
+      capacity_ = capacity;
+    }
+
+    // Relocate the array, and insert the new elements then move the old elements.
+    // New elements are copied first because the range may refer to the elements from the old buffer.
+    template <std::forward_iterator it>
+    void relocate_with_insert(std::size_t capacity, iterator pos, it first, it last) {
+      T* buf = allocator_.allocate(capacity);
+      iterator where = buf + (pos - buf_); // Inserting position in the new buffer.
+      move_uninit(pos, end(), copy_uninit(first, last, where)); // Copy the range and move the second half.
+      move_uninit(begin(), pos, buf); // Move the first half.
+
+      delete_all();
+      buf_ = buf;
+      capacity_ = capacity;
     }
 
   public:
@@ -219,9 +234,9 @@ namespace flow {
     void push_back(Args&&... args) {
       if (size_ == capacity_) {
         //https://stackoverflow.com/questions/5232198/how-does-the-capacity-of-stdvector-grow-automatically-what-is-the-rate
-        relocate(capacity_ * 2 + 1);
+        relocate(next_capacity(capacity_));
       }
-      allocator_.construct(&buf_[size_], std::forward<Args>(args)...);
+      allocator_.construct(buf_ + size_, std::forward<Args>(args)...);
       ++size_;
     }
 
@@ -232,7 +247,6 @@ namespace flow {
     }
 
     void erase(iterator first, iterator last) {
-      range_check(first, last);
       //replace the erased elements then destroy the rest
       const iterator endIt = end();
       destroy(std::move(last, endIt, first), endIt);
@@ -243,26 +257,47 @@ namespace flow {
       erase(pos, pos + 1);
     }
 
-    template <std::input_iterator It>
-    void insert(iterator pos, It first, It last) {
-      range_check(pos, pos);
-      assert(first <= last && "first iterator denotes a position after last iterator");
-
-      //special case: directly append to the vector end without reallocation.
-      //reallocation must not occur, otherwise it may invalidate the input iterators if self-inserting.
-      const std::size_t requiredSize = size_ + std::distance(first, last);
-      if (pos == end() && requiredSize <= capacity_) {
-        copy_uninit(first, last, end());
-        size_ = requiredSize;
+    template <typename ...Args>
+    void insert(iterator pos, Args&&... value) {
+      // Special case: append at the end.
+      if (pos == end()) {
+        push_back(std::forward<Args>(value)...);
         return;
       }
 
-      //otherwise, allocate new buffer so we don't need to check for self-inserting or other edge cases.
-      insert_relocate(pos, first, last, requiredSize);
+      if (size_ < capacity_) {
+        // Enough capacity, right shift the elements.
+        // Move construct the first element.
+        iterator it = end();
+        allocator_.construct(it, std::move(*(it-1)));
+
+        // Copy shift the remaining.
+        for (--it; it != pos; --it) {
+          *it = *(it - 1);
+        }
+        *it = T(value...);
+      } else {
+        // Not enough capacity, relocate everything.
+        std::size_t index = pos - buf_;
+        relocate_with_hole(next_capacity(capacity_), pos, 1);
+        allocator_.construct(buf_ + index, std::forward<Args>(value)...);
+      }
+      ++size_;
     }
 
-    void insert(iterator pos, const T& value) {
-      insert(pos, &value, &value + 1);
+    template <std::input_iterator It>
+    void insert(iterator pos, It first, It last) {
+      std::size_t requiredSize = size_ + std::distance(first, last);
+      if (pos == end() && requiredSize <= capacity_) {
+        // Special case: append at the end.
+        // Reallocation must not occur, otherwise it may invalidate the input iterators if self-inserting.
+        copy_uninit(first, last, end());
+      } else {
+        // Must relocate regardless the inserting position.
+        // TODO: Optimize opportunity: inserting middle but with enough capacity.
+        relocate_with_insert(requiredSize, pos, first, last);
+      }
+      size_ = requiredSize;
     }
 
     template<typename MappingFn, template<typename> typename Alloc = Allocator>

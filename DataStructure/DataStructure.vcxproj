@@ -244,9 +244,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="memory.cpp" />
-    <ClCompile Include="random.cpp" />
     <ClCompile Include="practice.cpp" />
-    <ClCompile Include="time.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="allocator.h" />
@@ -263,7 +261,7 @@
     <ClInclude Include="SegmentTree.h" />
     <ClInclude Include="SkipList.h" />
     <ClInclude Include="SparseTable.h" />
-    <ClInclude Include="time.h" />
+    <ClInclude Include="timer.h" />
     <ClInclude Include="Trie.h" />
     <ClInclude Include="tuple.h" />
     <ClInclude Include="vector.h" />
