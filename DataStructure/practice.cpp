@@ -169,17 +169,19 @@ struct Matrix {
 
 int main() {
   Timer timer{};
-  vector<Matrix> vec;
+  Vector<int> vec;
 
   int a;
   cin >> a;
 
   timer.start();
   for (int i = 0; i < a; ++i) {
-    vec.insert(vec.begin() + vec.size()/2, i);
+    vec.insert(vec.begin(), i);
   }
   timer.record();
   timer.dump();
+
+  //cout << vec << '\n';
 }
 
 /*

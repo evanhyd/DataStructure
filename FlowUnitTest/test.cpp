@@ -209,7 +209,7 @@ TEST(VectorTest, EraseRange) {
   EXPECT_EQ(0, vec.size());
 }
 
-TEST(VectorTest, InsertFrontAndBack) {
+TEST(VectorTest, InsertRangeFrontAndBack) {
   Vector<int> vec = { 100, 200, 300 };
 
   // Insert range front.
@@ -255,6 +255,22 @@ TEST(VectorTest, InsertFrontAndBack) {
   EXPECT_EQ(6, vec[11]);
 }
 
+TEST(VectorTest, InsertPointFrontAndBack) {
+  Vector<int> vec;
+  for (int i = 0; i < 32; ++i) {
+    vec.insert(vec.begin(), i);
+  }
+  for (int i = 0; i < 32; ++i) {
+    EXPECT_EQ(32 - i - 1, vec[i]);
+  }
+
+  for (int i = 0; i < 32; ++i) {
+    vec.insert(vec.end(), i);
+  }
+  for (int i = 32; i < 64; ++i) {
+    EXPECT_EQ(i - 32, vec[i]);
+  }
+}
 TEST(VectorTest, MapIntToString) {
   Vector<int> vec = { 1, 2, 3 };
   auto strVec = vec.map([](int n) {return std::string(n, 'a');  });
