@@ -147,12 +147,17 @@ namespace flow {
       return *this;
     }
 
-    T& operator[](std::size_t i) {
+    T& operator[](std::size_t i) & {
       assert(i < size_ && "index out of bound");
       return buf_[i];
     }
 
-    const T& operator[](std::size_t i) const {
+    const T& operator[](std::size_t i) const& {
+      assert(i < size_ && "index out of bound");
+      return buf_[i];
+    }
+
+    T&& operator[](std::size_t i) && {
       assert(i < size_ && "index out of bound");
       return buf_[i];
     }
@@ -246,14 +251,13 @@ namespace flow {
       allocator_.destroy(end());
     }
 
-    void erase(iterator first, iterator last) {
+    void erase(iterator first, iterator last) noexcept {
       //replace the erased elements then destroy the rest
-      const iterator endIt = end();
-      destroy(std::move(last, endIt, first), endIt);
+      destroy(std::move(last, end(), first), end());
       size_ -= last - first;
     }
 
-    void erase(iterator pos) {
+    void erase(iterator pos) noexcept {
       erase(pos, pos + 1);
     }
 
@@ -353,7 +357,6 @@ namespace flow {
   bool operator!=(const flow::Vector<T, A>& lhs, const flow::Vector<T, B>& rhs) {
     return !(lhs == rhs);
   }
-
 
   //TODO: support move semantics
   template <typename ...Vec>

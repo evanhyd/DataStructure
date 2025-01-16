@@ -17,7 +17,16 @@ namespace flow {
 
   protected:
     template <std::size_t N>
-    auto& get_impl() const {
+    auto&& get_impl() {
+      if constexpr (N == 0) {
+        return value_;
+      } else {
+        return Tuple<Ts...>::template get_impl<N - 1>();
+      }
+    }
+
+    template <std::size_t N>
+    auto&& get_impl() const {
       if constexpr (N == 0) {
         return value_;
       } else {
@@ -40,18 +49,18 @@ namespace flow {
     }
 
     template <std::size_t N>
-    auto&& get()&& {
+    decltype(auto) get()& {
+      return get_impl<N>();
+    }
+
+    template <std::size_t N>
+    decltype(auto) get() const& {
+      return get_impl<N>();
+    }
+
+    template <std::size_t N>
+    decltype(auto) get() && {
       return std::move(get_impl<N>());
-    }
-
-    template <std::size_t N>
-    auto& get() & {
-      return get_impl<N>();
-    }
-
-    template <std::size_t N>
-    const auto& get() const& {
-      return get_impl<N>();
     }
   };
 
@@ -101,14 +110,14 @@ namespace flow {
   template <typename ...Ts>
   using merged_tuple_t = detail::MergedTuple<std::decay_t<Ts>...>::type;
 
-  //TODO: generalize to N tuples and properly trigger the move semantics.
+  // TODO: generalize to N tuples.
   template<typename T1, typename T2>
   merged_tuple_t<T1, T2> merge_tuple(T1&& t1, T2&& t2) {
     return [&]<std::size_t ...INDEX1, std::size_t ...INDEX2>
       (std::index_sequence<INDEX1...>, std::index_sequence<INDEX2...>) {
       return merged_tuple_t<T1, T2>{
-        std::forward<T1>(t1).template get<INDEX1>()...,
-        std::forward<T2>(t2).template get<INDEX2>()...
+        std::move(t1).template get<INDEX1>()...,
+        std::move(t2).template get<INDEX2>()...
       };
     }(std::make_index_sequence<tuple_size_v<T1>>(), std::make_index_sequence<tuple_size_v<T2>>());
   }
