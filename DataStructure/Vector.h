@@ -9,7 +9,7 @@
 #include <type_traits>
 #include <utility>
 
-#include "allocator.h"
+#include "basic_allocator.h"
 #include "tuple.h"
 
 namespace flow {
@@ -19,11 +19,12 @@ namespace flow {
     using value_type = T;
     using iterator = T*;
     using const_iterator = const T*;
+    using allocator_type = Allocator<T>;
 
   private:
-    Allocator<T> allocator_{};
-    std::size_t size_{};
-    std::size_t capacity_{};
+    allocator_type allocator_{};
+    std::size_t size_ = 0;
+    std::size_t capacity_ = 0;
     T* buf_{};
 
     // Calculate the new capacity from the given capacity.
@@ -104,34 +105,36 @@ namespace flow {
     }
 
   public:
-    constexpr Vector() = default;
+    explicit constexpr Vector(const allocator_type& allocator = allocator_type())
+      : allocator_(allocator) {
+    }
 
     constexpr Vector(const Vector<T>& rhs)
-      : Vector(rhs.begin(), rhs.end()) {
+      : Vector(rhs.begin(), rhs.end(), rhs.allocator_) {
     }
 
     constexpr Vector(Vector<T>&& rhs) noexcept
-      : allocator_(std::exchange(rhs.allocator_, Allocator<T>())),
+      : allocator_(std::exchange(rhs.allocator_, allocator_type())),
         size_(std::exchange(rhs.size_, 0)), 
         capacity_(std::exchange(rhs.capacity_, 0)),
         buf_(std::exchange(rhs.buf_, nullptr)) {
     }
 
-    constexpr Vector(std::initializer_list<T> list)
-      : Vector(list.begin(), list.end()) {
+    constexpr Vector(std::initializer_list<T> list, const allocator_type& allocator = allocator_type())
+      : Vector(list.begin(), list.end(), allocator) {
     }
 
     template <std::input_iterator It>
-    explicit constexpr Vector(It first, It last)
-      : allocator_(Allocator<T>()), 
+    explicit constexpr Vector(It first, It last, const allocator_type& allocator = allocator_type())
+      : allocator_(allocator),
         size_(std::distance(first, last)), 
         capacity_(size_),
         buf_(allocator_.allocate(size_)) {
       copy_uninit(first, last, begin());
     }
 
-    explicit constexpr Vector(std::size_t count, const T& value = T{})
-      : allocator_(Allocator<T>()),
+    explicit constexpr Vector(std::size_t count, const T& value = T{}, const allocator_type& allocator = allocator_type())
+      : allocator_(allocator),
         size_(count),
         capacity_(count),
         buf_(allocator_.allocate(count)) {
@@ -147,17 +150,12 @@ namespace flow {
       return *this;
     }
 
-    T& operator[](std::size_t i) & {
+    T& operator[](std::size_t i) {
       assert(i < size_ && "index out of bound");
       return buf_[i];
     }
 
-    const T& operator[](std::size_t i) const& {
-      assert(i < size_ && "index out of bound");
-      return buf_[i];
-    }
-
-    T&& operator[](std::size_t i) && {
+    const T& operator[](std::size_t i) const {
       assert(i < size_ && "index out of bound");
       return buf_[i];
     }

@@ -4,17 +4,11 @@
 namespace flow {
   template <typename T>
   class BasicAllocator {
-
   public:
     using value_type = T;
 
-    constexpr BasicAllocator() = default;
-
-    template <typename U>
-    constexpr BasicAllocator(const BasicAllocator<U>&) noexcept { }
-
-    T* allocate(std::size_t n) const {
-      return static_cast<T*>(operator new(n * sizeof(T)));
+    T* allocate(std::size_t count) const {
+      return static_cast<T*>(operator new(count * sizeof(T)));
     }
 
     void deallocate(T* ptr, std::size_t) const noexcept {

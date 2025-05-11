@@ -16,6 +16,9 @@
     <Filter Include="Flow">
       <UniqueIdentifier>{d88a89bd-39df-40eb-8b11-7b801d84ca2b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Flow\Allocator">
+      <UniqueIdentifier>{03fba4ba-f8c1-4fe4-af82-9dee244bf3f8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="timer.h">
@@ -66,10 +69,16 @@
     <ClInclude Include="vector.h">
       <Filter>Flow</Filter>
     </ClInclude>
-    <ClInclude Include="allocator.h">
+    <ClInclude Include="tuple.h">
       <Filter>Flow</Filter>
     </ClInclude>
-    <ClInclude Include="tuple.h">
+    <ClInclude Include="basic_allocator.h">
+      <Filter>Flow\Allocator</Filter>
+    </ClInclude>
+    <ClInclude Include="linear_allocator.h">
+      <Filter>Flow\Allocator</Filter>
+    </ClInclude>
+    <ClInclude Include="concurrent_queue.h">
       <Filter>Flow</Filter>
     </ClInclude>
   </ItemGroup>

@@ -148,17 +148,33 @@ const auto __ = []() {
 
 using namespace std;
 
-#include "timer.h"
-#include <vector>
-#include "vector.h"
+#include "concurrent_queue.h"
 
-using namespace flow;
-using namespace box;
+void pushTo(flow::ConcurrentQueue<int>& que) {
+  for (int i = 0; ; ++i) {
+    que.push(i);
+    cout << format("pushed {}\n", i);
+    if (i % 10 == 0) {
+      this_thread::sleep_for(5000ms);
+    }
+  }
+}
+
+void popFrom(flow::ConcurrentQueue<int>& que) {
+  for (int i = 0; ; ++i) {
+    int val = que.waitAndPop();
+    cout << format("extract {}\n", val);
+    this_thread::sleep_for(500ms);
+  }
+}
 
 int main() {
-  Vector<Tuple<int, int>> v1;
-  Vector<Tuple<string, bool>> v2;
-  auto c = flow::zip(v1, v2);
+  flow::ConcurrentQueue<int> que;
+
+  thread t1(pushTo, ref(que));
+  thread t2(popFrom, ref(que));
+  t1.join();
+  t2.join();
 }
 
 /*
