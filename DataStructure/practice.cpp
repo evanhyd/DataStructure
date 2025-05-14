@@ -154,9 +154,6 @@ void pushTo(flow::ConcurrentQueue<int>& que) {
   for (int i = 0; ; ++i) {
     que.push(i);
     cout << format("pushed {}\n", i);
-    if (i % 10 == 0) {
-      this_thread::sleep_for(5000ms);
-    }
   }
 }
 
@@ -164,12 +161,11 @@ void popFrom(flow::ConcurrentQueue<int>& que) {
   for (int i = 0; ; ++i) {
     int val = que.waitAndPop();
     cout << format("extract {}\n", val);
-    this_thread::sleep_for(500ms);
   }
 }
 
 int main() {
-  flow::ConcurrentQueue<int> que;
+  flow::ConcurrentQueue<int, deque<int, allocator<int>>> que;
 
   thread t1(pushTo, ref(que));
   thread t2(popFrom, ref(que));

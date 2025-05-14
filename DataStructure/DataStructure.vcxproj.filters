@@ -72,9 +72,6 @@
     <ClInclude Include="tuple.h">
       <Filter>Flow</Filter>
     </ClInclude>
-    <ClInclude Include="basic_allocator.h">
-      <Filter>Flow\Allocator</Filter>
-    </ClInclude>
     <ClInclude Include="linear_allocator.h">
       <Filter>Flow\Allocator</Filter>
     </ClInclude>

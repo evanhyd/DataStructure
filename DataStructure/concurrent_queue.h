@@ -7,11 +7,17 @@
 namespace flow {
   template <typename T, typename Container = std::deque<T>>
   class ConcurrentQueue {
+    using allocator_type = Container::allocator_type;
+
     std::queue<T, Container> queue_;
     std::shared_mutex rwMutex_;
     std::condition_variable_any blocked_;
 
   public:
+    explicit ConcurrentQueue(const allocator_type& allocator = allocator_type())
+        : queue_(allocator), rwMutex_(), blocked_() {
+    }
+
     bool empty() const {
       std::shared_lock lock(rwMutex_);
       return queue_.empty();
