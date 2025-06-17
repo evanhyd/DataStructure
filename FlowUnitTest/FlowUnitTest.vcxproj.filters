@@ -15,5 +15,8 @@
     <ClCompile Include="concurrent_queue.t.cpp">
       <Filter>Flow</Filter>
     </ClCompile>
+    <ClCompile Include="concurrent_flex_queue.t.cpp">
+      <Filter>Flow</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -146,10 +146,17 @@ const auto __ = []() {
 
 #endif
 
+#include "concurrent_flex_queue.h"
+
 using namespace std;
 
 int main() {
+  flow::ConcurrentFlexQueue<int> queue;
+  queue.push(10);
+  queue.push(20);
 
+  cout << queue.waitPop() << '\n';
+  cout << queue.waitPop() << '\n';
 }
 
 

@@ -105,6 +105,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="concurrent_flex_queue.t.cpp" />
     <ClCompile Include="concurrent_queue.t.cpp" />
     <ClCompile Include="vector.t.cpp" />
   </ItemGroup>

@@ -1,6 +1,6 @@
 #pragma once
-#include <condition_variable>
 #include <deque>
+#include <mutex>
 #include <optional>
 #include <queue>
 
@@ -10,8 +10,8 @@ namespace flow {
     using allocator_type = Container::allocator_type;
 
     std::queue<T, Container> queue_;
-    mutable std::mutex mux_;
-    std::condition_variable blocked_;
+    mutable std::mutex mux_{};
+    std::condition_variable blocked_{};
 
   public:
     /// <summary>
@@ -19,7 +19,7 @@ namespace flow {
     /// </summary>
     /// <param name="allocator">allocates the elements in the concurrent queue.</param>
     explicit ConcurrentQueue(const allocator_type& allocator = allocator_type())
-        : queue_(allocator), mux_(), blocked_() {
+        : queue_(allocator) {
     }
 
     ConcurrentQueue(const ConcurrentQueue&) = delete;

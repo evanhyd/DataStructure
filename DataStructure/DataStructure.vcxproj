@@ -252,6 +252,7 @@
     <ClInclude Include="BinaryHeap.h" />
     <ClInclude Include="BinomialHeap.h" />
     <ClInclude Include="concurrent_queue.h" />
+    <ClInclude Include="concurrent_flex_queue.h" />
     <ClInclude Include="DisjointSet.h" />
     <ClInclude Include="linear_allocator.h" />
     <ClInclude Include="LinkedList.h" />

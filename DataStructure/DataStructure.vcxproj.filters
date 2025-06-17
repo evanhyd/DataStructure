@@ -81,5 +81,8 @@
     <ClInclude Include="basic_allocator.h">
       <Filter>Flow\Allocator</Filter>
     </ClInclude>
+    <ClInclude Include="concurrent_flex_queue.h">
+      <Filter>Flow</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
