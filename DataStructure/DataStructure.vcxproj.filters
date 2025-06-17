@@ -78,5 +78,8 @@
     <ClInclude Include="concurrent_queue.h">
       <Filter>Flow</Filter>
     </ClInclude>
+    <ClInclude Include="basic_allocator.h">
+      <Filter>Flow\Allocator</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

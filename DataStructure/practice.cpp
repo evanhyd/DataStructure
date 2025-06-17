@@ -59,9 +59,9 @@ using u32 = std::uint32_t;
 using u64 = std::uint64_t;
 using f32 = float;
 using f64 = double;
-using pii = std::pair<i32, i32>;
-using pll = std::pair<i64, i64>;
-using puu = std::pair<u64, u64>;
+using pi32 = std::pair<i32, i32>;
+using pi64 = std::pair<i64, i64>;
+using pu64 = std::pair<u64, u64>;
 
 constexpr f64 kPI = 3.1415926535;
 constexpr u64 kMod = 1000000007ull;
@@ -148,30 +148,11 @@ const auto __ = []() {
 
 using namespace std;
 
-#include "concurrent_queue.h"
-
-void pushTo(flow::ConcurrentQueue<int>& que) {
-  for (int i = 0; ; ++i) {
-    que.push(i);
-    cout << format("pushed {}\n", i);
-  }
-}
-
-void popFrom(flow::ConcurrentQueue<int>& que) {
-  for (int i = 0; ; ++i) {
-    int val = que.waitAndPop();
-    cout << format("extract {}\n", val);
-  }
-}
-
 int main() {
-  flow::ConcurrentQueue<int, deque<int, allocator<int>>> que;
 
-  thread t1(pushTo, ref(que));
-  thread t2(popFrom, ref(que));
-  t1.join();
-  t2.join();
 }
+
+
 
 /*
 priority queue is a max heap
