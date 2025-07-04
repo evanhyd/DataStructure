@@ -148,16 +148,15 @@ namespace flow {
       buffer_(allocator_.allocate(count)) {
       uninitializedFill(allocator_, begin(), end(), value);
     }
+
+    ~Vector() {
+      deleteBuffer(allocator_, buffer_, );
+    }
   };
 
 
   template <typename T>
   class Vector {
-
-    ~Vector() {
-      delete_all();
-    }
-
     Vector& operator=(Vector rhs) noexcept {
       swap(*this, rhs);
       return *this;

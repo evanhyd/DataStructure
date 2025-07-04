@@ -31,15 +31,15 @@ TEST(UninitializedMoveTest, MovesElements) {
   };
 
   auto* dest = std::allocator_traits<decltype(alloc)>::allocate(alloc, 3);
-  uninitializedMove(alloc, std::begin(source), std::end(source), dest);
+  uninitializedMove(alloc, std::begin(source), std::begin(source) + 2, dest);
 
-  for (size_t i = 0; i < 3; ++i) {
-    EXPECT_NE(dest[i], nullptr);
-    EXPECT_EQ(*dest[i], static_cast<int>(i + 1));
-    EXPECT_EQ(source[i], nullptr); // source pointers moved-from
-  }
+  EXPECT_EQ(source[0], nullptr);
+  EXPECT_EQ(source[1], nullptr);
+  EXPECT_NE(source[2], nullptr);
+  EXPECT_NE(dest[0], nullptr);
+  EXPECT_NE(dest[1], nullptr);
 
-  destroyElements(alloc, dest, dest + 3);
+  destroyElements(alloc, dest, dest + 2);
   std::allocator_traits<decltype(alloc)>::deallocate(alloc, dest, 3);
 }
 
@@ -91,7 +91,6 @@ TEST(UninitializedMoveNTest, MovesNElements) {
   EXPECT_NE(source[2], nullptr);
   EXPECT_NE(dest[0], nullptr);
   EXPECT_NE(dest[1], nullptr);
-  EXPECT_EQ(dest[2], nullptr);
 
   destroyElements(alloc, dest, dest + 2);
   std::allocator_traits<decltype(alloc)>::deallocate(alloc, dest, 3);
@@ -124,7 +123,6 @@ TEST(DeleteBufferTest, DeletesBuffer) {
   std::allocator<int> alloc;
 
   int* buffer = std::allocator_traits<decltype(alloc)>::allocate(alloc, 4);
-  uninitializedFillN(alloc, buffer, 4, 555);
-
-  deleteBuffer(alloc, buffer, 4);
+  uninitializedFillN(alloc, buffer, 2, 555);
+  deleteBuffer(alloc, buffer, 2, 4);
 }

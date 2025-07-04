@@ -92,11 +92,13 @@ namespace flow::pmr {
   }
 
   /// <summary>
-  /// Destroys and deallocates the buffer. The count must equal to the size of the buffer.
+  /// Destroys and deallocates the buffer. 
+  /// The size must equal to the number of constructed element.
+  /// The capacity must equal to the buffer capacity.
   /// </summary>
   template <typename AllocatorType, typename T>
-  void deleteBuffer(AllocatorType& allocator, T* buffer, std::size_t count) noexcept {
-    destroyElementsN(allocator, buffer, count);
-    std::allocator_traits<AllocatorType>::deallocate(allocator, buffer, count);
+  void deleteBuffer(AllocatorType& allocator, T* buffer, std::size_t size, std::size_t capacity) noexcept {
+    destroyElementsN(allocator, buffer, size);
+    std::allocator_traits<AllocatorType>::deallocate(allocator, buffer, capacity);
   }
 }
