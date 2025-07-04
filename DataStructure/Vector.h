@@ -2,122 +2,121 @@
 #include <algorithm>
 #include <cassert>
 #include <initializer_list>
-#include <iterator>
-#include <memory>
-#include <sstream>
-#include <string>
 #include <type_traits>
 #include <utility>
 
-#include "basic_allocator.h"
+#include "memory_algorithm.h"
+#include "polymorphic_allocator.h"
 #include "tuple.h"
 
 namespace flow {
-  template <typename T, template<typename> typename Allocator = BasicAllocator>
-  class Vector final {
+
+  template <typename Strategy>
+  concept GrowthStrategy = requires(Strategy strategy, size_t num) {
+    { strategy(num) } -> std::same_as<std::size_t>;
+  };
+
+  struct VectorGrowthStrategy {
+    struct DoubleExpand {
+      std::size_t operator()(std::size_t oldCapacity) const {
+        return std::max(oldCapacity * 2, std::size_t(1));
+      }
+    };
+
+    struct GoldenExpand {
+      std::size_t operator()(std::size_t oldCapacity) const {
+        return std::max(oldCapacity + oldCapacity / 2, std::size_t(1));
+      }
+    };
+
+    struct FibonacciExpand {
+      std::size_t n1 = 0;
+      std::size_t n2 = 1;
+      std::size_t operator()(std::size_t oldCapacity) {
+        do {
+          std::size_t n3 = n1 + n2;
+          n1 = n2;
+          n2 = n3;
+        } while (n2 <= oldCapacity);
+        return n2;
+      }
+    };
+  };
+  
+
+  template <typename T, GrowthStrategy Strategy = VectorGrowthStrategy::DoubleExpand>
+  class Vector {
   public:
     using value_type = T;
+    using pointer_type = T*;
+    using reference_type = T&;
+    using const_pointer_type = const T*;
+    using const_reference_type = const T&;
     using iterator = T*;
     using const_iterator = const T*;
-    using allocator_type = Allocator<T>;
+    using allocator_type = pmr::PolymorphicAllocator<T>;
+    using allocator_trait = std::allocator_traits<allocator_type>;
 
   private:
     allocator_type allocator_{};
+    Strategy strategy_{};
     std::size_t size_ = 0;
     std::size_t capacity_ = 0;
-    T* buf_{};
+    T* buffer_ = nullptr;
 
-    // Calculate the new capacity from the given capacity.
-    static constexpr std::size_t next_capacity(std::size_t currentCapacity) {
-      return currentCapacity * 2 + 1;
+    // Relocate the buffer to a new buffer with requested capacity.
+    void relocateBuffer(std::size_t capacity) {
+      T* buffer = allocator_trait::allocate(allocator_, capacity);
+      uninitializedMove(allocator_, begin(), end(), buffer);
+      deleteElements(allocator_, buffer_, capacity_);
+      buffer_ = buffer;
     }
 
-    // Copy construct a range of elements at the output destination.
-    template <std::input_iterator It>
-    iterator copy_uninit(It first, It last, iterator out) {
-      for (; first != last; ++out, ++first) {
-        allocator_.construct(out, *first);
-      }
-      return out;
+    // Relocate the buffer but reserve some empty holes at pos.
+    void relocateBufferWithHoles(std::size_t capacity, iterator pos, std::size_t holeSize) {
+      T* buffer = allocator_trait::allocate(allocator_, capacity);
+      iterator leftHalf = uninitializedMove(allocator_, begin(), pos, buffer); // Move left half.
+      uninitializedMove(allocator_, pos, end(), leftHalf + holeSize); // Move right half.
+      deleteElements(allocator_, buffer_, capacity_);
+      buffer_ = buffer;
     }
 
-    // Move construct a range of elements at the output destination.
-    template <std::input_iterator It>
-    iterator move_uninit(It first, It last, iterator out) noexcept {
-      for (; first != last; ++out, ++first) {
-        allocator_.construct(out, std::move(*first));
-      }
-      return out;
-    }
-
-    // Copy value and construct the elements at the output destination.
-    void fill_uninit(iterator first, iterator last, const T& value) {
-      for (; first != last; ++first) {
-        allocator_.construct(first, value);
-      }
-    }
-
-    // Destroy the elements at the given range.
-    void destroy(iterator first, iterator last) noexcept {
-      for (; first != last; ++first) {
-        allocator_.destroy(first);
-      }
-    }
-
-    // Destroy and deallocate all the elements.
-    void delete_all() noexcept {
-      destroy(begin(), end());
-      allocator_.deallocate(buf_, capacity_);
-    }
-
-    // Relocate the array.
-    void relocate(std::size_t capacity) {
-      T* buf = allocator_.allocate(capacity);
-      move_uninit(begin(), end(), buf);
-
-      delete_all();
-      buf_ = buf;
-      capacity_ = capacity;
-    }
-
-    // Relocate the array, then right shift the elements to reserve buffer in the middle.
-    void relocate_with_hole(std::size_t capacity, iterator pos, std::size_t holeSize) {
-      T* buf = allocator_.allocate(capacity);
-      move_uninit(pos, end(), move_uninit(begin(), pos, buf) + holeSize);
-
-      delete_all();
-      buf_ = buf;
-      capacity_ = capacity;
-    }
-
-    // Relocate the array, and insert the new elements then move the old elements.
-    // New elements are copied first because the range may refer to the elements from the old buffer.
+    // Relocate the buffer and insert a range of elements at pos.
     template <std::forward_iterator it>
     void relocate_with_insert(std::size_t capacity, iterator pos, it first, it last) {
-      T* buf = allocator_.allocate(capacity);
-      iterator where = buf + (pos - buf_); // Inserting position in the new buffer.
-      move_uninit(pos, end(), copy_uninit(first, last, where)); // Copy the range and move the second half.
-      move_uninit(begin(), pos, buf); // Move the first half.
+      T* buffer = allocator_trait::allocate(allocator_, capacity);
 
-      delete_all();
-      buf_ = buf;
-      capacity_ = capacity;
+      // Copy the range element first, because it may be doing self-insertion.
+      std::ptrdiff_t nth = pos - begin();
+      iterator dest = buffer + nth;
+      iterator rightHalf = uninitializedCopy(allocator_, first, last, dest);
+
+      // Move the second half and the first half.
+      uninitializedMove(allocator_, pos, end(), rightHalf);
+      uninitializedMove(allocator_, begin(), pos, buffer);
+
+      deleteElements(allocator_, buffer_, capacity_);
+      buffer_ = buffer;
     }
 
   public:
-    explicit constexpr Vector(const allocator_type& allocator = allocator_type())
+    constexpr Vector() = default;
+
+    explicit constexpr Vector(const allocator_type& allocator)
       : allocator_(allocator) {
     }
 
-    constexpr Vector(const Vector<T>& rhs)
+    template <GrowthStrategy OtherStrategy>
+    constexpr Vector(const Vector<T, OtherStrategy>& rhs)
       : Vector(rhs.begin(), rhs.end(), rhs.allocator_) {
     }
 
-    constexpr Vector(Vector<T>&& rhs) noexcept
+    template <GrowthStrategy OtherStrategy>
+    constexpr Vector(Vector<T, OtherStrategy>&& rhs) noexcept
       : allocator_(std::exchange(rhs.allocator_, allocator_type())),
-        size_(std::exchange(rhs.size_, 0)), 
-        capacity_(std::exchange(rhs.capacity_, 0)),
-        buf_(std::exchange(rhs.buf_, nullptr)) {
+      size_(std::exchange(rhs.size_, 0)),
+      capacity_(std::exchange(rhs.capacity_, 0)),
+      buffer_(std::exchange(rhs.buffer_, nullptr)) {
     }
 
     constexpr Vector(std::initializer_list<T> list, const allocator_type& allocator = allocator_type())
@@ -127,19 +126,33 @@ namespace flow {
     template <std::input_iterator It>
     explicit constexpr Vector(It first, It last, const allocator_type& allocator = allocator_type())
       : allocator_(allocator),
-        size_(std::distance(first, last)), 
-        capacity_(size_),
-        buf_(allocator_.allocate(size_)) {
-      copy_uninit(first, last, begin());
+      size_(std::distance(first, last)),
+      capacity_(size_),
+      buffer_(allocator_trait::allocate(allocator_, capacity_)) {
+      uninitializedCopy(allocator_, first, last, buffer_);
     }
 
-    explicit constexpr Vector(std::size_t count, const T& value = T{}, const allocator_type& allocator = allocator_type())
+    explicit constexpr Vector(std::size_t count, const allocator_type& allocator = allocator_type())
       : allocator_(allocator),
-        size_(count),
-        capacity_(count),
-        buf_(allocator_.allocate(count)) {
+      size_(count),
+      capacity_(count),
+      buffer_(allocator_trait::allocate(allocator_, count)) {
+      
       fill_uninit(begin(), end(), value);
     }
+
+    explicit constexpr Vector(std::size_t count, const T& value, const allocator_type& allocator = allocator_type())
+      : allocator_(allocator),
+      size_(count),
+      capacity_(count),
+      buffer_(allocator_.allocate(count)) {
+      uninitializedFill(allocator_, begin(), end(), value);
+    }
+  };
+
+
+  template <typename T>
+  class Vector {
 
     ~Vector() {
       delete_all();
@@ -152,12 +165,12 @@ namespace flow {
 
     T& operator[](std::size_t i) {
       assert(i < size_ && "index out of bound");
-      return buf_[i];
+      return buffer_[i];
     }
 
     const T& operator[](std::size_t i) const {
       assert(i < size_ && "index out of bound");
-      return buf_[i];
+      return buffer_[i];
     }
 
     constexpr std::size_t size() const {
@@ -179,38 +192,38 @@ namespace flow {
 
     T& front() {
       assert(size_ != 0 && "access empty Vector front");
-      return buf_[0];
+      return buffer_[0];
     }
 
     constexpr const T& front() const {
       assert(size_ != 0 && "access empty Vector front");
-      return buf_[0];
+      return buffer_[0];
     }
 
     T& back() {
       assert(size_ != 0 && "access empty Vector back");
-      return buf_[size_ - 1];
+      return buffer_[size_ - 1];
     }
 
     constexpr const T& back() const {
       assert(size_ != 0 && "access empty Vector back");
-      return buf_[size_ - 1];
+      return buffer_[size_ - 1];
     }
 
     iterator begin() {
-      return buf_;
+      return buffer_;
     }
 
     constexpr const_iterator begin() const {
-      return buf_;
+      return buffer_;
     }
 
     iterator end() {
-      return buf_ + size_;
+      return buffer_ + size_;
     }
 
     constexpr const_iterator end() const {
-      return buf_ + size_;
+      return buffer_ + size_;
     }
 
     void reserve(std::size_t capacity) {
@@ -239,7 +252,7 @@ namespace flow {
         //https://stackoverflow.com/questions/5232198/how-does-the-capacity-of-stdvector-grow-automatically-what-is-the-rate
         relocate(next_capacity(capacity_));
       }
-      allocator_.construct(buf_ + size_, std::forward<Args>(args)...);
+      allocator_.construct(buffer_ + size_, std::forward<Args>(args)...);
       ++size_;
     }
 
@@ -276,9 +289,9 @@ namespace flow {
 
       } else {
         // Not enough capacity, relocate everything.
-        std::size_t index = pos - buf_;
+        std::size_t index = pos - buffer_;
         relocate_with_hole(next_capacity(capacity_), pos, 1);
-        allocator_.construct(buf_ + index, std::forward<Args>(value)...);
+        allocator_.construct(buffer_ + index, std::forward<Args>(value)...);
       }
       ++size_;
     }
@@ -330,7 +343,7 @@ namespace flow {
     friend void swap(Vector& lhs, Vector& rhs) {
       using std::swap;
       swap(lhs.allocator_, rhs.allocator_);
-      swap(lhs.buf_, rhs.buf_);
+      swap(lhs.buffer_, rhs.buffer_);
       swap(lhs.size_, rhs.size_);
       swap(lhs.capacity_, rhs.capacity_);
     }

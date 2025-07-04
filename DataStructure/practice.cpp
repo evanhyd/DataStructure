@@ -40,9 +40,9 @@
 #include <memory>
 #include <numeric>
 #include <random>
+#include <regex>
 #include <thread>
 #include <type_traits>
-#include <regex>
 #include <utility>
 #ifdef _HAS_CXX20
 #include <bit>
@@ -111,7 +111,7 @@ std::ostream& operator<<(std::ostream& out, const std::pair<T, U>& vec) {
 #endif
 
 template <typename T, typename = std::enable_if_t<std::is_unsigned_v<T>>>
-constexpr T PopCount(T n) {
+constexpr T popCount(T n) {
 #ifdef _HAS_CXX20
   return std::popcount(n);
 #else
@@ -120,7 +120,7 @@ constexpr T PopCount(T n) {
 }
 
 template <typename T, typename = std::enable_if_t<std::is_integral_v<T>>>
-constexpr int CountDigits(T x) {
+constexpr int countDigits(T x) {
   int digits = 1;
   for (; x >= T{ 10 }; x /= T{ 10 }) {
     ++digits;
@@ -131,35 +131,27 @@ constexpr int CountDigits(T x) {
 const auto _ = std::cin.tie(nullptr)->sync_with_stdio(false);
 
 #ifdef LC_HACK
-const auto __ = []() {
-  struct ___ { static void _() { std::ofstream("display_runtime.txt") << INT_MAX << '\n'; } };
-  std::atexit(&___::_);
-  return 0;
-}();
+const auto __ = std::atexit([]() { std::ofstream("display_runtime.txt") << INT_MAX << '\n'; });
 #endif
 
 #if defined _WIN32 || defined _WIN64
 #define USACO(filename) 0
 #else
-#define USACO(filename) freopen(filename".in", "r", stdin); freopen(filename".out", "w", stdout)
+#define USACO(filename) do {freopen(filename".in", "r", stdin); freopen(filename".out", "w", stdout);}while(false)
 #endif
 
 #endif
-
-#include "concurrent_flex_queue.h"
 
 using namespace std;
 
+#include "default_memory_resource.h"
+
 int main() {
-  flow::ConcurrentFlexQueue<int> queue;
-  queue.push(10);
-  queue.push(20);
-
-  cout << queue.waitPop() << '\n';
-  cout << queue.waitPop() << '\n';
+  flow::pmr::DefaultMemoryResource m{};
+  int* num = (int*)m.allocate(sizeof(i64));
+  *num = 1234;
+  cout << *num;
 }
-
-
 
 /*
 priority queue is a max heap

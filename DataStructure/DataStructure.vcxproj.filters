@@ -13,11 +13,17 @@
     <Filter Include="Box">
       <UniqueIdentifier>{bd0ac8b8-d301-4000-aa62-f7d68cb3ccc0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Flow">
+    <Filter Include="flow">
       <UniqueIdentifier>{d88a89bd-39df-40eb-8b11-7b801d84ca2b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Flow\Allocator">
+    <Filter Include="flow\concurrency">
+      <UniqueIdentifier>{038160e0-f0d4-4164-92d9-cd8e8b8c875f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="flow\memory">
       <UniqueIdentifier>{03fba4ba-f8c1-4fe4-af82-9dee244bf3f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="flow\algorithm">
+      <UniqueIdentifier>{34619d0c-c33f-426a-89f7-9eb92d64f3ca}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -67,22 +73,28 @@
       <Filter>DataStructure</Filter>
     </ClInclude>
     <ClInclude Include="vector.h">
-      <Filter>Flow</Filter>
+      <Filter>flow</Filter>
     </ClInclude>
     <ClInclude Include="tuple.h">
-      <Filter>Flow</Filter>
+      <Filter>flow</Filter>
     </ClInclude>
-    <ClInclude Include="linear_allocator.h">
-      <Filter>Flow\Allocator</Filter>
-    </ClInclude>
-    <ClInclude Include="concurrent_queue.h">
-      <Filter>Flow</Filter>
-    </ClInclude>
-    <ClInclude Include="basic_allocator.h">
-      <Filter>Flow\Allocator</Filter>
+    <ClInclude Include="polymorphic_allocator.h">
+      <Filter>flow\memory</Filter>
     </ClInclude>
     <ClInclude Include="concurrent_flex_queue.h">
-      <Filter>Flow</Filter>
+      <Filter>flow\concurrency</Filter>
+    </ClInclude>
+    <ClInclude Include="concurrent_queue.h">
+      <Filter>flow\concurrency</Filter>
+    </ClInclude>
+    <ClInclude Include="memory_resource.h">
+      <Filter>flow\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="default_memory_resource.h">
+      <Filter>flow\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="memory_algorithm.h">
+      <Filter>flow\algorithm</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

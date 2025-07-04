@@ -248,16 +248,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AVLTree.h" />
-    <ClInclude Include="basic_allocator.h" />
     <ClInclude Include="BinaryHeap.h" />
     <ClInclude Include="BinomialHeap.h" />
     <ClInclude Include="concurrent_queue.h" />
     <ClInclude Include="concurrent_flex_queue.h" />
+    <ClInclude Include="default_memory_resource.h" />
     <ClInclude Include="DisjointSet.h" />
-    <ClInclude Include="linear_allocator.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="memory.h" />
     <ClInclude Include="IntegerIterator.h" />
+    <ClInclude Include="memory_algorithm.h" />
+    <ClInclude Include="memory_resource.h" />
+    <ClInclude Include="polymorphic_allocator.h" />
     <ClInclude Include="PSDA.h" />
     <ClInclude Include="random.h" />
     <ClInclude Include="RandomMeldableHeap.h" />

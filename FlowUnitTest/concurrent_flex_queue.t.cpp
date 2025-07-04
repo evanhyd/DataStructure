@@ -8,11 +8,8 @@
 #include <atomic>
 #include <algorithm>
 
-namespace {
-  using namespace flow;
-
+namespace flow {
   class ConcurrentFlexQueueTest : public ::testing::Test {
-  protected:
   };
 
   TEST_F(ConcurrentFlexQueueTest, DefaultConstructorAndEmpty) {

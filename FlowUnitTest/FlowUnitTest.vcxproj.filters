@@ -4,19 +4,34 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Flow">
+    <Filter Include="flow">
       <UniqueIdentifier>{a02851fc-bfe6-457e-9519-6e846477cdbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="flow\concurrent">
+      <UniqueIdentifier>{7602d020-8d7f-4f5e-80ac-995acdc21de5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="flow\memory">
+      <UniqueIdentifier>{5f5fec95-2d04-47d9-bd9e-9735064a4f54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="flow\algorithm">
+      <UniqueIdentifier>{cae183dc-1e58-4f1a-bbee-67c86ce28fa9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="vector.t.cpp">
-      <Filter>Flow</Filter>
+      <Filter>flow</Filter>
     </ClCompile>
-    <ClCompile Include="concurrent_queue.t.cpp">
-      <Filter>Flow</Filter>
+    <ClCompile Include="memory_resource.t.cpp">
+      <Filter>flow\memory</Filter>
     </ClCompile>
     <ClCompile Include="concurrent_flex_queue.t.cpp">
-      <Filter>Flow</Filter>
+      <Filter>flow\concurrent</Filter>
+    </ClCompile>
+    <ClCompile Include="concurrent_queue.t.cpp">
+      <Filter>flow\concurrent</Filter>
+    </ClCompile>
+    <ClCompile Include="memory_algorithm.t.cpp">
+      <Filter>flow\algorithm</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
