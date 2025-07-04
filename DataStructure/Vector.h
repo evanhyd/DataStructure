@@ -7,7 +7,6 @@
 
 #include "memory_algorithm.h"
 #include "polymorphic_allocator.h"
-#include "tuple.h"
 
 namespace flow {
 
@@ -42,7 +41,7 @@ namespace flow {
       }
     };
   };
-  
+
 
   template <typename T, GrowthStrategy Strategy = VectorGrowthStrategy::DoubleExpand>
   class Vector {
@@ -58,17 +57,19 @@ namespace flow {
     using allocator_trait = std::allocator_traits<allocator_type>;
 
   private:
-    allocator_type allocator_{};
-    Strategy strategy_{};
-    std::size_t size_ = 0;
-    std::size_t capacity_ = 0;
-    T* buffer_ = nullptr;
+    allocator_type allocator_;
+    Strategy strategy_;
+    std::size_t size_;
+    std::size_t capacity_;
+    T* buffer_;
 
     // Relocate the buffer to a new buffer with requested capacity.
     void relocateBuffer(std::size_t capacity) {
       T* buffer = allocator_trait::allocate(allocator_, capacity);
-      uninitializedMove(allocator_, begin(), end(), buffer);
-      deleteElements(allocator_, buffer_, capacity_);
+      uninitializedMoveN(allocator_, begin(), end(), buffer);
+
+      // Clean up the old buffer.
+      deleteBuffer(allocator_, buffer_, size_, capacity_);
       buffer_ = buffer;
     }
 
@@ -77,7 +78,9 @@ namespace flow {
       T* buffer = allocator_trait::allocate(allocator_, capacity);
       iterator leftHalf = uninitializedMove(allocator_, begin(), pos, buffer); // Move left half.
       uninitializedMove(allocator_, pos, end(), leftHalf + holeSize); // Move right half.
-      deleteElements(allocator_, buffer_, capacity_);
+
+      // Clean up the old buffer.
+      deleteBuffer(allocator_, buffer_, size_, capacity_);
       buffer_ = buffer;
     }
 
@@ -95,73 +98,84 @@ namespace flow {
       uninitializedMove(allocator_, pos, end(), rightHalf);
       uninitializedMove(allocator_, begin(), pos, buffer);
 
-      deleteElements(allocator_, buffer_, capacity_);
+      // Clean up the old buffer.
+      deleteBuffer(allocator_, buffer_, size_, capacity_);
       buffer_ = buffer;
     }
 
   public:
+    // Constructors
     constexpr Vector() = default;
 
     explicit constexpr Vector(const allocator_type& allocator)
-      : allocator_(allocator) {
+      : allocator_(allocator),
+      strategy_(),
+      size_(0),
+      capacity_(0),
+      buffer_(nullptr) {
     }
 
-    template <GrowthStrategy OtherStrategy>
-    constexpr Vector(const Vector<T, OtherStrategy>& rhs)
-      : Vector(rhs.begin(), rhs.end(), rhs.allocator_) {
+    constexpr Vector(const Vector& rhs)
+      : allocator_(rhs.allocator_),
+      strategy_(rhs.strategy_),
+      size_(rhs.size_),
+      capacity_(rhs.capacity_),
+      buffer_(allocator_trait::allocate(allocator_, rhs.capacity_)) {
+      uninitializedCopy(allocator_, rhs.begin(), rhs.end(), buffer_);
     }
 
-    template <GrowthStrategy OtherStrategy>
-    constexpr Vector(Vector<T, OtherStrategy>&& rhs) noexcept
+    constexpr Vector(Vector&& rhs) noexcept
       : allocator_(std::exchange(rhs.allocator_, allocator_type())),
+      strategy_(std::exchange(rhs.strategy_, GrowthStrategy())),
       size_(std::exchange(rhs.size_, 0)),
       capacity_(std::exchange(rhs.capacity_, 0)),
       buffer_(std::exchange(rhs.buffer_, nullptr)) {
     }
 
-    constexpr Vector(std::initializer_list<T> list, const allocator_type& allocator = allocator_type())
-      : Vector(list.begin(), list.end(), allocator) {
-    }
-
     template <std::input_iterator It>
     explicit constexpr Vector(It first, It last, const allocator_type& allocator = allocator_type())
       : allocator_(allocator),
+      strategy_(),
       size_(std::distance(first, last)),
       capacity_(size_),
       buffer_(allocator_trait::allocate(allocator_, capacity_)) {
       uninitializedCopy(allocator_, first, last, buffer_);
     }
 
+    constexpr Vector(std::initializer_list<T> list, const allocator_type& allocator = allocator_type())
+      : Vector(list.begin(), list.end(), allocator) {
+    }
+
     explicit constexpr Vector(std::size_t count, const allocator_type& allocator = allocator_type())
       : allocator_(allocator),
-      size_(count),
-      capacity_(count),
-      buffer_(allocator_trait::allocate(allocator_, count)) {
-      
-      fill_uninit(begin(), end(), value);
+        strategy_(),
+        size_(count),
+        capacity_(count),
+        buffer_(allocator_.allocate(count)) {
+      uninitializedEmplaceN(allocator_, buffer_, count);
     }
 
     explicit constexpr Vector(std::size_t count, const T& value, const allocator_type& allocator = allocator_type())
       : allocator_(allocator),
-      size_(count),
-      capacity_(count),
-      buffer_(allocator_.allocate(count)) {
-      uninitializedFill(allocator_, begin(), end(), value);
+        strategy_(),
+        size_(count),
+        capacity_(count),
+        buffer_(allocator_.allocate(count)) {
+      uninitializedFillN(allocator_, buffer_, count, value);
     }
 
+    // Destructor.
     ~Vector() {
-      deleteBuffer(allocator_, buffer_, );
+      deleteBuffer(allocator_, buffer_, size_, capacity_);
     }
-  };
 
-
-  template <typename T>
-  class Vector {
+    // Copy/Move Assignment Operator.
     Vector& operator=(Vector rhs) noexcept {
       swap(*this, rhs);
       return *this;
     }
 
+    // Accesser.
     T& operator[](std::size_t i) {
       assert(i < size_ && "index out of bound");
       return buffer_[i];
@@ -184,31 +198,97 @@ namespace flow {
       return size_ == 0;
     }
 
-    void clear() noexcept {
-      destroy(begin(), end());
-      size_ = 0;
-    }
-
     T& front() {
-      assert(size_ != 0 && "access empty Vector front");
+      assert(size_ >= 0 && "access empty Vector front");
       return buffer_[0];
     }
 
     constexpr const T& front() const {
-      assert(size_ != 0 && "access empty Vector front");
+      assert(size_ >= 0 && "access empty Vector front");
       return buffer_[0];
     }
 
     T& back() {
-      assert(size_ != 0 && "access empty Vector back");
+      assert(size_ >= 0 && "access empty Vector back");
       return buffer_[size_ - 1];
     }
 
     constexpr const T& back() const {
-      assert(size_ != 0 && "access empty Vector back");
+      assert(size_ >= 0 && "access empty Vector back");
       return buffer_[size_ - 1];
     }
 
+    void clear() noexcept {
+      destroyElementsN(buffer_, size_);
+      size_ = 0;
+    }
+
+    void reserve(std::size_t capacity) {
+      if (capacity_ < capacity) {
+        relocateBuffer(capacity);
+        capacity_ = capacity;
+      }
+    }
+
+    void resize(std::size_t size) {
+      if (size_ < size) {
+        
+        // Relocate if not enough capacity.
+        if (capacity_ < size) {
+          relocateBuffer(size);
+          capacity_ = size;
+        }
+        uninitializedEmplace(buffer_ + size_, buffer_ + size);
+
+      } else if (size < size_) {
+        // Shrink.
+        uninitializedDestroy(buffer_ + size, buffer_ + size_);
+      }
+      size_ = size;
+    }
+
+    void resize(std::size_t size, const T& value = T()) {
+      if (size_ < size) {
+
+        // Relocate if not enough capacity.
+        if (capacity_ < size) {
+          relocateBuffer(size);
+          capacity_ = size;
+        }
+        uninitializedFill(buffer_ + size_, buffer_ + size, value);
+
+      } else if (size < size_) {
+        // Shrink.
+        uninitializedDestroy(buffer_ + size, buffer_ + size_);
+      }
+      size_ = size;
+    }
+
+    // Friends.
+    friend void swap(Vector& lhs, Vector& rhs) {
+      using std::swap;
+      swap(lhs.allocator_, rhs.allocator_);
+      swap(lhs.strategy_, rhs.strategy_);
+      swap(lhs.size_, rhs.size_);
+      swap(lhs.capacity_, rhs.capacity_);
+      swap(lhs.buffer_, rhs.buffer_);
+    }
+  };
+}
+
+template <typename T>
+bool operator==(const flow::Vector<T>& lhs, const flow::Vector<T>& rhs) {
+  return std::equal(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
+}
+
+template <typename T>
+bool operator!=(const flow::Vector<T>& lhs, const flow::Vector<T>& rhs) {
+  return !(lhs == rhs);
+} 
+
+namespace nope {
+  template <typename T>
+  class Vector {
     iterator begin() {
       return buffer_;
     }
@@ -223,26 +303,6 @@ namespace flow {
 
     constexpr const_iterator end() const {
       return buffer_ + size_;
-    }
-
-    void reserve(std::size_t capacity) {
-      if (capacity_ < capacity) {
-        relocate(capacity);
-      }
-    }
-
-    void resize(std::size_t size, T value = T{}) {
-      if (size_ < size) {
-        //expand
-        if (capacity_ < size) {
-          relocate(size);
-        }
-        fill_uninit(begin() + size_, begin() + size, value);
-      } else {
-        //shrink
-        destroy(begin() + size, begin() + size_);
-      }
-      size_ = size;
     }
 
     template <typename ...Args>
@@ -339,34 +399,10 @@ namespace flow {
       }
     }
 
-    friend void swap(Vector& lhs, Vector& rhs) {
-      using std::swap;
-      swap(lhs.allocator_, rhs.allocator_);
-      swap(lhs.buffer_, rhs.buffer_);
-      swap(lhs.size_, rhs.size_);
-      swap(lhs.capacity_, rhs.capacity_);
-    }
-
     friend class Vector;
   };
 
-  template <typename T, template<typename> typename A, template<typename> typename B>
-  bool operator==(const flow::Vector<T, A>& lhs, const flow::Vector<T, B>& rhs) {
-    if (lhs.size() != rhs.size()) {
-      return false;
-    }
-    for (size_t i = 0, j = lhs.size(); i < j; ++i) {
-      if (lhs[i] != rhs[i]) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  template <typename T, template<typename> typename A, template<typename> typename B>
-  bool operator!=(const flow::Vector<T, A>& lhs, const flow::Vector<T, B>& rhs) {
-    return !(lhs == rhs);
-  }
+  
 
   //TODO: support move semantics
   template <typename ...Vec>

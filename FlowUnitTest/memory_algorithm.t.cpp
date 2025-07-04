@@ -5,6 +5,11 @@
 
 using namespace flow::pmr;
 
+struct NoDefaultType {
+  int a, b;
+  NoDefaultType(int v) : a(v), b(v) {}
+};
+
 TEST(UninitializedCopyTest, CopiesElements) {
   std::allocator<int> alloc;
 
@@ -55,6 +60,44 @@ TEST(UninitializedFillTest, FillsElementsWithValue) {
 
   destroyElements(alloc, dest, dest + 4);
   std::allocator_traits<decltype(alloc)>::deallocate(alloc, dest, 4);
+}
+TEST(UninitializedEmplaceTest, ConstructsDefaultUniquePtr) {
+  using AllocatorType = std::allocator<std::unique_ptr<int>>;
+
+  AllocatorType alloc;
+  auto* buffer = std::allocator_traits<AllocatorType>::allocate(alloc, 3);
+  auto* dest = buffer;
+  uninitializedEmplace(alloc, dest, dest + 3);
+
+  for (std::size_t i = 0; i < 3; ++i) {
+    EXPECT_EQ(dest[i], nullptr);
+  }
+
+  for (std::size_t i = 0; i < 3; ++i) {
+    std::allocator_traits<AllocatorType>::destroy(alloc, &dest[i]);
+  }
+
+  std::allocator_traits<AllocatorType>::deallocate(alloc, buffer, 3);
+}
+
+TEST(UninitializedEmplaceTest, ConstructNoDefaultWithArgs) {
+  using AllocatorType = std::allocator<NoDefaultType>;
+
+  AllocatorType alloc;
+  auto* buffer = std::allocator_traits<AllocatorType>::allocate(alloc, 3);
+  auto* dest = buffer;
+  uninitializedEmplace(alloc, dest, dest + 3, 20);
+
+  for (std::size_t i = 0; i < 3; ++i) {
+    EXPECT_EQ(dest[i].a, 20);
+    EXPECT_EQ(dest[i].b, 20);
+  }
+
+  for (std::size_t i = 0; i < 3; ++i) {
+    std::allocator_traits<AllocatorType>::destroy(alloc, &dest[i]);
+  }
+
+  std::allocator_traits<AllocatorType>::deallocate(alloc, buffer, 3);
 }
 
 TEST(UninitializedCopyNTest, CopiesNElements) {
@@ -125,4 +168,43 @@ TEST(DeleteBufferTest, DeletesBuffer) {
   int* buffer = std::allocator_traits<decltype(alloc)>::allocate(alloc, 4);
   uninitializedFillN(alloc, buffer, 2, 555);
   deleteBuffer(alloc, buffer, 2, 4);
+}
+
+TEST(UninitializedEmplaceNTest, ConstructsDefaultUniquePtr) {
+  using AllocatorType = std::allocator<std::unique_ptr<int>>;
+
+  AllocatorType alloc;
+  auto* buffer = std::allocator_traits<AllocatorType>::allocate(alloc, 3);
+  auto* dest = buffer;
+  uninitializedEmplaceN(alloc, dest, 3);
+
+  for (std::size_t i = 0; i < 3; ++i) {
+    EXPECT_EQ(dest[i], nullptr);
+  }
+
+  for (std::size_t i = 0; i < 3; ++i) {
+    std::allocator_traits<AllocatorType>::destroy(alloc, &dest[i]);
+  }
+
+  std::allocator_traits<AllocatorType>::deallocate(alloc, buffer, 3);
+}
+
+TEST(UninitializedEmplaceNTest, ConstructNoDefaultWithArgs) {
+  using AllocatorType = std::allocator<NoDefaultType>;
+
+  AllocatorType alloc;
+  auto* buffer = std::allocator_traits<AllocatorType>::allocate(alloc, 3);
+  auto* dest = buffer;
+  uninitializedEmplaceN(alloc, dest, 3, 10);
+
+  for (std::size_t i = 0; i < 3; ++i) {
+    EXPECT_EQ(dest[i].a, 10);
+    EXPECT_EQ(dest[i].b, 10);
+  }
+
+  for (std::size_t i = 0; i < 3; ++i) {
+    std::allocator_traits<AllocatorType>::destroy(alloc, &dest[i]);
+  }
+
+  std::allocator_traits<AllocatorType>::deallocate(alloc, buffer, 3);
 }
