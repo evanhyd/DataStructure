@@ -25,6 +25,9 @@
     <Filter Include="flow\algorithm">
       <UniqueIdentifier>{34619d0c-c33f-426a-89f7-9eb92d64f3ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="flow\iterator">
+      <UniqueIdentifier>{85328b52-a14f-4127-9d82-caec75a61669}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="timer.h">
@@ -95,6 +98,9 @@
     </ClInclude>
     <ClInclude Include="memory_algorithm.h">
       <Filter>flow\algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="counted_value_view_iterator.h">
+      <Filter>flow\iterator</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

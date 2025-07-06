@@ -16,6 +16,9 @@
     <Filter Include="flow\algorithm">
       <UniqueIdentifier>{cae183dc-1e58-4f1a-bbee-67c86ce28fa9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="flow\iterator">
+      <UniqueIdentifier>{29c05987-b217-41de-8804-7ba4f30b02b1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="vector.t.cpp">
@@ -32,6 +35,9 @@
     </ClCompile>
     <ClCompile Include="memory_algorithm.t.cpp">
       <Filter>flow\algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="counted_value_view_iterator.t.cpp">
+      <Filter>flow\iterator</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

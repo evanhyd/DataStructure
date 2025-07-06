@@ -5,6 +5,7 @@
 #include <type_traits>
 #include <utility>
 
+#include "counted_value_view_iterator.h"
 #include "memory_algorithm.h"
 #include "polymorphic_allocator.h"
 
@@ -58,23 +59,29 @@ namespace flow {
 
   private:
     allocator_type allocator_;
-    Strategy strategy_;
+    Strategy growthStrategy_;
     std::size_t size_;
     std::size_t capacity_;
     T* buffer_;
 
-    // Relocate the buffer to a new buffer with requested capacity.
+    // Allocate a new buffer with the capacity, and relocate the elements to it.
+    // This update the buffer_ and capacity_ internally.
     void relocateBuffer(std::size_t capacity) {
+      assert(capacity_ < capacity && "new capacity is no larger than the old capacity");
+
       T* buffer = allocator_trait::allocate(allocator_, capacity);
-      uninitializedMoveN(allocator_, begin(), end(), buffer);
+      uninitializedMove(allocator_, begin(), end(), buffer);
 
       // Clean up the old buffer.
       deleteBuffer(allocator_, buffer_, size_, capacity_);
       buffer_ = buffer;
+      capacity_ = capacity;
     }
 
-    // Relocate the buffer but reserve some empty holes at pos.
+    // Allocate a new buffer with the capacity, and relocate the elements to it with a hole at pos.
     void relocateBufferWithHoles(std::size_t capacity, iterator pos, std::size_t holeSize) {
+      assert(capacity_ < capacity && "new capacity is no larger than the old capacity");
+
       T* buffer = allocator_trait::allocate(allocator_, capacity);
       iterator leftHalf = uninitializedMove(allocator_, begin(), pos, buffer); // Move left half.
       uninitializedMove(allocator_, pos, end(), leftHalf + holeSize); // Move right half.
@@ -84,61 +91,65 @@ namespace flow {
       buffer_ = buffer;
     }
 
-    // Relocate the buffer and insert a range of elements at pos.
-    template <std::forward_iterator it>
-    void relocate_with_insert(std::size_t capacity, iterator pos, it first, it last) {
-      T* buffer = allocator_trait::allocate(allocator_, capacity);
+    template <typename ...U>
+    void resizeImp(std::size_t size, const U&... optionalValue) {
+      static_assert(sizeof...(optionalValue) <= 1, "no fill value or exactly one copy");
+      if (size_ < size) {
+        // Relocate if not enough capacity.
+        if (capacity_ < size) {
+          relocateBuffer(size);
+        }
+        uninitializedEmplace(buffer_ + size_, buffer_ + size, optionalValue...);
 
-      // Copy the range element first, because it may be doing self-insertion.
-      std::ptrdiff_t nth = pos - begin();
-      iterator dest = buffer + nth;
-      iterator rightHalf = uninitializedCopy(allocator_, first, last, dest);
-
-      // Move the second half and the first half.
-      uninitializedMove(allocator_, pos, end(), rightHalf);
-      uninitializedMove(allocator_, begin(), pos, buffer);
-
-      // Clean up the old buffer.
-      deleteBuffer(allocator_, buffer_, size_, capacity_);
-      buffer_ = buffer;
+      } else if (size < size_) {
+        // Shrink.
+        uninitializedDestroy(buffer_ + size, buffer_ + size_);
+      }
+      size_ = size;
     }
 
   public:
     // Constructors
-    constexpr Vector() = default;
+    constexpr Vector() noexcept
+      : allocator_(),
+        growthStrategy_(),
+        size_(0),
+        capacity_(0),
+        buffer_(nullptr) {
+    }
 
     explicit constexpr Vector(const allocator_type& allocator)
       : allocator_(allocator),
-      strategy_(),
-      size_(0),
-      capacity_(0),
-      buffer_(nullptr) {
+        growthStrategy_(),
+        size_(0),
+        capacity_(0),
+        buffer_(nullptr) {
     }
 
     constexpr Vector(const Vector& rhs)
       : allocator_(rhs.allocator_),
-      strategy_(rhs.strategy_),
-      size_(rhs.size_),
-      capacity_(rhs.capacity_),
-      buffer_(allocator_trait::allocate(allocator_, rhs.capacity_)) {
+        growthStrategy_(rhs.growthStrategy_),
+        size_(rhs.size_),
+        capacity_(rhs.capacity_),
+        buffer_(allocator_trait::allocate(allocator_, rhs.capacity_)) {
       uninitializedCopy(allocator_, rhs.begin(), rhs.end(), buffer_);
     }
 
     constexpr Vector(Vector&& rhs) noexcept
       : allocator_(std::exchange(rhs.allocator_, allocator_type())),
-      strategy_(std::exchange(rhs.strategy_, GrowthStrategy())),
-      size_(std::exchange(rhs.size_, 0)),
-      capacity_(std::exchange(rhs.capacity_, 0)),
-      buffer_(std::exchange(rhs.buffer_, nullptr)) {
+        growthStrategy_(std::exchange(rhs.growthStrategy_, Strategy())),
+        size_(std::exchange(rhs.size_, 0)),
+        capacity_(std::exchange(rhs.capacity_, 0)),
+        buffer_(std::exchange(rhs.buffer_, nullptr)) {
     }
 
     template <std::input_iterator It>
     explicit constexpr Vector(It first, It last, const allocator_type& allocator = allocator_type())
       : allocator_(allocator),
-      strategy_(),
-      size_(std::distance(first, last)),
-      capacity_(size_),
-      buffer_(allocator_trait::allocate(allocator_, capacity_)) {
+        growthStrategy_(),
+        size_(std::distance(first, last)),
+        capacity_(size_),
+        buffer_(allocator_trait::allocate(allocator_, capacity_)) {
       uninitializedCopy(allocator_, first, last, buffer_);
     }
 
@@ -148,19 +159,19 @@ namespace flow {
 
     explicit constexpr Vector(std::size_t count, const allocator_type& allocator = allocator_type())
       : allocator_(allocator),
-        strategy_(),
+        growthStrategy_(),
         size_(count),
         capacity_(count),
-        buffer_(allocator_.allocate(count)) {
+        buffer_(allocator_trait::allocate(allocator_, count)) {
       uninitializedEmplaceN(allocator_, buffer_, count);
     }
 
     explicit constexpr Vector(std::size_t count, const T& value, const allocator_type& allocator = allocator_type())
       : allocator_(allocator),
-        strategy_(),
+        growthStrategy_(),
         size_(count),
         capacity_(count),
-        buffer_(allocator_.allocate(count)) {
+        buffer_(allocator_trait::allocate(allocator_, count)) {
       uninitializedFillN(allocator_, buffer_, count, value);
     }
 
@@ -169,55 +180,73 @@ namespace flow {
       deleteBuffer(allocator_, buffer_, size_, capacity_);
     }
 
-    // Copy/Move Assignment Operator.
+    // Operator.
     Vector& operator=(Vector rhs) noexcept {
       swap(*this, rhs);
       return *this;
     }
 
-    // Accesser.
-    T& operator[](std::size_t i) {
+    T& operator[](std::size_t i) noexcept {
       assert(i < size_ && "index out of bound");
       return buffer_[i];
     }
 
-    const T& operator[](std::size_t i) const {
+    const T& operator[](std::size_t i) const noexcept {
       assert(i < size_ && "index out of bound");
       return buffer_[i];
     }
 
-    constexpr std::size_t size() const {
+    // Iterators
+    iterator begin() noexcept {
+      return buffer_;
+    }
+
+    constexpr const_iterator begin() const noexcept {
+      return buffer_;
+    }
+
+    iterator end() noexcept {
+      return buffer_ + size_;
+    }
+
+    constexpr const_iterator end() const noexcept {
+      return buffer_ + size_;
+    }
+
+    // Accessers.
+    constexpr std::size_t size() const noexcept {
       return size_;
     }
 
-    constexpr std::size_t capacity() const {
+    constexpr std::size_t capacity() const noexcept {
       return capacity_;
     }
 
-    constexpr bool empty() const {
+    constexpr bool empty() const noexcept {
       return size_ == 0;
     }
 
-    T& front() {
-      assert(size_ >= 0 && "access empty Vector front");
+    T& front() noexcept {
+      assert(0 < size_ && "access empty Vector front");
       return buffer_[0];
     }
 
-    constexpr const T& front() const {
-      assert(size_ >= 0 && "access empty Vector front");
+    constexpr const T& front() const noexcept {
+      assert(0 < size_ && "access empty Vector front");
       return buffer_[0];
     }
 
-    T& back() {
-      assert(size_ >= 0 && "access empty Vector back");
+    T& back() noexcept {
+      assert(0 < size_ && "access empty Vector back");
       return buffer_[size_ - 1];
     }
 
-    constexpr const T& back() const {
-      assert(size_ >= 0 && "access empty Vector back");
+    constexpr const T& back() const noexcept {
+      assert(0 < size_ && "access empty Vector back");
       return buffer_[size_ - 1];
     }
 
+    // Mutators
     void clear() noexcept {
       destroyElementsN(buffer_, size_);
       size_ = 0;
@@ -226,49 +255,157 @@ namespace flow {
     void reserve(std::size_t capacity) {
       if (capacity_ < capacity) {
         relocateBuffer(capacity);
-        capacity_ = capacity;
       }
     }
 
     void resize(std::size_t size) {
-      if (size_ < size) {
-        
-        // Relocate if not enough capacity.
-        if (capacity_ < size) {
-          relocateBuffer(size);
-          capacity_ = size;
-        }
-        uninitializedEmplace(buffer_ + size_, buffer_ + size);
-
-      } else if (size < size_) {
-        // Shrink.
-        uninitializedDestroy(buffer_ + size, buffer_ + size_);
-      }
-      size_ = size;
+      resizeImp(size);
     }
 
-    void resize(std::size_t size, const T& value = T()) {
-      if (size_ < size) {
+    void resize(std::size_t size, const T& value) {
+      resizeImp(size, value);
+    }
+     
+    // https://stackoverflow.com/questions/10890653/why-would-i-ever-use-push-back-instead-of-emplace-back
+    // TLDR: Consider emplace back an address when constructing unique_ptr.
+    void pushBack(const T& value) {
+      emplaceBack(value);
+    }
 
-        // Relocate if not enough capacity.
-        if (capacity_ < size) {
-          relocateBuffer(size);
-          capacity_ = size;
-        }
-        uninitializedFill(buffer_ + size_, buffer_ + size, value);
+    void pushBack(T&& value) {
+      emplaceBack(std::move(value));
+    }
 
-      } else if (size < size_) {
-        // Shrink.
-        uninitializedDestroy(buffer_ + size, buffer_ + size_);
+    template <typename ...Args>
+    void emplaceBack(Args&&... args) {
+      if (size_ == capacity_) {
+        relocateBuffer(growthStrategy_(capacity_));
       }
-      size_ = size;
+      allocator_trait::construct(allocator_, buffer_ + size_, std::forward<Args>(args)...);
+    }
+
+    void popBack() noexcept {
+      assert(0 < size_ && "can not pop back from an empty vector");
+      --size_;
+      allocator_trait::destroy(allocator_, buffer_ + size_);
+    }
+
+    /// <summary>
+    /// Removes the element at the given position.
+    /// </summary>
+    /// <param name="pos">Iterator to the element to remove (must not be end()).</param>
+    /// <returns>Iterator to the next element, or end() if last was removed.</returns>
+    iterator erase(iterator pos) noexcept {
+      assert(begin() <= pos && pos < end() && "can not erase before begin() or at the end()");
+      std::move(pos + 1, end(), pos);
+      popBack();
+      return pos;
+    }
+
+    /// <summary>
+    /// Removes elements in the range [first, last).
+    /// </summary>
+    /// <param name="first">Iterator to the start of the range to remove.</param>
+    /// <param name="last">Iterator to the end of the range to remove.</param>
+    /// <returns>Iterator to the next element, or end() if range ended at the last element.</returns>
+    iterator erase(iterator first, iterator last) noexcept {
+      assert(begin() <= first && last <= end() && "can not erase before begin() or past the end()");
+      assert(first <= last && "first must be before last");
+
+      iterator afterMoved = std::move(last, end(), first);
+      destroyElements(allocator_, afterMoved, end());
+      size_ -= last - first;
+      return first;
+    }
+
+    template <typename ...Args>
+    void emplace(iterator pos, Args&&... args) {
+      // Special case: append at the end.
+      if (pos == end()) {
+        emplaceBack(std::forward<Args>(args)...);
+        return;
+      }
+
+      if (size_ < capacity_) {
+        // Enough capacity, right shift the elements.
+        // Major optimization to use memcpy, copy_backward, or range move_backward instead of handroll loop. A 70% reduction in computation time.
+        allocator_trait::construct(allocator_, end(), std::move(back()));
+        std::move_backward(pos, end()-1, end());
+        *pos = T(args...);
+
+      } else {
+        // Not enough capacity, relocate all to a new buffer.
+        std::size_t index = pos - buffer_;
+        relocateBufferWithHoles(growthStrategy_(capacity_), pos, 1);
+        allocator_trait::construct(allocator_, buffer_ + index, std::forward<Args>(args)...);
+      }
+      ++size_;
+    }
+
+    void insert(iterator pos, const T& value) {
+      emplace(pos, value);
+    }
+
+    void insert(iterator pos, T&& value) {
+      emplace(pos, std::move(value));
+    }
+
+    void insert(iterator pos, std::size_t count, const T& value) {
+      insert(pos, CountedValueViewIterator(value, count), CountedValueViewIterator(value));
+    }
+
+    // Do not support self inserting.
+    template <std::input_iterator It>
+    void insert(iterator pos, It first, It last) {
+      const std::size_t insertedElementsSize = std::distance(first, last);
+      const std::size_t requiredSize = size_ + insertedElementsSize;
+
+      if (capacity_ < requiredSize) {
+        // Not enough capacity, relocate to a new buffer.
+        std::size_t index = pos - begin();
+        std::size_t newCapacity = growthStrategy_(requiredSize);
+        relocateBufferWithHoles(newCapacity, pos, insertedElementsSize);
+        uninitializedCopy(allocator_, first, last, begin() + index);
+      } else {
+        // Enough capacity, shift elements.
+        // Inserted that are inbound = Shifted that are outbound.
+        const std::size_t shiftedElementSize = end() - pos;
+        const std::size_t conflictedRangeSize = std::min(insertedElementsSize, shiftedElementSize);
+        const std::size_t shiftedElementsInboundSize = shiftedElementSize - conflictedRangeSize;
+        const std::size_t insertedElementsOutboundSize = insertedElementsSize - conflictedRangeSize;
+
+        // Shifted elements that are on uninitialized buffer range.
+        // This range can be empty if insert at end().
+        uninitializedMove(allocator_, end() - conflictedRangeSize, end(), pos + insertedElementsSize + shiftedElementsInboundSize);
+
+        // Shifted elements that are on initialized buffer range.
+        // This range can be empty if all shifted elements must move to the uninitialized buffer from the previous step.
+        std::move_backward(pos, pos + shiftedElementsInboundSize, end());
+
+        // Inserted elements that are on initialized buffer range starting at pos.
+        // This range can be empty if insert at end().
+        for (std::size_t i = 0; i < conflictedRangeSize; ++i, ++first, ++pos) {
+          *pos = *first;
+        }
+
+        // Inserted elements that are on uninitialized buffer range.
+        // This range can be empty if insertedElementSize <= shiftedElementSize -> conflictedRangeSize = insertedElementSize.
+        // Such that there are enough space in the initialized buffer range.
+        uninitializedCopyN(allocator_, first, insertedElementsOutboundSize, pos);
+      }
+
+      size_ = requiredSize;
+    }
+
+    void insert(iterator pos, std::initializer_list<T> list) {
+      insert(pos, list.begin(), list.end());
     }
 
     // Friends.
-    friend void swap(Vector& lhs, Vector& rhs) {
+    friend void swap(Vector& lhs, Vector& rhs) noexcept {
       using std::swap;
       swap(lhs.allocator_, rhs.allocator_);
-      swap(lhs.strategy_, rhs.strategy_);
+      swap(lhs.growthStrategy_, rhs.growthStrategy_);
       swap(lhs.size_, rhs.size_);
       swap(lhs.capacity_, rhs.capacity_);
       swap(lhs.buffer_, rhs.buffer_);
@@ -277,179 +414,98 @@ namespace flow {
 }
 
 template <typename T>
-bool operator==(const flow::Vector<T>& lhs, const flow::Vector<T>& rhs) {
+bool operator==(const flow::Vector<T>& lhs, const flow::Vector<T>& rhs) noexcept {
   return std::equal(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
 }
 
 template <typename T>
-bool operator!=(const flow::Vector<T>& lhs, const flow::Vector<T>& rhs) {
+bool operator!=(const flow::Vector<T>& lhs, const flow::Vector<T>& rhs) noexcept {
   return !(lhs == rhs);
 } 
 
-namespace nope {
-  template <typename T>
-  class Vector {
-    iterator begin() {
-      return buffer_;
-    }
-
-    constexpr const_iterator begin() const {
-      return buffer_;
-    }
-
-    iterator end() {
-      return buffer_ + size_;
-    }
-
-    constexpr const_iterator end() const {
-      return buffer_ + size_;
-    }
-
-    template <typename ...Args>
-    void push_back(Args&&... args) {
-      if (size_ == capacity_) {
-        //https://stackoverflow.com/questions/5232198/how-does-the-capacity-of-stdvector-grow-automatically-what-is-the-rate
-        relocate(next_capacity(capacity_));
-      }
-      allocator_.construct(buffer_ + size_, std::forward<Args>(args)...);
-      ++size_;
-    }
-
-    void pop_back() noexcept {
-      assert(size_ > 0 && "can not pop back from an empty vector");
-      --size_;
-      allocator_.destroy(end());
-    }
-
-    void erase(iterator first, iterator last) noexcept {
-      //replace the erased elements then destroy the rest
-      destroy(std::move(last, end(), first), end());
-      size_ -= last - first;
-    }
-
-    void erase(iterator pos) noexcept {
-      erase(pos, pos + 1);
-    }
-
-    template <typename ...Args>
-    void insert(iterator pos, Args&&... value) {
-      // Special case: append at the end.
-      if (pos == end()) {
-        push_back(std::forward<Args>(value)...);
-        return;
-      }
-
-      if (size_ < capacity_) {
-        // Enough capacity, right shift the elements.
-        // Major optimization to use memcpy, copy_backward, or range move_backward instead of handroll loop. A 70% reduction in computation time.
-        allocator_.construct(end(), std::move(*(end()-1)));
-        std::move_backward(pos, end() - 1, end());
-        *pos = T(value...);
-
-      } else {
-        // Not enough capacity, relocate everything.
-        std::size_t index = pos - buffer_;
-        relocate_with_hole(next_capacity(capacity_), pos, 1);
-        allocator_.construct(buffer_ + index, std::forward<Args>(value)...);
-      }
-      ++size_;
-    }
-
-    template <std::input_iterator It>
-    void insert(iterator pos, It first, It last) {
-      std::size_t requiredSize = size_ + std::distance(first, last);
-      if (pos == end() && requiredSize <= capacity_) {
-        // Special case: append at the end.
-        // Reallocation must not occur, otherwise it may invalidate the input iterators if self-inserting.
-        copy_uninit(first, last, end());
-      } else {
-        // Must relocate regardless the inserting position.
-        // TODO: Optimize opportunity: inserting middle but with enough capacity.
-        relocate_with_insert(requiredSize, pos, first, last);
-      }
-      size_ = requiredSize;
-    }
-
-    template<typename MappingFn, template<typename> typename Alloc = Allocator>
-    Vector<std::invoke_result_t<MappingFn, const T&>, Alloc> map(const MappingFn& fn) const {
-      Vector<std::invoke_result_t<MappingFn, const T&>, Alloc> mapped;
-      mapped.relocate(size_);
-      for (const T& val : *this) {
-        mapped.push_back(fn(val));
-      }
-      return mapped;
-    }
-
-    template <typename FilterFn, template<typename> typename Alloc = Allocator>
-    Vector<T, Alloc> filter(const FilterFn& fn) const {
-      static_assert(std::is_same_v<std::invoke_result_t<FilterFn, const T&>, bool>, "filter function must evaluate to bool");
-      Vector<T, Alloc> filtered;
-      for (const T& val : *this) {
-        if (fn(val)) {
-          filtered.push_back(val);
-        }
-      }
-      return filtered;
-    }
-
-    template <typename CallbackFn>
-    void for_each(const CallbackFn& fn) const {
-      for (auto& val : *this) {
-        fn(val);
-      }
-    }
-
-    friend class Vector;
-  };
-
-  
-
-  //TODO: support move semantics
-  template <typename ...Vec>
-  Vector<Tuple<typename Vec::value_type...>> zip(const Vec&... vec) {
-    using ZipType = Tuple<typename Vec::value_type...>;
-    std::size_t minSize = std::min({vec.size()...});
-    Vector<ZipType> zipped;
-    zipped.reserve(minSize);
-    for (std::size_t i = 0; i < minSize; ++i) {
-      zipped.push_back(ZipType{vec[i]...});
-    }
-    return zipped;
-  }
-
-  Vector<std::string> split(const std::string& line, const std::string& delimiter) {
-    if (delimiter.empty()) {
-      return { line };
-    }
-
-    Vector<std::string> tokens;
-    for (std::size_t pos = 0;;) {
-      std::size_t nextPos = line.find(delimiter, pos);
-      tokens.push_back(line.substr(pos, nextPos - pos));
-      if (nextPos == std::string::npos) {
-        break;
-      }
-      pos = nextPos + delimiter.size();
-    }
-    return tokens;
-  }
-
-  std::string join(const Vector<std::string>& tokens, const std::string& separator) {
-    if (tokens.empty()) {
-      return "";
-    }
-
-    std::size_t sz = (tokens.size() - 1) * separator.size();
-    for (auto& token : tokens) {
-      sz += token.size();
-    }
-
-    std::string line;
-    line.reserve(sz);
-    for (std::size_t i = 0; i + 1 < tokens.size(); ++i) {
-      line += tokens[i] + separator;
-    }
-    line += tokens.back();
-    return line;
-  }
-}
+//namespace nope {
+//  template <typename T>
+//  class Vector {
+//    template<typename MappingFn, template<typename> typename Alloc = Allocator>
+//    Vector<std::invoke_result_t<MappingFn, const T&>, Alloc> map(const MappingFn& fn) const {
+//      Vector<std::invoke_result_t<MappingFn, const T&>, Alloc> mapped;
+//      mapped.relocate(size_);
+//      for (const T& val : *this) {
+//        mapped.push_back(fn(val));
+//      }
+//      return mapped;
+//    }
+//
+//    template <typename FilterFn, template<typename> typename Alloc = Allocator>
+//    Vector<T, Alloc> filter(const FilterFn& fn) const {
+//      static_assert(std::is_same_v<std::invoke_result_t<FilterFn, const T&>, bool>, "filter function must evaluate to bool");
+//      Vector<T, Alloc> filtered;
+//      for (const T& val : *this) {
+//        if (fn(val)) {
+//          filtered.push_back(val);
+//        }
+//      }
+//      return filtered;
+//    }
+//
+//    template <typename CallbackFn>
+//    void for_each(const CallbackFn& fn) const {
+//      for (auto& val : *this) {
+//        fn(val);
+//      }
+//    }
+//
+//    friend class Vector;
+//  };
+//
+//  
+//
+//  //TODO: support move semantics
+//  template <typename ...Vec>
+//  Vector<Tuple<typename Vec::value_type...>> zip(const Vec&... vec) {
+//    using ZipType = Tuple<typename Vec::value_type...>;
+//    std::size_t minSize = std::min({vec.size()...});
+//    Vector<ZipType> zipped;
+//    zipped.reserve(minSize);
+//    for (std::size_t i = 0; i < minSize; ++i) {
+//      zipped.push_back(ZipType{vec[i]...});
+//    }
+//    return zipped;
+//  }
+//
+//  Vector<std::string> split(const std::string& line, const std::string& delimiter) {
+//    if (delimiter.empty()) {
+//      return { line };
+//    }
+//
+//    Vector<std::string> tokens;
+//    for (std::size_t pos = 0;;) {
+//      std::size_t nextPos = line.find(delimiter, pos);
+//      tokens.push_back(line.substr(pos, nextPos - pos));
+//      if (nextPos == std::string::npos) {
+//        break;
+//      }
+//      pos = nextPos + delimiter.size();
+//    }
+//    return tokens;
+//  }
+//
+//  std::string join(const Vector<std::string>& tokens, const std::string& separator) {
+//    if (tokens.empty()) {
+//      return "";
+//    }
+//
+//    std::size_t sz = (tokens.size() - 1) * separator.size();
+//    for (auto& token : tokens) {
+//      sz += token.size();
+//    }
+//
+//    std::string line;
+//    line.reserve(sz);
+//    for (std::size_t i = 0; i + 1 < tokens.size(); ++i) {
+//      line += tokens[i] + separator;
+//    }
+//    line += tokens.back();
+//    return line;
+//  }
+//}

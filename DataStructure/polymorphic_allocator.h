@@ -11,11 +11,7 @@ namespace flow::pmr {
   template <typename T>
   class PolymorphicAllocator {
   public:
-    using value_type = T;
-    using pointer_type = T*;
-    using reference_type = T&;
-    using const_pointer_type = const T*;
-    using const_reference_type = const T&;
+    using value_type = T; // Minimum requirement for allocator_traits
 
     PolymorphicAllocator()
       : resource_(&DefaultMemoryResource::getResource()) {

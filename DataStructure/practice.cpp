@@ -144,13 +144,10 @@ const auto __ = std::atexit([]() { std::ofstream("display_runtime.txt") << INT_M
 
 using namespace std;
 
-#include "default_memory_resource.h"
+#include "vector.h"
 
 int main() {
-  flow::pmr::DefaultMemoryResource m{};
-  int* num = (int*)m.allocate(sizeof(i64));
-  *num = 1234;
-  cout << *num;
+  flow::Vector<int> vec;
 }
 
 /*

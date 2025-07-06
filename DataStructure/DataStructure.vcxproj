@@ -263,6 +263,7 @@
     <ClInclude Include="PSDA.h" />
     <ClInclude Include="random.h" />
     <ClInclude Include="RandomMeldableHeap.h" />
+    <ClInclude Include="counted_value_view_iterator.h" />
     <ClInclude Include="SegmentTree.h" />
     <ClInclude Include="SkipList.h" />
     <ClInclude Include="SparseTable.h" />
