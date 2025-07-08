@@ -1,7 +1,7 @@
 #pragma once
 #include <cstddef>
 
-namespace flow::pmr {
+namespace flow {
 
   // A memory resource holder interface.
   // Responsible for allocate and deallocate raw memory.

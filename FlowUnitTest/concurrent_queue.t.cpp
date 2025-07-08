@@ -3,16 +3,13 @@
 
 #include <thread>
 #include <vector>
-#include <numeric>
 #include <chrono>
 #include <atomic>
 #include <algorithm>
 
-namespace {
-  using namespace flow;
+namespace flow {
 
   class ConcurrentQueueTest : public ::testing::Test {
-  protected:
   };
 
   TEST_F(ConcurrentQueueTest, DefaultConstructorAndEmpty) {

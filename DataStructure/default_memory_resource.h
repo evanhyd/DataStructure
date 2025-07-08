@@ -1,7 +1,7 @@
 #pragma once
 #include "memory_resource.h"
 
-namespace flow::pmr {
+namespace flow {
   class DefaultMemoryResource : public MemoryResource {
   public:
     static DefaultMemoryResource& getResource() {

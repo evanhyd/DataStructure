@@ -3,10 +3,10 @@
 #include <memory>
 #include <utility>
 
-namespace flow::pmr {
+namespace flow {
 
   /// <summary>
-  /// Copies elements from a source range to uninitialized memory.
+  /// Forward elements from a source range to uninitialized memory.
   /// </summary>
   /// <typeparam name="AllocatorType">Allocator type.</typeparam>
   /// <typeparam name="InputIt">Input iterator for source range.</typeparam>
@@ -15,9 +15,9 @@ namespace flow::pmr {
   /// <param name="first">Start of source range.</param>
   /// <param name="last">End of source range.</param>
   /// <param name="dest">Start of destination range.</param>
-  /// <returns>Iterator past the last element copied.</returns>
+  /// <returns>One past the last constructed element.</returns>
   template <typename AllocatorType, std::input_iterator InputIt, std::forward_iterator OutputIt>
-  OutputIt uninitializedCopy(AllocatorType& allocator, InputIt first, InputIt last, OutputIt dest) {
+  OutputIt uninitializedForward(AllocatorType& allocator, InputIt first, InputIt last, OutputIt dest) {
     for (; first != last; ++first, ++dest) {
       std::allocator_traits<AllocatorType>::construct(allocator, std::addressof(*dest), *first);
     }
@@ -34,32 +34,10 @@ namespace flow::pmr {
   /// <param name="first">Start of source range.</param>
   /// <param name="last">End of source range.</param>
   /// <param name="dest">Start of destination range.</param>
-  /// <returns>Iterator past the last element moved.</returns>
+  /// <returns>One past the last constructed element.</returns>
   template <typename AllocatorType, std::input_iterator InputIt, std::forward_iterator OutputIt>
   OutputIt uninitializedMove(AllocatorType& allocator, InputIt first, InputIt last, OutputIt dest) noexcept {
-    for (; first != last; ++first, ++dest) {
-      std::allocator_traits<AllocatorType>::construct(allocator, std::addressof(*dest), std::move(*first));
-    }
-    return dest;
-  }
-
-  /// <summary>
-  /// Fills uninitialized memory with copies of a value.
-  /// </summary>
-  /// <typeparam name="AllocatorType">Allocator type.</typeparam>
-  /// <typeparam name="OutputIt">Forward iterator for destination range.</typeparam>
-  /// <typeparam name="T">Type of value.</typeparam>
-  /// <param name="allocator">Allocator for construction.</param>
-  /// <param name="first">Start of destination range.</param>
-  /// <param name="last">End of destination range.</param>
-  /// <param name="value">Value to fill with.</param>
-  /// <returns>Iterator past the last element filled.</returns>
-  template <typename AllocatorType, std::forward_iterator OutputIt, typename T>
-  OutputIt uninitializedFill(AllocatorType& allocator, OutputIt first, OutputIt last, const T& value) {
-    for (; first != last; ++first) {
-      std::allocator_traits<AllocatorType>::construct(allocator, std::addressof(*first), value);
-    }
-    return first;
+    return uninitializedForward(allocator, std::move_iterator(first), std::move_iterator(last), dest);
   }
 
   /// <summary>
@@ -73,13 +51,29 @@ namespace flow::pmr {
   /// <param name="first">Start of the destination range.</param>
   /// <param name="last">End of the destination range.</param>
   /// <param name="args">Constructor arguments.</param>
-  /// <returns>Iterator past the last element constructed.</returns>
+  /// <returns>One past the last constructed element.</returns>
   template <typename AllocatorType, std::forward_iterator OutputIt, typename ...Args>
   OutputIt uninitializedEmplace(AllocatorType& allocator, OutputIt first, OutputIt last, const Args&... args) {
     for (; first != last; ++first) {
       std::allocator_traits<AllocatorType>::construct(allocator, std::addressof(*first), args...);
     }
     return first;
+  }
+
+  /// <summary>
+  /// Fills uninitialized memory with copies of a value.
+  /// </summary>
+  /// <typeparam name="AllocatorType">Allocator type.</typeparam>
+  /// <typeparam name="OutputIt">Forward iterator for destination range.</typeparam>
+  /// <typeparam name="T">Type of value.</typeparam>
+  /// <param name="allocator">Allocator for construction.</param>
+  /// <param name="first">Start of destination range.</param>
+  /// <param name="last">End of destination range.</param>
+  /// <param name="value">Value to fill with.</param>
+  /// <returns>One past the last constructed element.</returns>
+  template <typename AllocatorType, std::forward_iterator OutputIt, typename T>
+  OutputIt uninitializedFill(AllocatorType& allocator, OutputIt first, OutputIt last, const T& value) {
+    return uninitializedEmplace(allocator, first, last, value);
   }
 
   /// <summary>
@@ -98,7 +92,7 @@ namespace flow::pmr {
   }
 
   /// <summary>
-  /// Copies `count` elements from a source range to uninitialized memory.
+  /// Forward `count` elements from a source range to uninitialized memory.
   /// </summary>
   /// <typeparam name="AllocatorType">Allocator type.</typeparam>
   /// <typeparam name="InputIt">Input iterator for source range.</typeparam>
@@ -107,9 +101,9 @@ namespace flow::pmr {
   /// <param name="first">Start of source range.</param>
   /// <param name="count">Number of elements to copy.</param>
   /// <param name="dest">Start of destination range.</param>
-  /// <returns>Iterator past the last element copied.</returns>
+  /// <returns>One past the last constructed element.</returns>
   template <typename AllocatorType, std::input_iterator InputIt, std::forward_iterator OutputIt>
-  OutputIt uninitializedCopyN(AllocatorType& allocator, InputIt first, std::size_t count, OutputIt dest) {
+  OutputIt uninitializedForwardN(AllocatorType& allocator, InputIt first, std::size_t count, OutputIt dest) {
     for (std::size_t i = 0; i < count; ++i, ++first, ++dest) {
       std::allocator_traits<AllocatorType>::construct(allocator, std::addressof(*dest), *first);
     }
@@ -126,34 +120,11 @@ namespace flow::pmr {
   /// <param name="first">Start of source range.</param>
   /// <param name="count">Number of elements to move.</param>
   /// <param name="dest">Start of destination range.</param>
-  /// <returns>Iterator past the last element moved.</returns>
+  /// <returns>One past the last constructed element.</returns>
   template <typename AllocatorType, std::input_iterator InputIt, std::forward_iterator OutputIt>
   OutputIt uninitializedMoveN(AllocatorType& allocator, InputIt first, std::size_t count, OutputIt dest) noexcept {
-    for (std::size_t i = 0; i < count; ++i, ++first, ++dest) {
-      std::allocator_traits<AllocatorType>::construct(allocator, std::addressof(*dest), std::move(*first));
-    }
-    return dest;
+    return uninitializedForwardN(allocator, std::move_iterator(first), count, dest);
   }
-
-  /// <summary>
-  /// Fills `count` elements in uninitialized memory with a value.
-  /// </summary>
-  /// <typeparam name="AllocatorType">Allocator type.</typeparam>
-  /// <typeparam name="OutputIt">Forward iterator for destination range.</typeparam>
-  /// <typeparam name="T">Type of value.</typeparam>
-  /// <param name="allocator">Allocator for construction.</param>
-  /// <param name="first">Start of destination range.</param>
-  /// <param name="count">Number of elements to fill.</param>
-  /// <param name="value">Value to fill with.</param>
-  /// <returns>Iterator past the last element filled.</returns>
-  template <typename AllocatorType, std::forward_iterator OutputIt, typename T>
-  OutputIt uninitializedFillN(AllocatorType& allocator, OutputIt first, std::size_t count, const T& value) {
-    for (std::size_t i = 0; i < count; ++i, ++first) {
-      std::allocator_traits<AllocatorType>::construct(allocator, std::addressof(*first), value);
-    }
-    return first;
-  }
-
 
   /// <summary>
   /// Constructs a specified number of objects in uninitialized memory by forwarding arguments to their constructor.
@@ -166,13 +137,29 @@ namespace flow::pmr {
   /// <param name="first">Start of the destination range.</param>
   /// <param name="count">Number of objects to construct.</param>
   /// <param name="args">Constructor arguments.</param>
-  /// <returns>Iterator past the last element constructed.</returns>
+  /// <returns>One past the last constructed element.</returns>
   template <typename AllocatorType, std::forward_iterator OutputIt, typename ...Args>
   OutputIt uninitializedEmplaceN(AllocatorType& allocator, OutputIt first, std::size_t count, const Args&... args) {
     for (std::size_t i = 0; i < count; ++i, ++first) {
       std::allocator_traits<AllocatorType>::construct(allocator, std::addressof(*first), args...);
     }
     return first;
+  }
+
+  /// <summary>
+  /// Fills `count` elements in uninitialized memory with a value.
+  /// </summary>
+  /// <typeparam name="AllocatorType">Allocator type.</typeparam>
+  /// <typeparam name="OutputIt">Forward iterator for destination range.</typeparam>
+  /// <typeparam name="T">Type of value.</typeparam>
+  /// <param name="allocator">Allocator for construction.</param>
+  /// <param name="first">Start of destination range.</param>
+  /// <param name="count">Number of elements to fill.</param>
+  /// <param name="value">Value to fill with.</param>
+  /// <returns>One past the last constructed element.</returns>
+  template <typename AllocatorType, std::forward_iterator OutputIt, typename T>
+  OutputIt uninitializedFillN(AllocatorType& allocator, OutputIt first, std::size_t count, const T& value) {
+    return uninitializedEmplaceN(allocator, first, count, value);
   }
 
   /// <summary>

@@ -1,12 +1,13 @@
 #include "../DataStructure/concurrent_flex_queue.h"
 #include <gtest/gtest.h>
 
-#include <thread>
-#include <vector>
-#include <numeric>
-#include <chrono>
-#include <atomic>
 #include <algorithm>
+#include <atomic>
+#include <chrono>
+#include <optional>
+#include <thread>
+#include <utility>
+#include <vector>
 
 namespace flow {
   class ConcurrentFlexQueueTest : public ::testing::Test {

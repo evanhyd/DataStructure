@@ -48,16 +48,19 @@ namespace flow {
   class Vector {
   public:
     using value_type = T;
-    using pointer_type = T*;
-    using reference_type = T&;
-    using const_pointer_type = const T*;
-    using const_reference_type = const T&;
+    using reference = T&;
+    using const_reference = const T&;
+    using pointer = T*;
+    using const_pointer = const T*;
     using iterator = T*;
     using const_iterator = const T*;
-    using allocator_type = pmr::PolymorphicAllocator<T>;
-    using allocator_trait = std::allocator_traits<allocator_type>;
+    using size_type = std::size_t;
+    using difference_type = std::ptrdiff_t;
+    using allocator_type = PolymorphicAllocator<T>;
 
   private:
+    using allocator_trait = std::allocator_traits<allocator_type>;
+
     allocator_type allocator_;
     Strategy growthStrategy_;
     std::size_t size_;
@@ -110,15 +113,7 @@ namespace flow {
 
   public:
     // Constructors
-    constexpr Vector() noexcept
-      : allocator_(),
-        growthStrategy_(),
-        size_(0),
-        capacity_(0),
-        buffer_(nullptr) {
-    }
-
-    explicit constexpr Vector(const allocator_type& allocator)
+    explicit constexpr Vector(const allocator_type& allocator = allocator_type())
       : allocator_(allocator),
         growthStrategy_(),
         size_(0),
@@ -132,7 +127,7 @@ namespace flow {
         size_(rhs.size_),
         capacity_(rhs.capacity_),
         buffer_(allocator_trait::allocate(allocator_, rhs.capacity_)) {
-      uninitializedCopy(allocator_, rhs.begin(), rhs.end(), buffer_);
+      uninitializedForward(allocator_, rhs.begin(), rhs.end(), buffer_);
     }
 
     constexpr Vector(Vector&& rhs) noexcept
@@ -150,7 +145,7 @@ namespace flow {
         size_(std::distance(first, last)),
         capacity_(size_),
         buffer_(allocator_trait::allocate(allocator_, capacity_)) {
-      uninitializedCopy(allocator_, first, last, buffer_);
+      uninitializedForward(allocator_, first, last, buffer_);
     }
 
     constexpr Vector(std::initializer_list<T> list, const allocator_type& allocator = allocator_type())
@@ -248,7 +243,7 @@ namespace flow {
 
     // Mutators
     void clear() noexcept {
-      destroyElementsN(buffer_, size_);
+      destroyElementsN(allocator_, buffer_, size_);
       size_ = 0;
     }
 
@@ -365,7 +360,7 @@ namespace flow {
         std::size_t index = pos - begin();
         std::size_t newCapacity = growthStrategy_(requiredSize);
         relocateBufferWithHoles(newCapacity, pos, insertedElementsSize);
-        uninitializedCopy(allocator_, first, last, begin() + index);
+        uninitializedForward(allocator_, first, last, begin() + index);
       } else {
         // Enough capacity, shift elements.
         // Inserted that are inbound = Shifted that are outbound.
@@ -391,7 +386,7 @@ namespace flow {
         // Inserted elements that are on uninitialized buffer range.
         // This range can be empty if insertedElementSize <= shiftedElementSize -> conflictedRangeSize = insertedElementSize.
         // Such that there are enough space in the initialized buffer range.
-        uninitializedCopyN(allocator_, first, insertedElementsOutboundSize, pos);
+        uninitializedForwardN(allocator_, first, insertedElementsOutboundSize, pos);
       }
 
       size_ = requiredSize;

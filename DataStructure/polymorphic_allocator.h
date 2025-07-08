@@ -3,7 +3,7 @@
 
 #include <cstddef>
 
-namespace flow::pmr {
+namespace flow {
 
   // An adaptor wraps around a non-owning memory resource.
   // It provides accessor to allocate/deallocate memory,
