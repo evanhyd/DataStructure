@@ -180,8 +180,8 @@ namespace flow {
       EXPECT_TRUE(!vec.empty());
       vec.clear();
       EXPECT_TRUE(vec.empty());
-      EXPECT_TRUE(vec.size() == 0);
-      EXPECT_TRUE(vec.capacity() > 0);
+      EXPECT_EQ(0, vec.size());
+      EXPECT_GT(vec.capacity(), 0);
     }
 
     TEST(VectorTest, SubscriptOpReadAndWrite) {
@@ -263,44 +263,153 @@ namespace flow {
       vec.reserve(1);
       EXPECT_EQ(100, vec.capacity());
     }
+
+    TEST(VectorTest, ResizeWithValue) {
+      Vector<int> vec;
+      vec.resize(3);
+      EXPECT_EQ(3, vec.size());
+      EXPECT_EQ(0, vec[0]);
+      EXPECT_EQ(0, vec[1]);
+      EXPECT_EQ(0, vec[2]);
+
+      vec.resize(6, 2);
+      EXPECT_EQ(6, vec.size());
+      EXPECT_EQ(0, vec[0]);
+      EXPECT_EQ(0, vec[1]);
+      EXPECT_EQ(0, vec[2]);
+      EXPECT_EQ(2, vec[3]);
+      EXPECT_EQ(2, vec[4]);
+      EXPECT_EQ(2, vec[5]);
+
+      vec.resize(4);
+      EXPECT_EQ(4, vec.size());
+      EXPECT_EQ(0, vec[0]);
+      EXPECT_EQ(0, vec[1]);
+      EXPECT_EQ(0, vec[2]);
+      EXPECT_EQ(2, vec[3]);
+    }
+
+    TEST(VectorTest, ResizeWithDefault) {
+      Vector<std::unique_ptr<int>> vec;
+      vec.resize(3);
+      EXPECT_EQ(3, vec.size());
+      EXPECT_EQ(nullptr, vec[0]);
+      EXPECT_EQ(nullptr, vec[1]);
+      EXPECT_EQ(nullptr, vec[2]);
+
+      vec.resize(6);
+      EXPECT_EQ(6, vec.size());
+      EXPECT_EQ(nullptr, vec[0]);
+      EXPECT_EQ(nullptr, vec[1]);
+      EXPECT_EQ(nullptr, vec[2]);
+      EXPECT_EQ(nullptr, vec[3]);
+      EXPECT_EQ(nullptr, vec[4]);
+      EXPECT_EQ(nullptr, vec[5]);
+
+      vec.resize(4);
+      EXPECT_EQ(4, vec.size());
+      EXPECT_EQ(nullptr, vec[0]);
+      EXPECT_EQ(nullptr, vec[1]);
+      EXPECT_EQ(nullptr, vec[2]);
+      EXPECT_EQ(nullptr, vec[3]);
+    }
+
+    TEST(VectorTest, PushBackCopy) {
+
+      std::string str[] = { "ab", "cd", "ef" };
+      flow::Vector<std::string> vec;
+      for (const auto& s : str) {
+        vec.pushBack(s);
+      }
+
+      EXPECT_EQ(3, vec.size());
+      EXPECT_GE(vec.capacity(), 3);
+      EXPECT_EQ("ab", vec[0]);
+      EXPECT_EQ("cd", vec[1]);
+      EXPECT_EQ("ef", vec[2]);
+
+      EXPECT_EQ("ab", str[0]);
+      EXPECT_EQ("cd", str[1]);
+      EXPECT_EQ("ef", str[2]);
+    }
+
+    TEST(VectorTest, PushBackMove) {
+
+      std::vector<std::unique_ptr<int>> ptrs;
+      for (int i = 0; i < 3; ++i) {
+        ptrs.emplace_back(std::make_unique<int>(i));
+      }
+
+      flow::Vector<std::unique_ptr<int>> vec;
+      for (auto& s : ptrs) {
+        vec.pushBack(std::move(s));
+      }
+
+      EXPECT_EQ(3, vec.size());
+      EXPECT_GE(vec.capacity(), 3);
+      EXPECT_EQ(0, *vec[0]);
+      EXPECT_EQ(1, *vec[1]);
+      EXPECT_EQ(2, *vec[2]);
+
+      EXPECT_EQ(nullptr, ptrs[0]);
+      EXPECT_EQ(nullptr, ptrs[1]);
+      EXPECT_EQ(nullptr, ptrs[2]);
+    }
+
+    TEST(VectorTest, EmplaceBack) {
+      flow::Vector<std::unique_ptr<int>> vec;
+      for (int i = 0; i < 3; ++i) {
+        vec.emplaceBack(new int(i));
+      }
+
+      EXPECT_EQ(3, vec.size());
+      EXPECT_GE(vec.capacity(), 3);
+      EXPECT_EQ(0, *vec[0]);
+      EXPECT_EQ(1, *vec[1]);
+      EXPECT_EQ(2, *vec[2]);
+    }
+
+    TEST(VectorTest, PopBack) {
+      int destroyedCounter = 0;
+      struct Foo {
+        int& counter;
+        ~Foo() {
+          ++counter;
+        }
+      };
+
+      flow::Vector<Foo> vec;
+      vec.reserve(100);
+      for (int i = 0; i < 100; ++i) {
+        vec.emplaceBack(destroyedCounter);
+      }
+      std::size_t oldCapacity = vec.capacity();
+      for (int i = 0; i < 100; ++i) {
+        vec.popBack();
+        EXPECT_EQ(i + 1, destroyedCounter);
+        EXPECT_EQ(100 - i - 1, vec.size());
+        EXPECT_EQ(oldCapacity, vec.capacity());
+      }
+    }
+
+    TEST(VectorTest, PushBackAndPopBack) {
+      Vector<std::string> vec;
+      vec.pushBack("hello");
+      EXPECT_EQ(1, vec.size());
+      EXPECT_EQ("hello", vec[0]);
+
+      vec.emplaceBack(3, 'a');
+      EXPECT_EQ(2, vec.size());
+      EXPECT_EQ("aaa", vec[1]);
+
+      vec.popBack();
+      EXPECT_EQ(1, vec.size());
+      vec.popBack();
+      EXPECT_EQ(0, vec.size());
+    }
 }
 
 
-//
-//  TEST(VectorTest, Resize) {
-//    Vector<int> vec;
-//    vec.resize(3);
-//    EXPECT_EQ(3, vec.size());
-//    EXPECT_EQ(0, vec[0]);
-//    EXPECT_EQ(0, vec[1]);
-//    EXPECT_EQ(0, vec[2]);
-//
-//    vec.resize(6, 2);
-//    EXPECT_EQ(6, vec.size());
-//    EXPECT_EQ(0, vec[0]);
-//    EXPECT_EQ(0, vec[1]);
-//    EXPECT_EQ(0, vec[2]);
-//    EXPECT_EQ(2, vec[3]);
-//    EXPECT_EQ(2, vec[4]);
-//    EXPECT_EQ(2, vec[5]);
-//  }
-//
-//  TEST(VectorTest, PushBackAndPopBack) {
-//    Vector<std::string> vec;
-//
-//    vec.push_back("hello");
-//    EXPECT_EQ(1, vec.size());
-//    EXPECT_EQ("hello", vec[0]);
-//
-//    vec.push_back(3, 'a');
-//    EXPECT_EQ(2, vec.size());
-//    EXPECT_EQ("aaa", vec[1]);
-//
-//    vec.pop_back();
-//    EXPECT_EQ(1, vec.size());
-//    vec.pop_back();
-//    EXPECT_EQ(0, vec.size());
-//  }
 //
 //  TEST(VectorTest, EraseFrontAndBack) {
 //    Vector<int> vec = { 1, 2, 3, 4, 5 };

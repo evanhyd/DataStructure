@@ -147,10 +147,6 @@ using namespace std;
 #include "vector.h"
 
 int main() {
-  flow::Vector<int> v1;
-  flow::Vector<int> v2;
-
-  swap(v1, v2);
 }
 
 /*

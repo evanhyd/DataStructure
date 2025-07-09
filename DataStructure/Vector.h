@@ -17,15 +17,15 @@ namespace flow {
   };
 
   struct VectorGrowthStrategy {
-    struct DoubleExpand {
+    struct GoldenExpand {
       std::size_t operator()(std::size_t oldCapacity) const {
-        return std::max(oldCapacity * 2, std::size_t(1));
+        return oldCapacity + oldCapacity / 2 + 1;
       }
     };
 
-    struct GoldenExpand {
+    struct DoubleExpand {
       std::size_t operator()(std::size_t oldCapacity) const {
-        return std::max(oldCapacity + oldCapacity / 2, std::size_t(1));
+        return oldCapacity * 2 + 1;
       }
     };
 
@@ -44,7 +44,7 @@ namespace flow {
   };
 
 
-  template <typename T, GrowthStrategy Strategy = VectorGrowthStrategy::DoubleExpand>
+  template <typename T, GrowthStrategy Strategy = VectorGrowthStrategy::GoldenExpand>
   class Vector {
   public:
     using value_type = T;
@@ -102,11 +102,11 @@ namespace flow {
         if (capacity_ < size) {
           relocateBuffer(size);
         }
-        uninitializedEmplace(buffer_ + size_, buffer_ + size, optionalValue...);
+        uninitializedEmplace(allocator_, buffer_ + size_, buffer_ + size, optionalValue...);
 
       } else if (size < size_) {
         // Shrink.
-        uninitializedDestroy(buffer_ + size, buffer_ + size_);
+        destroyElements(allocator_, buffer_ + size, buffer_ + size_);
       }
       size_ = size;
     }
@@ -277,6 +277,7 @@ namespace flow {
         relocateBuffer(growthStrategy_(capacity_));
       }
       allocator_trait::construct(allocator_, buffer_ + size_, std::forward<Args>(args)...);
+      ++size_;
     }
 
     void popBack() noexcept {
