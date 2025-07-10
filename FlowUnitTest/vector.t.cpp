@@ -407,101 +407,773 @@ namespace flow {
       vec.popBack();
       EXPECT_EQ(0, vec.size());
     }
+
+    TEST(VectorTest, EraseFront) {
+      Vector<std::string> vec{ "ab", "cd", "ef", "gh", "ij" };
+      std::size_t oldCapacity = vec.capacity();
+
+      vec.erase(vec.begin());
+      EXPECT_EQ(4, vec.size());
+      EXPECT_EQ(oldCapacity, vec.capacity());
+      EXPECT_EQ("cd", vec[0]);
+      EXPECT_EQ("ef", vec[1]);
+      EXPECT_EQ("gh", vec[2]);
+      EXPECT_EQ("ij", vec[3]);
+    }
+
+    TEST(VectorTest, EraseFrontMoveOnly) {
+      Vector<std::unique_ptr<int>> vec;
+      for (int i = 0; i < 5; ++i) {
+        vec.pushBack(std::make_unique<int>(i));
+      }
+      std::size_t oldCapacity = vec.capacity();
+
+      vec.erase(vec.begin());
+      EXPECT_EQ(4, vec.size());
+      EXPECT_EQ(oldCapacity, vec.capacity());
+      EXPECT_EQ(1, *vec[0]);
+      EXPECT_EQ(2, *vec[1]);
+      EXPECT_EQ(3, *vec[2]);
+      EXPECT_EQ(4, *vec[3]);
+    }
+
+    TEST(VectorTest, EraseFrontUntilEmpty) {
+
+      Vector<std::unique_ptr<int>> vec;
+      for (int i = 0; i < 5; ++i) {
+        vec.pushBack(std::make_unique<int>(i));
+      }
+      std::size_t oldCapacity = vec.capacity();
+
+      for (int i = 0; i < 5; ++i) {
+        vec.erase(vec.begin());
+        EXPECT_EQ(5 - i - 1, vec.size());
+        EXPECT_EQ(oldCapacity, vec.capacity());
+      }
+    }
+
+    TEST(VectorTest, EraseBack) {
+      Vector< std::string> vec{ "ab", "cd", "ef", "gh", "ij" };
+      std::size_t oldCapacity = vec.capacity();
+
+      vec.erase(vec.end() - 1);
+      EXPECT_EQ(4, vec.size());
+      EXPECT_EQ(oldCapacity, vec.capacity());
+      EXPECT_EQ("ab", vec[0]);
+      EXPECT_EQ("cd", vec[1]);
+      EXPECT_EQ("ef", vec[2]);
+      EXPECT_EQ("gh", vec[3]);
+    }
+
+    TEST(VectorTest, EraseBackMoveOnly) {
+      Vector<std::unique_ptr<int>> vec;
+      for (int i = 0; i < 5; ++i) {
+        vec.pushBack(std::make_unique<int>(i));
+      }
+      std::size_t oldCapacity = vec.capacity();
+
+      vec.erase(vec.end()-1);
+      EXPECT_EQ(4, vec.size());
+      EXPECT_EQ(oldCapacity, vec.capacity());
+      EXPECT_EQ(0, *vec[0]);
+      EXPECT_EQ(1, *vec[1]);
+      EXPECT_EQ(2, *vec[2]);
+      EXPECT_EQ(3, *vec[3]);
+    }
+
+    TEST(VectorTest, EraseMiddle) {
+      Vector<std::string> vec{ "ab", "cd", "ef", "gh", "ij" };
+      std::size_t oldCapacity = vec.capacity();
+
+      vec.erase(vec.begin() + 2);
+      EXPECT_EQ(4, vec.size());
+      EXPECT_EQ(oldCapacity, vec.capacity());
+      EXPECT_EQ("ab", vec[0]);
+      EXPECT_EQ("cd", vec[1]);
+      EXPECT_EQ("gh", vec[2]);
+      EXPECT_EQ("ij", vec[3]);
+    }
+
+    TEST(VectorTest, EraseMidMoveOnly) {
+      Vector<std::unique_ptr<int>> vec;
+      for (int i = 0; i < 5; ++i) {
+        vec.pushBack(std::make_unique<int>(i));
+      }
+      std::size_t oldCapacity = vec.capacity();
+
+      vec.erase(vec.begin() + 2);
+      EXPECT_EQ(4, vec.size());
+      EXPECT_EQ(oldCapacity, vec.capacity());
+      EXPECT_EQ(0, *vec[0]);
+      EXPECT_EQ(1, *vec[1]);
+      EXPECT_EQ(3, *vec[2]);
+      EXPECT_EQ(4, *vec[3]);
+    }
+
+    TEST(VectorTest, EraseRangeByOne) {
+      Vector<std::unique_ptr<int>> vec;
+      for (int i = 0; i < 5; ++i) {
+        vec.pushBack(std::make_unique<int>(i));
+      }
+      std::size_t oldCapacity = vec.capacity();
+
+      vec.erase(vec.begin(), vec.begin() + 1);
+      EXPECT_EQ(4, vec.size());
+      EXPECT_EQ(oldCapacity, vec.capacity());
+      EXPECT_EQ(1, *vec[0]);
+      EXPECT_EQ(2, *vec[1]);
+      EXPECT_EQ(3, *vec[2]);
+      EXPECT_EQ(4, *vec[3]);
+    }
+
+    TEST(VectorTest, EraseRangeAll) {
+      Vector<std::unique_ptr<int>> vec;
+      for (int i = 0; i < 5; ++i) {
+        vec.pushBack(std::make_unique<int>(i));
+      }
+      std::size_t oldCapacity = vec.capacity();
+      vec.erase(vec.begin(), vec.end());
+      EXPECT_EQ(0, vec.size());
+      EXPECT_EQ(oldCapacity, vec.capacity());
+    }
+
+    TEST(VectorTest, EraseRangeInMiddle) {
+      Vector<std::unique_ptr<int>> vec;
+      for (int i = 0; i < 5; ++i) {
+        vec.pushBack(std::make_unique<int>(i));
+      }
+      std::size_t oldCapacity = vec.capacity();
+      vec.erase(vec.begin() + 1, vec.begin() + 4);
+      EXPECT_EQ(2, vec.size());
+      EXPECT_EQ(oldCapacity, vec.capacity());
+      EXPECT_EQ(0, *vec[0]);
+      EXPECT_EQ(4, *vec[1]);
+    }
+
+    TEST(VectorTest, InsertMultipleLValues) {
+      Vector<std::string> v;
+
+      // Insert at end initially
+      std::string val1 = "first";
+      v.insert(v.end(), val1);
+      ASSERT_EQ(v.size(), 1);
+      EXPECT_EQ(v[0], "first");
+
+      // Insert at beginning
+      std::string val2 = "zero";
+      v.insert(v.begin(), val2);
+      ASSERT_EQ(v.size(), 2);
+      EXPECT_EQ(v[0], "zero");
+      EXPECT_EQ(v[1], "first");
+
+      // Insert in the middle
+      std::string val3 = "middle";
+      v.insert(v.begin() + 1, val3);
+      ASSERT_EQ(v.size(), 3);
+      EXPECT_EQ(v[0], "zero");
+      EXPECT_EQ(v[1], "middle");
+      EXPECT_EQ(v[2], "first");
+
+      // Insert at end again
+      std::string val4 = "last";
+      v.insert(v.end(), val4);
+      ASSERT_EQ(v.size(), 4);
+      EXPECT_EQ(v[0], "zero");
+      EXPECT_EQ(v[1], "middle");
+      EXPECT_EQ(v[2], "first");
+      EXPECT_EQ(v[3], "last");
+    }
+
+    TEST(VectorTest, InsertMultipleRValues) {
+      Vector<std::unique_ptr<int>> v;
+
+      // Insert at end initially
+      v.insert(v.end(), std::make_unique<int>(10));
+      ASSERT_EQ(v.size(), 1);
+      EXPECT_EQ(*v[0], 10);
+
+      // Insert at beginning
+      v.insert(v.begin(), std::make_unique<int>(5));
+      ASSERT_EQ(v.size(), 2);
+      EXPECT_EQ(*v[0], 5);
+      EXPECT_EQ(*v[1], 10);
+
+      // Insert in the middle
+      v.insert(v.begin() + 1, std::make_unique<int>(7));
+      ASSERT_EQ(v.size(), 3);
+      EXPECT_EQ(*v[0], 5);
+      EXPECT_EQ(*v[1], 7);
+      EXPECT_EQ(*v[2], 10);
+
+      // Insert at end again
+      v.insert(v.end(), std::make_unique<int>(20));
+      ASSERT_EQ(v.size(), 4);
+      EXPECT_EQ(*v[0], 5);
+      EXPECT_EQ(*v[1], 7);
+      EXPECT_EQ(*v[2], 10);
+      EXPECT_EQ(*v[3], 20);
+    }
+
+    TEST(VectorTest, InsertAtBeginning_NoReallocation) {
+      Vector<std::string> v;
+      v.reserve(10);
+      v.insert(v.end(), 5, std::string("one"));  // [one, one, one, one, one]
+
+      v.insert(v.begin(), 2, std::string("nine"));  // [nine, nine, one, one, one, one, one]
+
+      ASSERT_EQ(v.size(), 7);
+      EXPECT_EQ(v[0], "nine");
+      EXPECT_EQ(v[1], "nine");
+      EXPECT_EQ(v[2], "one");
+      EXPECT_EQ(v[3], "one");
+      EXPECT_EQ(v[4], "one");
+      EXPECT_EQ(v[5], "one");
+      EXPECT_EQ(v[6], "one");
+    }
+
+    TEST(VectorTest, InsertAtBeginning_WithReallocation) {
+      Vector<std::string> v;
+      v.reserve(5);
+      v.insert(v.end(), 5, std::string("one"));  // [one x5]
+
+      v.insert(v.begin(), 3, std::string("two"));  // reallocation
+
+      ASSERT_EQ(v.size(), 8);
+      EXPECT_EQ(v[0], "two");
+      EXPECT_EQ(v[1], "two");
+      EXPECT_EQ(v[2], "two");
+      EXPECT_EQ(v[3], "one");
+      EXPECT_EQ(v[4], "one");
+      EXPECT_EQ(v[5], "one");
+      EXPECT_EQ(v[6], "one");
+      EXPECT_EQ(v[7], "one");
+    }
+
+    TEST(VectorTest, InsertAtBeginning_PartialFitTriggersReallocation) {
+      Vector<std::string> v;
+      v.reserve(6);
+      v.insert(v.end(), 5, std::string("x"));  // size = 5, cap = 6
+
+      // Only 1 more element would fit
+      v.insert(v.begin(), 3, std::string("begin"));
+
+      ASSERT_EQ(v.size(), 8);
+      EXPECT_EQ(v[0], "begin");
+      EXPECT_EQ(v[1], "begin");
+      EXPECT_EQ(v[2], "begin");
+      EXPECT_EQ(v[3], "x");
+      EXPECT_EQ(v[4], "x");
+      EXPECT_EQ(v[5], "x");
+      EXPECT_EQ(v[6], "x");
+      EXPECT_EQ(v[7], "x");
+    }
+
+    TEST(VectorTest, InsertInMiddle_NoReallocation) {
+      Vector<std::string> v;
+      v.reserve(10);
+      v.insert(v.end(), 6, std::string("one"));  // [one x6]
+
+      v.insert(v.begin() + 3, 2, std::string("five"));  // insert at index 3
+
+      ASSERT_EQ(v.size(), 8);
+      EXPECT_EQ(v[0], "one");
+      EXPECT_EQ(v[1], "one");
+      EXPECT_EQ(v[2], "one");
+      EXPECT_EQ(v[3], "five");
+      EXPECT_EQ(v[4], "five");
+      EXPECT_EQ(v[5], "one");
+      EXPECT_EQ(v[6], "one");
+      EXPECT_EQ(v[7], "one");
+    }
+
+    TEST(VectorTest, InsertInMiddle_WithReallocation) {
+      Vector<std::string> v;
+      v.reserve(6);
+      v.insert(v.end(), 6, std::string("one"));  // [one x6]
+
+      v.insert(v.begin() + 3, 4, std::string("seven"));  // forces reallocation
+
+      ASSERT_EQ(v.size(), 10);
+      EXPECT_EQ(v[0], "one");
+      EXPECT_EQ(v[1], "one");
+      EXPECT_EQ(v[2], "one");
+      EXPECT_EQ(v[3], "seven");
+      EXPECT_EQ(v[4], "seven");
+      EXPECT_EQ(v[5], "seven");
+      EXPECT_EQ(v[6], "seven");
+      EXPECT_EQ(v[7], "one");
+      EXPECT_EQ(v[8], "one");
+      EXPECT_EQ(v[9], "one");
+    }
+
+    TEST(VectorTest, InsertInMiddle_PartialFitTriggersReallocation) {
+      Vector<std::string> v;
+      v.reserve(7);
+      v.insert(v.end(), 6, std::string("m"));  // size = 6, cap = 7
+
+      // Try inserting 3 at index 2, only 1 fits
+      v.insert(v.begin() + 2, 3, std::string("middle"));
+
+      ASSERT_EQ(v.size(), 9);
+      EXPECT_EQ(v[0], "m");
+      EXPECT_EQ(v[1], "m");
+      EXPECT_EQ(v[2], "middle");
+      EXPECT_EQ(v[3], "middle");
+      EXPECT_EQ(v[4], "middle");
+      EXPECT_EQ(v[5], "m");
+      EXPECT_EQ(v[6], "m");
+      EXPECT_EQ(v[7], "m");
+      EXPECT_EQ(v[8], "m");
+    }
+
+    TEST(VectorTest, InsertAtEnd_NoReallocation) {
+      Vector<std::string> v;
+      v.reserve(10);
+      v.insert(v.end(), 5, std::string("one"));  // [one x5]
+
+      v.insert(v.end(), 2, std::string("nine"));  // [one x5, nine x2]
+
+      ASSERT_EQ(v.size(), 7);
+      EXPECT_EQ(v[0], "one");
+      EXPECT_EQ(v[1], "one");
+      EXPECT_EQ(v[2], "one");
+      EXPECT_EQ(v[3], "one");
+      EXPECT_EQ(v[4], "one");
+      EXPECT_EQ(v[5], "nine");
+      EXPECT_EQ(v[6], "nine");
+    }
+
+    TEST(VectorTest, InsertAtEnd_WithReallocation) {
+      Vector<std::string> v;
+      v.reserve(5);
+      v.insert(v.end(), 5, std::string("one"));  // [one x5]
+
+      v.insert(v.end(), 5, std::string("eight"));  // triggers reallocation
+
+      ASSERT_EQ(v.size(), 10);
+      EXPECT_EQ(v[0], "one");
+      EXPECT_EQ(v[1], "one");
+      EXPECT_EQ(v[2], "one");
+      EXPECT_EQ(v[3], "one");
+      EXPECT_EQ(v[4], "one");
+      EXPECT_EQ(v[5], "eight");
+      EXPECT_EQ(v[6], "eight");
+      EXPECT_EQ(v[7], "eight");
+      EXPECT_EQ(v[8], "eight");
+      EXPECT_EQ(v[9], "eight");
+    }
+
+    TEST(VectorTest, InsertAtEnd_PartialFitTriggersReallocation) {
+      Vector<std::string> v;
+      v.reserve(6);
+      v.insert(v.end(), 5, std::string("end"));  // size = 5, cap = 6
+
+      // Try inserting 3 more - only 1 fits.
+      v.insert(v.end(), 3, std::string("append"));
+
+      ASSERT_EQ(v.size(), 8);
+      EXPECT_EQ(v[0], "end");
+      EXPECT_EQ(v[1], "end");
+      EXPECT_EQ(v[2], "end");
+      EXPECT_EQ(v[3], "end");
+      EXPECT_EQ(v[4], "end");
+      EXPECT_EQ(v[5], "append");
+      EXPECT_EQ(v[6], "append");
+      EXPECT_EQ(v[7], "append");
+    }
+
+    TEST(VectorTest, InsertIteratorRangeAtBeginning_NoReallocation) {
+      Vector<std::string> v;
+      v.reserve(10);
+      v.insert(v.end(), 5, std::string("x"));
+
+      std::set<std::string> input = { "a", "b" };
+
+      v.insert(v.begin(), input.begin(), input.end());
+
+      ASSERT_EQ(v.size(), 7);
+      EXPECT_EQ(v[0], "a");
+      EXPECT_EQ(v[1], "b");
+      EXPECT_EQ(v[2], "x");
+      EXPECT_EQ(v[3], "x");
+      EXPECT_EQ(v[4], "x");
+      EXPECT_EQ(v[5], "x");
+      EXPECT_EQ(v[6], "x");
+    }
+
+    TEST(VectorTest, InsertIteratorRangeAtBeginning_WithReallocation) {
+      Vector<std::string> v;
+      v.reserve(5);
+      v.insert(v.end(), 5, std::string("x"));
+
+      std::set<std::string> input = { "a", "b", "c" };
+
+      v.insert(v.begin(), input.begin(), input.end());
+
+      ASSERT_EQ(v.size(), 8);
+      EXPECT_EQ(v[0], "a");
+      EXPECT_EQ(v[1], "b");
+      EXPECT_EQ(v[2], "c");
+      EXPECT_EQ(v[3], "x");
+      EXPECT_EQ(v[4], "x");
+      EXPECT_EQ(v[5], "x");
+      EXPECT_EQ(v[6], "x");
+      EXPECT_EQ(v[7], "x");
+    }
+
+    TEST(VectorTest, InsertIteratorRangeInMiddle_NoReallocation) {
+      Vector<std::string> v;
+      v.reserve(10);
+      v.insert(v.end(), 6, std::string("x"));
+
+      std::set<std::string> input = { "m1", "m2" };
+
+      v.insert(v.begin() + 3, input.begin(), input.end());
+
+      ASSERT_EQ(v.size(), 8);
+      EXPECT_EQ(v[0], "x");
+      EXPECT_EQ(v[1], "x");
+      EXPECT_EQ(v[2], "x");
+      EXPECT_EQ(v[3], "m1");
+      EXPECT_EQ(v[4], "m2");
+      EXPECT_EQ(v[5], "x");
+      EXPECT_EQ(v[6], "x");
+      EXPECT_EQ(v[7], "x");
+    }
+
+    TEST(VectorTest, InsertIteratorRangeInMiddle_WithReallocation) {
+      Vector<std::string> v;
+      v.reserve(6);
+      v.insert(v.end(), 6, std::string("x"));
+
+      std::set<std::string> input = { "m1", "m2", "m3" };
+
+      v.insert(v.begin() + 2, input.begin(), input.end());
+
+      ASSERT_EQ(v.size(), 9);
+      EXPECT_EQ(v[0], "x");
+      EXPECT_EQ(v[1], "x");
+      EXPECT_EQ(v[2], "m1");
+      EXPECT_EQ(v[3], "m2");
+      EXPECT_EQ(v[4], "m3");
+      EXPECT_EQ(v[5], "x");
+      EXPECT_EQ(v[6], "x");
+      EXPECT_EQ(v[7], "x");
+      EXPECT_EQ(v[8], "x");
+    }
+
+    TEST(VectorTest, InsertIteratorRangeAtEnd_NoReallocation) {
+      Vector<std::string> v;
+      v.reserve(10);
+      v.insert(v.end(), 5, std::string("x"));
+
+      std::set<std::string> input = { "y1", "y2" };
+
+      v.insert(v.end(), input.begin(), input.end());
+
+      ASSERT_EQ(v.size(), 7);
+      EXPECT_EQ(v[0], "x");
+      EXPECT_EQ(v[1], "x");
+      EXPECT_EQ(v[2], "x");
+      EXPECT_EQ(v[3], "x");
+      EXPECT_EQ(v[4], "x");
+      EXPECT_EQ(v[5], "y1");
+      EXPECT_EQ(v[6], "y2");
+    }
+
+    TEST(VectorTest, InsertIteratorRangeAtEnd_WithReallocation) {
+      Vector<std::string> v;
+      v.reserve(5);
+      v.insert(v.end(), 5, std::string("x"));
+
+      std::set<std::string> input = { "y1", "y2", "y3" };
+
+      v.insert(v.end(), input.begin(), input.end());
+
+      ASSERT_EQ(v.size(), 8);
+      EXPECT_EQ(v[0], "x");
+      EXPECT_EQ(v[1], "x");
+      EXPECT_EQ(v[2], "x");
+      EXPECT_EQ(v[3], "x");
+      EXPECT_EQ(v[4], "x");
+      EXPECT_EQ(v[5], "y1");
+      EXPECT_EQ(v[6], "y2");
+      EXPECT_EQ(v[7], "y3");
+    }
+
+    TEST(VectorTest, InsertInitializerListAtBeginning_NoReallocation) {
+      Vector<std::string> v;
+      v.reserve(10);
+      v.insert(v.end(), 5, std::string("x"));
+
+      v.insert(v.begin(), { "a", "b" });
+
+      ASSERT_EQ(v.size(), 7);
+      EXPECT_EQ(v[0], "a");
+      EXPECT_EQ(v[1], "b");
+      EXPECT_EQ(v[2], "x");
+      EXPECT_EQ(v[3], "x");
+      EXPECT_EQ(v[4], "x");
+      EXPECT_EQ(v[5], "x");
+      EXPECT_EQ(v[6], "x");
+    }
+
+    TEST(VectorTest, InsertInitializerListAtBeginning_WithReallocation) {
+      Vector<std::string> v;
+      v.reserve(5);
+      v.insert(v.end(), 5, std::string("x"));
+
+      v.insert(v.begin(), { "a", "b", "c" });
+
+      ASSERT_EQ(v.size(), 8);
+      EXPECT_EQ(v[0], "a");
+      EXPECT_EQ(v[1], "b");
+      EXPECT_EQ(v[2], "c");
+      EXPECT_EQ(v[3], "x");
+      EXPECT_EQ(v[4], "x");
+      EXPECT_EQ(v[5], "x");
+      EXPECT_EQ(v[6], "x");
+      EXPECT_EQ(v[7], "x");
+    }
+
+    TEST(VectorTest, InsertInitializerListInMiddle_NoReallocation) {
+      Vector<std::string> v;
+      v.reserve(10);
+      v.insert(v.end(), 6, std::string("x"));
+
+      v.insert(v.begin() + 3, { "m1", "m2" });
+
+      ASSERT_EQ(v.size(), 8);
+      EXPECT_EQ(v[0], "x");
+      EXPECT_EQ(v[1], "x");
+      EXPECT_EQ(v[2], "x");
+      EXPECT_EQ(v[3], "m1");
+      EXPECT_EQ(v[4], "m2");
+      EXPECT_EQ(v[5], "x");
+      EXPECT_EQ(v[6], "x");
+      EXPECT_EQ(v[7], "x");
+    }
+
+    TEST(VectorTest, InsertInitializerListInMiddle_WithReallocation) {
+      Vector<std::string> v;
+      v.reserve(6);
+      v.insert(v.end(), 6, std::string("x"));
+
+      v.insert(v.begin() + 2, { "m1", "m2", "m3" });
+
+      ASSERT_EQ(v.size(), 9);
+      EXPECT_EQ(v[0], "x");
+      EXPECT_EQ(v[1], "x");
+      EXPECT_EQ(v[2], "m1");
+      EXPECT_EQ(v[3], "m2");
+      EXPECT_EQ(v[4], "m3");
+      EXPECT_EQ(v[5], "x");
+      EXPECT_EQ(v[6], "x");
+      EXPECT_EQ(v[7], "x");
+      EXPECT_EQ(v[8], "x");
+    }
+
+    TEST(VectorTest, InsertInitializerListAtEnd_NoReallocation) {
+      Vector<std::string> v;
+      v.reserve(10);
+      v.insert(v.end(), 5, std::string("x"));
+
+      v.insert(v.end(), { "y1", "y2" });
+
+      ASSERT_EQ(v.size(), 7);
+      EXPECT_EQ(v[0], "x");
+      EXPECT_EQ(v[1], "x");
+      EXPECT_EQ(v[2], "x");
+      EXPECT_EQ(v[3], "x");
+      EXPECT_EQ(v[4], "x");
+      EXPECT_EQ(v[5], "y1");
+      EXPECT_EQ(v[6], "y2");
+    }
+
+    TEST(VectorTest, InsertInitializerListAtEnd_WithReallocation) {
+      Vector<std::string> v;
+      v.reserve(5);
+      v.insert(v.end(), 5, std::string("x"));
+
+      v.insert(v.end(), { "y1", "y2", "y3" });
+
+      ASSERT_EQ(v.size(), 8);
+      EXPECT_EQ(v[0], "x");
+      EXPECT_EQ(v[1], "x");
+      EXPECT_EQ(v[2], "x");
+      EXPECT_EQ(v[3], "x");
+      EXPECT_EQ(v[4], "x");
+      EXPECT_EQ(v[5], "y1");
+      EXPECT_EQ(v[6], "y2");
+      EXPECT_EQ(v[7], "y3");
+    }
+
+    TEST(VectorTest, SwapTwoNonEmptyVectors) {
+      Vector<std::string> a;
+      Vector<std::string> b;
+      a.insert(a.end(), 3, std::string("a"));  // [a, a, a]
+      b.insert(b.end(), 2, std::string("b"));  // [b, b]
+
+      swap(a, b);
+
+      ASSERT_EQ(a.size(), 2);
+      EXPECT_EQ(a[0], "b");
+      EXPECT_EQ(a[1], "b");
+
+      ASSERT_EQ(b.size(), 3);
+      EXPECT_EQ(b[0], "a");
+      EXPECT_EQ(b[1], "a");
+      EXPECT_EQ(b[2], "a");
+    }
+
+    TEST(VectorTest, SwapEmptyLeftVector) {
+      Vector<std::string> a;  // empty
+      Vector<std::string> b;
+      b.insert(b.end(), 2, std::string("b"));  // [b, b]
+
+      swap(a, b);
+
+      ASSERT_EQ(a.size(), 2);
+      EXPECT_EQ(a[0], "b");
+      EXPECT_EQ(a[1], "b");
+
+      ASSERT_EQ(b.size(), 0);
+    }
+
+    TEST(VectorTest, SwapEmptyRightVector) {
+      Vector<std::string> a;
+      a.insert(a.end(), 2, std::string("a"));  // [a, a]
+      Vector<std::string> b;  // empty
+
+      swap(a, b);
+
+      ASSERT_EQ(b.size(), 2);
+      EXPECT_EQ(b[0], "a");
+      EXPECT_EQ(b[1], "a");
+
+      ASSERT_EQ(a.size(), 0);
+    }
+
+    TEST(VectorTest, SwapTwoEmptyVectors) {
+      Vector<std::string> a;
+      Vector<std::string> b;
+
+      swap(a, b);
+
+      ASSERT_EQ(a.size(), 0);
+      ASSERT_EQ(b.size(), 0);
+    }
+
+    TEST(VectorTest, SwapUniquePtr_NonEmptyVectors) {
+      Vector<std::unique_ptr<int>> a;
+      Vector<std::unique_ptr<int>> b;
+
+      a.insert(a.end(), std::make_unique<int>(1));
+      a.insert(a.end(), std::make_unique<int>(2));
+      b.insert(b.end(), std::make_unique<int>(3));
+
+      swap(a, b);
+
+      ASSERT_EQ(a.size(), 1);
+      ASSERT_EQ(*a[0], 3);
+
+      ASSERT_EQ(b.size(), 2);
+      EXPECT_EQ(*b[0], 1);
+      EXPECT_EQ(*b[1], 2);
+    }
+
+    TEST(VectorTest, SwapUniquePtr_LeftEmpty) {
+      Vector<std::unique_ptr<int>> a;
+      Vector<std::unique_ptr<int>> b;
+
+      b.insert(b.end(), std::make_unique<int>(10));
+      b.insert(b.end(), std::make_unique<int>(20));
+
+      swap(a, b);
+
+      ASSERT_EQ(a.size(), 2);
+      EXPECT_EQ(*a[0], 10);
+      EXPECT_EQ(*a[1], 20);
+
+      ASSERT_EQ(b.size(), 0);
+    }
+
+    TEST(VectorTest, SwapUniquePtr_RightEmpty) {
+      Vector<std::unique_ptr<int>> a;
+      Vector<std::unique_ptr<int>> b;
+
+      a.insert(a.end(), std::make_unique<int>(100));
+
+      swap(a, b);
+
+      ASSERT_EQ(b.size(), 1);
+      EXPECT_EQ(*b[0], 100);
+
+      ASSERT_EQ(a.size(), 0);
+    }
+
+    TEST(VectorTest, SwapUniquePtr_TwoEmptyVectors) {
+      Vector<std::unique_ptr<int>> a;
+      Vector<std::unique_ptr<int>> b;
+
+      swap(a, b);
+
+      ASSERT_EQ(a.size(), 0);
+      ASSERT_EQ(b.size(), 0);
+    }
+
+    TEST(VectorTest, EqualityOperator_SameElements) {
+      Vector<std::string> a;
+      Vector<std::string> b;
+
+      a.insert(a.end(), 3, std::string("same"));
+      b.insert(b.end(), 3, std::string("same"));
+
+      EXPECT_TRUE(a == b);
+      EXPECT_FALSE(a != b);
+    }
+
+    TEST(VectorTest, EqualityOperator_DifferentElements) {
+      Vector<std::string> a;
+      Vector<std::string> b;
+
+      a.insert(a.end(), 3, std::string("a"));
+      b.insert(b.end(), 3, std::string("b"));
+
+      EXPECT_FALSE(a == b);
+      EXPECT_TRUE(a != b);
+    }
+
+    TEST(VectorTest, EqualityOperator_DifferentSizes) {
+      Vector<std::string> a;
+      Vector<std::string> b;
+
+      a.insert(a.end(), { "x", "y" });
+      b.insert(b.end(), { "x", "y", "z" });
+
+      EXPECT_FALSE(a == b);
+      EXPECT_TRUE(a != b);
+    }
+
+    TEST(VectorTest, EqualityOperator_BothEmpty) {
+      Vector<std::string> a;
+      Vector<std::string> b;
+
+      EXPECT_TRUE(a == b);
+      EXPECT_FALSE(a != b);
+    }
+
+    TEST(VectorTest, EqualityOperator_OneEmpty) {
+      Vector<std::string> a;
+      Vector<std::string> b;
+
+      b.insert(b.end(), { "not", "empty" });
+
+      EXPECT_FALSE(a == b);
+      EXPECT_TRUE(a != b);
+    }
 }
 
-
-//
-//  TEST(VectorTest, EraseFrontAndBack) {
-//    Vector<int> vec = { 1, 2, 3, 4, 5 };
-//    vec.erase(vec.begin());
-//    EXPECT_EQ(4, vec.size());
-//    EXPECT_EQ(2, vec[0]);
-//    EXPECT_EQ(3, vec[1]);
-//    EXPECT_EQ(4, vec[2]);
-//    EXPECT_EQ(5, vec[3]);
-//
-//    vec.erase(vec.begin() + 3);
-//    EXPECT_EQ(3, vec.size());
-//    EXPECT_EQ(2, vec[0]);
-//    EXPECT_EQ(3, vec[1]);
-//    EXPECT_EQ(4, vec[2]);
-//  }
-//
-//  TEST(VectorTest, EraseRange) {
-//    Vector<int> vec = { 1, 2, 3, 4, 5 };
-//    vec.erase(vec.begin() + 1, vec.begin() + 3);
-//
-//    EXPECT_EQ(3, vec.size());
-//    EXPECT_EQ(1, vec[0]);
-//    EXPECT_EQ(4, vec[1]);
-//    EXPECT_EQ(5, vec[2]);
-//
-//    vec.erase(vec.begin(), vec.end());
-//    EXPECT_EQ(0, vec.size());
-//  }
-//
-//  TEST(VectorTest, InsertRangeFrontAndBack) {
-//    Vector<int> vec = { 100, 200, 300 };
-//
-//    // Insert range front.
-//    Vector<int> values = { 1, 2, 3 };
-//    vec.insert(vec.begin(), values.begin(), values.end());
-//    EXPECT_EQ(6, vec.size());
-//    EXPECT_EQ(1, vec[0]);
-//    EXPECT_EQ(2, vec[1]);
-//    EXPECT_EQ(3, vec[2]);
-//    EXPECT_EQ(100, vec[3]);
-//    EXPECT_EQ(200, vec[4]);
-//    EXPECT_EQ(300, vec[5]);
-//
-//    // Insert range back.
-//    values = { 4, 5, 6 };
-//    vec.insert(vec.end(), values.begin(), values.end());
-//    EXPECT_EQ(9, vec.size());
-//    EXPECT_EQ(1, vec[0]);
-//    EXPECT_EQ(2, vec[1]);
-//    EXPECT_EQ(3, vec[2]);
-//    EXPECT_EQ(100, vec[3]);
-//    EXPECT_EQ(200, vec[4]);
-//    EXPECT_EQ(300, vec[5]);
-//    EXPECT_EQ(4, vec[6]);
-//    EXPECT_EQ(5, vec[7]);
-//    EXPECT_EQ(6, vec[8]);
-//
-//    // Insert range middle.
-//    values = { 7, 8, 9 };
-//    vec.insert(vec.begin() + 3, values.begin(), values.end());
-//    EXPECT_EQ(12, vec.size());
-//    EXPECT_EQ(1, vec[0]);
-//    EXPECT_EQ(2, vec[1]);
-//    EXPECT_EQ(3, vec[2]);
-//    EXPECT_EQ(7, vec[3]);
-//    EXPECT_EQ(8, vec[4]);
-//    EXPECT_EQ(9, vec[5]);
-//    EXPECT_EQ(100, vec[6]);
-//    EXPECT_EQ(200, vec[7]);
-//    EXPECT_EQ(300, vec[8]);
-//    EXPECT_EQ(4, vec[9]);
-//    EXPECT_EQ(5, vec[10]);
-//    EXPECT_EQ(6, vec[11]);
-//  }
-//
-//  TEST(VectorTest, InsertPointFrontAndBack) {
-//    Vector<int> vec;
-//    for (int i = 0; i < 32; ++i) {
-//      vec.insert(vec.begin(), i);
-//    }
-//    for (int i = 0; i < 32; ++i) {
-//      EXPECT_EQ(32 - i - 1, vec[i]);
-//    }
-//
-//    for (int i = 0; i < 32; ++i) {
-//      vec.insert(vec.end(), i);
-//    }
-//    for (int i = 32; i < 64; ++i) {
-//      EXPECT_EQ(i - 32, vec[i]);
-//    }
-//  }
 //  TEST(VectorTest, MapIntToString) {
 //    Vector<int> vec = { 1, 2, 3 };
 //    auto strVec = vec.map([](int n) {return std::string(n, 'a');  });

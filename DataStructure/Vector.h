@@ -67,6 +67,13 @@ namespace flow {
     std::size_t capacity_;
     T* buffer_;
 
+    // Clean up the old buffer.
+    void updateBuffer(T* buffer, std::size_t capacity) {
+      deleteBuffer(allocator_, buffer_, size_, capacity_);
+      buffer_ = buffer;
+      capacity_ = capacity;
+    }
+
     // Allocate a new buffer with the capacity, and relocate the elements to it.
     // This update the buffer_ and capacity_ internally.
     void relocateBuffer(std::size_t capacity) {
@@ -74,11 +81,7 @@ namespace flow {
 
       T* buffer = allocator_trait::allocate(allocator_, capacity);
       uninitializedMove(allocator_, begin(), end(), buffer);
-
-      // Clean up the old buffer.
-      deleteBuffer(allocator_, buffer_, size_, capacity_);
-      buffer_ = buffer;
-      capacity_ = capacity;
+      updateBuffer(buffer, capacity);
     }
 
     // Allocate a new buffer with the capacity, and relocate the elements to it with a hole at pos.
@@ -88,10 +91,7 @@ namespace flow {
       T* buffer = allocator_trait::allocate(allocator_, capacity);
       iterator leftHalf = uninitializedMove(allocator_, begin(), pos, buffer); // Move left half.
       uninitializedMove(allocator_, pos, end(), leftHalf + holeSize); // Move right half.
-
-      // Clean up the old buffer.
-      deleteBuffer(allocator_, buffer_, size_, capacity_);
-      buffer_ = buffer;
+      updateBuffer(buffer, capacity);
     }
 
     template <typename ...U>
@@ -327,7 +327,7 @@ namespace flow {
         // Major optimization to use memcpy, copy_backward, or range move_backward instead of handroll loop. A 70% reduction in computation time.
         allocator_trait::construct(allocator_, end(), std::move(back()));
         std::move_backward(pos, end()-1, end());
-        *pos = T(args...);
+        *pos = T(std::forward<Args>(args)...);
 
       } else {
         // Not enough capacity, relocate all to a new buffer.
