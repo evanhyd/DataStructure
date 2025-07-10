@@ -147,6 +147,7 @@ using namespace std;
 #include "vector.h"
 
 int main() {
+  flow::Vector vec = { 1, 2, 3 };
 }
 
 /*
