@@ -102,5 +102,8 @@
     <ClInclude Include="counted_value_view_iterator.h">
       <Filter>flow\iterator</Filter>
     </ClInclude>
+    <ClInclude Include="monotonic_memory_resource.h">
+      <Filter>flow\memory</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

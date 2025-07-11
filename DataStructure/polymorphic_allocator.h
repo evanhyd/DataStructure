@@ -46,5 +46,8 @@ namespace flow {
 
   private:
     MemoryResource* resource_; // Non-owning memory resource.
+
+    template <typename U>
+    friend class PolymorphicAllocator;
   };
 }

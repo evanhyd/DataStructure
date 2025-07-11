@@ -254,6 +254,7 @@
     <ClInclude Include="concurrent_flex_queue.h" />
     <ClInclude Include="default_memory_resource.h" />
     <ClInclude Include="DisjointSet.h" />
+    <ClInclude Include="monotonic_memory_resource.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="memory.h" />
     <ClInclude Include="IntegerIterator.h" />

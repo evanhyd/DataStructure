@@ -145,9 +145,26 @@ const auto __ = std::atexit([]() { std::ofstream("display_runtime.txt") << INT_M
 using namespace std;
 
 #include "vector.h"
+#include "monotonic_memory_resource.h"
 
 int main() {
-  flow::Vector vec = { 1, 2, 3 };
+  char buffer[1000]{};
+  flow::MonotonicMemoryResource resource(buffer, 1000);
+  flow::Vector<flow::Vector<int64_t>> vec{ flow::PolymorphicAllocator<flow::Vector<int64_t>>(resource) };
+  vec.reserve(10);
+  vec.resize(3, flow::Vector<int64_t>(3, 69));
+  vec.pushBack(flow::Vector<int64_t>(3, 69));
+
+  for (int i = 0; i < 1000 / 8; ++i) {
+    cout << *(reinterpret_cast<int64_t*>(buffer) + i) << '\n';
+  }
+
+  for (auto& row : vec) {
+    for (auto col : row) {
+      cout << col << ' ';
+    }
+    cout << '\n';
+  }
 }
 
 /*
