@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="DebugMemoryLeak|Win32">
@@ -243,35 +243,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="memory.cpp" />
     <ClCompile Include="practice.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AVLTree.h" />
     <ClInclude Include="BinaryHeap.h" />
     <ClInclude Include="BinomialHeap.h" />
-    <ClInclude Include="concurrent_queue.h" />
-    <ClInclude Include="concurrent_flex_queue.h" />
-    <ClInclude Include="default_memory_resource.h" />
+    <ClInclude Include="flow_concurrent_queue.h" />
+    <ClInclude Include="flow_concurrent_flex_queue.h" />
+    <ClInclude Include="flow_debug_memory.h" />
+    <ClInclude Include="flow_default_memory_resource.h" />
     <ClInclude Include="DisjointSet.h" />
-    <ClInclude Include="monotonic_memory_resource.h" />
+    <ClInclude Include="flow_memory_algorithm.h" />
+    <ClInclude Include="flow_monotonic_memory_resource.h" />
+    <ClInclude Include="flow_random_algorithm.h" />
+    <ClInclude Include="flow_timer.h" />
     <ClInclude Include="LinkedList.h" />
-    <ClInclude Include="memory.h" />
     <ClInclude Include="IntegerIterator.h" />
-    <ClInclude Include="memory_algorithm.h" />
-    <ClInclude Include="memory_resource.h" />
-    <ClInclude Include="polymorphic_allocator.h" />
+    <ClInclude Include="flow_memory_resource.h" />
+    <ClInclude Include="flow_polymorphic_allocator.h" />
     <ClInclude Include="PSDA.h" />
-    <ClInclude Include="random.h" />
     <ClInclude Include="RandomMeldableHeap.h" />
-    <ClInclude Include="counted_value_view_iterator.h" />
+    <ClInclude Include="flow_counted_value_view_iterator.h" />
     <ClInclude Include="SegmentTree.h" />
     <ClInclude Include="SkipList.h" />
     <ClInclude Include="SparseTable.h" />
-    <ClInclude Include="timer.h" />
     <ClInclude Include="Trie.h" />
-    <ClInclude Include="tuple.h" />
-    <ClInclude Include="vector.h" />
+    <ClInclude Include="flow_tuple.h" />
+    <ClInclude Include="flow_vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

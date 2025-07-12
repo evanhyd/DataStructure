@@ -144,32 +144,33 @@ const auto __ = std::atexit([]() { std::ofstream("display_runtime.txt") << INT_M
 
 using namespace std;
 
-#include "memory.h"
-#include "vector.h"
-#include "monotonic_memory_resource.h"
 
+#include "flow_vector.h"
+#include "flow_monotonic_memory_resource.h"
+#include "flow_polymorphic_allocator.h"
+#include "flow_debug_memory.h"
+
+using namespace flow;
 
 int main() {
-  box::MemoryGuard();
-  std::array<int64_t, 400>buffer{};
-  static_assert(buffer.size() % sizeof(void*) == 0);
+  enableMemoryGuard();
 
-  using namespace flow;
-  flow::MonotonicMemoryResource resource(buffer.data(), buffer.size() * sizeof(int64_t));
-  PolymorphicAllocator<> alloc{resource};
+  std::array<int64_t, 1000> globalBuffer{};
+  MonotonicMemoryResource resource(globalBuffer.data(), globalBuffer.size() * sizeof(int64_t));
+  PolymorphicAllocator<> alloc{ resource };
 
-  Vector<Vector<int64_t>> vec(alloc);
-  vec.resize(10, Vector<int64_t>(10, 69, alloc));
+  Vector<vector<int64_t, PolymorphicAllocator<int64_t>>> vec{ alloc };
+  vec.resize(10, vector<int64_t, PolymorphicAllocator<int64_t>>(10, 69, alloc));
+  vec.back().push_back(123);
 
-
-  cout << "buffer\n";
-  for (int i = 0; i < buffer.size(); ++i) {
-    cout << buffer[i] << ' ';
+  cout << "Global Buffer:\n";
+  for (int i = 0; i < globalBuffer.size(); ++i) {
+    cout << globalBuffer[i] << ' ';
     if (i % 6 == 0) {
       cout << '\n';
     }
   }
-  cout << '\n';
+  cout << "\n---------------------------\n";
 
   for (auto& row : vec) {
     for (auto& col : row) {
@@ -177,14 +178,6 @@ int main() {
     }
     cout << '\n';
   }
-
-  /*char buffer[1000]{};
-  flow::MonotonicMemoryResource resource(buffer, 1000);
-  flow::Vector<vector<int64_t, flow::PolymorphicAllocator<int64_t>>> vec{ flow::PolymorphicAllocator<flow::Vector<int64_t>>(resource) };
-  vec.reserve(10);
-  vec.resize(3, vector<int64_t, flow::PolymorphicAllocator<int64_t>>(3, 69));
-  vec.pushBack(vector<int64_t, flow::PolymorphicAllocator<int64_t>>(3, 69));
-  */
 }
 
 /*

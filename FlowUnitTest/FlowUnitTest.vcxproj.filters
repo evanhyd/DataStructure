@@ -21,23 +21,26 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="vector.t.cpp">
+    <ClCompile Include="flow_vector.t.cpp">
       <Filter>flow</Filter>
     </ClCompile>
-    <ClCompile Include="memory_resource.t.cpp">
+    <ClCompile Include="flow_memory_resource.t.cpp">
       <Filter>flow\memory</Filter>
     </ClCompile>
-    <ClCompile Include="concurrent_flex_queue.t.cpp">
+    <ClCompile Include="flow_concurrent_flex_queue.t.cpp">
       <Filter>flow\concurrent</Filter>
     </ClCompile>
-    <ClCompile Include="concurrent_queue.t.cpp">
+    <ClCompile Include="flow_concurrent_queue.t.cpp">
       <Filter>flow\concurrent</Filter>
     </ClCompile>
-    <ClCompile Include="memory_algorithm.t.cpp">
+    <ClCompile Include="flow_memory_algorithm.t.cpp">
       <Filter>flow\algorithm</Filter>
     </ClCompile>
-    <ClCompile Include="counted_value_view_iterator.t.cpp">
+    <ClCompile Include="flow_counted_value_view_iterator.t.cpp">
       <Filter>flow\iterator</Filter>
+    </ClCompile>
+    <ClCompile Include="flow_random_algorithm.t.cpp">
+      <Filter>flow\algorithm</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

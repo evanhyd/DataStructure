@@ -1,7 +1,7 @@
 #pragma warning(push)
 #pragma warning(disable : 4324) // Disable alignas warning.
-#include "../DataStructure/default_memory_resource.h"
-#include "../DataStructure/memory_resource.h"
+#include "../DataStructure/flow_default_memory_resource.h"
+#include "../DataStructure/flow_memory_resource.h"
 #include <gtest/gtest.h>
 
 namespace flow {

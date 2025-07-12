@@ -2,16 +2,10 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="practice.cpp" />
-    <ClCompile Include="memory.cpp">
-      <Filter>Box</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="DataStructure">
       <UniqueIdentifier>{3683ffae-e6ce-425e-8060-5492b7018102}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Box">
-      <UniqueIdentifier>{bd0ac8b8-d301-4000-aa62-f7d68cb3ccc0}</UniqueIdentifier>
     </Filter>
     <Filter Include="flow">
       <UniqueIdentifier>{d88a89bd-39df-40eb-8b11-7b801d84ca2b}</UniqueIdentifier>
@@ -19,26 +13,20 @@
     <Filter Include="flow\concurrency">
       <UniqueIdentifier>{038160e0-f0d4-4164-92d9-cd8e8b8c875f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="flow\memory">
-      <UniqueIdentifier>{03fba4ba-f8c1-4fe4-af82-9dee244bf3f8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="flow\algorithm">
       <UniqueIdentifier>{34619d0c-c33f-426a-89f7-9eb92d64f3ca}</UniqueIdentifier>
     </Filter>
     <Filter Include="flow\iterator">
       <UniqueIdentifier>{85328b52-a14f-4127-9d82-caec75a61669}</UniqueIdentifier>
     </Filter>
+    <Filter Include="flow\memory">
+      <UniqueIdentifier>{03fba4ba-f8c1-4fe4-af82-9dee244bf3f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="flow\time">
+      <UniqueIdentifier>{7b59ebfe-b3fc-48eb-8df2-cf75cd3b6d10}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="timer.h">
-      <Filter>Box</Filter>
-    </ClInclude>
-    <ClInclude Include="random.h">
-      <Filter>Box</Filter>
-    </ClInclude>
-    <ClInclude Include="memory.h">
-      <Filter>Box</Filter>
-    </ClInclude>
     <ClInclude Include="AVLTree.h">
       <Filter>DataStructure</Filter>
     </ClInclude>
@@ -75,35 +63,44 @@
     <ClInclude Include="IntegerIterator.h">
       <Filter>DataStructure</Filter>
     </ClInclude>
-    <ClInclude Include="vector.h">
+    <ClInclude Include="flow_vector.h">
       <Filter>flow</Filter>
     </ClInclude>
-    <ClInclude Include="tuple.h">
+    <ClInclude Include="flow_tuple.h">
       <Filter>flow</Filter>
     </ClInclude>
-    <ClInclude Include="polymorphic_allocator.h">
+    <ClInclude Include="flow_polymorphic_allocator.h">
       <Filter>flow\memory</Filter>
     </ClInclude>
-    <ClInclude Include="concurrent_flex_queue.h">
+    <ClInclude Include="flow_concurrent_flex_queue.h">
       <Filter>flow\concurrency</Filter>
     </ClInclude>
-    <ClInclude Include="concurrent_queue.h">
+    <ClInclude Include="flow_concurrent_queue.h">
       <Filter>flow\concurrency</Filter>
     </ClInclude>
-    <ClInclude Include="memory_resource.h">
+    <ClInclude Include="flow_memory_resource.h">
       <Filter>flow\memory</Filter>
     </ClInclude>
-    <ClInclude Include="default_memory_resource.h">
+    <ClInclude Include="flow_default_memory_resource.h">
       <Filter>flow\memory</Filter>
     </ClInclude>
-    <ClInclude Include="memory_algorithm.h">
+    <ClInclude Include="flow_memory_algorithm.h">
       <Filter>flow\algorithm</Filter>
     </ClInclude>
-    <ClInclude Include="counted_value_view_iterator.h">
+    <ClInclude Include="flow_counted_value_view_iterator.h">
       <Filter>flow\iterator</Filter>
     </ClInclude>
-    <ClInclude Include="monotonic_memory_resource.h">
+    <ClInclude Include="flow_monotonic_memory_resource.h">
       <Filter>flow\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="flow_debug_memory.h">
+      <Filter>flow\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="flow_random_algorithm.h">
+      <Filter>flow\algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="flow_timer.h">
+      <Filter>flow\time</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

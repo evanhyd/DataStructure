@@ -1,5 +1,5 @@
 #pragma once
-#include "memory_resource.h"
+#include "flow_memory_resource.h"
 
 namespace flow {
   class DefaultMemoryResource : public MemoryResource {

@@ -1,6 +1,6 @@
 #pragma once
-#include <cstddef>
 #include <cassert>
+#include <cstddef>
 #include <iterator>
 
 namespace flow {

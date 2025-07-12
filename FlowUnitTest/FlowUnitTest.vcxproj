@@ -109,12 +109,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="concurrent_flex_queue.t.cpp" />
-    <ClCompile Include="concurrent_queue.t.cpp" />
-    <ClCompile Include="counted_value_view_iterator.t.cpp" />
-    <ClCompile Include="memory_algorithm.t.cpp" />
-    <ClCompile Include="memory_resource.t.cpp" />
-    <ClCompile Include="vector.t.cpp" />
+    <ClCompile Include="flow_concurrent_flex_queue.t.cpp" />
+    <ClCompile Include="flow_concurrent_queue.t.cpp" />
+    <ClCompile Include="flow_counted_value_view_iterator.t.cpp" />
+    <ClCompile Include="flow_memory_algorithm.t.cpp" />
+    <ClCompile Include="flow_memory_resource.t.cpp" />
+    <ClCompile Include="flow_random_algorithm.t.cpp" />
+    <ClCompile Include="flow_vector.t.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataStructure\DataStructure.vcxproj">
