@@ -8,7 +8,7 @@ namespace flow {
   // An adaptor wraps around a non-owning memory resource.
   // It provides accessor to allocate/deallocate memory,
   // or construct/destroy objects.
-  template <typename T>
+  template <typename T = std::byte>
   class PolymorphicAllocator {
   public:
     using value_type = T; // Minimum requirement for allocator_traits
@@ -49,5 +49,15 @@ namespace flow {
 
     template <typename U>
     friend class PolymorphicAllocator;
+
+    template <typename U>
+    friend bool operator==(const flow::PolymorphicAllocator<T>& lhs, const flow::PolymorphicAllocator<U>& rhs) {
+      return lhs.resource_ == rhs.resource_;
+    }
+
+    template <typename U>
+    friend bool operator!=(const flow::PolymorphicAllocator<T>& lhs, const flow::PolymorphicAllocator<U>& rhs) {
+      return !(lhs == rhs);
+    }
   };
 }

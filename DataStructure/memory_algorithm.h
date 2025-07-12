@@ -19,11 +19,7 @@ namespace flow {
   template <typename AllocatorType, std::input_iterator InputIt, std::forward_iterator OutputIt>
   OutputIt uninitializedForward(AllocatorType& allocator, InputIt first, InputIt last, OutputIt dest) {
     for (; first != last; ++first, ++dest) {
-      if constexpr (std::uses_allocator_v<typename std::iterator_traits<OutputIt>::value_type, AllocatorType>) {
-        std::allocator_traits<AllocatorType>::construct(allocator, std::addressof(*dest), *first, allocator);
-      } else {
-        std::allocator_traits<AllocatorType>::construct(allocator, std::addressof(*dest), *first);
-      }
+      std::allocator_traits<AllocatorType>::construct(allocator, std::addressof(*dest), *first);
     }
     return dest;
   }
@@ -59,11 +55,7 @@ namespace flow {
   template <typename AllocatorType, std::forward_iterator OutputIt, typename ...Args>
   OutputIt uninitializedEmplace(AllocatorType& allocator, OutputIt first, OutputIt last, const Args&... args) {
     for (; first != last; ++first) {
-      if constexpr (std::uses_allocator_v<typename std::iterator_traits<OutputIt>::value_type, AllocatorType>) {
-        std::allocator_traits<AllocatorType>::construct(allocator, std::addressof(*first), args..., allocator);
-      } else {
-        std::allocator_traits<AllocatorType>::construct(allocator, std::addressof(*first), args...);
-      }
+      std::allocator_traits<AllocatorType>::construct(allocator, std::addressof(*first), args...);
     }
     return first;
   }
@@ -113,11 +105,7 @@ namespace flow {
   template <typename AllocatorType, std::input_iterator InputIt, std::forward_iterator OutputIt>
   OutputIt uninitializedForwardN(AllocatorType& allocator, InputIt first, std::size_t count, OutputIt dest) {
     for (std::size_t i = 0; i < count; ++i, ++first, ++dest) {
-      if constexpr (std::uses_allocator_v<typename std::iterator_traits<OutputIt>::value_type, AllocatorType>) {
-        std::allocator_traits<AllocatorType>::construct(allocator, std::addressof(*dest), *first, allocator);
-      } else{
-        std::allocator_traits<AllocatorType>::construct(allocator, std::addressof(*dest), *first);
-      }
+      std::allocator_traits<AllocatorType>::construct(allocator, std::addressof(*dest), *first);
     }
     return dest;
   }
@@ -153,11 +141,7 @@ namespace flow {
   template <typename AllocatorType, std::forward_iterator OutputIt, typename ...Args>
   OutputIt uninitializedEmplaceN(AllocatorType& allocator, OutputIt first, std::size_t count, const Args&... args) {
     for (std::size_t i = 0; i < count; ++i, ++first) {
-      if constexpr (std::uses_allocator_v<typename std::iterator_traits<OutputIt>::value_type, AllocatorType>) {
-        std::allocator_traits<AllocatorType>::construct(allocator, std::addressof(*first), args..., allocator);
-      } else {
-        std::allocator_traits<AllocatorType>::construct(allocator, std::addressof(*first), args...);
-      }
+      std::allocator_traits<AllocatorType>::construct(allocator, std::addressof(*first), args...);
     }
     return first;
   }

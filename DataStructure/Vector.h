@@ -44,7 +44,7 @@ namespace flow {
   };
 
 
-  template <typename T, typename Allocator = PolymorphicAllocator<T>, GrowthStrategy Strategy = VectorGrowthStrategy::GoldenExpand>
+  template <typename T, typename Allocator = PolymorphicAllocator<>, GrowthStrategy Strategy = VectorGrowthStrategy::GoldenExpand>
   class Vector {
   public:
     using value_type = T;
@@ -56,10 +56,10 @@ namespace flow {
     using const_iterator = const T*;
     using size_type = std::size_t;
     using difference_type = std::ptrdiff_t;
-    using allocator_type = Allocator;
+    using allocator_type = std::allocator_traits<Allocator>::template rebind_alloc<T>;
 
   private:
-    using allocator_trait = std::allocator_traits<allocator_type>;
+    using allocator_trait = std::allocator_traits<Allocator>::template rebind_traits<T>;
 
     allocator_type allocator_;
     Strategy growthStrategy_;
@@ -113,7 +113,12 @@ namespace flow {
 
   public:
     // Constructors
-    explicit constexpr Vector(const allocator_type& allocator = allocator_type())
+    // Default construct should not be explicit.
+    constexpr Vector() noexcept
+      : Vector(allocator_type{}) {
+    }
+
+    explicit constexpr Vector(const allocator_type& allocator)
       : allocator_(allocator),
         growthStrategy_(),
         size_(0),
@@ -122,12 +127,7 @@ namespace flow {
     }
 
     constexpr Vector(const Vector& rhs)
-      : allocator_(rhs.allocator_),
-        growthStrategy_(rhs.growthStrategy_),
-        size_(rhs.size_),
-        capacity_(rhs.capacity_),
-        buffer_(allocator_trait::allocate(allocator_, rhs.capacity_)) {
-      uninitializedForward(allocator_, rhs.begin(), rhs.end(), buffer_);
+      : Vector(rhs, rhs.get_allocator()) {
     }
 
     constexpr Vector(const Vector& rhs, const allocator_type& allocator)
@@ -139,25 +139,26 @@ namespace flow {
       uninitializedForward(allocator_, rhs.begin(), rhs.end(), buffer_);
     }
 
+    // Move constructor must be noexcept
     constexpr Vector(Vector&& rhs) noexcept
-      : allocator_(std::exchange(rhs.allocator_, allocator_type())),
-        growthStrategy_(std::exchange(rhs.growthStrategy_, Strategy())),
-        size_(std::exchange(rhs.size_, 0)),
-        capacity_(std::exchange(rhs.capacity_, 0)),
-        buffer_(std::exchange(rhs.buffer_, nullptr)) {
+      : Vector(std::move(rhs), rhs.get_allocator()) {
     }
 
-    constexpr Vector(Vector&& rhs, const allocator_type& allocator) noexcept
-      : allocator_(allocator),
-        growthStrategy_(std::exchange(rhs.growthStrategy_, Strategy())),
-        size_(std::exchange(rhs.size_, 0)),
-        capacity_(std::exchange(rhs.capacity_, 0)),
-        buffer_(std::exchange(rhs.buffer_, nullptr)) {
+    // Extended move constructor may through
+    constexpr Vector(Vector&& rhs, const allocator_type& allocator)
+      : Vector(allocator) {
 
+      if (rhs.get_allocator() == allocator) {
+        swap(*this, rhs);
+      } else {
+        // Create a copy with new allocator, then swap over.
+        Vector rhsCopy(rhs, allocator);
+        swap(*this, rhsCopy);
+      }
     }
 
     template <std::input_iterator It>
-    explicit constexpr Vector(It first, It last, const allocator_type& allocator = allocator_type())
+    explicit constexpr Vector(It first, It last, const allocator_type& allocator = {})
       : allocator_(allocator),
         growthStrategy_(),
         size_(std::distance(first, last)),
@@ -166,11 +167,11 @@ namespace flow {
       uninitializedForward(allocator_, first, last, buffer_);
     }
 
-    constexpr Vector(std::initializer_list<T> list, const allocator_type& allocator = allocator_type())
+    constexpr Vector(std::initializer_list<T> list, const allocator_type& allocator = {})
       : Vector(list.begin(), list.end(), allocator) {
     }
 
-    explicit constexpr Vector(std::size_t count, const allocator_type& allocator = allocator_type())
+    explicit constexpr Vector(std::size_t count, const allocator_type& allocator = {})
       : allocator_(allocator),
         growthStrategy_(),
         size_(count),
@@ -179,7 +180,7 @@ namespace flow {
       uninitializedEmplaceN(allocator_, buffer_, count);
     }
 
-    explicit constexpr Vector(std::size_t count, const T& value, const allocator_type& allocator = allocator_type())
+    explicit constexpr Vector(std::size_t count, const T& value, const allocator_type& allocator = {})
       : allocator_(allocator),
         growthStrategy_(),
         size_(count),
@@ -299,12 +300,7 @@ namespace flow {
       if (size_ == capacity_) {
         relocateBuffer(growthStrategy_(capacity_));
       }
-
-      if constexpr (std::uses_allocator_v<T, allocator_type>) {
-        allocator_trait::construct(allocator_, buffer_ + size_, std::forward<Args>(args)..., allocator_);
-      } else {
-        allocator_trait::construct(allocator_, buffer_ + size_, std::forward<Args>(args)...);
-      }
+      allocator_trait::construct(allocator_, buffer_ + size_, std::forward<Args>(args)...);
       ++size_;
     }
 
@@ -355,22 +351,13 @@ namespace flow {
         // Major optimization to use memcpy, copy_backward, or range move_backward instead of handroll loop. A 70% reduction in computation time.
         allocator_trait::construct(allocator_, end(), std::move(back()));
         std::move_backward(pos, end()-1, end());
-
-        if constexpr (std::uses_allocator_v<T, allocator_type>) {
-          *pos = T(std::forward<Args>(args)..., allocator_);
-        } else {
-          *pos = T(std::forward<Args>(args)...);
-        }
+        *pos = T(std::forward<Args>(args)...);
 
       } else {
         // Not enough capacity, relocate all to a new buffer.
         std::size_t index = pos - buffer_;
         relocateBufferWithHoles(growthStrategy_(capacity_), pos, 1);
-        if constexpr (std::uses_allocator_v<T, allocator_type>) {
-          allocator_trait::construct(allocator_, buffer_ + index, std::forward<Args>(args)..., allocator_);
-        } else {
-          allocator_trait::construct(allocator_, buffer_ + index, std::forward<Args>(args)...);
-        }
+        allocator_trait::construct(allocator_, buffer_ + index, std::forward<Args>(args)...);
       }
       ++size_;
     }
