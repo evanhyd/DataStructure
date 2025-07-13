@@ -36,7 +36,7 @@ namespace flow {
       size_t i = 0;
       for (const auto& timepoint : timepoints_) {
         auto dur = timepoint - begin_;
-        str += std::format("\t[{}] {} s, {} ms, {} us\n",
+        str += std::format("\t[{}] {}, {}, {}\n",
                            i,
                            std::chrono::duration_cast<std::chrono::seconds>(dur),
                            std::chrono::duration_cast<std::chrono::milliseconds>(dur),

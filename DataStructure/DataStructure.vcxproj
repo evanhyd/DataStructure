@@ -247,6 +247,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AVLTree.h" />
+    <ClInclude Include="benchmark.h" />
     <ClInclude Include="BinaryHeap.h" />
     <ClInclude Include="BinomialHeap.h" />
     <ClInclude Include="flow_concurrent_queue.h" />
@@ -255,8 +256,9 @@
     <ClInclude Include="flow_default_memory_resource.h" />
     <ClInclude Include="DisjointSet.h" />
     <ClInclude Include="flow_memory_algorithm.h" />
-    <ClInclude Include="flow_monotonic_memory_resource.h" />
+    <ClInclude Include="flow_arena_memory_resource.h" />
     <ClInclude Include="flow_random_algorithm.h" />
+    <ClInclude Include="flow_stack_memory_resource.h" />
     <ClInclude Include="flow_timer.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="IntegerIterator.h" />

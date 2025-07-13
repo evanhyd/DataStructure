@@ -144,40 +144,35 @@ const auto __ = std::atexit([]() { std::ofstream("display_runtime.txt") << INT_M
 
 using namespace std;
 
-
-#include "flow_vector.h"
-#include "flow_monotonic_memory_resource.h"
-#include "flow_polymorphic_allocator.h"
-#include "flow_debug_memory.h"
+#include "benchmark.h"
 
 using namespace flow;
 
+struct Bar {
+  int a, b, c;
+};
+
+constexpr int a = alignof(Bar);
+
 int main() {
-  enableMemoryGuard();
+  constexpr size_t kElementSize = 10'000'000;
+  constexpr size_t kBenchTime = 3;
 
-  std::array<int64_t, 1000> globalBuffer{};
-  MonotonicMemoryResource resource(globalBuffer.data(), globalBuffer.size() * sizeof(int64_t));
-  PolymorphicAllocator<> alloc{ resource };
+  //benchmark::benchmarkStdVector(kElementSize, kBenchTime);
+  //benchmark::benchmarkFlowVector(kElementSize, kBenchTime);
+  benchmark::benchmarkStdSet(kElementSize, kBenchTime);
 
-  Vector<vector<int64_t, PolymorphicAllocator<int64_t>>> vec{ alloc };
-  vec.resize(10, vector<int64_t, PolymorphicAllocator<int64_t>>(10, 69, alloc));
-  vec.back().push_back(123);
 
-  cout << "Global Buffer:\n";
-  for (int i = 0; i < globalBuffer.size(); ++i) {
-    cout << globalBuffer[i] << ' ';
-    if (i % 6 == 0) {
-      cout << '\n';
-    }
-  }
-  cout << "\n---------------------------\n";
-
-  for (auto& row : vec) {
-    for (auto& col : row) {
-      cout << col << ' ';
-    }
-    cout << '\n';
-  }
+  //// Dump Info
+  //return 0;
+  //cout << "Global Buffer:\n";
+  //for (int i = 0; i < globalBuffer.size(); ++i) {
+  //  cout << globalBuffer[i] << ' ';
+  //  if (i % 6 == 0) {
+  //    cout << '\n';
+  //  }
+  //}
+  //cout << "\n---------------------------\n";
 }
 
 /*
