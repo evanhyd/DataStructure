@@ -145,34 +145,16 @@ const auto __ = std::atexit([]() { std::ofstream("display_runtime.txt") << INT_M
 using namespace std;
 
 #include "benchmark.h"
-
 using namespace flow;
 
-struct Bar {
-  int a, b, c;
-};
-
-constexpr int a = alignof(Bar);
-
 int main() {
-  constexpr size_t kElementSize = 10'000'000;
+  constexpr size_t kElementSize = 5'000'000;
   constexpr size_t kBenchTime = 3;
-
   //benchmark::benchmarkStdVector(kElementSize, kBenchTime);
   //benchmark::benchmarkFlowVector(kElementSize, kBenchTime);
+  //benchmark::benchmarkStdVectorString(kElementSize, kBenchTime);
+  //benchmark::benchmarkFlowVectorString(kElementSize, kBenchTime);
   benchmark::benchmarkStdSet(kElementSize, kBenchTime);
-
-
-  //// Dump Info
-  //return 0;
-  //cout << "Global Buffer:\n";
-  //for (int i = 0; i < globalBuffer.size(); ++i) {
-  //  cout << globalBuffer[i] << ' ';
-  //  if (i % 6 == 0) {
-  //    cout << '\n';
-  //  }
-  //}
-  //cout << "\n---------------------------\n";
 }
 
 /*
