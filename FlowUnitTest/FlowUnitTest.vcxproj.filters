@@ -19,13 +19,13 @@
     <Filter Include="flow\iterator">
       <UniqueIdentifier>{29c05987-b217-41de-8804-7ba4f30b02b1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="flow\memory\memory_resource">
+      <UniqueIdentifier>{9de310fb-26aa-4e52-93c5-206e134e685b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="flow_vector.t.cpp">
       <Filter>flow</Filter>
-    </ClCompile>
-    <ClCompile Include="flow_memory_resource.t.cpp">
-      <Filter>flow\memory</Filter>
     </ClCompile>
     <ClCompile Include="flow_concurrent_flex_queue.t.cpp">
       <Filter>flow\concurrent</Filter>
@@ -41,6 +41,15 @@
     </ClCompile>
     <ClCompile Include="flow_random_algorithm.t.cpp">
       <Filter>flow\algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="flow_stack_memory_resource.t.cpp">
+      <Filter>flow\memory\memory_resource</Filter>
+    </ClCompile>
+    <ClCompile Include="flow_arena_memory_resource.t.cpp">
+      <Filter>flow\memory\memory_resource</Filter>
+    </ClCompile>
+    <ClCompile Include="flow_memory_resource.t.cpp">
+      <Filter>flow\memory\memory_resource</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -261,7 +261,7 @@ namespace benchmark {
     using namespace std;
     using namespace flow;
 
-    unique_ptr<byte[]> buffer = make_unique<byte[]>(elementSize * sizeof(int64_t) * 8);
+    unique_ptr<byte[]> buffer = make_unique<byte[]>(elementSize * sizeof(int64_t) * 32);
     vector<int64_t> nums(elementSize);
     iota(nums.begin(), nums.end(), int64_t(0));
     flow::shuffle(nums.begin(), nums.end());
@@ -279,7 +279,7 @@ namespace benchmark {
     }
 
     for (size_t bench = 0; bench < benchTime; ++bench) {
-      ArenaMemoryResource resource(buffer.get(), elementSize * sizeof(int64_t) * 8);
+      ArenaMemoryResource resource(buffer.get(), elementSize * sizeof(int64_t) * 32);
       PolymorphicAllocator<> alloc{ resource };
       set<int64_t, std::less<int64_t>, PolymorphicAllocator<int64_t>> st{ alloc };
 
@@ -293,7 +293,7 @@ namespace benchmark {
     }
 
     for (size_t bench = 0; bench < benchTime; ++bench) {
-      std::pmr::monotonic_buffer_resource mbr{ buffer.get(), elementSize * sizeof(int64_t) * 8 };
+      std::pmr::monotonic_buffer_resource mbr{ buffer.get(), elementSize * sizeof(int64_t) * 32 };
       std::pmr::polymorphic_allocator<int64_t> pa{ &mbr };
       pmr::set<int64_t, std::less<int64_t>> st(pa);
 
