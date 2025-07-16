@@ -150,10 +150,10 @@ using namespace flow;
 int main() {
   constexpr size_t kElementSize = 5'000'000;
   constexpr size_t kBenchTime = 3;
-  //benchmark::benchmarkStdVector(kElementSize, kBenchTime);
-  //benchmark::benchmarkFlowVector(kElementSize, kBenchTime);
-  //benchmark::benchmarkStdVectorString(kElementSize, kBenchTime);
-  //benchmark::benchmarkFlowVectorString(kElementSize, kBenchTime);
+  benchmark::benchmarkStdVector(kElementSize, kBenchTime);
+  benchmark::benchmarkFlowVector(kElementSize, kBenchTime);
+  benchmark::benchmarkStdVectorString(kElementSize, kBenchTime);
+  benchmark::benchmarkFlowVectorString(kElementSize, kBenchTime);
   benchmark::benchmarkStdSet(kElementSize, kBenchTime);
 }
 

@@ -16,6 +16,7 @@ namespace benchmark {
 
     unique_ptr<int64_t[]> buffer = make_unique<int64_t[]>(elementSize * 32);
 
+    cout << "std::vector raw\n";
     for (size_t bench = 0; bench < benchTime; ++bench) {
       vector<int64_t> vec{};
 
@@ -25,9 +26,10 @@ namespace benchmark {
         vec.push_back(i);
       }
       timer.record();
-      cout << "std::vector raw\n" << timer.toString() << '\n';
+      cout << timer.toString() << '\n';
     }
 
+    cout << "std::vector reserve\n";
     for (size_t bench = 0; bench < benchTime; ++bench) {
       vector<int64_t> vec{};
 
@@ -38,9 +40,10 @@ namespace benchmark {
         vec.push_back(i);
       }
       timer.record();
-      cout << "std::vector reserve\n" << timer.toString() << '\n';
+      cout << timer.toString() << '\n';
     }
 
+    cout << "std::vector raw arena\n";
     for (size_t bench = 0; bench < benchTime; ++bench) {
       ArenaMemoryResource resource(buffer.get(), elementSize * 32 * sizeof(int64_t));
       PolymorphicAllocator<> alloc{ resource };
@@ -52,9 +55,10 @@ namespace benchmark {
         vec.push_back(i);
       }
       timer.record();
-      cout << "std::vector raw arena\n" << timer.toString() << '\n';
+      cout << timer.toString() << '\n';
     }
 
+    cout << "std::vector reserve arena\n";
     for (size_t bench = 0; bench < benchTime; ++bench) {
       ArenaMemoryResource resource(buffer.get(), elementSize * 32 * sizeof(int64_t));
       PolymorphicAllocator<> alloc{ resource };
@@ -67,7 +71,7 @@ namespace benchmark {
         vec.push_back(i);
       }
       timer.record();
-      cout << "std::vector reserve arena\n" << timer.toString() << '\n';
+      cout << timer.toString() << '\n';
     }
   }
 
@@ -77,6 +81,7 @@ namespace benchmark {
 
     unique_ptr<int64_t[]> buffer = make_unique<int64_t[]>(elementSize * 32);
 
+    cout << "flow::Vector raw\n";
     for (size_t bench = 0; bench < benchTime; ++bench) {
       Vector<int64_t> vec{};
 
@@ -86,9 +91,10 @@ namespace benchmark {
         vec.pushBack(i);
       }
       timer.record();
-      cout << "flow::Vector raw \n" << timer.toString() << '\n';
+      cout << timer.toString() << '\n';
     }
 
+    cout << "flow::Vector reserve\n";
     for (size_t bench = 0; bench < benchTime; ++bench) {
       Vector<int64_t> vec{};
 
@@ -99,9 +105,10 @@ namespace benchmark {
         vec.pushBack(i);
       }
       timer.record();
-      cout << "flow::Vector reserve \n" << timer.toString() << '\n';
+      cout << timer.toString() << '\n';
     }
 
+    cout << "flow::Vector raw arena\n";
     for (size_t bench = 0; bench < benchTime; ++bench) {
       ArenaMemoryResource resource(buffer.get(), elementSize * 32 * sizeof(int64_t));
       PolymorphicAllocator<> alloc{ resource };
@@ -114,9 +121,10 @@ namespace benchmark {
         vec.pushBack(i);
       }
       timer.record();
-      cout << "flow::Vector raw arena\n" << timer.toString() << '\n';
+      cout << timer.toString() << '\n';
     }
 
+    cout << "flow::Vector reserve arena\n";
     for (size_t bench = 0; bench < benchTime; ++bench) {
       ArenaMemoryResource resource(buffer.get(), elementSize * 32 * sizeof(int64_t));
       PolymorphicAllocator<> alloc{ resource };
@@ -129,7 +137,7 @@ namespace benchmark {
         vec.pushBack(i);
       }
       timer.record();
-      cout << "flow::Vector reserve arena\n" << timer.toString() << '\n';
+      cout << timer.toString() << '\n';
     }
   }
 
@@ -140,6 +148,7 @@ namespace benchmark {
     const string sample = "the quick brown fox jumps over the lazy dog";
     unique_ptr<int64_t[]> buffer = make_unique<int64_t[]>(elementSize * 32);
 
+    cout << "std::vector raw\n";
     for (size_t bench = 0; bench < benchTime; ++bench) {
       vector<string> vec{};
 
@@ -149,9 +158,10 @@ namespace benchmark {
         vec.push_back(sample);
       }
       timer.record();
-      cout << "std::vector raw\n" << timer.toString() << '\n';
+      cout << timer.toString() << '\n';
     }
 
+    cout << "std::vector reserve\n";
     for (size_t bench = 0; bench < benchTime; ++bench) {
       vector<string> vec{};
       vec.reserve(elementSize);
@@ -162,9 +172,10 @@ namespace benchmark {
         vec.push_back(sample);
       }
       timer.record();
-      cout << "std::vector reserve\n" << timer.toString() << '\n';
+      cout << timer.toString() << '\n';
     }
 
+    cout << "std::vector raw arena\n";
     for (size_t bench = 0; bench < benchTime; ++bench) {
       ArenaMemoryResource resource(buffer.get(), elementSize * 32 * sizeof(int64_t));
       PolymorphicAllocator<> alloc{ resource };
@@ -176,9 +187,10 @@ namespace benchmark {
         vec.push_back(sample);
       }
       timer.record();
-      cout << "std::vector raw arena\n" << timer.toString() << '\n';
+      cout << timer.toString() << '\n';
     }
 
+    cout << "std::vector reserve arena\n";
     for (size_t bench = 0; bench < benchTime; ++bench) {
       ArenaMemoryResource resource(buffer.get(), elementSize * 32 * sizeof(int64_t));
       PolymorphicAllocator<> alloc{ resource };
@@ -191,7 +203,7 @@ namespace benchmark {
         vec.push_back(sample);
       }
       timer.record();
-      cout << "std::vector reserve arena\n" << timer.toString() << '\n';
+      cout << timer.toString() << '\n';
     }
   }
 
@@ -202,6 +214,7 @@ namespace benchmark {
     const string sample = "the quick brown fox jumps over the lazy dog";
     unique_ptr<int64_t[]> buffer = make_unique<int64_t[]>(elementSize * 32);
 
+    cout << "flow::Vector raw\n";
     for (size_t bench = 0; bench < benchTime; ++bench) {
       Vector<string> vec{};
 
@@ -211,9 +224,10 @@ namespace benchmark {
         vec.pushBack(sample);
       }
       timer.record();
-      cout << "flow::Vector raw\n" << timer.toString() << '\n';
+      cout << timer.toString() << '\n';
     }
 
+    cout << "flow::Vector reserve\n";
     for (size_t bench = 0; bench < benchTime; ++bench) {
       Vector<string> vec{};
       vec.reserve(elementSize);
@@ -224,9 +238,10 @@ namespace benchmark {
         vec.pushBack(sample);
       }
       timer.record();
-      cout << "flow::Vector reserve\n" << timer.toString() << '\n';
+      cout << timer.toString() << '\n';
     }
 
+    cout << "flow::Vector raw arena\n";
     for (size_t bench = 0; bench < benchTime; ++bench) {
       ArenaMemoryResource resource(buffer.get(), elementSize * 32 * sizeof(int64_t));
       PolymorphicAllocator<> alloc{ resource };
@@ -238,9 +253,10 @@ namespace benchmark {
         vec.pushBack(sample);
       }
       timer.record();
-      cout << "flow::Vector raw arena\n" << timer.toString() << '\n';
+      cout << timer.toString() << '\n';
     }
 
+    cout << "flow::Vector reserve arena\n";
     for (size_t bench = 0; bench < benchTime; ++bench) {
       ArenaMemoryResource resource(buffer.get(), elementSize * 32 * sizeof(int64_t));
       PolymorphicAllocator<> alloc{ resource };
@@ -253,7 +269,7 @@ namespace benchmark {
         vec.pushBack(sample);
       }
       timer.record();
-      cout << "flow::Vector reserve arena\n" << timer.toString() << '\n';
+      cout << timer.toString() << '\n';
     }
   }
 
@@ -266,6 +282,7 @@ namespace benchmark {
     iota(nums.begin(), nums.end(), int64_t(0));
     flow::shuffle(nums.begin(), nums.end());
 
+    cout << "std::set\n";
     for (size_t bench = 0; bench < benchTime; ++bench) {
       set<int64_t, std::less<int64_t>> st{};
 
@@ -275,9 +292,10 @@ namespace benchmark {
         st.insert(n);
       }
       timer.record();
-      cout << "std::set\n" << timer.toString() << '\n';
+      cout << timer.toString() << '\n';
     }
 
+    cout << "std::set arena\n";
     for (size_t bench = 0; bench < benchTime; ++bench) {
       ArenaMemoryResource resource(buffer.get(), elementSize * sizeof(int64_t) * 32);
       PolymorphicAllocator<> alloc{ resource };
@@ -289,9 +307,10 @@ namespace benchmark {
         st.insert(n);
       }
       timer.record();
-      cout << "std::set arena\n" << timer.toString() << '\n';
+      cout << timer.toString() << '\n';
     }
 
+    cout << "std::set monotonic\n";
     for (size_t bench = 0; bench < benchTime; ++bench) {
       std::pmr::monotonic_buffer_resource mbr{ buffer.get(), elementSize * sizeof(int64_t) * 32 };
       std::pmr::polymorphic_allocator<int64_t> pa{ &mbr };
@@ -303,7 +322,7 @@ namespace benchmark {
         st.insert(n);
       }
       timer.record();
-      cout << "std::set monotonic\n" << timer.toString() << '\n';
+      cout << timer.toString() << '\n';
     }
   }
 }
