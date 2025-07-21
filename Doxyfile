@@ -14,7 +14,7 @@ EXTRACT_ANON_NSPACES   = YES
 # --------- Input Settings ---------
 INPUT                  = DataStructure/
 RECURSIVE              = YES
-FILE_PATTERNS          = *.cpp *.h *.hpp *.cxx *.cc
+FILE_PATTERNS          = flow_*.cpp flow_*.h flow_*.hpp flow_*.cxx flow_*.cc
 EXCLUDE                = 
 
 # --------- Source Browsing ---------

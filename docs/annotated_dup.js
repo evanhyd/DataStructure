@@ -16,20 +16,5 @@ var annotated_dup =
       [ "Tuple< T, Ts... >", "classflow_1_1_tuple_3_01_t_00_01_ts_8_8_8_01_4.html", "classflow_1_1_tuple_3_01_t_00_01_ts_8_8_8_01_4" ],
       [ "Vector", "classflow_1_1_vector.html", "classflow_1_1_vector" ],
       [ "VectorGrowthStrategy", "structflow_1_1_vector_growth_strategy.html", "structflow_1_1_vector_growth_strategy" ]
-    ] ],
-    [ "std", "namespacestd.html", [
-      [ "hash< pair< T, T > >", "structstd_1_1hash_3_01pair_3_01_t_00_01_t_01_4_01_4.html", "structstd_1_1hash_3_01pair_3_01_t_00_01_t_01_4_01_4" ]
-    ] ],
-    [ "AVLTree", "class_a_v_l_tree.html", "class_a_v_l_tree" ],
-    [ "BinaryHeap", "class_binary_heap.html", "class_binary_heap" ],
-    [ "BinomialHeap", "class_binomial_heap.html", "class_binomial_heap" ],
-    [ "DisjointSet", "class_disjoint_set.html", "class_disjoint_set" ],
-    [ "IntegerIterator", "class_integer_iterator.html", "class_integer_iterator" ],
-    [ "LinkedList", "class_linked_list.html", "class_linked_list" ],
-    [ "PSDA", "class_p_s_d_a.html", "class_p_s_d_a" ],
-    [ "RandomMeldableHeap", "class_random_meldable_heap.html", "class_random_meldable_heap" ],
-    [ "SegmentTree", "class_segment_tree.html", "class_segment_tree" ],
-    [ "SkipList", "class_skip_list.html", "class_skip_list" ],
-    [ "SparseTable", "class_sparse_table.html", "class_sparse_table" ],
-    [ "Trie", "class_trie.html", "class_trie" ]
+    ] ]
 ];

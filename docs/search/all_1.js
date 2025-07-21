@@ -1,12 +1,11 @@
 var searchData=
 [
-  ['alignwithheader_0',['alignWithHeader',['../namespaceflow.html#ad508020eec40eabb44ecd17a0ea944a1',1,'flow']]],
-  ['allocate_1',['allocate',['../classflow_1_1_memory_resource.html#a5f348b979d67c8503d67d6a5ec7bfda9',1,'flow::MemoryResource::allocate()'],['../classflow_1_1_polymorphic_allocator.html#a9ecfbea0e237d47dbaeb792d40470981',1,'flow::PolymorphicAllocator::allocate()']]],
-  ['allocateimp_2',['allocateImp',['../classflow_1_1_arena_memory_resource.html#a621223b622d7efd5503f65c9de3aab1b',1,'flow::ArenaMemoryResource::allocateImp()'],['../classflow_1_1_default_memory_resource.html#a5b3b10ccc61e2b8d17606eb5fc0f1627',1,'flow::DefaultMemoryResource::allocateImp()'],['../classflow_1_1_memory_resource.html#a8179af2eb6e69df16d8ee3d82286ec10',1,'flow::MemoryResource::allocateImp()'],['../classflow_1_1_pool_memory_resource.html#a3cfb07a234f406f4fb8c1d1c154861bc',1,'flow::PoolMemoryResource::allocateImp()'],['../classflow_1_1_stack_memory_resource.html#a2ac0250b455868bd79a38da643b421d5',1,'flow::StackMemoryResource::allocateImp()']]],
-  ['allocator_5f_3',['allocator_',['../classflow_1_1_vector.html#ad06c3b5cb971e7dbf7cdba5be93f7f06',1,'flow::Vector']]],
-  ['allocator_5ftrait_4',['allocator_trait',['../classflow_1_1_vector.html#a424909668ab5c7879b210d83dba285df',1,'flow::Vector']]],
-  ['allocator_5ftype_5',['allocator_type',['../classflow_1_1_concurrent_queue.html#af4048108b7a00a714017892338c92ac6',1,'flow::ConcurrentQueue::allocator_type'],['../classflow_1_1_vector.html#ad756f48cb4b3d644d3ee2272016e53de',1,'flow::Vector::allocator_type']]],
-  ['arenamemoryresource_6',['ArenaMemoryResource',['../classflow_1_1_arena_memory_resource.html',1,'flow::ArenaMemoryResource'],['../classflow_1_1_arena_memory_resource.html#ad4978347aee081a4eea9ba60d5c64831',1,'flow::ArenaMemoryResource::ArenaMemoryResource()']]],
-  ['avltree_7',['AVLTree',['../class_a_v_l_tree.html',1,'AVLTree&lt; T &gt;'],['../class_a_v_l_tree.html#a9fab28b32e97ffc5e0f1a4ed3d9823b2',1,'AVLTree::AVLTree()'],['../class_a_v_l_tree.html#ada4e04560ad4579bf28c4c54594f5fdf',1,'AVLTree::AVLTree(const AVLTree &amp;tree)'],['../class_a_v_l_tree.html#a14c1e8c04a3b932d973f30351b909269',1,'AVLTree::AVLTree(AVLTree &amp;&amp;tree) noexcept']]],
-  ['avltree_2eh_8',['AVLTree.h',['../_a_v_l_tree_8h.html',1,'']]]
+  ['back_0',['back',['../classflow_1_1_vector.html#ad02fbe2f355e1bea83186cbb97b53d69',1,'flow::Vector::back() noexcept'],['../classflow_1_1_vector.html#a23941afb170992195959db92f14bc114',1,'flow::Vector::back() const noexcept']]],
+  ['basetype_1',['BaseType',['../classflow_1_1_tuple_3_01_t_00_01_ts_8_8_8_01_4.html#a4f1f896d869a98776eb4ea84f90ff3f9',1,'flow::Tuple&lt; T, Ts... &gt;']]],
+  ['begin_2',['begin',['../classflow_1_1_vector.html#a52107e19ce15e50a4a610a1486203a55',1,'flow::Vector::begin() noexcept'],['../classflow_1_1_vector.html#af0f7ae6593900ce9862bf99895c4e181',1,'flow::Vector::begin() const noexcept']]],
+  ['begin_5f_3',['begin_',['../classflow_1_1_timer.html#acbd02d5581f7c9944d26b2af920de561',1,'flow::Timer']]],
+  ['blockalignment_5f_4',['blockAlignment_',['../classflow_1_1_pool_memory_resource.html#a78edca92b66c6501c24f699bb13090ab',1,'flow::PoolMemoryResource']]],
+  ['blocked_5f_5',['blocked_',['../classflow_1_1_concurrent_flex_queue.html#af0130ab4a2ff9034c8dd97fbee1fc968',1,'flow::ConcurrentFlexQueue::blocked_'],['../classflow_1_1_concurrent_queue.html#ae41447f6c7b2caafcbfce2533219ad0c',1,'flow::ConcurrentQueue::blocked_']]],
+  ['blocksize_5f_6',['blockSize_',['../classflow_1_1_pool_memory_resource.html#ac14d17a1ae812d2f72140249a05f32be',1,'flow::PoolMemoryResource']]],
+  ['buffer_5f_7',['buffer_',['../classflow_1_1_arena_memory_resource.html#a2d283fc7e546c911ffa7869a23671ad8',1,'flow::ArenaMemoryResource::buffer_'],['../classflow_1_1_stack_memory_resource.html#a2f4289d48c9ac450dc8f2f44f5c0ef25',1,'flow::StackMemoryResource::buffer_'],['../classflow_1_1_vector.html#a597edff02196a283944224a5464c62a0',1,'flow::Vector::buffer_']]]
 ];

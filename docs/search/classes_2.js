@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['concurrentflexqueue_0',['ConcurrentFlexQueue',['../classflow_1_1_concurrent_flex_queue.html',1,'flow']]],
-  ['concurrentqueue_1',['ConcurrentQueue',['../classflow_1_1_concurrent_queue.html',1,'flow']]],
-  ['countedvalueviewiterator_2',['CountedValueViewIterator',['../classflow_1_1_counted_value_view_iterator.html',1,'flow']]]
+  ['debugclass_0',['DebugClass',['../classflow_1_1_debug_class.html',1,'flow']]],
+  ['defaultmemoryresource_1',['DefaultMemoryResource',['../classflow_1_1_default_memory_resource.html',1,'flow']]],
+  ['doubleexpand_2',['DoubleExpand',['../structflow_1_1_vector_growth_strategy_1_1_double_expand.html',1,'flow::VectorGrowthStrategy']]]
 ];

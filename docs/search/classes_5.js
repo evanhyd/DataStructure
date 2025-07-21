@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['goldenexpand_0',['GoldenExpand',['../structflow_1_1_vector_growth_strategy_1_1_golden_expand.html',1,'flow::VectorGrowthStrategy']]]
+  ['header_0',['Header',['../structflow_1_1_pool_memory_resource_1_1_header.html',1,'flow::PoolMemoryResource::Header'],['../structflow_1_1_stack_memory_resource_1_1_header.html',1,'flow::StackMemoryResource::Header']]]
 ];

@@ -1,19 +1,7 @@
 var searchData=
 [
-  ['u16_0',['u16',['../entry_8cpp.html#a917e58b0692c2df778a27350534cbfe7',1,'entry.cpp']]],
-  ['u32_1',['u32',['../entry_8cpp.html#a65cf28726f89e62ccf2f1354bc2716df',1,'entry.cpp']]],
-  ['u64_2',['u64',['../entry_8cpp.html#a66e1d499241ccae9a18a20a1f4f0590d',1,'entry.cpp']]],
-  ['u8_3',['u8',['../entry_8cpp.html#a254d32383658e016368673396e7afc1b',1,'entry.cpp']]],
-  ['uninitializedemplace_4',['uninitializedEmplace',['../namespaceflow.html#a003a0f5de60743211f4a12ad692ea545',1,'flow']]],
-  ['uninitializedemplacen_5',['uninitializedEmplaceN',['../namespaceflow.html#ae91210e00bd937af8781ad61d96bb7af',1,'flow']]],
-  ['uninitializedfill_6',['uninitializedFill',['../namespaceflow.html#ac44af902cb4c10b49fa9f5992daa6c92',1,'flow']]],
-  ['uninitializedfilln_7',['uninitializedFillN',['../namespaceflow.html#a5991193d2c2c3220704b7ffe43284798',1,'flow']]],
-  ['uninitializedforward_8',['uninitializedForward',['../namespaceflow.html#a7cbf79d9d81ea0bf923173bf94d18282',1,'flow']]],
-  ['uninitializedforwardn_9',['uninitializedForwardN',['../namespaceflow.html#a5f5545b19674be10035741dc55ab7805',1,'flow']]],
-  ['uninitializedmove_10',['uninitializedMove',['../namespaceflow.html#a51e3de912b53f5b8d08f6167efae5d43',1,'flow']]],
-  ['uninitializedmoven_11',['uninitializedMoveN',['../namespaceflow.html#a1110956ca4c95ee5c42c1e988dab6ecd',1,'flow']]],
-  ['union_12',['Union',['../class_disjoint_set.html#a23daffcefcb74cb52b07f33b593eb7f1',1,'DisjointSet']]],
-  ['updatebuffer_13',['updateBuffer',['../classflow_1_1_vector.html#ab9a6c86d36489ee0b22dcc7ffadba93b',1,'flow::Vector']]],
-  ['updateinfo_14',['UpdateInfo',['../class_a_v_l_tree_1_1_node.html#adddc913a6d45c16cb0d4b03de31035ab',1,'AVLTree::Node']]],
-  ['usaco_15',['USACO',['../entry_8cpp.html#a53c0feeffc184aa8c0637ec715223467',1,'entry.cpp']]]
+  ['_7edebugclass_0',['~DebugClass',['../classflow_1_1_debug_class.html#a48a695f9cec5b0115ebdf61a5f15b5ea',1,'flow::DebugClass']]],
+  ['_7ememoryresource_1',['~MemoryResource',['../classflow_1_1_memory_resource.html#aed7eed2f0372002ff66df9decc501071',1,'flow::MemoryResource']]],
+  ['_7epoolmemoryresource_2',['~PoolMemoryResource',['../classflow_1_1_pool_memory_resource.html#a5fd5e0967552063825e24232b3c4c5bc',1,'flow::PoolMemoryResource']]],
+  ['_7evector_3',['~Vector',['../classflow_1_1_vector.html#a2ed0e854ec90587355a567fa8c2efdc0',1,'flow::Vector']]]
 ];

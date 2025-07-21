@@ -1,23 +1,13 @@
 var searchData=
 [
-  ['capacity_0',['capacity',['../classflow_1_1_vector.html#a5fdda2faa17a39759f1068d09d94f980',1,'flow::Vector']]],
-  ['capacity_5f_1',['capacity_',['../classflow_1_1_arena_memory_resource.html#a7ce070e3a7a006cb5a48223788109ec8',1,'flow::ArenaMemoryResource::capacity_'],['../classflow_1_1_stack_memory_resource.html#ad4add4a5c15fafb57478f030146d4e91',1,'flow::StackMemoryResource::capacity_'],['../classflow_1_1_vector.html#ac2b41594b3b91f858c9c429ef98f4ae0',1,'flow::Vector::capacity_']]],
-  ['child_5f_2',['child_',['../class_trie_1_1_node.html#a5d6bcd5a59d9ddd60924c8694925cf1b',1,'Trie::Node']]],
-  ['clear_3',['clear',['../classflow_1_1_vector.html#ae778656d8599eb0152135aaa57b61057',1,'flow::Vector']]],
-  ['comp_4',['comp',['../class_skip_list.html#ad107b551a4abbdd19c796aa268192d7f',1,'SkipList']]],
-  ['concurrentflexqueue_5',['ConcurrentFlexQueue',['../classflow_1_1_concurrent_flex_queue.html',1,'flow::ConcurrentFlexQueue&lt; T &gt;'],['../classflow_1_1_concurrent_flex_queue.html#aee78e86f8ff1501f4e87d194f506ed5a',1,'flow::ConcurrentFlexQueue::ConcurrentFlexQueue()'],['../classflow_1_1_concurrent_flex_queue.html#a09f21966ef5ef2e1742f538b440e0cba',1,'flow::ConcurrentFlexQueue::ConcurrentFlexQueue(const ConcurrentFlexQueue &amp;)=delete'],['../classflow_1_1_concurrent_flex_queue.html#a4ff791cba6a6534d72c2cbbb4b2d7d0b',1,'flow::ConcurrentFlexQueue::ConcurrentFlexQueue(ConcurrentFlexQueue &amp;&amp;)=delete']]],
-  ['concurrentqueue_6',['ConcurrentQueue',['../classflow_1_1_concurrent_queue.html',1,'flow::ConcurrentQueue&lt; T, Container &gt;'],['../classflow_1_1_concurrent_queue.html#a33be3ac6f7a386943a9bf1b73b15af7d',1,'flow::ConcurrentQueue::ConcurrentQueue(const allocator_type &amp;allocator=allocator_type())'],['../classflow_1_1_concurrent_queue.html#abdcc25822ea84611d059f0164c29bf40',1,'flow::ConcurrentQueue::ConcurrentQueue(const ConcurrentQueue &amp;)=delete'],['../classflow_1_1_concurrent_queue.html#a9afa84e43f840bafec48b21caf7f3243',1,'flow::ConcurrentQueue::ConcurrentQueue(ConcurrentQueue &amp;&amp;)=delete']]],
-  ['const_5fiterator_7',['const_iterator',['../classflow_1_1_vector.html#aa4f0dcb2f767deb46994373b482b6a18',1,'flow::Vector']]],
-  ['const_5fpointer_8',['const_pointer',['../classflow_1_1_vector.html#a90e6c66561997c8e87dcf45565b6b444',1,'flow::Vector']]],
-  ['const_5freference_9',['const_reference',['../classflow_1_1_vector.html#ac10202bb1cc96d8801447779c18d19d2',1,'flow::Vector']]],
-  ['constiterator_10',['ConstIterator',['../class_linked_list.html#a2b79f60b98c95e481ab2f5e6b407e120',1,'LinkedList::ConstIterator'],['../class_skip_list.html#af16211f5bd5c42c443adeade271720b7',1,'SkipList::ConstIterator']]],
-  ['construct_11',['construct',['../classflow_1_1_polymorphic_allocator.html#ae2e657ac5eb873d11ad71723277caaa8',1,'flow::PolymorphicAllocator']]],
-  ['contain_12',['Contain',['../class_trie.html#a2744b10e84471c92ec03a8be7232a28c',1,'Trie']]],
-  ['containprefix_13',['ContainPrefix',['../class_trie.html#ae6c561f0202434b3a488b436060c5832',1,'Trie']]],
-  ['copies_5f_14',['copies_',['../classflow_1_1_debug_class.html#a741bd5a98db4e7cae036ac8148fdf0df',1,'flow::DebugClass']]],
-  ['copycounter_5f_15',['copyCounter_',['../classflow_1_1_debug_class.html#ae52bd2c39871159b4c0f89aca547c2a7',1,'flow::DebugClass']]],
-  ['count_5f_16',['count_',['../classflow_1_1_counted_value_view_iterator.html#afa83583c08318439349f6b901aee9b78',1,'flow::CountedValueViewIterator']]],
-  ['countdigits_17',['countDigits',['../entry_8cpp.html#a979f40b9b785d8c4f528f3c7aa7f9a32',1,'entry.cpp']]],
-  ['countedvalueviewiterator_18',['CountedValueViewIterator',['../classflow_1_1_counted_value_view_iterator.html',1,'flow::CountedValueViewIterator&lt; T &gt;'],['../classflow_1_1_counted_value_view_iterator.html#aec5e48263e265314df292c11b62b780d',1,'flow::CountedValueViewIterator::CountedValueViewIterator()'],['../classflow_1_1_counted_value_view_iterator.html#ae5fcbb0fd603cd40e5562d3f76f846df',1,'flow::CountedValueViewIterator::CountedValueViewIterator(const T &amp;value, std::size_t count=0)']]],
-  ['cp_5ftemplate_19',['CP_TEMPLATE',['../entry_8cpp.html#a43cfe84261f255686df473504c173ef0',1,'entry.cpp']]]
+  ['deallocate_0',['deallocate',['../classflow_1_1_memory_resource.html#a624ccdb4ce7db4bb30ccf43ef8802352',1,'flow::MemoryResource::deallocate()'],['../classflow_1_1_polymorphic_allocator.html#a246865912a463ce03695521796e96c0b',1,'flow::PolymorphicAllocator::deallocate()']]],
+  ['deallocateimp_1',['deallocateImp',['../classflow_1_1_arena_memory_resource.html#a705ea8539ba4774256c621c482cd9493',1,'flow::ArenaMemoryResource::deallocateImp()'],['../classflow_1_1_default_memory_resource.html#ae780c88790db29cf6e74b2363463f86d',1,'flow::DefaultMemoryResource::deallocateImp()'],['../classflow_1_1_memory_resource.html#a0fe4fd1de140064284dee1cc16c33e21',1,'flow::MemoryResource::deallocateImp()'],['../classflow_1_1_pool_memory_resource.html#ad096a8ce328207d87d572b19ae51f324',1,'flow::PoolMemoryResource::deallocateImp()'],['../classflow_1_1_stack_memory_resource.html#a472e9dd93c0aad65c2a3768254d2bf1f',1,'flow::StackMemoryResource::deallocateImp()']]],
+  ['debugclass_2',['DebugClass',['../classflow_1_1_debug_class.html',1,'flow::DebugClass'],['../classflow_1_1_debug_class.html#a31d3750a346067255700270ac37a8248',1,'flow::DebugClass::DebugClass()'],['../classflow_1_1_debug_class.html#a29fd182d9df656b7531b0cb829c7a629',1,'flow::DebugClass::DebugClass(const DebugClass &amp;rhs)'],['../classflow_1_1_debug_class.html#ac6e3df93ac573336f3a0a267ab6b18e1',1,'flow::DebugClass::DebugClass(DebugClass &amp;&amp;rhs) noexcept']]],
+  ['defaultmemoryresource_3',['DefaultMemoryResource',['../classflow_1_1_default_memory_resource.html',1,'flow']]],
+  ['deletebuffer_4',['deleteBuffer',['../namespaceflow.html#a95a53e967634035ab7b02a7a0fd8d41a',1,'flow']]],
+  ['destroy_5',['destroy',['../classflow_1_1_polymorphic_allocator.html#abc9cffd1ba2487b9446352c42b8b820d',1,'flow::PolymorphicAllocator']]],
+  ['destroyelements_6',['destroyElements',['../namespaceflow.html#a0917ae92fc9372994be63e2b07d7da43',1,'flow']]],
+  ['destroyelementsn_7',['destroyElementsN',['../namespaceflow.html#a2097cda5f5388d27f3c92804fdea2917',1,'flow']]],
+  ['difference_5ftype_8',['difference_type',['../classflow_1_1_counted_value_view_iterator.html#ab15d7850ec1d51e9c23b298d79009207',1,'flow::CountedValueViewIterator::difference_type'],['../classflow_1_1_vector.html#ad698ac46b7cd873095875b41509e0a3c',1,'flow::Vector::difference_type']]],
+  ['doubleexpand_9',['DoubleExpand',['../structflow_1_1_vector_growth_strategy_1_1_double_expand.html',1,'flow::VectorGrowthStrategy']]]
 ];

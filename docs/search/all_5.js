@@ -1,13 +1,21 @@
 var searchData=
 [
-  ['emplace_0',['emplace',['../classflow_1_1_concurrent_flex_queue.html#a148a7764ab30b8e69d0b32cf9cc4d4f6',1,'flow::ConcurrentFlexQueue::emplace()'],['../classflow_1_1_concurrent_queue.html#a921fb77ec80aefbf0954a21ebfe49d67',1,'flow::ConcurrentQueue::emplace()'],['../classflow_1_1_vector.html#a63907d377f79ae43c766427da7391471',1,'flow::Vector::emplace(iterator pos, Args &amp;&amp;... args)']]],
-  ['emplaceback_1',['emplaceBack',['../classflow_1_1_vector.html#a1246fe8e463045cd9acefd4ffed3bea2',1,'flow::Vector']]],
-  ['empty_2',['Empty',['../class_a_v_l_tree.html#a18b0ad73bf1e0e55c1eab4de01d9928c',1,'AVLTree::Empty()'],['../class_binomial_heap.html#aaed84d347b9813ea57cd038002b658dc',1,'BinomialHeap::Empty()'],['../class_disjoint_set.html#aaf0b989981a16122c81476aa35771d44',1,'DisjointSet::Empty()']]],
-  ['empty_3',['empty',['../classflow_1_1_concurrent_flex_queue.html#a1940497155a804e76e5770b0df37290a',1,'flow::ConcurrentFlexQueue::empty()'],['../classflow_1_1_concurrent_queue.html#af0e073c9657bbc9ac2a70e97df5a1d1d',1,'flow::ConcurrentQueue::empty()'],['../classflow_1_1_vector.html#ad4726df83d62b3869b5c28cf93b27c66',1,'flow::Vector::empty()']]],
-  ['enablememoryguard_4',['enableMemoryGuard',['../namespaceflow.html#a66db7e81436bb94ac54e68f4f13be960',1,'flow']]],
-  ['end_5',['end',['../classflow_1_1_vector.html#ad9bee88ac142d52bc14d3b7c12c5d27a',1,'flow::Vector::end() noexcept'],['../classflow_1_1_vector.html#ad6491063afb2f969da46c7617f09e048',1,'flow::Vector::end() const noexcept'],['../class_linked_list.html#a86de720eaa32b69ff0b57207dc4e8ae2',1,'LinkedList::end()'],['../class_linked_list.html#a7530f41ff2d9a65899048a1631618059',1,'LinkedList::end() const'],['../class_p_s_d_a.html#af7a89a3f405388a7bc8e79938afa4892',1,'PSDA::end()'],['../class_p_s_d_a.html#aead4b439a090b506bf94d2c2fc349f5c',1,'PSDA::end() const'],['../class_skip_list.html#a524b4b9a54258a5fa37e72ee8cc2a592',1,'SkipList::end()'],['../class_skip_list.html#a2e04647b73b200aa4f55cf548dac80dd',1,'SkipList::end() const']]],
-  ['entry_2ecpp_6',['entry.cpp',['../entry_8cpp.html',1,'']]],
-  ['erase_7',['Erase',['../class_a_v_l_tree.html#a498a54b28316131aba8272e8a42638c4',1,'AVLTree::Erase()'],['../class_a_v_l_tree_1_1_node.html#a562ab626779edd7545f320b792d129ae',1,'AVLTree::Node::Erase()'],['../class_skip_list.html#a78009a34e704863223fb7d5ac6bfb705',1,'SkipList::Erase()'],['../class_trie.html#a317c6fcb5202f78b7c89afd9a40f6aa7',1,'Trie::Erase()']]],
-  ['erase_8',['erase',['../classflow_1_1_vector.html#a72bef13d7f81c286d42432ceabe20d20',1,'flow::Vector::erase(iterator pos) noexcept'],['../classflow_1_1_vector.html#a233300c7d3c47e40b70af817590c9811',1,'flow::Vector::erase(iterator first, iterator last) noexcept']]],
-  ['erasereplacement_9',['EraseReplacement',['../class_a_v_l_tree_1_1_node.html#adbfd56b2fea47ae5ffbb83ae6c24bbae',1,'AVLTree::Node']]]
+  ['fibonacciexpand_0',['FibonacciExpand',['../structflow_1_1_vector_growth_strategy_1_1_fibonacci_expand.html',1,'flow::VectorGrowthStrategy']]],
+  ['flow_1',['flow',['../namespaceflow.html',1,'']]],
+  ['flow_5farena_5fmemory_5fresource_2eh_2',['flow_arena_memory_resource.h',['../flow__arena__memory__resource_8h.html',1,'']]],
+  ['flow_5fconcurrent_5fflex_5fqueue_2eh_3',['flow_concurrent_flex_queue.h',['../flow__concurrent__flex__queue_8h.html',1,'']]],
+  ['flow_5fconcurrent_5fqueue_2eh_4',['flow_concurrent_queue.h',['../flow__concurrent__queue_8h.html',1,'']]],
+  ['flow_5fcounted_5fvalue_5fview_5fiterator_2eh_5',['flow_counted_value_view_iterator.h',['../flow__counted__value__view__iterator_8h.html',1,'']]],
+  ['flow_5fdebug_5fmemory_2eh_6',['flow_debug_memory.h',['../flow__debug__memory_8h.html',1,'']]],
+  ['flow_5fdefault_5fmemory_5fresource_2eh_7',['flow_default_memory_resource.h',['../flow__default__memory__resource_8h.html',1,'']]],
+  ['flow_5fmemory_5falgorithm_2eh_8',['flow_memory_algorithm.h',['../flow__memory__algorithm_8h.html',1,'']]],
+  ['flow_5fmemory_5fresource_2eh_9',['flow_memory_resource.h',['../flow__memory__resource_8h.html',1,'']]],
+  ['flow_5fpolymorphic_5fallocator_2eh_10',['flow_polymorphic_allocator.h',['../flow__polymorphic__allocator_8h.html',1,'']]],
+  ['flow_5fpool_5fmemory_5fresource_2eh_11',['flow_pool_memory_resource.h',['../flow__pool__memory__resource_8h.html',1,'']]],
+  ['flow_5frandom_5falgorithm_2eh_12',['flow_random_algorithm.h',['../flow__random__algorithm_8h.html',1,'']]],
+  ['flow_5fstack_5fmemory_5fresource_2eh_13',['flow_stack_memory_resource.h',['../flow__stack__memory__resource_8h.html',1,'']]],
+  ['flow_5ftimer_2eh_14',['flow_timer.h',['../flow__timer_8h.html',1,'']]],
+  ['flow_5ftuple_2eh_15',['flow_tuple.h',['../flow__tuple_8h.html',1,'']]],
+  ['flow_5fvector_2eh_16',['flow_vector.h',['../flow__vector_8h.html',1,'']]],
+  ['front_17',['front',['../classflow_1_1_vector.html#abc27ebfeb384b081289612be2526a703',1,'flow::Vector::front() noexcept'],['../classflow_1_1_vector.html#aba8ae41829ab1c48b546778403d99d6c',1,'flow::Vector::front() const noexcept']]]
 ];

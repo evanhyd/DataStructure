@@ -1,11 +1,10 @@
 var searchData=
 [
-  ['main_0',['main',['../entry_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'entry.cpp']]],
-  ['max_1',['Max',['../class_a_v_l_tree.html#a39c7f288a34e23d1cbf854d3ac1fc772',1,'AVLTree::Max()'],['../class_a_v_l_tree.html#ac3c055504c2005a4828a6b69b4dfdc5d',1,'AVLTree::Max() const'],['../class_a_v_l_tree_1_1_node.html#a44c7df7f7266a5890f64331be132a132',1,'AVLTree::Node::Max()'],['../class_a_v_l_tree_1_1_node.html#a9ad16c4dc3a754805ae70daf8c642d66',1,'AVLTree::Node::Max() const']]],
-  ['memoryresource_2',['MemoryResource',['../classflow_1_1_memory_resource.html',1,'flow']]],
-  ['merge_3',['Merge',['../class_binomial_heap.html#a1097dead10fc94dd970164cd93a289c2',1,'BinomialHeap::Merge()'],['../class_random_meldable_heap.html#ad81605b7e0207ed2c100cac1a3fa8147',1,'RandomMeldableHeap::Merge(RandomMeldableHeap &amp;&amp;heap)']]],
-  ['mergeroots_4',['MergeRoots',['../class_random_meldable_heap.html#ad6b8dd660fd2d7815b48f51284ef7053',1,'RandomMeldableHeap']]],
-  ['mergetoheight_5',['MergeToHeight',['../class_binomial_heap.html#af6cf13de0597a9e105917c103e550b99',1,'BinomialHeap']]],
-  ['min_6',['Min',['../class_a_v_l_tree.html#a37e65b817abac7590be80774fde5240f',1,'AVLTree::Min()'],['../class_a_v_l_tree.html#ac2c3730cb6c8b0d25e005d502b7db87a',1,'AVLTree::Min() const'],['../class_a_v_l_tree_1_1_node.html#a766ba90bb3159ce3d2eca69a18eefa02',1,'AVLTree::Node::Min()'],['../class_a_v_l_tree_1_1_node.html#ad3b552c2b070041ac2c8f7674a221317',1,'AVLTree::Node::Min() const']]],
-  ['mux_5f_7',['mux_',['../classflow_1_1_concurrent_queue.html#a3f443bd583da922327024612530e33ea',1,'flow::ConcurrentQueue']]]
+  ['pointer_0',['pointer',['../classflow_1_1_counted_value_view_iterator.html#a46c830285785216a842c7cb504b56e72',1,'flow::CountedValueViewIterator::pointer'],['../classflow_1_1_vector.html#adc242dbb463beb99e19cb80f9e67e2b0',1,'flow::Vector::pointer']]],
+  ['pointerdistance_1',['pointerDistance',['../namespaceflow.html#a4cdb6701097d19bfe56dc9b98d0ab18d',1,'flow']]],
+  ['polymorphicallocator_2',['PolymorphicAllocator',['../classflow_1_1_polymorphic_allocator.html',1,'flow::PolymorphicAllocator&lt; T &gt;'],['../classflow_1_1_polymorphic_allocator.html#a9de9cf20311e8ddb8e9c9128157f4884',1,'flow::PolymorphicAllocator::PolymorphicAllocator'],['../classflow_1_1_polymorphic_allocator.html#a61ce18be7ea581a5281a5bceb32917ff',1,'flow::PolymorphicAllocator::PolymorphicAllocator()'],['../classflow_1_1_polymorphic_allocator.html#abdb1a1785d0e9ee4baaf5ee819dcb29e',1,'flow::PolymorphicAllocator::PolymorphicAllocator(MemoryResource &amp;resource)'],['../classflow_1_1_polymorphic_allocator.html#aaa09cc96471e180791aa70167fd8112e',1,'flow::PolymorphicAllocator::PolymorphicAllocator(const PolymorphicAllocator&lt; U &gt; &amp;allocator) noexcept']]],
+  ['poolmemoryresource_3',['PoolMemoryResource',['../classflow_1_1_pool_memory_resource.html',1,'flow::PoolMemoryResource'],['../classflow_1_1_pool_memory_resource.html#a3ac35916ea439a181138f26c8ad158e1',1,'flow::PoolMemoryResource::PoolMemoryResource()']]],
+  ['popback_4',['popBack',['../classflow_1_1_vector.html#ae39c634ffc7d4719734a727dd4e9eb02',1,'flow::Vector']]],
+  ['push_5',['push',['../classflow_1_1_concurrent_flex_queue.html#a7a81c9e4552bf82e2acd32c2e4b0f081',1,'flow::ConcurrentFlexQueue::push()'],['../classflow_1_1_concurrent_queue.html#a8afd8f92a60a59cf6c42da30a6eb2a0e',1,'flow::ConcurrentQueue::push()']]],
+  ['pushback_6',['pushBack',['../classflow_1_1_vector.html#a49e7b072f9b5c0a2c7e977e92ea79260',1,'flow::Vector::pushBack(const T &amp;value)'],['../classflow_1_1_vector.html#a7b62dc6983a3b84ac1ee151821f93e92',1,'flow::Vector::pushBack(T &amp;&amp;value)']]]
 ];

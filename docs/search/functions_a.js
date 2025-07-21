@@ -1,9 +1,10 @@
 var searchData=
 [
-  ['main_0',['main',['../entry_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'entry.cpp']]],
-  ['max_1',['Max',['../class_a_v_l_tree.html#a39c7f288a34e23d1cbf854d3ac1fc772',1,'AVLTree::Max()'],['../class_a_v_l_tree.html#ac3c055504c2005a4828a6b69b4dfdc5d',1,'AVLTree::Max() const'],['../class_a_v_l_tree_1_1_node.html#a44c7df7f7266a5890f64331be132a132',1,'AVLTree::Node::Max()'],['../class_a_v_l_tree_1_1_node.html#a9ad16c4dc3a754805ae70daf8c642d66',1,'AVLTree::Node::Max() const']]],
-  ['merge_2',['Merge',['../class_binomial_heap.html#a1097dead10fc94dd970164cd93a289c2',1,'BinomialHeap::Merge()'],['../class_random_meldable_heap.html#ad81605b7e0207ed2c100cac1a3fa8147',1,'RandomMeldableHeap::Merge(RandomMeldableHeap &amp;&amp;heap)']]],
-  ['mergeroots_3',['MergeRoots',['../class_random_meldable_heap.html#ad6b8dd660fd2d7815b48f51284ef7053',1,'RandomMeldableHeap']]],
-  ['mergetoheight_4',['MergeToHeight',['../class_binomial_heap.html#af6cf13de0597a9e105917c103e550b99',1,'BinomialHeap']]],
-  ['min_5',['Min',['../class_a_v_l_tree.html#a37e65b817abac7590be80774fde5240f',1,'AVLTree::Min()'],['../class_a_v_l_tree.html#ac2c3730cb6c8b0d25e005d502b7db87a',1,'AVLTree::Min() const'],['../class_a_v_l_tree_1_1_node.html#a766ba90bb3159ce3d2eca69a18eefa02',1,'AVLTree::Node::Min()'],['../class_a_v_l_tree_1_1_node.html#ad3b552c2b070041ac2c8f7674a221317',1,'AVLTree::Node::Min() const']]]
+  ['record_0',['record',['../classflow_1_1_timer.html#a1e1fdbe90de75ff50c147a965b756f2b',1,'flow::Timer']]],
+  ['relocatebuffer_1',['relocateBuffer',['../classflow_1_1_vector.html#aad83e0ac5232072e914bd75e4b116473',1,'flow::Vector']]],
+  ['relocatebufferwithholes_2',['relocateBufferWithHoles',['../classflow_1_1_vector.html#a53fca75839ead5d5a63aa334effc2663',1,'flow::Vector']]],
+  ['reserve_3',['reserve',['../classflow_1_1_vector.html#afa87bdfe245b4b06339eea38ce140ebb',1,'flow::Vector']]],
+  ['reset_4',['reset',['../classflow_1_1_timer.html#a74b4619eeb69ef54d750bcb91aa837fe',1,'flow::Timer']]],
+  ['resize_5',['resize',['../classflow_1_1_vector.html#abe9e6c30c45760900e713664e3c7ee95',1,'flow::Vector::resize(std::size_t size)'],['../classflow_1_1_vector.html#a956bdadf66a3cf83543fdb4880a7ed30',1,'flow::Vector::resize(std::size_t size, const T &amp;value)']]],
+  ['resizeimp_6',['resizeImp',['../classflow_1_1_vector.html#aa28bafb52ffd5943f74f969f3970700d',1,'flow::Vector']]]
 ];
