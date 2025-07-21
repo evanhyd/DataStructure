@@ -56,7 +56,7 @@ class LinkedList {
 
   Node* _front;
   Node* _back;
-  size_t _size;
+  std::size_t _size;
 
 public:
   using Iterator = IteratorImpl<T&>;
@@ -129,7 +129,7 @@ public:
   Iterator end() { return Iterator(nullptr); }
   ConstIterator begin() const { return ConstIterator(_front); }
   ConstIterator end() const { return ConstIterator(nullptr); }
-  size_t size() const { return _size; }
+  std::size_t size() const { return _size; }
 
   friend void swap<T>(LinkedList& lhs, LinkedList& rhs);
 };

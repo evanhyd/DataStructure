@@ -11,7 +11,7 @@
 namespace flow {
 
   template <typename Strategy>
-  concept GrowthStrategy = requires(Strategy strategy, size_t num) {
+  concept GrowthStrategy = requires(Strategy strategy, std::size_t num) {
     { strategy(num) } -> std::same_as<std::size_t>;
   };
 
@@ -440,7 +440,7 @@ bool operator==(const flow::Vector<T>& lhs, const flow::Vector<T>& rhs) noexcept
 template <typename T>
 bool operator!=(const flow::Vector<T>& lhs, const flow::Vector<T>& rhs) noexcept {
   return !(lhs == rhs);
-} 
+}
 
 //namespace nope {
 //  template <typename T>

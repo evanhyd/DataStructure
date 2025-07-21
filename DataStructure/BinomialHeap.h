@@ -51,7 +51,7 @@ class BinomialHeap {
   };
 
   std::vector<FlagTree*> _trees;
-  size_t _size;
+  std::size_t _size;
 
 public:
   BinomialHeap() : 
@@ -83,7 +83,7 @@ public:
     return *this;
   }
 
-  size_t Size() const {
+  std::size_t Size() const {
     return _size;
   }
 

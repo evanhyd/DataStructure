@@ -243,7 +243,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="practice.cpp" />
+    <ClCompile Include="entry.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AVLTree.h" />
@@ -257,6 +257,7 @@
     <ClInclude Include="DisjointSet.h" />
     <ClInclude Include="flow_memory_algorithm.h" />
     <ClInclude Include="flow_arena_memory_resource.h" />
+    <ClInclude Include="flow_pool_memory_resource.h" />
     <ClInclude Include="flow_random_algorithm.h" />
     <ClInclude Include="flow_stack_memory_resource.h" />
     <ClInclude Include="flow_timer.h" />

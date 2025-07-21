@@ -144,17 +144,15 @@ const auto __ = std::atexit([]() { std::ofstream("display_runtime.txt") << INT_M
 
 using namespace std;
 
-#include "benchmark.h"
-using namespace flow;
+#include "flow_pool_memory_resource.h"
 
 int main() {
-  constexpr size_t kElementSize = 5'000'000;
-  constexpr size_t kBenchTime = 3;
-  benchmark::benchmarkStdVector(kElementSize, kBenchTime);
-  benchmark::benchmarkFlowVector(kElementSize, kBenchTime);
-  benchmark::benchmarkStdVectorString(kElementSize, kBenchTime);
-  benchmark::benchmarkFlowVectorString(kElementSize, kBenchTime);
-  benchmark::benchmarkStdSet(kElementSize, kBenchTime);
+  char buffer[1000];
+  flow::PoolMemoryResource resource(buffer, 1000, 64);
+  for (int i = 0; i < 10000000; ++i) {
+    void* ptr = resource.allocate(10, 4);
+    resource.deallocate(ptr, 10, 4);
+  }
 }
 
 /*

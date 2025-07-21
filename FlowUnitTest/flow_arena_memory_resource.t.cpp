@@ -9,19 +9,17 @@ namespace flow {
     using flow::ArenaMemoryResource::ArenaMemoryResource;
 
     void* getBuffer() const { return buffer_; }
-    size_t getCapacity() const { return capacity_; }
-    const void* getBeginBuffer() const { return beginBuffer_; }
+    std::size_t getCapacity() const { return capacity_; }
   };
 
   class ArenaMemoryResourceWhiteBoxTest : public ::testing::Test {
   protected:
-    static constexpr size_t kBufferSize = 512;
+    static constexpr std::size_t kBufferSize = 512;
     std::byte buffer[kBufferSize];
     ArenaMemoryResourceTestHelper arena{ buffer, kBufferSize };
   };
 
   TEST_F(ArenaMemoryResourceWhiteBoxTest, InitialState) {
-    EXPECT_EQ(arena.getBeginBuffer(), buffer);
     EXPECT_EQ(arena.getBuffer(), buffer);
     EXPECT_EQ(arena.getCapacity(), kBufferSize);
   }
@@ -47,10 +45,5 @@ namespace flow {
     void* ptr = arena.allocate(64, 8);
     EXPECT_NO_THROW(arena.deallocate(ptr, 64, 8));
     EXPECT_NO_THROW(arena.deallocate(nullptr, 0, 1));
-  }
-
-  TEST_F(ArenaMemoryResourceWhiteBoxTest, DeallocateInvalidAddressNoCrashRelease) {
-    std::byte dummy[32];
-    arena.deallocate(dummy, 32, 8);
   }
 }

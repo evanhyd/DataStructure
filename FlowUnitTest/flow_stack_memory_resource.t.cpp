@@ -6,7 +6,7 @@
 namespace flow {
   class StackMemoryResourceWhiteBox : public StackMemoryResource {
   public:
-    using StackNode = StackMemoryResource::StackNode;
+    using Header = StackMemoryResource::Header;
 
     StackMemoryResourceWhiteBox(void* buffer, std::size_t size)
       : StackMemoryResource(buffer, size), originalBuffer_(buffer), originalCapacity_(size) {
@@ -24,31 +24,31 @@ namespace flow {
 
   class StackMemoryResourceTest : public ::testing::Test {
   protected:
-    static constexpr size_t kBufferSize = 512;
+    static constexpr std::size_t kBufferSize = 512;
     std::byte rawBuffer[kBufferSize];
     StackMemoryResourceWhiteBox resource{ rawBuffer, kBufferSize };
   };
 
   TEST_F(StackMemoryResourceTest, AllocUpdatesBufferAndCapacity) {
     void* oldBuffer = resource.getCurrentBuffer();
-    size_t oldCapacity = resource.getRemainingCapacity();
+    std::size_t oldCapacity = resource.getRemainingCapacity();
 
     void* ptr = resource.allocate(64, 16);
     ASSERT_NE(ptr, nullptr);
 
     void* newBuffer = resource.getCurrentBuffer();
-    size_t newCapacity = resource.getRemainingCapacity();
+    std::size_t newCapacity = resource.getRemainingCapacity();
 
     EXPECT_GT(reinterpret_cast<std::uintptr_t>(newBuffer), reinterpret_cast<std::uintptr_t>(oldBuffer));
     EXPECT_LT(newCapacity, oldCapacity);
   }
 
   TEST_F(StackMemoryResourceTest, DeallocRestoresBufferAndCapacity) {
-    size_t bytes = 64;
-    size_t align = 16;
+    std::size_t bytes = 64;
+    std::size_t align = 16;
 
     void* originalBuffer = resource.getCurrentBuffer();
-    size_t originalCapacity = resource.getRemainingCapacity();
+    std::size_t originalCapacity = resource.getRemainingCapacity();
 
     void* ptr = resource.allocate(bytes, align);
     ASSERT_NE(ptr, nullptr);
@@ -59,16 +59,12 @@ namespace flow {
     EXPECT_EQ(resource.getRemainingCapacity(), originalCapacity);
   }
 
-  TEST_F(StackMemoryResourceTest, PaddingIsCorrectlyStored) {
-    void* ptr = resource.allocate(8, 64);
+  TEST_F(StackMemoryResourceTest, OldBufferIsCorrectlyStored) {
+    void* ptr = resource.allocate(64, 64);
     auto* bytePtr = static_cast<std::byte*>(ptr);
-    auto* node = reinterpret_cast<const StackMemoryResourceWhiteBox::StackNode*>(bytePtr - sizeof(StackMemoryResourceWhiteBox::StackNode));
-    uint8_t padding = node->padding;
-
-    EXPECT_LE(padding, 64);
-    EXPECT_GT(padding, 0);
-
-    resource.deallocate(ptr, 8, 64);
+    auto* node = reinterpret_cast<const StackMemoryResourceWhiteBox::Header*>(bytePtr - sizeof(StackMemoryResourceWhiteBox::Header));
+    EXPECT_EQ(node->oldBuffer, resource.getOriginalBuffer());
+    resource.deallocate(ptr, 64, 64);
   }
 
   TEST_F(StackMemoryResourceTest, MultipleAllocationsTrackStackCorrectly) {

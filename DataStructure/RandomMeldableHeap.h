@@ -23,7 +23,7 @@ class RandomMeldableHeap {
   };
 
   Node* root_;
-  size_t _size;
+  std::size_t _size;
 
 public:
   RandomMeldableHeap() : root_(), _size() {}
@@ -88,7 +88,7 @@ public:
     --_size;
   }
 
-  size_t Size() const {
+  std::size_t Size() const {
     return _size;
   }
 

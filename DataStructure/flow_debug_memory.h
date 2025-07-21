@@ -19,13 +19,13 @@ namespace flow {
   }
 
   class DebugClass {
-    std::shared_ptr<size_t> copyCounter_;
-    size_t copies_;
-    size_t id_;
+    std::shared_ptr<std::size_t> copyCounter_;
+    std::size_t copies_;
+    std::size_t id_;
 
   public:
     DebugClass()
-      : copyCounter_(std::make_shared<size_t>(0)),
+      : copyCounter_(std::make_shared<std::size_t>(0)),
         copies_(0),
         id_(globalId++) {
       std::cout << std::format("default_ctor id {}, copies {}\n", id_, copies_);
@@ -65,7 +65,7 @@ namespace flow {
     }
 
   private:
-    static inline size_t globalId = 0;
+    static inline std::size_t globalId = 0;
 
     friend std::ostream& operator<<(std::ostream& out, const DebugClass& obj) {
       out << std::format("{{id: {}, copies: {}}}", obj.id_, obj.copies_);

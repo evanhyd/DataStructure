@@ -150,8 +150,8 @@ namespace flow {
     TEST(VectorTest, MoveOp) {
       Vector<int> v1 = { 10, 20, 30 };
       v1.reserve(5);
-      size_t sz = v1.size();
-      size_t cap = v1.capacity();
+      std::size_t sz = v1.size();
+      std::size_t cap = v1.capacity();
 
       Vector<int> v2;
       v2 = std::move(v1);
@@ -1206,10 +1206,10 @@ namespace flow {
 //  TEST(VectorTest, Swap) {
 //    Vector<int> v1 = { 1, 2 };
 //    Vector<int> v2 = { 3 };
-//    size_t v1Sz = v1.size();
-//    size_t v1Cap = v1.capacity();
-//    size_t v2Sz = v2.size();
-//    size_t v2Cap = v2.capacity();
+//    std::size_t v1Sz = v1.size();
+//    std::size_t v1Cap = v1.capacity();
+//    std::size_t v2Sz = v2.size();
+//    std::size_t v2Cap = v2.capacity();
 //
 //    swap(v1, v2);
 //    EXPECT_EQ(v1Sz, v2.size());

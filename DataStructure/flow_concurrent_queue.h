@@ -38,7 +38,7 @@ namespace flow {
     /// <summary>
     /// </summary>
     /// <returns>The number of elements in the concurrent queue.</returns>
-    size_t size() const {
+    std::size_t size() const {
       std::lock_guard lock(mux_);
       return queue_.size();
     }

@@ -25,11 +25,11 @@ namespace flow {
       : resource_(allocator.resource_) {
     }
 
-    T* allocate(size_t n) {
+    T* allocate(std::size_t n) {
       return static_cast<T*>(resource_->allocate(sizeof(T) * n, alignof(T)));
     }
 
-    void deallocate(T* address, size_t n) noexcept {
+    void deallocate(T* address, std::size_t n) noexcept {
       resource_->deallocate(address, sizeof(T) * n, alignof(T));
     }
 

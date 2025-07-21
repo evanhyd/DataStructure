@@ -1,4 +1,5 @@
 #pragma once
+#include <cassert>
 #include <iterator>
 #include <memory>
 
@@ -190,5 +191,57 @@ namespace flow {
   void deleteBuffer(AllocatorType& allocator, T* buffer, std::size_t size, std::size_t capacity) noexcept {
     destroyElementsN(allocator, buffer, size);
     std::allocator_traits<AllocatorType>::deallocate(allocator, buffer, capacity);
+  }
+
+  /// <summary>
+  /// Calculate the distance from the first pointer to the last pointer in bytes.
+  /// </summary>
+  /// <param name="first"></param>
+  /// <param name="last"></param>
+  /// <returns>The address distance in bytes.</returns>
+  template <typename T, typename U>
+  std::size_t pointerDistance(const T* first, const U* last) {
+    assert(first <= last && "first pointer address must be smaller than the last pointer address");
+    return reinterpret_cast<const std::byte*>(last) - reinterpret_cast<const std::byte*>(first);
+  }
+
+  /// <summary>
+  /// Align the header + buffer to their corresponding alignments.
+  /// If the capacity is not big enough to accommodate, then return nullptr.
+  /// This function is similar to std::align, but it also aligns a header in the front.
+  /// </summary>
+  /// <typeparam name="Header"></typeparam>
+  /// <param name="alignment"></param>
+  /// <param name="size"></param>
+  /// <param name="buffer"></param>
+  /// <param name="capacity"></param>
+  /// <returns>Aligned header pointer followed by the aligned buffer. </returns>
+  template <typename Header>
+  Header* alignWithHeader(std::size_t alignment, std::size_t size, void*& buffer, std::size_t& capacity) noexcept {
+
+    // https://stackoverflow.com/questions/46457449/is-it-always-the-case-that-sizeoft-alignoft-for-all-object-types-t
+    assert(size >= alignment && "size is smaller than its alignment");
+    if (capacity < sizeof(Header) + size) {
+      return nullptr;
+    }
+
+    // Set the block alignment to be at least as big as the header alignment.
+    // If the allocated block is aligned, then its header is aligned.
+    alignment = std::max(alignment, alignof(Header));
+
+    // Reserve at least sizeof(Header) before the allocated block.
+    void* allocatedBlock = reinterpret_cast<Header*>(buffer) + 1;
+    std::size_t capacityAfterHeader = capacity - sizeof(Header);
+    if (!std::align(alignment, size, allocatedBlock, capacityAfterHeader)) {
+      return nullptr;
+    }
+
+    // Calculate the address of the header.
+    Header* header = reinterpret_cast<Header*>(allocatedBlock) - 1;
+    assert(reinterpret_cast<std::uintptr_t>(header) % alignof(Header) == 0 && "allocated buffer is not aligned with the header");
+
+    capacity -= pointerDistance(buffer, header);
+    buffer = header;
+    return header;
   }
 }

@@ -8,7 +8,7 @@ namespace flow {
     NoDefaultType(int v) : a(v), b(v) {}
   };
 
-  TEST(UninitializedForwardTest, CopiesElements) {
+  TEST(MemoryAlgorithm, UninitializedForwardTestCopiesElements) {
     std::allocator<int> alloc;
 
     int source[] = { 1, 2, 3, 4, 5 };
@@ -16,7 +16,7 @@ namespace flow {
 
     uninitializedForward(alloc, std::begin(source), std::end(source), dest);
 
-    for (size_t i = 0; i < 5; ++i) {
+    for (std::size_t i = 0; i < 5; ++i) {
       EXPECT_EQ(dest[i], source[i]);
     }
 
@@ -24,7 +24,7 @@ namespace flow {
     std::allocator_traits<decltype(alloc)>::deallocate(alloc, dest, 5);
   }
 
-  TEST(UninitializedForwardTest, MoveElements) {
+  TEST(MemoryAlgorithm, UninitializedForwardTestMoveElements) {
     std::allocator<std::string> alloc;
 
     std::string source[] = { "ab", "cd", "ef"};
@@ -43,7 +43,7 @@ namespace flow {
     std::allocator_traits<decltype(alloc)>::deallocate(alloc, dest, 3);
   }
 
-  TEST(UninitializedMoveTest, MovesElements) {
+  TEST(MemoryAlgorithm, UninitializedMoveTestMovesElements) {
     std::allocator<std::unique_ptr<int>> alloc;
 
     std::unique_ptr<int> source[] = {
@@ -65,7 +65,7 @@ namespace flow {
     std::allocator_traits<decltype(alloc)>::deallocate(alloc, dest, 3);
   }
 
-  TEST(UninitializedFillTest, FillsElementsWithValue) {
+  TEST(MemoryAlgorithm, UninitializedFillTestFillsElementsWithValue) {
     std::allocator<int> alloc;
     int* dest = std::allocator_traits<decltype(alloc)>::allocate(alloc, 4);
 
@@ -78,7 +78,7 @@ namespace flow {
     destroyElements(alloc, dest, dest + 4);
     std::allocator_traits<decltype(alloc)>::deallocate(alloc, dest, 4);
   }
-  TEST(UninitializedEmplaceTest, ConstructsDefaultUniquePtr) {
+  TEST(MemoryAlgorithm, UninitializedEmplaceTestConstructsDefaultUniquePtr) {
     using AllocatorType = std::allocator<std::unique_ptr<int>>;
 
     AllocatorType alloc;
@@ -97,7 +97,7 @@ namespace flow {
     std::allocator_traits<AllocatorType>::deallocate(alloc, buffer, 3);
   }
 
-  TEST(UninitializedEmplaceTest, ConstructNoDefaultWithArgs) {
+  TEST(MemoryAlgorithm, UninitializedEmplaceTestConstructNoDefaultWithArgs) {
     using AllocatorType = std::allocator<NoDefaultType>;
 
     AllocatorType alloc;
@@ -117,7 +117,7 @@ namespace flow {
     std::allocator_traits<AllocatorType>::deallocate(alloc, buffer, 3);
   }
 
-  TEST(UninitializedForwardNTest, CopiesNElements) {
+  TEST(MemoryAlgorithm, UninitializedForwardNTestCopiesNElements) {
     std::allocator<int> alloc;
     int source[] = { 10, 20, 30, 40, 50 };
 
@@ -133,7 +133,7 @@ namespace flow {
     std::allocator_traits<decltype(alloc)>::deallocate(alloc, dest, 3);
   }
 
-  TEST(UninitializedForwardNTest, MovesNElements) {
+  TEST(MemoryAlgorithm, UninitializedForwardNTestMovesNElements) {
     std::allocator<std::string> alloc;
 
     std::string source[] = { "ab", "cd", "ef" };
@@ -152,7 +152,7 @@ namespace flow {
     std::allocator_traits<decltype(alloc)>::deallocate(alloc, dest, 3);
   }
 
-  TEST(UninitializedMoveNTest, MovesNElements) {
+  TEST(MemoryAlgorithm, UninitializedMoveNTestMovesNElements) {
     std::allocator<std::unique_ptr<int>> alloc;
 
     std::unique_ptr<int> source[] = {
@@ -175,7 +175,7 @@ namespace flow {
     std::allocator_traits<decltype(alloc)>::deallocate(alloc, dest, 3);
   }
 
-  TEST(UninitializedFillNTest, FillsNElements) {
+  TEST(MemoryAlgorithm, UninitializedFillNTestFillsNElements) {
     std::allocator<int> alloc;
     int* dest = std::allocator_traits<decltype(alloc)>::allocate(alloc, 5);
 
@@ -189,7 +189,7 @@ namespace flow {
     std::allocator_traits<decltype(alloc)>::deallocate(alloc, dest, 5);
   }
 
-  TEST(DestroyElementsNTest, DestroysElements) {
+  TEST(MemoryAlgorithm, DestroyElementsNTestDestroysElements) {
     std::allocator<int> alloc;
     int* dest = std::allocator_traits<decltype(alloc)>::allocate(alloc, 3);
 
@@ -198,7 +198,7 @@ namespace flow {
     std::allocator_traits<decltype(alloc)>::deallocate(alloc, dest, 3);
   }
 
-  TEST(DeleteBufferTest, DeletesBuffer) {
+  TEST(MemoryAlgorithm, DeleteBufferTestDeletesBuffer) {
     std::allocator<int> alloc;
 
     int* buffer = std::allocator_traits<decltype(alloc)>::allocate(alloc, 4);
@@ -206,7 +206,7 @@ namespace flow {
     deleteBuffer(alloc, buffer, 2, 4);
   }
 
-  TEST(UninitializedEmplaceNTest, ConstructsDefaultUniquePtr) {
+  TEST(MemoryAlgorithm, UninitializedEmplaceNTestConstructsDefaultUniquePtr) {
     using AllocatorType = std::allocator<std::unique_ptr<int>>;
 
     AllocatorType alloc;
@@ -225,7 +225,7 @@ namespace flow {
     std::allocator_traits<AllocatorType>::deallocate(alloc, buffer, 3);
   }
 
-  TEST(UninitializedEmplaceNTest, ConstructNoDefaultWithArgs) {
+  TEST(MemoryAlgorithm, UninitializedEmplaceNTestConstructNoDefaultWithArgs) {
     using AllocatorType = std::allocator<NoDefaultType>;
 
     AllocatorType alloc;
@@ -243,5 +243,107 @@ namespace flow {
     }
 
     std::allocator_traits<AllocatorType>::deallocate(alloc, buffer, 3);
+  }
+
+  TEST(MemoryAlgorithm, PointerDistanceZero) {
+    std::byte buffer[256]{};
+    std::byte* ptr = buffer;
+    EXPECT_EQ(pointerDistance(ptr, ptr), 0);
+  }
+
+  TEST(MemoryAlgorithm, PointerDistancePowerOfTwo) {
+    std::byte buffer[256]{};
+    std::byte* first = buffer;
+    std::byte* last = buffer + 16;
+    EXPECT_EQ(pointerDistance(first, last), 16);
+  }
+
+  TEST(MemoryAlgorithm, PointerDistanceNonPowerOfTwo) {
+    std::byte buffer[256]{};
+    std::byte* first = buffer;
+    std::byte* last = buffer + 13;
+    EXPECT_EQ(pointerDistance(first, last), 13);
+  }
+
+  struct Header {
+    std::int32_t a;
+    std::int32_t b;
+  };
+
+  TEST(MemoryAlgorithm, AlignWithHeader_HeaderAndBufferAligned) {
+    alignas(std::max_align_t) std::byte raw[256]{};
+    void* ptr = raw;
+    std::size_t capacity = sizeof(raw);
+    constexpr std::size_t kAlignment = 64;
+    constexpr std::size_t kSize = 64;  // size >= alignment
+
+    void* result = alignWithHeader<Header>(kAlignment, kSize, ptr, capacity);
+    ASSERT_NE(result, nullptr);
+
+    EXPECT_EQ(reinterpret_cast<std::uintptr_t>(result) % alignof(Header), 0);
+
+    void* buffer_after_header = static_cast<std::byte*>(result) + sizeof(Header);
+    EXPECT_EQ(reinterpret_cast<std::uintptr_t>(buffer_after_header) % kAlignment, 0);
+  }
+
+  TEST(MemoryAlgorithm, AlignWithHeader_FailsOnInsufficientCapacity) {
+    std::byte raw[32]{};
+    void* ptr = raw;
+    std::size_t capacity = sizeof(raw);
+
+    constexpr std::size_t kAlignment = 64;
+    constexpr std::size_t kSize = 64;  // size >= alignment, > capacity to trigger failure
+
+    void* result = alignWithHeader<Header>(kAlignment, kSize, ptr, capacity);
+    EXPECT_EQ(result, nullptr);
+  }
+
+  TEST(MemoryAlgorithm, AlignWithHeader_CustomAlignmentGreaterThanHeader) {
+    alignas(std::max_align_t) std::byte raw[256]{};
+    void* ptr = raw;
+    std::size_t capacity = sizeof(raw);
+
+    constexpr std::size_t kAlignment = 128;
+    constexpr std::size_t kSize = 128;  // size >= alignment
+
+    void* result = alignWithHeader<Header>(kAlignment, kSize, ptr, capacity);
+    ASSERT_NE(result, nullptr);
+
+    void* buffer_after_header = static_cast<std::byte*>(result) + sizeof(Header);
+    EXPECT_EQ(reinterpret_cast<std::uintptr_t>(buffer_after_header) % kAlignment, 0);
+  }
+
+  TEST(MemoryAlgorithm, AlignWithHeader_UsesExactFit) {
+    constexpr std::size_t kAlignment = 32;
+    constexpr std::size_t kSize = 32;  // size == alignment
+    constexpr std::size_t kTotalCapacity = 256;
+
+    alignas(std::max_align_t) std::byte raw[kTotalCapacity]{};
+    void* ptr = raw;
+    std::size_t capacity = kTotalCapacity;
+
+    void* result = alignWithHeader<Header>(kAlignment, kSize, ptr, capacity);
+    ASSERT_NE(result, nullptr);
+
+    void* buffer_after_header = static_cast<std::byte*>(result) + sizeof(Header);
+    EXPECT_EQ(reinterpret_cast<std::uintptr_t>(buffer_after_header) % kAlignment, 0);
+  }
+
+  TEST(MemoryAlgorithm, AlignWithHeader_HeaderAlignmentFallback) {
+    alignas(std::max_align_t) std::byte raw[256]{};
+    void* ptr = raw;
+    std::size_t capacity = sizeof(raw);
+
+    constexpr std::size_t kAlignment = 4;
+    constexpr std::size_t kSize = 4;  // size == alignment
+
+    void* result = alignWithHeader<Header>(kAlignment, kSize, ptr, capacity);
+    ASSERT_NE(result, nullptr);
+
+    void* buffer_after_header = static_cast<std::byte*>(result) + sizeof(Header);
+
+    // alignment falls back to alignof(Header)
+    EXPECT_EQ(reinterpret_cast<std::uintptr_t>(result) % alignof(Header), 0);
+    EXPECT_EQ(reinterpret_cast<std::uintptr_t>(buffer_after_header) % alignof(Header), 0);
   }
 }

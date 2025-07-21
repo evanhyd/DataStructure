@@ -11,7 +11,7 @@ namespace flow {
     MemoryResourceType resource{};
 
     template <typename U>
-    bool isAlign(U* address, size_t alignment = alignof(U)) const {
+    bool isAlign(U* address, std::size_t alignment = alignof(U)) const {
       return reinterpret_cast<std::uintptr_t>(address) % alignment == 0;
     }
 
@@ -54,13 +54,13 @@ namespace flow {
   }
 
   TYPED_TEST_P(CommonMemoryResourceTest, AllocateIntArray) {
-    constexpr size_t kCount = 5;
+    constexpr std::size_t kCount = 5;
     int* arr = static_cast<int*>(this->resource.allocate(sizeof(int) * kCount, alignof(int)));
     EXPECT_NE(arr, nullptr);
-    for (size_t i = 0; i < kCount; ++i) {
+    for (std::size_t i = 0; i < kCount; ++i) {
       arr[i] = static_cast<int>(i * 2);
     }
-    for (size_t i = 0; i < kCount; ++i) {
+    for (std::size_t i = 0; i < kCount; ++i) {
       EXPECT_EQ(arr[i], static_cast<int>(i * 2));
     }
     EXPECT_TRUE(this->isAlign(arr));
@@ -91,15 +91,15 @@ namespace flow {
   }
 
   TYPED_TEST_P(CommonMemoryResourceTest, AllocateFooArray) {
-    constexpr size_t kCount = 5;
+    constexpr std::size_t kCount = 5;
     typename TestFixture::Foo* arr =
       static_cast<typename TestFixture::Foo*>(this->resource.allocate(sizeof(typename TestFixture::Foo) * kCount, alignof(typename TestFixture::Foo)));
     EXPECT_NE(arr, nullptr);
-    for (size_t i = 0; i < kCount; ++i) {
+    for (std::size_t i = 0; i < kCount; ++i) {
       arr[i].b = static_cast<char>(i + 1);
       arr[i].c = static_cast<int64_t>(i * 100);
     }
-    for (size_t i = 0; i < kCount; ++i) {
+    for (std::size_t i = 0; i < kCount; ++i) {
       EXPECT_EQ(arr[i].b, static_cast<char>(i + 1));
       EXPECT_EQ(arr[i].c, static_cast<int64_t>(i * 100));
     }
@@ -131,15 +131,15 @@ namespace flow {
   }
 
   TYPED_TEST_P(CommonMemoryResourceTest, AllocateAlignasBigFooArray) {
-    constexpr size_t kCount = 5;
+    constexpr std::size_t kCount = 5;
     typename TestFixture::AlignasBigFoo* arr =
       static_cast<typename TestFixture::AlignasBigFoo*>(this->resource.allocate(sizeof(typename TestFixture::AlignasBigFoo) * kCount, alignof(typename TestFixture::AlignasBigFoo)));
     EXPECT_NE(arr, nullptr);
-    for (size_t i = 0; i < kCount; ++i) {
+    for (std::size_t i = 0; i < kCount; ++i) {
       arr[i].b = static_cast<char>(i + 1);
       arr[i].c = static_cast<int64_t>(i * 300);
     }
-    for (size_t i = 0; i < kCount; ++i) {
+    for (std::size_t i = 0; i < kCount; ++i) {
       EXPECT_EQ(arr[i].b, static_cast<char>(i + 1));
       EXPECT_EQ(arr[i].c, static_cast<int64_t>(i * 300));
     }
@@ -171,15 +171,15 @@ namespace flow {
   }
 
   TYPED_TEST_P(CommonMemoryResourceTest, AllocateAlignasSmallFooArray) {
-    constexpr size_t kCount = 5;
+    constexpr std::size_t kCount = 5;
     typename TestFixture::AlignasSmallFoo* arr =
       static_cast<typename TestFixture::AlignasSmallFoo*>(this->resource.allocate(sizeof(typename TestFixture::AlignasSmallFoo) * kCount, alignof(typename TestFixture::AlignasSmallFoo)));
     EXPECT_NE(arr, nullptr);
-    for (size_t i = 0; i < kCount; ++i) {
+    for (std::size_t i = 0; i < kCount; ++i) {
       arr[i].a = static_cast<char>(i + 1);
       arr[i].b = static_cast<int>(i * 400);
     }
-    for (size_t i = 0; i < kCount; ++i) {
+    for (std::size_t i = 0; i < kCount; ++i) {
       EXPECT_EQ(arr[i].a, static_cast<char>(i + 1));
       EXPECT_EQ(arr[i].b, static_cast<int>(i * 400));
     }

@@ -11,11 +11,11 @@ namespace flow {
     std::vector<TimePoint> timepoints_{};
 
   public:
-    explicit constexpr Timer(size_t reserveSize = 8) {
+    explicit constexpr Timer(std::size_t reserveSize = 8) {
       timepoints_.reserve(reserveSize);
     }
 
-    constexpr size_t size() const {
+    constexpr std::size_t size() const {
       return timepoints_.size();
     }
 
@@ -33,7 +33,7 @@ namespace flow {
 
     std::string toString() const {
       std::string str = std::format("Total record entries: {}\n", timepoints_.size());
-      size_t i = 0;
+      std::size_t i = 0;
       for (const auto& timepoint : timepoints_) {
         auto dur = timepoint - begin_;
         str += std::format("\t[{}] {}, {}, {}\n",

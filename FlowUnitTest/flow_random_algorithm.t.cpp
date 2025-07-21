@@ -58,8 +58,8 @@ namespace flow {
     std::vector<int> shuffled = vec;
     shuffle(shuffled.begin(), shuffled.end());
 
-    size_t identicalCount = 0;
-    for (size_t i = 0; i < vec.size(); ++i) {
+    std::size_t identicalCount = 0;
+    for (std::size_t i = 0; i < vec.size(); ++i) {
       if (vec[i] == shuffled[i]) {
         ++identicalCount;
       }

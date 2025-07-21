@@ -1,73 +1,52 @@
 #pragma once
+#include "flow_memory_algorithm.h"
 #include "flow_memory_resource.h"
 #include <cassert>
 #include <cstddef>
 #include <exception>
-#include <memory>
 
 namespace flow {
   class StackMemoryResource : public MemoryResource {
   public:
-    explicit StackMemoryResource(void* buffer, size_t capacity) noexcept
+    explicit StackMemoryResource(void* buffer, std::size_t capacity) noexcept
       : buffer_(buffer), capacity_(capacity) {
     }
 
   protected:
-    struct StackNode {
-      uint8_t padding; // exclude the meta data itself
+    struct Header {
+      void* oldBuffer;
     };
 
     void* buffer_;
-    size_t capacity_;
+    std::size_t capacity_;
 
-    virtual void* allocateImp(size_t bytes, size_t alignment) override {
-      assert(alignment <= (1 << (sizeof(StackNode::padding) * 8)));
-
+    virtual void* allocateImp(std::size_t bytes, std::size_t alignment) override {
       void* oldBuffer = buffer_;
-      size_t oldCapacity = capacity_;
-      try {
-        void* aligned = std::align(alignment, bytes, buffer_, capacity_);
-        if (!aligned || capacity_ < bytes) {
-          throw std::bad_alloc();
-        }
 
-        // Advance to the next aligned address so we can store the meta data.
-        if (aligned == oldBuffer) {
-
-          // Ensure enough storage for the meta data + bytes.
-          if (capacity_ < bytes + alignment) {
-            throw std::bad_alloc();
-          }
-          aligned = static_cast<std::byte*>(aligned) + alignment;
-          capacity_ -= alignment;
-        }
-
-        // Calculate the padding size exclude the meta data.
-        uint8_t padding = static_cast<uint8_t>(static_cast<std::byte*>(aligned) - static_cast<std::byte*>(oldBuffer) - sizeof(StackNode));
-        new (static_cast<StackNode*>(aligned) - 1) StackNode(padding);
-        buffer_ = static_cast<std::byte*>(aligned) + bytes;
-        capacity_ -= bytes;
-        return aligned;
-
-      } catch (...) {
-        buffer_ = oldBuffer;
-        capacity_ = oldCapacity;
-        throw;
+      void* alignedHeader = flow::alignWithHeader<Header>(alignment, bytes, buffer_, capacity_);
+      if (!alignedHeader) {
+        throw std::bad_alloc();
       }
+
+      new (alignedHeader) Header(oldBuffer);
+      void* allocatedBlock = reinterpret_cast<Header*>(alignedHeader) + 1;
+      buffer_ = reinterpret_cast<std::byte*>(allocatedBlock) + bytes;
+      capacity_ -= sizeof(Header) + bytes;
+      return allocatedBlock;
     }
 
-    virtual void deallocateImp(void* address, size_t bytes, [[maybe_unused]] size_t alignment) override {
+    virtual void deallocateImp(void* address, std::size_t bytes, [[maybe_unused]] std::size_t alignment) override {
       // TODO: assert address is the top most valid address
       assert(address == nullptr || address <= buffer_);
       if (!address) {
         return;
       }
-      StackNode* meta = reinterpret_cast<StackNode*>(address) - 1;
-      uint8_t padding = meta->padding;
-      meta->~StackNode();
 
-      buffer_ = reinterpret_cast<std::byte*>(meta) - padding;
-      capacity_ += bytes + sizeof(StackNode) + padding;
+      Header* header = reinterpret_cast<Header*>(address) - 1;
+      std::size_t padding = pointerDistance(header->oldBuffer, header);
+      buffer_ = header->oldBuffer;
+      capacity_ += padding + sizeof(Header) + bytes;
+      header->~Header();
     }
   };
 }

@@ -51,5 +51,8 @@
     <ClCompile Include="flow_memory_resource.t.cpp">
       <Filter>flow\memory\memory_resource</Filter>
     </ClCompile>
+    <ClCompile Include="flow_pool_memory_resource.t.cpp">
+      <Filter>flow\memory\memory_resource</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

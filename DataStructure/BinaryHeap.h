@@ -31,7 +31,7 @@ class BinaryHeap {
     return _data[0];
   }
 
-  size_t Size() const { 
+  std::size_t Size() const { 
     return _data.size();
   }
 

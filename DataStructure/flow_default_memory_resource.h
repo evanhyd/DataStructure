@@ -10,11 +10,11 @@ namespace flow {
     }
 
   private:
-    virtual void* allocateImp(size_t bytes, size_t alignment) {
+    virtual void* allocateImp(std::size_t bytes, std::size_t alignment) {
       return ::operator new(bytes, static_cast<std::align_val_t>(alignment));
     }
 
-    virtual void deallocateImp(void* address, [[maybe_unused]] size_t bytes, size_t alignment) {
+    virtual void deallocateImp(void* address, [[maybe_unused]] std::size_t bytes, std::size_t alignment) {
       ::operator delete(address, static_cast<std::align_val_t>(alignment));
     }
   };
