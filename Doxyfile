@@ -49,4 +49,4 @@ WARN_NO_PARAMDOC       = YES
 QUIET                  = NO
 WARNINGS               = YES
 GENERATE_TREEVIEW      = YES
-STRIP_FROM_PATH        = DataStructure/flow
+STRIP_FROM_PATH        = DataStructure/
