@@ -6,6 +6,11 @@
 #include <memory>
 
 namespace flow {
+
+  /// <summary>
+  /// A linear arena memory resource that allocates memory sequentially from a fixed buffer.
+  /// Throws std::bad_alloc if there is insufficient space for the requested allocation.
+  /// </summary>
   class ArenaMemoryResource : public MemoryResource {
   public:
     explicit ArenaMemoryResource(void* buffer, std::size_t capacity) noexcept

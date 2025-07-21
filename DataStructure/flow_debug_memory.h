@@ -9,15 +9,21 @@
 #define _CRTDBG_MAP_ALLOC
 #endif
 
-
 namespace flow {
-  // Incompatible with address sanitizer.
+  /// <summary>
+  /// Enable MSVC native memory leak checker in debug mode.
+  /// Not compatible with the address sanitizer.
+  /// </summary>
   inline void enableMemoryGuard() {
     #ifdef _CRTDBG_MAP_ALLOC
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
     #endif
   }
 
+  /// <summary>
+  /// Debug class that tracks object's copy/move opeartions.
+  /// Note that some of the operations may get optimized away with optimization on.
+  /// </summary>
   class DebugClass {
     std::shared_ptr<std::size_t> copyCounter_;
     std::size_t copies_;

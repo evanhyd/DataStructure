@@ -1,12 +1,16 @@
 #pragma once
 #include "flow_arena_memory_resource.h"
 #include "flow_polymorphic_allocator.h"
+#include "flow_random_algorithm.h"
 #include "flow_timer.h"
 #include "flow_vector.h"
-#include "flow_random_algorithm.h"
+#include <algorithm>
 #include <cstdint>
+#include <iostream>
 #include <memory>
 #include <memory_resource>
+#include <numeric>
+#include <set>
 #include <vector>
 
 namespace benchmark {
@@ -21,7 +25,7 @@ namespace benchmark {
       vector<int64_t> vec{};
 
       Timer timer{};
-      timer.start();
+      timer.reset();
       for (std::size_t i = 0; i < elementSize; ++i) {
         vec.push_back(i);
       }
@@ -34,7 +38,7 @@ namespace benchmark {
       vector<int64_t> vec{};
 
       Timer timer{};
-      timer.start();
+      timer.reset();
       vec.reserve(elementSize);
       for (std::size_t i = 0; i < elementSize; ++i) {
         vec.push_back(i);
@@ -50,7 +54,7 @@ namespace benchmark {
       vector<int64_t, PolymorphicAllocator<int64_t>> vec{ alloc };
 
       Timer timer{};
-      timer.start();
+      timer.reset();
       for (std::size_t i = 0; i < elementSize; ++i) {
         vec.push_back(i);
       }
@@ -65,7 +69,7 @@ namespace benchmark {
       vector<int64_t, PolymorphicAllocator<int64_t>> vec{ alloc };
 
       Timer timer{};
-      timer.start();
+      timer.reset();
       vec.reserve(elementSize);
       for (std::size_t i = 0; i < elementSize; ++i) {
         vec.push_back(i);
@@ -86,7 +90,7 @@ namespace benchmark {
       Vector<int64_t> vec{};
 
       Timer timer{};
-      timer.start();
+      timer.reset();
       for (std::size_t i = 0; i < elementSize; ++i) {
         vec.pushBack(i);
       }
@@ -99,7 +103,7 @@ namespace benchmark {
       Vector<int64_t> vec{};
 
       Timer timer{};
-      timer.start();
+      timer.reset();
       vec.reserve(elementSize);
       for (std::size_t i = 0; i < elementSize; ++i) {
         vec.pushBack(i);
@@ -115,7 +119,7 @@ namespace benchmark {
       Vector<int64_t> vec{ alloc };
 
       Timer timer{};
-      timer.start();
+      timer.reset();
 
       for (std::size_t i = 0; i < elementSize; ++i) {
         vec.pushBack(i);
@@ -131,7 +135,7 @@ namespace benchmark {
       Vector<int64_t> vec{ alloc };
 
       Timer timer{};
-      timer.start();
+      timer.reset();
       vec.reserve(elementSize);
       for (std::size_t i = 0; i < elementSize; ++i) {
         vec.pushBack(i);
@@ -153,7 +157,7 @@ namespace benchmark {
       vector<string> vec{};
 
       Timer timer{};
-      timer.start();
+      timer.reset();
       for (std::size_t i = 0; i < elementSize; ++i) {
         vec.push_back(sample);
       }
@@ -167,7 +171,7 @@ namespace benchmark {
       vec.reserve(elementSize);
 
       Timer timer{};
-      timer.start();
+      timer.reset();
       for (std::size_t i = 0; i < elementSize; ++i) {
         vec.push_back(sample);
       }
@@ -182,7 +186,7 @@ namespace benchmark {
       vector<string, PolymorphicAllocator<string>> vec{ alloc };
 
       Timer timer{};
-      timer.start();
+      timer.reset();
       for (std::size_t i = 0; i < elementSize; ++i) {
         vec.push_back(sample);
       }
@@ -198,7 +202,7 @@ namespace benchmark {
       vec.reserve(elementSize);
 
       Timer timer{};
-      timer.start();
+      timer.reset();
       for (std::size_t i = 0; i < elementSize; ++i) {
         vec.push_back(sample);
       }
@@ -219,7 +223,7 @@ namespace benchmark {
       Vector<string> vec{};
 
       Timer timer{};
-      timer.start();
+      timer.reset();
       for (std::size_t i = 0; i < elementSize; ++i) {
         vec.pushBack(sample);
       }
@@ -233,7 +237,7 @@ namespace benchmark {
       vec.reserve(elementSize);
 
       Timer timer{};
-      timer.start();
+      timer.reset();
       for (std::size_t i = 0; i < elementSize; ++i) {
         vec.pushBack(sample);
       }
@@ -248,7 +252,7 @@ namespace benchmark {
       Vector<string> vec{ alloc };
 
       Timer timer{};
-      timer.start();
+      timer.reset();
       for (std::size_t i = 0; i < elementSize; ++i) {
         vec.pushBack(sample);
       }
@@ -264,7 +268,7 @@ namespace benchmark {
       vec.reserve(elementSize);
 
       Timer timer{};
-      timer.start();
+      timer.reset();
       for (std::size_t i = 0; i < elementSize; ++i) {
         vec.pushBack(sample);
       }
@@ -287,7 +291,7 @@ namespace benchmark {
       set<int64_t, std::less<int64_t>> st{};
 
       Timer timer{};
-      timer.start();
+      timer.reset();
       for (auto n : nums) {
         st.insert(n);
       }
@@ -302,7 +306,7 @@ namespace benchmark {
       set<int64_t, std::less<int64_t>, PolymorphicAllocator<int64_t>> st{ alloc };
 
       Timer timer{};
-      timer.start();
+      timer.reset();
       for (auto n : nums) {
         st.insert(n);
       }
@@ -317,7 +321,7 @@ namespace benchmark {
       pmr::set<int64_t, std::less<int64_t>> st(pa);
 
       Timer timer{};
-      timer.start();
+      timer.reset();
       for (auto n : nums) {
         st.insert(n);
       }

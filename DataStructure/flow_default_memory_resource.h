@@ -2,6 +2,10 @@
 #include "flow_memory_resource.h"
 
 namespace flow {
+
+  /// <summary>
+  /// A default memory resource that wraps global ::operator new and ::operator delete.
+  /// </summary>
   class DefaultMemoryResource : public MemoryResource {
   public:
     static DefaultMemoryResource& getResource() {

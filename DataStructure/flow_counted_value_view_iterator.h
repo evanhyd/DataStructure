@@ -4,6 +4,11 @@
 #include <iterator>
 
 namespace flow {
+
+  /// <summary>
+  /// Iterator that returns a constant value for a fixed number of times.
+  /// Useful for creating a virtual range of repeated values without storage.
+  /// </summary>
   template <typename T>
   class CountedValueViewIterator {
     const T* value_;
