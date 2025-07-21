@@ -1,0 +1,52 @@
+# --------- Project Info ---------
+PROJECT_NAME           = "Flow"
+PROJECT_BRIEF          = "Documentation for the Flow C++ Library"
+OUTPUT_DIRECTORY       = docs
+CREATE_SUBDIRS         = NO
+
+# --------- Build Control ---------
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = YES
+EXTRACT_ANON_NSPACES   = YES
+
+# --------- Input Settings ---------
+INPUT                  = DataStructure/
+RECURSIVE              = YES
+FILE_PATTERNS          = flow_*.cpp flow_*.h flow_*.hpp flow_*.cxx flow_*.cc
+EXCLUDE                = 
+
+# --------- Source Browsing ---------
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = YES
+REFERENCED_BY_RELATION = YES
+REFERENCES_RELATION    = YES
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+
+# --------- Output Formats ---------
+GENERATE_HTML          = YES
+HTML_OUTPUT            = .
+HTML_FILE_EXTENSION    = .html
+HTML_COLORSTYLE_HUE    = 220
+HTML_DYNAMIC_SECTIONS  = YES
+GENERATE_LATEX         = NO
+GENERATE_MAN           = NO
+GENERATE_RTF           = NO
+GENERATE_XML           = NO
+GENERATE_DOCBOOK       = NO
+
+# --------- Markdown Support ---------
+MARKDOWN_SUPPORT       =
+USE_MDFILE_AS_MAINPAGE =
+
+# --------- Warnings ---------
+WARN_IF_UNDOCUMENTED   = YES
+WARN_NO_PARAMDOC       = YES
+
+# --------- Misc ---------
+QUIET                  = NO
+WARNINGS               = YES
+GENERATE_TREEVIEW      = YES
+STRIP_FROM_PATH        = DataStructure/
