@@ -1,0 +1,12 @@
+var namespaces_dup =
+[
+    [ "benchmark", "namespacebenchmark.html", [
+      [ "benchmarkFlowVector", "namespacebenchmark.html#a49f4972ef8aa15746e43281484381e39", null ],
+      [ "benchmarkFlowVectorString", "namespacebenchmark.html#a05e5b1e546dc4a325d127bfda0d95902", null ],
+      [ "benchmarkStdSet", "namespacebenchmark.html#aa90af4821e756d6abd48736a886fb7b9", null ],
+      [ "benchmarkStdVector", "namespacebenchmark.html#ab1c92b084d635c2b9a5fce6e5fd3364c", null ],
+      [ "benchmarkStdVectorString", "namespacebenchmark.html#ad143bdfdfd0ac0f02b5107662f077dbb", null ]
+    ] ],
+    [ "flow", "namespaceflow.html", "namespaceflow" ],
+    [ "std", "namespacestd.html", "namespacestd" ]
+];

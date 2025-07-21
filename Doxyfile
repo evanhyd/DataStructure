@@ -12,7 +12,7 @@ EXTRACT_LOCAL_CLASSES  = YES
 EXTRACT_ANON_NSPACES   = YES
 
 # --------- Input Settings ---------
-INPUT                  = flow/
+INPUT                  = DataStructure/
 RECURSIVE              = YES
 FILE_PATTERNS          = *.cpp *.h *.hpp *.cxx *.cc
 EXCLUDE                = 
