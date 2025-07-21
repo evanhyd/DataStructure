@@ -38,8 +38,8 @@ GENERATE_XML           = NO
 GENERATE_DOCBOOK       = NO
 
 # --------- Markdown Support ---------
-MARKDOWN_SUPPORT       = YES
-USE_MDFILE_AS_MAINPAGE = 
+MARKDOWN_SUPPORT       =
+USE_MDFILE_AS_MAINPAGE =
 
 # --------- Warnings ---------
 WARN_IF_UNDOCUMENTED   = YES
