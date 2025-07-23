@@ -248,8 +248,8 @@
   <ItemGroup>
     <ClInclude Include="AVLTree.h" />
     <ClInclude Include="benchmark.h" />
-    <ClInclude Include="BinaryHeap.h" />
     <ClInclude Include="BinomialHeap.h" />
+    <ClInclude Include="flow_binary_heap.h" />
     <ClInclude Include="flow_concurrent_queue.h" />
     <ClInclude Include="flow_concurrent_flex_queue.h" />
     <ClInclude Include="flow_debug_memory.h" />

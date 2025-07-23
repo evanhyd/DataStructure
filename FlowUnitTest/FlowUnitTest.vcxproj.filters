@@ -22,11 +22,11 @@
     <Filter Include="flow\memory\memory_resource">
       <UniqueIdentifier>{9de310fb-26aa-4e52-93c5-206e134e685b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="flow\container">
+      <UniqueIdentifier>{47276f19-7f76-49a8-adc9-522564dcedba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="flow_vector.t.cpp">
-      <Filter>flow</Filter>
-    </ClCompile>
     <ClCompile Include="flow_concurrent_flex_queue.t.cpp">
       <Filter>flow\concurrent</Filter>
     </ClCompile>
@@ -53,6 +53,12 @@
     </ClCompile>
     <ClCompile Include="flow_pool_memory_resource.t.cpp">
       <Filter>flow\memory\memory_resource</Filter>
+    </ClCompile>
+    <ClCompile Include="flow_vector.t.cpp">
+      <Filter>flow\container</Filter>
+    </ClCompile>
+    <ClCompile Include="flow_binary_heap.t.cpp">
+      <Filter>flow\container</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

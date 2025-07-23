@@ -144,15 +144,18 @@ const auto __ = std::atexit([]() { std::ofstream("display_runtime.txt") << INT_M
 
 using namespace std;
 
-#include "flow_pool_memory_resource.h"
+#include "flow_binary_heap.h"
+#include "benchmark.h"
 
 int main() {
-  char buffer[1000];
-  flow::PoolMemoryResource resource(buffer, 1000, 64);
-  for (int i = 0; i < 10000000; ++i) {
-    void* ptr = resource.allocate(10, 4);
-    resource.deallocate(ptr, 10, 4);
-  }
+  /*benchmark::benchmarkStdVectorInt64(10000000, 5);
+  benchmark::benchmarkFlowVectorInt64(10000000, 5);
+  benchmark::benchmarkStdVectorString(1000000, 5);
+  benchmark::benchmarkFlowVectorString(1000000, 5);*/
+  benchmark::benchmarkStdPriorityQueueInt64(1000000, 5);
+  benchmark::benchmarkFlowBinaryHeapInt64(1000000, 5);
+  benchmark::benchmarkStdPriorityQueueString(1000000, 5);
+  benchmark::benchmarkFlowBinaryHeapString(1000000, 5);
 }
 
 /*

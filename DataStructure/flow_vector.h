@@ -11,9 +11,12 @@
 namespace flow {
 
   template <typename Strategy>
-  concept GrowthStrategy = requires(Strategy strategy, std::size_t num) {
-    { strategy(num) } -> std::same_as<std::size_t>;
-  };
+  concept GrowthStrategy = 
+    std::default_initializable<Strategy> &&
+    noexcept(Strategy()) && 
+    requires(Strategy strategy, std::size_t num) {
+      { strategy(num) } -> std::same_as<std::size_t>;
+    };
 
   struct VectorGrowthStrategy {
     struct GoldenExpand {
@@ -42,7 +45,6 @@ namespace flow {
     };
   };
 
-
   template <typename T, typename Allocator = PolymorphicAllocator<>, GrowthStrategy Strategy = VectorGrowthStrategy::GoldenExpand>
   class Vector {
   public:
@@ -66,58 +68,15 @@ namespace flow {
     std::size_t capacity_;
     T* buffer_;
 
-    // Clean up the old buffer.
-    void updateBuffer(T* buffer, std::size_t capacity) {
-      deleteBuffer(allocator_, buffer_, size_, capacity_);
-      buffer_ = buffer;
-      capacity_ = capacity;
-    }
-
-    // Allocate a new buffer with the capacity, and relocate the elements to it.
-    // This update the buffer_ and capacity_ internally.
-    void relocateBuffer(std::size_t capacity) {
-      assert(capacity_ < capacity && "new capacity is no larger than the old capacity");
-
-      T* buffer = allocator_trait::allocate(allocator_, capacity);
-      uninitializedMove(allocator_, begin(), end(), buffer);
-      updateBuffer(buffer, capacity);
-    }
-
-    // Allocate a new buffer with the capacity, and relocate the elements to it with a hole at pos.
-    void relocateBufferWithHoles(std::size_t capacity, iterator pos, std::size_t holeSize) {
-      assert(capacity_ < capacity && "new capacity is no larger than the old capacity");
-
-      T* buffer = allocator_trait::allocate(allocator_, capacity);
-      iterator leftHalf = uninitializedMove(allocator_, begin(), pos, buffer); // Move left half.
-      uninitializedMove(allocator_, pos, end(), leftHalf + holeSize); // Move right half.
-      updateBuffer(buffer, capacity);
-    }
-
-    template <typename ...U>
-    void resizeImp(std::size_t size, const U&... optionalValue) {
-      static_assert(sizeof...(optionalValue) <= 1, "no fill value or exactly one copy");
-      if (size_ < size) {
-        // Relocate if not enough capacity.
-        if (capacity_ < size) {
-          relocateBuffer(size);
-        }
-        uninitializedEmplace(allocator_, buffer_ + size_, buffer_ + size, optionalValue...);
-
-      } else if (size < size_) {
-        // Shrink.
-        destroyElements(allocator_, buffer_ + size, buffer_ + size_);
-      }
-      size_ = size;
-    }
-
   public:
-    // Constructors
-    // Default construct should not be explicit.
+    // Default constructor.
     constexpr Vector() noexcept
       : Vector(allocator_type{}) {
     }
 
+    // Extended default constructor.
     explicit constexpr Vector(const allocator_type& allocator)
+      noexcept(noexcept(allocator_type(allocator)))
       : allocator_(allocator),
         growthStrategy_(),
         size_(0),
@@ -125,10 +84,12 @@ namespace flow {
         buffer_(nullptr) {
     }
 
+    // Copy constructor.
     constexpr Vector(const Vector& rhs)
       : Vector(rhs, rhs.get_allocator()) {
     }
 
+    // Extended copy constructor.
     constexpr Vector(const Vector& rhs, const allocator_type& allocator)
       : allocator_(allocator),
         growthStrategy_(rhs.growthStrategy_),
@@ -138,15 +99,17 @@ namespace flow {
       uninitializedForward(allocator_, rhs.begin(), rhs.end(), buffer_);
     }
 
-    // Move constructor must be noexcept
+    // Move constructor.
     constexpr Vector(Vector&& rhs) noexcept
       : Vector(std::move(rhs), rhs.get_allocator()) {
     }
 
-    // Extended move constructor may through
+    // Extended move constructor.
     constexpr Vector(Vector&& rhs, const allocator_type& allocator)
       : Vector(allocator) {
 
+      // If allocator is different, then do not use the provided allocator
+      // to manage the memory of an existed vector.
       if (rhs.get_allocator() == allocator) {
         swap(*this, rhs);
       } else {
@@ -194,7 +157,8 @@ namespace flow {
     }
 
     // Operator.
-    Vector& operator=(Vector rhs) noexcept {
+    Vector& operator=(Vector rhs) 
+      noexcept(std::is_nothrow_swappable_v<Vector>) {
       swap(*this, rhs);
       return *this;
     }
@@ -418,6 +382,51 @@ namespace flow {
 
     void insert(iterator pos, std::initializer_list<T> list) {
       insert(pos, list.begin(), list.end());
+    }
+
+  private:
+    // Clean up the old buffer.
+    void updateBuffer(T* buffer, std::size_t capacity) {
+      deleteBuffer(allocator_, buffer_, size_, capacity_);
+      buffer_ = buffer;
+      capacity_ = capacity;
+    }
+
+    // Allocate a new buffer with the capacity, and relocate the elements to it.
+    // This update the buffer_ and capacity_ internally.
+    void relocateBuffer(std::size_t capacity) {
+      assert(capacity_ < capacity && "new capacity is no larger than the old capacity");
+
+      T* buffer = allocator_trait::allocate(allocator_, capacity);
+      uninitializedMove(allocator_, begin(), end(), buffer);
+      updateBuffer(buffer, capacity);
+    }
+
+    // Allocate a new buffer with the capacity, and relocate the elements to it with a hole at pos.
+    void relocateBufferWithHoles(std::size_t capacity, iterator pos, std::size_t holeSize) {
+      assert(capacity_ < capacity && "new capacity is no larger than the old capacity");
+
+      T* buffer = allocator_trait::allocate(allocator_, capacity);
+      iterator leftHalf = uninitializedMove(allocator_, begin(), pos, buffer); // Move left half.
+      uninitializedMove(allocator_, pos, end(), leftHalf + holeSize); // Move right half.
+      updateBuffer(buffer, capacity);
+    }
+
+    template <typename ...U>
+    void resizeImp(std::size_t size, const U&... optionalValue) {
+      static_assert(sizeof...(optionalValue) <= 1, "no fill value or exactly one copy");
+      if (size_ < size) {
+        // Relocate if not enough capacity.
+        if (capacity_ < size) {
+          relocateBuffer(size);
+        }
+        uninitializedEmplace(allocator_, buffer_ + size_, buffer_ + size, optionalValue...);
+
+      } else if (size < size_) {
+        // Shrink.
+        destroyElements(allocator_, buffer_ + size, buffer_ + size_);
+      }
+      size_ = size;
     }
 
     // Friends.
