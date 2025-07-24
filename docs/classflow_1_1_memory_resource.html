@@ -93,7 +93,7 @@ $(function(){initNavTree('classflow_1_1_memory_resource.html','','classflow_1_1_
 </div><!--header-->
 <div class="contents">
 
-<p>A memory resource holder interface for the <a class="el" href="classflow_1_1_polymorphic_allocator.html" title="A polymorphic allocator that wraps around a non-owning memory resource. Memory allocation strategy is...">PolymorphicAllocator</a>. Responsible for allocate and deallocate raw memory.  
+<p>A memory resource holder interface for the <a class="el" href="classflow_1_1_polymorphic_allocator.html" title="Polymorphic allocator wrapping a non-owning memory resource. Allocation strategy depends on the memor...">PolymorphicAllocator</a>. Responsible for allocate and deallocate raw memory.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="flow__memory__resource_8h_source.html">flow_memory_resource.h</a>&gt;</code></p>
@@ -123,9 +123,9 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a0fe4fd1de140064284dee1cc16c33e21" id="r_a0fe4fd1de140064284dee1cc16c33e21"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0fe4fd1de140064284dee1cc16c33e21">deallocateImp</a> (void *address, std::size_t bytes, std::size_t alignment)=0</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A memory resource holder interface for the <a class="el" href="classflow_1_1_polymorphic_allocator.html" title="A polymorphic allocator that wraps around a non-owning memory resource. Memory allocation strategy is...">PolymorphicAllocator</a>. Responsible for allocate and deallocate raw memory. </p>
+<div class="textblock"><p>A memory resource holder interface for the <a class="el" href="classflow_1_1_polymorphic_allocator.html" title="Polymorphic allocator wrapping a non-owning memory resource. Allocation strategy depends on the memor...">PolymorphicAllocator</a>. Responsible for allocate and deallocate raw memory. </p>
 
-<p class="definition">Definition at line <a class="el" href="flow__memory__resource_8h_source.html#l00010">10</a> of file <a class="el" href="flow__memory__resource_8h_source.html">flow_memory_resource.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="flow__memory__resource_8h_source.html#l00009">9</a> of file <a class="el" href="flow__memory__resource_8h_source.html">flow_memory_resource.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aed7eed2f0372002ff66df9decc501071" name="aed7eed2f0372002ff66df9decc501071"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aed7eed2f0372002ff66df9decc501071">&#9670;&#160;</a></span>~MemoryResource()</h2>
@@ -180,10 +180,10 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__memory__resource_8h_source.html#l00014">14</a> of file <a class="el" href="flow__memory__resource_8h_source.html">flow_memory_resource.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   14</span>                                                                                   {</div>
-<div class="line"><span class="lineno">   15</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="#a8179af2eb6e69df16d8ee3d82286ec10">allocateImp</a>(bytes, alignment);</div>
-<div class="line"><span class="lineno">   16</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__memory__resource_8h_source.html#l00013">13</a> of file <a class="el" href="flow__memory__resource_8h_source.html">flow_memory_resource.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   13</span>                                                                                   {</div>
+<div class="line"><span class="lineno">   14</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="#a8179af2eb6e69df16d8ee3d82286ec10">allocateImp</a>(bytes, alignment);</div>
+<div class="line"><span class="lineno">   15</span>    }</div>
 <div class="ttc" id="aclassflow_1_1_memory_resource_html_a8179af2eb6e69df16d8ee3d82286ec10"><div class="ttname"><a href="#a8179af2eb6e69df16d8ee3d82286ec10">flow::MemoryResource::allocateImp</a></div><div class="ttdeci">virtual void * allocateImp(std::size_t bytes, std::size_t alignment)=0</div></div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="#a8179af2eb6e69df16d8ee3d82286ec10">allocateImp()</a>.</p>
@@ -219,7 +219,7 @@ Protected Member Functions</h2></td></tr>
 
 <p>Implemented in <a class="el" href="classflow_1_1_arena_memory_resource.html#a621223b622d7efd5503f65c9de3aab1b">flow::ArenaMemoryResource</a>, <a class="el" href="classflow_1_1_default_memory_resource.html#a5b3b10ccc61e2b8d17606eb5fc0f1627">flow::DefaultMemoryResource</a>, <a class="el" href="classflow_1_1_pool_memory_resource.html#a3cfb07a234f406f4fb8c1d1c154861bc">flow::PoolMemoryResource</a>, and <a class="el" href="classflow_1_1_stack_memory_resource.html#a2ac0250b455868bd79a38da643b421d5">flow::StackMemoryResource</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="flow__memory__resource_8h_source.html#l00014">allocate()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__memory__resource_8h_source.html#l00013">allocate()</a>.</p>
 
 </div>
 </div>
@@ -255,10 +255,10 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__memory__resource_8h_source.html#l00018">18</a> of file <a class="el" href="flow__memory__resource_8h_source.html">flow_memory_resource.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   18</span>                                                                                                   {</div>
-<div class="line"><span class="lineno">   19</span>      <a class="code hl_function" href="#a0fe4fd1de140064284dee1cc16c33e21">deallocateImp</a>(address, bytes, alignment);</div>
-<div class="line"><span class="lineno">   20</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__memory__resource_8h_source.html#l00017">17</a> of file <a class="el" href="flow__memory__resource_8h_source.html">flow_memory_resource.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   17</span>                                                                                                   {</div>
+<div class="line"><span class="lineno">   18</span>      <a class="code hl_function" href="#a0fe4fd1de140064284dee1cc16c33e21">deallocateImp</a>(address, bytes, alignment);</div>
+<div class="line"><span class="lineno">   19</span>    }</div>
 <div class="ttc" id="aclassflow_1_1_memory_resource_html_a0fe4fd1de140064284dee1cc16c33e21"><div class="ttname"><a href="#a0fe4fd1de140064284dee1cc16c33e21">flow::MemoryResource::deallocateImp</a></div><div class="ttdeci">virtual void deallocateImp(void *address, std::size_t bytes, std::size_t alignment)=0</div></div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="#a0fe4fd1de140064284dee1cc16c33e21">deallocateImp()</a>.</p>
@@ -299,7 +299,7 @@ Protected Member Functions</h2></td></tr>
 
 <p>Implemented in <a class="el" href="classflow_1_1_arena_memory_resource.html#a705ea8539ba4774256c621c482cd9493">flow::ArenaMemoryResource</a>, <a class="el" href="classflow_1_1_default_memory_resource.html#ae780c88790db29cf6e74b2363463f86d">flow::DefaultMemoryResource</a>, <a class="el" href="classflow_1_1_pool_memory_resource.html#ad096a8ce328207d87d572b19ae51f324">flow::PoolMemoryResource</a>, and <a class="el" href="classflow_1_1_stack_memory_resource.html#a472e9dd93c0aad65c2a3768254d2bf1f">flow::StackMemoryResource</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="flow__memory__resource_8h_source.html#l00018">deallocate()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__memory__resource_8h_source.html#l00017">deallocate()</a>.</p>
 
 </div>
 </div>

@@ -97,24 +97,27 @@ $(function(){initNavTree('namespaceflow.html','',''); });
 Classes</h2></td></tr>
 <tr class="memitem:ArenaMemoryResource" id="r_ArenaMemoryResource"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classflow_1_1_arena_memory_resource.html">ArenaMemoryResource</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A linear arena memory resource that allocates memory sequentially from a fixed buffer. Throws std::bad_alloc if there is insufficient space for the requested allocation.  <a href="classflow_1_1_arena_memory_resource.html#details">More...</a><br /></td></tr>
+<tr class="memitem:BinaryHeap" id="r_BinaryHeap"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classflow_1_1_binary_heap.html">BinaryHeap</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A binary min-heap container. Supports custom comparator and allocator.  <a href="classflow_1_1_binary_heap.html#details">More...</a><br /></td></tr>
 <tr class="memitem:ConcurrentFlexQueue" id="r_ConcurrentFlexQueue"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classflow_1_1_concurrent_flex_queue.html">ConcurrentFlexQueue</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A thread-safe concurrent queue with flexible push and pop operations.  <a href="classflow_1_1_concurrent_flex_queue.html#details">More...</a><br /></td></tr>
 <tr class="memitem:ConcurrentQueue" id="r_ConcurrentQueue"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classflow_1_1_concurrent_queue.html">ConcurrentQueue</a></td></tr>
 <tr class="memitem:CountedValueViewIterator" id="r_CountedValueViewIterator"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classflow_1_1_counted_value_view_iterator.html">CountedValueViewIterator</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator that returns a constant value for a fixed number of times. Useful for creating a virtual range of repeated values without storage.  <a href="classflow_1_1_counted_value_view_iterator.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator that returns a constant value a fixed number of times. Useful for creating a virtual range of repeated values without overhead.  <a href="classflow_1_1_counted_value_view_iterator.html#details">More...</a><br /></td></tr>
 <tr class="memitem:DebugClass" id="r_DebugClass"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classflow_1_1_debug_class.html">DebugClass</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Debug class that tracks object's copy/move opeartions. Note that some of the operations may get optimized away with optimization on.  <a href="classflow_1_1_debug_class.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Debug class to track copy/move operations. Some operations may be optimized away in release builds.  <a href="classflow_1_1_debug_class.html#details">More...</a><br /></td></tr>
 <tr class="memitem:DefaultMemoryResource" id="r_DefaultMemoryResource"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classflow_1_1_default_memory_resource.html">DefaultMemoryResource</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A default memory resource that wraps global ::operator new and ::operator delete.  <a href="classflow_1_1_default_memory_resource.html#details">More...</a><br /></td></tr>
 <tr class="memitem:MemoryResource" id="r_MemoryResource"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classflow_1_1_memory_resource.html">MemoryResource</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A memory resource holder interface for the <a class="el" href="classflow_1_1_polymorphic_allocator.html" title="A polymorphic allocator that wraps around a non-owning memory resource. Memory allocation strategy is...">PolymorphicAllocator</a>. Responsible for allocate and deallocate raw memory.  <a href="classflow_1_1_memory_resource.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A memory resource holder interface for the <a class="el" href="classflow_1_1_polymorphic_allocator.html" title="Polymorphic allocator wrapping a non-owning memory resource. Allocation strategy depends on the memor...">PolymorphicAllocator</a>. Responsible for allocate and deallocate raw memory.  <a href="classflow_1_1_memory_resource.html#details">More...</a><br /></td></tr>
 <tr class="memitem:PolymorphicAllocator" id="r_PolymorphicAllocator"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classflow_1_1_polymorphic_allocator.html">PolymorphicAllocator</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A polymorphic allocator that wraps around a non-owning memory resource. Memory allocation strategy is decided by memory resource's implementation.  <a href="classflow_1_1_polymorphic_allocator.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Polymorphic allocator wrapping a non-owning memory resource. Allocation strategy depends on the memory resource implementation.  <a href="classflow_1_1_polymorphic_allocator.html#details">More...</a><br /></td></tr>
 <tr class="memitem:PoolMemoryResource" id="r_PoolMemoryResource"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classflow_1_1_pool_memory_resource.html">PoolMemoryResource</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pool memory resource that manages fixed-size memory blocks from a pre-allocated buffer. The allocation size must be less or equal to the block size. The allocation alignment must be less or equal to the block alignment. Throws std::bad_alloc if the constraint is not met or run out of memory.  <a href="classflow_1_1_pool_memory_resource.html#details">More...</a><br /></td></tr>
 <tr class="memitem:StackMemoryResource" id="r_StackMemoryResource"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classflow_1_1_stack_memory_resource.html">StackMemoryResource</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A stack-based memory resource that allocates memory in a LIFO order from a fixed buffer. Deallocation must happen in reverse order of allocation. Throws std::bad_alloc if there is insufficient space for an allocation.  <a href="classflow_1_1_stack_memory_resource.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Timer" id="r_Timer"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classflow_1_1_timer.html">Timer</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A simple timer to record timelapses. Uses chrono::steady_clock by default.  <a href="classflow_1_1_timer.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A simple timer to record timelapses. Uses steady_clock by default.  <a href="classflow_1_1_timer.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Tuple" id="r_Tuple"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classflow_1_1_tuple.html">Tuple</a></td></tr>
 <tr class="memitem:Tuple_3C_20T_2C_20Ts_2E_2E_2E_20_3E" id="r_Tuple_3C_20T_2C_20Ts_2E_2E_2E_20_3E"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classflow_1_1_tuple_3_01_t_00_01_ts_8_8_8_01_4.html">Tuple&lt; T, Ts... &gt;</a></td></tr>
 <tr class="memitem:Vector" id="r_Vector"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classflow_1_1_vector.html">Vector</a></td></tr>
@@ -127,7 +130,7 @@ Concepts</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a66db7e81436bb94ac54e68f4f13be960" id="r_a66db7e81436bb94ac54e68f4f13be960"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66db7e81436bb94ac54e68f4f13be960">enableMemoryGuard</a> ()</td></tr>
-<tr class="memdesc:a66db7e81436bb94ac54e68f4f13be960"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable MSVC native memory leak checker in debug mode. Not compatible with the address sanitizer.  <br /></td></tr>
+<tr class="memdesc:a66db7e81436bb94ac54e68f4f13be960"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable MSVC native memory leak checker in debug mode. Not compatible with address sanitizer.  <br /></td></tr>
 <tr class="memitem:a7cbf79d9d81ea0bf923173bf94d18282" id="r_a7cbf79d9d81ea0bf923173bf94d18282"><td class="memTemplParams" colspan="2">template&lt;typename AllocatorType, std::input_iterator InputIt, std::forward_iterator OutputIt&gt; </td></tr>
 <tr class="memitem:a7cbf79d9d81ea0bf923173bf94d18282 template"><td class="memItemLeft" align="right" valign="top">OutputIt&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7cbf79d9d81ea0bf923173bf94d18282">uninitializedForward</a> (AllocatorType &amp;allocator, InputIt first, InputIt last, OutputIt dest)</td></tr>
 <tr class="memdesc:a7cbf79d9d81ea0bf923173bf94d18282"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forward elements from a source range to uninitialized memory.  <br /></td></tr>
@@ -136,7 +139,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:a51e3de912b53f5b8d08f6167efae5d43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves elements from a source range to uninitialized memory.  <br /></td></tr>
 <tr class="memitem:a003a0f5de60743211f4a12ad692ea545" id="r_a003a0f5de60743211f4a12ad692ea545"><td class="memTemplParams" colspan="2">template&lt;typename AllocatorType, std::forward_iterator OutputIt, typename ... Args&gt; </td></tr>
 <tr class="memitem:a003a0f5de60743211f4a12ad692ea545 template"><td class="memItemLeft" align="right" valign="top">OutputIt&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a003a0f5de60743211f4a12ad692ea545">uninitializedEmplace</a> (AllocatorType &amp;allocator, OutputIt first, OutputIt last, const Args &amp;... args)</td></tr>
-<tr class="memdesc:a003a0f5de60743211f4a12ad692ea545"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs objects in uninitialized memory by copying arguments to their constructor. Is is intentional that the arguments are copied instead of forwarded to prevent reuse moved objects.  <br /></td></tr>
+<tr class="memdesc:a003a0f5de60743211f4a12ad692ea545"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs objects in uninitialized memory by copying arguments to their constructor. Intentional copy of arguments to prevent reuse of moved objects.  <br /></td></tr>
 <tr class="memitem:ac44af902cb4c10b49fa9f5992daa6c92" id="r_ac44af902cb4c10b49fa9f5992daa6c92"><td class="memTemplParams" colspan="2">template&lt;typename AllocatorType, std::forward_iterator OutputIt, typename T&gt; </td></tr>
 <tr class="memitem:ac44af902cb4c10b49fa9f5992daa6c92 template"><td class="memItemLeft" align="right" valign="top">OutputIt&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac44af902cb4c10b49fa9f5992daa6c92">uninitializedFill</a> (AllocatorType &amp;allocator, OutputIt first, OutputIt last, const T &amp;value)</td></tr>
 <tr class="memdesc:ac44af902cb4c10b49fa9f5992daa6c92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fills uninitialized memory with copies of a value.  <br /></td></tr>
@@ -151,7 +154,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:a1110956ca4c95ee5c42c1e988dab6ecd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves <span class="tt">count</span> elements from a source range to uninitialized memory.  <br /></td></tr>
 <tr class="memitem:ae91210e00bd937af8781ad61d96bb7af" id="r_ae91210e00bd937af8781ad61d96bb7af"><td class="memTemplParams" colspan="2">template&lt;typename AllocatorType, std::forward_iterator OutputIt, typename ... Args&gt; </td></tr>
 <tr class="memitem:ae91210e00bd937af8781ad61d96bb7af template"><td class="memItemLeft" align="right" valign="top">OutputIt&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae91210e00bd937af8781ad61d96bb7af">uninitializedEmplaceN</a> (AllocatorType &amp;allocator, OutputIt first, std::size_t count, const Args &amp;... args)</td></tr>
-<tr class="memdesc:ae91210e00bd937af8781ad61d96bb7af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a specified number of objects in uninitialized memory by forwarding arguments to their constructor. Is is intentional that the arguments are copied instead of forwarded to prevent reuse moved objects.  <br /></td></tr>
+<tr class="memdesc:ae91210e00bd937af8781ad61d96bb7af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a specified number of objects in uninitialized memory by copying constructor arguments. Intentional copy of arguments to prevent reuse of moved objects.  <br /></td></tr>
 <tr class="memitem:a5991193d2c2c3220704b7ffe43284798" id="r_a5991193d2c2c3220704b7ffe43284798"><td class="memTemplParams" colspan="2">template&lt;typename AllocatorType, std::forward_iterator OutputIt, typename T&gt; </td></tr>
 <tr class="memitem:a5991193d2c2c3220704b7ffe43284798 template"><td class="memItemLeft" align="right" valign="top">OutputIt&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5991193d2c2c3220704b7ffe43284798">uninitializedFillN</a> (AllocatorType &amp;allocator, OutputIt first, std::size_t count, const T &amp;value)</td></tr>
 <tr class="memdesc:a5991193d2c2c3220704b7ffe43284798"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fills <span class="tt">count</span> elements in uninitialized memory with a value.  <br /></td></tr>
@@ -160,13 +163,13 @@ Functions</h2></td></tr>
 <tr class="memdesc:a2097cda5f5388d27f3c92804fdea2917"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys <span class="tt">count</span> objects in a range.  <br /></td></tr>
 <tr class="memitem:a95a53e967634035ab7b02a7a0fd8d41a" id="r_a95a53e967634035ab7b02a7a0fd8d41a"><td class="memTemplParams" colspan="2">template&lt;typename AllocatorType, typename T&gt; </td></tr>
 <tr class="memitem:a95a53e967634035ab7b02a7a0fd8d41a template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a95a53e967634035ab7b02a7a0fd8d41a">deleteBuffer</a> (AllocatorType &amp;allocator, T *buffer, std::size_t size, std::size_t capacity) noexcept</td></tr>
-<tr class="memdesc:a95a53e967634035ab7b02a7a0fd8d41a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys and deallocates the buffer, where <span class="tt">size</span> is the number of constructed elements and <span class="tt">capacity</span> is the buffer capacity.  <br /></td></tr>
+<tr class="memdesc:a95a53e967634035ab7b02a7a0fd8d41a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys and deallocates the buffer.  <br /></td></tr>
 <tr class="memitem:a4cdb6701097d19bfe56dc9b98d0ab18d" id="r_a4cdb6701097d19bfe56dc9b98d0ab18d"><td class="memTemplParams" colspan="2">template&lt;typename T, typename U&gt; </td></tr>
 <tr class="memitem:a4cdb6701097d19bfe56dc9b98d0ab18d template"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4cdb6701097d19bfe56dc9b98d0ab18d">pointerDistance</a> (const T *first, const U *last)</td></tr>
-<tr class="memdesc:a4cdb6701097d19bfe56dc9b98d0ab18d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the distance from the first pointer to the last pointer in bytes.  <br /></td></tr>
+<tr class="memdesc:a4cdb6701097d19bfe56dc9b98d0ab18d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the distance in bytes from the first pointer to the last pointer.  <br /></td></tr>
 <tr class="memitem:ad508020eec40eabb44ecd17a0ea944a1" id="r_ad508020eec40eabb44ecd17a0ea944a1"><td class="memTemplParams" colspan="2">template&lt;typename Header&gt; </td></tr>
 <tr class="memitem:ad508020eec40eabb44ecd17a0ea944a1 template"><td class="memItemLeft" align="right" valign="top">Header *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad508020eec40eabb44ecd17a0ea944a1">alignWithHeader</a> (std::size_t alignment, std::size_t size, void *&amp;buffer, std::size_t &amp;capacity) noexcept</td></tr>
-<tr class="memdesc:ad508020eec40eabb44ecd17a0ea944a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Align the header + buffer to their corresponding alignments. If the capacity is not big enough to accommodate, then return nullptr. This function is similar to std::align, but it also aligns a header in the front.  <br /></td></tr>
+<tr class="memdesc:ad508020eec40eabb44ecd17a0ea944a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Align the header + buffer to their corresponding alignments. If the capacity is not big enough, returns nullptr.  <br /></td></tr>
 <tr class="memitem:ab90fae79ddd51259bfc55e73b295fcd9" id="r_ab90fae79ddd51259bfc55e73b295fcd9"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; <br />
 requires std::integral&lt;T&gt; || std::floating_point&lt;T&gt;</td></tr>
 <tr class="memitem:ab90fae79ddd51259bfc55e73b295fcd9 template"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab90fae79ddd51259bfc55e73b295fcd9">getRandomNumber</a> (T lower, T upper)</td></tr>
@@ -217,57 +220,50 @@ template&lt;typename Header&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Align the header + buffer to their corresponding alignments. If the capacity is not big enough to accommodate, then return nullptr. This function is similar to std::align, but it also aligns a header in the front. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">Header</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Align the header + buffer to their corresponding alignments. If the capacity is not big enough, returns nullptr. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">alignment</td><td></td></tr>
-    <tr><td class="paramname">size</td><td></td></tr>
-    <tr><td class="paramname">buffer</td><td></td></tr>
-    <tr><td class="paramname">capacity</td><td></td></tr>
+    <tr><td class="paramname">alignment</td><td>Required alignment. </td></tr>
+    <tr><td class="paramname">size</td><td>Size of the buffer to align. </td></tr>
+    <tr><td class="paramname">buffer</td><td>Reference to pointer to the buffer to be aligned. </td></tr>
+    <tr><td class="paramname">capacity</td><td>Reference to the capacity of the buffer. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Aligned header pointer followed by the aligned buffer. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Aligned header pointer followed by the aligned buffer, or nullptr on failure. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__memory__algorithm_8h_source.html#l00220">220</a> of file <a class="el" href="flow__memory__algorithm_8h_source.html">flow_memory_algorithm.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  220</span>                                                                                                            {</div>
-<div class="line"><span class="lineno">  221</span> </div>
-<div class="line"><span class="lineno">  222</span>    <span class="comment">// https://stackoverflow.com/questions/46457449/is-it-always-the-case-that-sizeoft-alignoft-for-all-object-types-t</span></div>
-<div class="line"><span class="lineno">  223</span>    assert(size &gt;= alignment &amp;&amp; <span class="stringliteral">&quot;size is smaller than its alignment&quot;</span>);</div>
-<div class="line"><span class="lineno">  224</span>    <span class="keywordflow">if</span> (capacity &lt; <span class="keyword">sizeof</span>(Header) + size) {</div>
-<div class="line"><span class="lineno">  225</span>      <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
-<div class="line"><span class="lineno">  226</span>    }</div>
-<div class="line"><span class="lineno">  227</span> </div>
-<div class="line"><span class="lineno">  228</span>    <span class="comment">// Set the block alignment to be at least as big as the header alignment.</span></div>
-<div class="line"><span class="lineno">  229</span>    <span class="comment">// If the allocated block is aligned, then its header is aligned.</span></div>
-<div class="line"><span class="lineno">  230</span>    alignment = std::max(alignment, <span class="keyword">alignof</span>(Header));</div>
-<div class="line"><span class="lineno">  231</span> </div>
-<div class="line"><span class="lineno">  232</span>    <span class="comment">// Reserve at least sizeof(Header) before the allocated block.</span></div>
-<div class="line"><span class="lineno">  233</span>    <span class="keywordtype">void</span>* allocatedBlock = <span class="keyword">reinterpret_cast&lt;</span>Header*<span class="keyword">&gt;</span>(buffer) + 1;</div>
-<div class="line"><span class="lineno">  234</span>    std::size_t capacityAfterHeader = capacity - <span class="keyword">sizeof</span>(Header);</div>
-<div class="line"><span class="lineno">  235</span>    <span class="keywordflow">if</span> (!std::align(alignment, size, allocatedBlock, capacityAfterHeader)) {</div>
-<div class="line"><span class="lineno">  236</span>      <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
-<div class="line"><span class="lineno">  237</span>    }</div>
-<div class="line"><span class="lineno">  238</span> </div>
-<div class="line"><span class="lineno">  239</span>    <span class="comment">// Calculate the address of the header.</span></div>
-<div class="line"><span class="lineno">  240</span>    Header* header = <span class="keyword">reinterpret_cast&lt;</span>Header*<span class="keyword">&gt;</span>(allocatedBlock) - 1;</div>
-<div class="line"><span class="lineno">  241</span>    assert(<span class="keyword">reinterpret_cast&lt;</span>std::uintptr_t<span class="keyword">&gt;</span>(header) % <span class="keyword">alignof</span>(Header) == 0 &amp;&amp; <span class="stringliteral">&quot;allocated buffer is not aligned with the header&quot;</span>);</div>
-<div class="line"><span class="lineno">  242</span> </div>
-<div class="line"><span class="lineno">  243</span>    capacity -= <a class="code hl_function" href="#a4cdb6701097d19bfe56dc9b98d0ab18d">pointerDistance</a>(buffer, header);</div>
-<div class="line"><span class="lineno">  244</span>    buffer = header;</div>
-<div class="line"><span class="lineno">  245</span>    <span class="keywordflow">return</span> header;</div>
-<div class="line"><span class="lineno">  246</span>  }</div>
-<div class="ttc" id="anamespaceflow_html_a4cdb6701097d19bfe56dc9b98d0ab18d"><div class="ttname"><a href="#a4cdb6701097d19bfe56dc9b98d0ab18d">flow::pointerDistance</a></div><div class="ttdeci">std::size_t pointerDistance(const T *first, const U *last)</div><div class="ttdoc">Calculate the distance from the first pointer to the last pointer in bytes.</div><div class="ttdef"><b>Definition</b> <a href="flow__memory__algorithm_8h_source.html#l00203">flow_memory_algorithm.h:203</a></div></div>
+<p class="definition">Definition at line <a class="el" href="flow__memory__algorithm_8h_source.html#l00161">161</a> of file <a class="el" href="flow__memory__algorithm_8h_source.html">flow_memory_algorithm.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  161</span>                                                                                                            {</div>
+<div class="line"><span class="lineno">  162</span> </div>
+<div class="line"><span class="lineno">  163</span>    <span class="comment">// https://stackoverflow.com/questions/46457449/is-it-always-the-case-that-sizeoft-alignoft-for-all-object-types-t</span></div>
+<div class="line"><span class="lineno">  164</span>    assert(size &gt;= alignment &amp;&amp; <span class="stringliteral">&quot;size is smaller than its alignment&quot;</span>);</div>
+<div class="line"><span class="lineno">  165</span>    <span class="keywordflow">if</span> (capacity &lt; <span class="keyword">sizeof</span>(Header) + size) {</div>
+<div class="line"><span class="lineno">  166</span>      <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><span class="lineno">  167</span>    }</div>
+<div class="line"><span class="lineno">  168</span> </div>
+<div class="line"><span class="lineno">  169</span>    <span class="comment">// Set the block alignment to be at least as big as the header alignment.</span></div>
+<div class="line"><span class="lineno">  170</span>    alignment = std::max(alignment, <span class="keyword">alignof</span>(Header));</div>
+<div class="line"><span class="lineno">  171</span> </div>
+<div class="line"><span class="lineno">  172</span>    <span class="comment">// Reserve at least sizeof(Header) before the allocated block.</span></div>
+<div class="line"><span class="lineno">  173</span>    <span class="keywordtype">void</span>* allocatedBlock = <span class="keyword">reinterpret_cast&lt;</span>Header*<span class="keyword">&gt;</span>(buffer) + 1;</div>
+<div class="line"><span class="lineno">  174</span>    std::size_t capacityAfterHeader = capacity - <span class="keyword">sizeof</span>(Header);</div>
+<div class="line"><span class="lineno">  175</span>    <span class="keywordflow">if</span> (!std::align(alignment, size, allocatedBlock, capacityAfterHeader)) {</div>
+<div class="line"><span class="lineno">  176</span>      <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><span class="lineno">  177</span>    }</div>
+<div class="line"><span class="lineno">  178</span> </div>
+<div class="line"><span class="lineno">  179</span>    <span class="comment">// Calculate the address of the header.</span></div>
+<div class="line"><span class="lineno">  180</span>    Header* header = <span class="keyword">reinterpret_cast&lt;</span>Header*<span class="keyword">&gt;</span>(allocatedBlock) - 1;</div>
+<div class="line"><span class="lineno">  181</span>    assert(<span class="keyword">reinterpret_cast&lt;</span>std::uintptr_t<span class="keyword">&gt;</span>(header) % <span class="keyword">alignof</span>(Header) == 0 &amp;&amp; <span class="stringliteral">&quot;allocated buffer is not aligned with the header&quot;</span>);</div>
+<div class="line"><span class="lineno">  182</span> </div>
+<div class="line"><span class="lineno">  183</span>    capacity -= <a class="code hl_function" href="#a4cdb6701097d19bfe56dc9b98d0ab18d">pointerDistance</a>(buffer, header);</div>
+<div class="line"><span class="lineno">  184</span>    buffer = header;</div>
+<div class="line"><span class="lineno">  185</span>    <span class="keywordflow">return</span> header;</div>
+<div class="line"><span class="lineno">  186</span>  }</div>
+<div class="ttc" id="anamespaceflow_html_a4cdb6701097d19bfe56dc9b98d0ab18d"><div class="ttname"><a href="#a4cdb6701097d19bfe56dc9b98d0ab18d">flow::pointerDistance</a></div><div class="ttdeci">std::size_t pointerDistance(const T *first, const U *last)</div><div class="ttdoc">Calculate the distance in bytes from the first pointer to the last pointer.</div><div class="ttdef"><b>Definition</b> <a href="flow__memory__algorithm_8h_source.html#l00148">flow_memory_algorithm.h:148</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="flow__memory__algorithm_8h_source.html#l00203">pointerDistance()</a>.</p>
+<p class="reference">References <a class="el" href="flow__memory__algorithm_8h_source.html#l00148">pointerDistance()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="flow__stack__memory__resource_8h_source.html#l00029">flow::StackMemoryResource::allocateImp()</a>, and <a class="el" href="flow__pool__memory__resource_8h_source.html#l00017">flow::PoolMemoryResource::PoolMemoryResource()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__stack__memory__resource_8h_source.html#l00028">flow::StackMemoryResource::allocateImp()</a>, and <a class="el" href="flow__pool__memory__resource_8h_source.html#l00016">flow::PoolMemoryResource::PoolMemoryResource()</a>.</p>
 
 </div>
 </div>
@@ -310,34 +306,27 @@ template&lt;typename AllocatorType, typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Destroys and deallocates the buffer, where <span class="tt">size</span> is the number of constructed elements and <span class="tt">capacity</span> is the buffer capacity. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">AllocatorType</td><td>Allocator type.</td></tr>
-    <tr><td class="paramname">T</td><td>Type of buffer elements.</td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Destroys and deallocates the buffer. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">allocator</td><td>Allocator for destruction and deallocation.</td></tr>
-    <tr><td class="paramname">buffer</td><td>Pointer to the buffer.</td></tr>
-    <tr><td class="paramname">size</td><td>Number of constructed elements.</td></tr>
-    <tr><td class="paramname">capacity</td><td>Total buffer capacity.</td></tr>
+    <tr><td class="paramname">allocator</td><td>Allocator for destruction and deallocation. </td></tr>
+    <tr><td class="paramname">buffer</td><td>Pointer to the buffer. </td></tr>
+    <tr><td class="paramname">size</td><td>Number of constructed elements. </td></tr>
+    <tr><td class="paramname">capacity</td><td>Total buffer capacity. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__memory__algorithm_8h_source.html#l00191">191</a> of file <a class="el" href="flow__memory__algorithm_8h_source.html">flow_memory_algorithm.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  191</span>                                                                                                      {</div>
-<div class="line"><span class="lineno">  192</span>    <a class="code hl_function" href="#a2097cda5f5388d27f3c92804fdea2917">destroyElementsN</a>(allocator, buffer, size);</div>
-<div class="line"><span class="lineno">  193</span>    std::allocator_traits&lt;AllocatorType&gt;::deallocate(allocator, buffer, capacity);</div>
-<div class="line"><span class="lineno">  194</span>  }</div>
-<div class="ttc" id="anamespaceflow_html_a2097cda5f5388d27f3c92804fdea2917"><div class="ttname"><a href="#a2097cda5f5388d27f3c92804fdea2917">flow::destroyElementsN</a></div><div class="ttdeci">void destroyElementsN(AllocatorType &amp;allocator, InputIt first, std::size_t count) noexcept</div><div class="ttdoc">Destroys count objects in a range.</div><div class="ttdef"><b>Definition</b> <a href="flow__memory__algorithm_8h_source.html#l00174">flow_memory_algorithm.h:174</a></div></div>
+<p class="definition">Definition at line <a class="el" href="flow__memory__algorithm_8h_source.html#l00138">138</a> of file <a class="el" href="flow__memory__algorithm_8h_source.html">flow_memory_algorithm.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  138</span>                                                                                                      {</div>
+<div class="line"><span class="lineno">  139</span>    <a class="code hl_function" href="#a2097cda5f5388d27f3c92804fdea2917">destroyElementsN</a>(allocator, buffer, size);</div>
+<div class="line"><span class="lineno">  140</span>    std::allocator_traits&lt;AllocatorType&gt;::deallocate(allocator, buffer, capacity);</div>
+<div class="line"><span class="lineno">  141</span>  }</div>
+<div class="ttc" id="anamespaceflow_html_a2097cda5f5388d27f3c92804fdea2917"><div class="ttname"><a href="#a2097cda5f5388d27f3c92804fdea2917">flow::destroyElementsN</a></div><div class="ttdeci">void destroyElementsN(AllocatorType &amp;allocator, InputIt first, std::size_t count) noexcept</div><div class="ttdoc">Destroys count objects in a range.</div><div class="ttdef"><b>Definition</b> <a href="flow__memory__algorithm_8h_source.html#l00126">flow_memory_algorithm.h:126</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="flow__memory__algorithm_8h_source.html#l00174">destroyElementsN()</a>.</p>
+<p class="reference">References <a class="el" href="flow__memory__algorithm_8h_source.html#l00126">destroyElementsN()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00070">flow::Vector&lt; T, Allocator, Strategy &gt;::updateBuffer()</a>, and <a class="el" href="flow__vector_8h_source.html#l00192">flow::Vector&lt; T, Allocator, Strategy &gt;::~Vector()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00456">flow::Vector&lt; T, Allocator &gt;::updateBuffer()</a>, and <a class="el" href="flow__vector_8h_source.html#l00177">flow::Vector&lt; T, Allocator &gt;::~Vector()</a>.</p>
 
 </div>
 </div>
@@ -376,30 +365,23 @@ template&lt;typename AllocatorType, std::forward_iterator InputIt&gt; </div>
 </div><div class="memdoc">
 
 <p>Destroys a range of constructed objects in memory. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">AllocatorType</td><td>Allocator type.</td></tr>
-    <tr><td class="paramname">InputIt</td><td>Forward iterator for range.</td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">allocator</td><td>Allocator for destruction.</td></tr>
-    <tr><td class="paramname">first</td><td>Start of range.</td></tr>
-    <tr><td class="paramname">last</td><td>End of range.</td></tr>
+    <tr><td class="paramname">allocator</td><td>Allocator for destruction. </td></tr>
+    <tr><td class="paramname">first</td><td>Start of range. </td></tr>
+    <tr><td class="paramname">last</td><td>End of range. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__memory__algorithm_8h_source.html#l00088">88</a> of file <a class="el" href="flow__memory__algorithm_8h_source.html">flow_memory_algorithm.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   88</span>                                                                                       {</div>
-<div class="line"><span class="lineno">   89</span>    <span class="keywordflow">for</span> (; first != last; ++first) {</div>
-<div class="line"><span class="lineno">   90</span>      std::allocator_traits&lt;AllocatorType&gt;::destroy(allocator, std::addressof(*first));</div>
-<div class="line"><span class="lineno">   91</span>    }</div>
-<div class="line"><span class="lineno">   92</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="flow__memory__algorithm_8h_source.html#l00064">64</a> of file <a class="el" href="flow__memory__algorithm_8h_source.html">flow_memory_algorithm.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   64</span>                                                                                       {</div>
+<div class="line"><span class="lineno">   65</span>    <span class="keywordflow">for</span> (; first != last; ++first) {</div>
+<div class="line"><span class="lineno">   66</span>      std::allocator_traits&lt;AllocatorType&gt;::destroy(allocator, std::addressof(*first));</div>
+<div class="line"><span class="lineno">   67</span>    }</div>
+<div class="line"><span class="lineno">   68</span>  }</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00330">flow::Vector&lt; T, Allocator, Strategy &gt;::erase()</a>, and <a class="el" href="flow__vector_8h_source.html#l00097">flow::Vector&lt; T, Allocator, Strategy &gt;::resizeImp()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00340">flow::Vector&lt; T, Allocator &gt;::erase()</a>, and <a class="el" href="flow__vector_8h_source.html#l00483">flow::Vector&lt; T, Allocator &gt;::resizeImp()</a>.</p>
 
 </div>
 </div>
@@ -438,30 +420,23 @@ template&lt;typename AllocatorType, std::forward_iterator InputIt&gt; </div>
 </div><div class="memdoc">
 
 <p>Destroys <span class="tt">count</span> objects in a range. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">AllocatorType</td><td>Allocator type.</td></tr>
-    <tr><td class="paramname">InputIt</td><td>Forward iterator for range.</td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">allocator</td><td>Allocator for destruction.</td></tr>
-    <tr><td class="paramname">first</td><td>Start of range.</td></tr>
-    <tr><td class="paramname">count</td><td>Number of elements to destroy.</td></tr>
+    <tr><td class="paramname">allocator</td><td>Allocator for destruction. </td></tr>
+    <tr><td class="paramname">first</td><td>Start of range. </td></tr>
+    <tr><td class="paramname">count</td><td>Number of elements to destroy. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__memory__algorithm_8h_source.html#l00174">174</a> of file <a class="el" href="flow__memory__algorithm_8h_source.html">flow_memory_algorithm.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  174</span>                                                                                           {</div>
-<div class="line"><span class="lineno">  175</span>    <span class="keywordflow">for</span> (std::size_t i = 0; i &lt; count; ++i, ++first) {</div>
-<div class="line"><span class="lineno">  176</span>      std::allocator_traits&lt;AllocatorType&gt;::destroy(allocator, std::addressof(*first));</div>
-<div class="line"><span class="lineno">  177</span>    }</div>
-<div class="line"><span class="lineno">  178</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="flow__memory__algorithm_8h_source.html#l00126">126</a> of file <a class="el" href="flow__memory__algorithm_8h_source.html">flow_memory_algorithm.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  126</span>                                                                                           {</div>
+<div class="line"><span class="lineno">  127</span>    <span class="keywordflow">for</span> (std::size_t i = 0; i &lt; count; ++i, ++first) {</div>
+<div class="line"><span class="lineno">  128</span>      std::allocator_traits&lt;AllocatorType&gt;::destroy(allocator, std::addressof(*first));</div>
+<div class="line"><span class="lineno">  129</span>    }</div>
+<div class="line"><span class="lineno">  130</span>  }</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00268">flow::Vector&lt; T, Allocator, Strategy &gt;::clear()</a>, and <a class="el" href="flow__memory__algorithm_8h_source.html#l00191">deleteBuffer()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00268">flow::Vector&lt; T, Allocator &gt;::clear()</a>, and <a class="el" href="flow__memory__algorithm_8h_source.html#l00138">deleteBuffer()</a>.</p>
 
 </div>
 </div>
@@ -488,14 +463,14 @@ template&lt;typename AllocatorType, std::forward_iterator InputIt&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Enable MSVC native memory leak checker in debug mode. Not compatible with the address sanitizer. </p>
+<p>Enable MSVC native memory leak checker in debug mode. Not compatible with address sanitizer. </p>
 
-<p class="definition">Definition at line <a class="el" href="flow__debug__memory_8h_source.html#l00017">17</a> of file <a class="el" href="flow__debug__memory_8h_source.html">flow_debug_memory.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   17</span>                                  {</div>
-<div class="line"><span class="lineno">   18</span><span class="preprocessor">    #ifdef _CRTDBG_MAP_ALLOC</span></div>
-<div class="line"><span class="lineno">   19</span>    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);</div>
-<div class="line"><span class="lineno">   20</span><span class="preprocessor">    #endif</span></div>
-<div class="line"><span class="lineno">   21</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="flow__debug__memory_8h_source.html#l00015">15</a> of file <a class="el" href="flow__debug__memory_8h_source.html">flow_debug_memory.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   15</span>                                  {</div>
+<div class="line"><span class="lineno">   16</span><span class="preprocessor">    #ifdef _CRTDBG_MAP_ALLOC</span></div>
+<div class="line"><span class="lineno">   17</span>    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);</div>
+<div class="line"><span class="lineno">   18</span><span class="preprocessor">    #endif</span></div>
+<div class="line"><span class="lineno">   19</span>  }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -522,7 +497,14 @@ requires std::integral&lt;T&gt; || std::floating_point&lt;T&gt;</div>
 </div><div class="memdoc">
 
 <p>Produces a random number uniformly distributed on the closed interval [lower, upper]. </p>
-<dl class="section return"><dt>Returns</dt><dd>A random number in the closed interval.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lower</td><td>The lower bound of the interval. </td></tr>
+    <tr><td class="paramname">upper</td><td>The upper bound of the interval. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A random number in the closed interval [lower, upper]. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="flow__random__algorithm_8h_source.html#l00014">14</a> of file <a class="el" href="flow__random__algorithm_8h_source.html">flow_random_algorithm.h</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   14</span>                                      {</div>
@@ -558,23 +540,23 @@ template&lt;typename T, typename U&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Calculate the distance from the first pointer to the last pointer in bytes. </p>
+<p>Calculate the distance in bytes from the first pointer to the last pointer. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">first</td><td></td></tr>
-    <tr><td class="paramname">last</td><td></td></tr>
+    <tr><td class="paramname">first</td><td>Pointer to the first element. </td></tr>
+    <tr><td class="paramname">last</td><td>Pointer to one-past-last element. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The address distance in bytes.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The address distance in bytes. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__memory__algorithm_8h_source.html#l00203">203</a> of file <a class="el" href="flow__memory__algorithm_8h_source.html">flow_memory_algorithm.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  203</span>                                                           {</div>
-<div class="line"><span class="lineno">  204</span>    assert(first &lt;= last &amp;&amp; <span class="stringliteral">&quot;first pointer address must be smaller than the last pointer address&quot;</span>);</div>
-<div class="line"><span class="lineno">  205</span>    <span class="keywordflow">return</span> <span class="keyword">reinterpret_cast&lt;</span><span class="keyword">const </span>std::byte*<span class="keyword">&gt;</span>(last) - <span class="keyword">reinterpret_cast&lt;</span><span class="keyword">const </span>std::byte*<span class="keyword">&gt;</span>(first);</div>
-<div class="line"><span class="lineno">  206</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="flow__memory__algorithm_8h_source.html#l00148">148</a> of file <a class="el" href="flow__memory__algorithm_8h_source.html">flow_memory_algorithm.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  148</span>                                                           {</div>
+<div class="line"><span class="lineno">  149</span>    assert(first &lt;= last &amp;&amp; <span class="stringliteral">&quot;first pointer address must be smaller than the last pointer address&quot;</span>);</div>
+<div class="line"><span class="lineno">  150</span>    <span class="keywordflow">return</span> <span class="keyword">reinterpret_cast&lt;</span><span class="keyword">const </span>std::byte*<span class="keyword">&gt;</span>(last) - <span class="keyword">reinterpret_cast&lt;</span><span class="keyword">const </span>std::byte*<span class="keyword">&gt;</span>(first);</div>
+<div class="line"><span class="lineno">  151</span>  }</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="flow__memory__algorithm_8h_source.html#l00220">alignWithHeader()</a>, and <a class="el" href="flow__stack__memory__resource_8h_source.html#l00044">flow::StackMemoryResource::deallocateImp()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__memory__algorithm_8h_source.html#l00161">alignWithHeader()</a>, and <a class="el" href="flow__stack__memory__resource_8h_source.html#l00043">flow::StackMemoryResource::deallocateImp()</a>.</p>
 
 </div>
 </div>
@@ -600,6 +582,13 @@ template&lt;std::random_access_iterator It&gt; </div>
 </div><div class="memdoc">
 
 <p>Randomly shuffle the elements in the range [begin, end). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">begin</td><td>Iterator to the beginning of the range. </td></tr>
+    <tr><td class="paramname">end</td><td>Iterator to one past the end of the range. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p class="definition">Definition at line <a class="el" href="flow__random__algorithm_8h_source.html#l00028">28</a> of file <a class="el" href="flow__random__algorithm_8h_source.html">flow_random_algorithm.h</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   28</span>                                 {</div>
@@ -664,35 +653,27 @@ template&lt;typename AllocatorType, std::forward_iterator OutputIt, typename ...
       </table>
 </div><div class="memdoc">
 
-<p>Constructs objects in uninitialized memory by copying arguments to their constructor. Is is intentional that the arguments are copied instead of forwarded to prevent reuse moved objects. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">AllocatorType</td><td>Allocator type for memory management.</td></tr>
-    <tr><td class="paramname">OutputIt</td><td>Forward iterator for the destination range.</td></tr>
-    <tr><td class="paramname">Args</td><td>Types of arguments copied to the constructor.</td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Constructs objects in uninitialized memory by copying arguments to their constructor. Intentional copy of arguments to prevent reuse of moved objects. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">allocator</td><td>Allocator for memory management.</td></tr>
-    <tr><td class="paramname">first</td><td>Start of the destination range.</td></tr>
-    <tr><td class="paramname">last</td><td>End of the destination range.</td></tr>
-    <tr><td class="paramname">args</td><td>Constructor arguments.</td></tr>
+    <tr><td class="paramname">allocator</td><td>Allocator for memory management. </td></tr>
+    <tr><td class="paramname">first</td><td>Start of the destination range. </td></tr>
+    <tr><td class="paramname">last</td><td>End of the destination range. </td></tr>
+    <tr><td class="paramname">args</td><td>Constructor arguments. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>One past the last constructed element.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>One past the last constructed element. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__memory__algorithm_8h_source.html#l00056">56</a> of file <a class="el" href="flow__memory__algorithm_8h_source.html">flow_memory_algorithm.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   56</span>                                                                                                              {</div>
-<div class="line"><span class="lineno">   57</span>    <span class="keywordflow">for</span> (; first != last; ++first) {</div>
-<div class="line"><span class="lineno">   58</span>      std::allocator_traits&lt;AllocatorType&gt;::construct(allocator, std::addressof(*first), args...);</div>
-<div class="line"><span class="lineno">   59</span>    }</div>
-<div class="line"><span class="lineno">   60</span>    <span class="keywordflow">return</span> first;</div>
-<div class="line"><span class="lineno">   61</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="flow__memory__algorithm_8h_source.html#l00041">41</a> of file <a class="el" href="flow__memory__algorithm_8h_source.html">flow_memory_algorithm.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   41</span>                                                                                                              {</div>
+<div class="line"><span class="lineno">   42</span>    <span class="keywordflow">for</span> (; first != last; ++first) {</div>
+<div class="line"><span class="lineno">   43</span>      std::allocator_traits&lt;AllocatorType&gt;::construct(allocator, std::addressof(*first), args...);</div>
+<div class="line"><span class="lineno">   44</span>    }</div>
+<div class="line"><span class="lineno">   45</span>    <span class="keywordflow">return</span> first;</div>
+<div class="line"><span class="lineno">   46</span>  }</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00097">flow::Vector&lt; T, Allocator, Strategy &gt;::resizeImp()</a>, and <a class="el" href="flow__memory__algorithm_8h_source.html#l00075">uninitializedFill()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00483">flow::Vector&lt; T, Allocator &gt;::resizeImp()</a>, and <a class="el" href="flow__memory__algorithm_8h_source.html#l00055">uninitializedFill()</a>.</p>
 
 </div>
 </div>
@@ -727,35 +708,27 @@ template&lt;typename AllocatorType, std::forward_iterator OutputIt, typename ...
       </table>
 </div><div class="memdoc">
 
-<p>Constructs a specified number of objects in uninitialized memory by forwarding arguments to their constructor. Is is intentional that the arguments are copied instead of forwarded to prevent reuse moved objects. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">AllocatorType</td><td>Allocator type for memory management.</td></tr>
-    <tr><td class="paramname">OutputIt</td><td>Forward iterator for the destination range.</td></tr>
-    <tr><td class="paramname">Args</td><td>Types of arguments copied to the constructor.</td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Constructs a specified number of objects in uninitialized memory by copying constructor arguments. Intentional copy of arguments to prevent reuse of moved objects. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">allocator</td><td>Allocator for memory management.</td></tr>
-    <tr><td class="paramname">first</td><td>Start of the destination range.</td></tr>
-    <tr><td class="paramname">count</td><td>Number of objects to construct.</td></tr>
-    <tr><td class="paramname">args</td><td>Constructor arguments.</td></tr>
+    <tr><td class="paramname">allocator</td><td>Allocator for memory management. </td></tr>
+    <tr><td class="paramname">first</td><td>Start of the destination range. </td></tr>
+    <tr><td class="paramname">count</td><td>Number of objects to construct. </td></tr>
+    <tr><td class="paramname">args</td><td>Constructor arguments. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>One past the last constructed element.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>One past the last constructed element. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__memory__algorithm_8h_source.html#l00142">142</a> of file <a class="el" href="flow__memory__algorithm_8h_source.html">flow_memory_algorithm.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  142</span>                                                                                                                 {</div>
-<div class="line"><span class="lineno">  143</span>    <span class="keywordflow">for</span> (std::size_t i = 0; i &lt; count; ++i, ++first) {</div>
-<div class="line"><span class="lineno">  144</span>      std::allocator_traits&lt;AllocatorType&gt;::construct(allocator, std::addressof(*first), args...);</div>
-<div class="line"><span class="lineno">  145</span>    }</div>
-<div class="line"><span class="lineno">  146</span>    <span class="keywordflow">return</span> first;</div>
-<div class="line"><span class="lineno">  147</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="flow__memory__algorithm_8h_source.html#l00103">103</a> of file <a class="el" href="flow__memory__algorithm_8h_source.html">flow_memory_algorithm.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  103</span>                                                                                                                 {</div>
+<div class="line"><span class="lineno">  104</span>    <span class="keywordflow">for</span> (std::size_t i = 0; i &lt; count; ++i, ++first) {</div>
+<div class="line"><span class="lineno">  105</span>      std::allocator_traits&lt;AllocatorType&gt;::construct(allocator, std::addressof(*first), args...);</div>
+<div class="line"><span class="lineno">  106</span>    }</div>
+<div class="line"><span class="lineno">  107</span>    <span class="keywordflow">return</span> first;</div>
+<div class="line"><span class="lineno">  108</span>  }</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="flow__memory__algorithm_8h_source.html#l00161">uninitializedFillN()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__memory__algorithm_8h_source.html#l00117">uninitializedFillN()</a>.</p>
 
 </div>
 </div>
@@ -791,32 +764,24 @@ template&lt;typename AllocatorType, std::forward_iterator OutputIt, typename T&g
 </div><div class="memdoc">
 
 <p>Fills uninitialized memory with copies of a value. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">AllocatorType</td><td>Allocator type.</td></tr>
-    <tr><td class="paramname">OutputIt</td><td>Forward iterator for destination range.</td></tr>
-    <tr><td class="paramname">T</td><td>Type of value.</td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">allocator</td><td>Allocator for construction.</td></tr>
-    <tr><td class="paramname">first</td><td>Start of destination range.</td></tr>
-    <tr><td class="paramname">last</td><td>End of destination range.</td></tr>
-    <tr><td class="paramname">value</td><td>Value to fill with.</td></tr>
+    <tr><td class="paramname">allocator</td><td>Allocator for construction. </td></tr>
+    <tr><td class="paramname">first</td><td>Start of destination range. </td></tr>
+    <tr><td class="paramname">last</td><td>End of destination range. </td></tr>
+    <tr><td class="paramname">value</td><td>Value to fill with. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>One past the last constructed element.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>One past the last constructed element. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__memory__algorithm_8h_source.html#l00075">75</a> of file <a class="el" href="flow__memory__algorithm_8h_source.html">flow_memory_algorithm.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   75</span>                                                                                                      {</div>
-<div class="line"><span class="lineno">   76</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="#a003a0f5de60743211f4a12ad692ea545">uninitializedEmplace</a>(allocator, first, last, value);</div>
-<div class="line"><span class="lineno">   77</span>  }</div>
-<div class="ttc" id="anamespaceflow_html_a003a0f5de60743211f4a12ad692ea545"><div class="ttname"><a href="#a003a0f5de60743211f4a12ad692ea545">flow::uninitializedEmplace</a></div><div class="ttdeci">OutputIt uninitializedEmplace(AllocatorType &amp;allocator, OutputIt first, OutputIt last, const Args &amp;... args)</div><div class="ttdoc">Constructs objects in uninitialized memory by copying arguments to their constructor....</div><div class="ttdef"><b>Definition</b> <a href="flow__memory__algorithm_8h_source.html#l00056">flow_memory_algorithm.h:56</a></div></div>
+<p class="definition">Definition at line <a class="el" href="flow__memory__algorithm_8h_source.html#l00055">55</a> of file <a class="el" href="flow__memory__algorithm_8h_source.html">flow_memory_algorithm.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   55</span>                                                                                                      {</div>
+<div class="line"><span class="lineno">   56</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="#a003a0f5de60743211f4a12ad692ea545">uninitializedEmplace</a>(allocator, first, last, value);</div>
+<div class="line"><span class="lineno">   57</span>  }</div>
+<div class="ttc" id="anamespaceflow_html_a003a0f5de60743211f4a12ad692ea545"><div class="ttname"><a href="#a003a0f5de60743211f4a12ad692ea545">flow::uninitializedEmplace</a></div><div class="ttdeci">OutputIt uninitializedEmplace(AllocatorType &amp;allocator, OutputIt first, OutputIt last, const Args &amp;... args)</div><div class="ttdoc">Constructs objects in uninitialized memory by copying arguments to their constructor....</div><div class="ttdef"><b>Definition</b> <a href="flow__memory__algorithm_8h_source.html#l00041">flow_memory_algorithm.h:41</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="flow__memory__algorithm_8h_source.html#l00056">uninitializedEmplace()</a>.</p>
+<p class="reference">References <a class="el" href="flow__memory__algorithm_8h_source.html#l00041">uninitializedEmplace()</a>.</p>
 
 </div>
 </div>
@@ -852,32 +817,24 @@ template&lt;typename AllocatorType, std::forward_iterator OutputIt, typename T&g
 </div><div class="memdoc">
 
 <p>Fills <span class="tt">count</span> elements in uninitialized memory with a value. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">AllocatorType</td><td>Allocator type.</td></tr>
-    <tr><td class="paramname">OutputIt</td><td>Forward iterator for destination range.</td></tr>
-    <tr><td class="paramname">T</td><td>Type of value.</td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">allocator</td><td>Allocator for construction.</td></tr>
-    <tr><td class="paramname">first</td><td>Start of destination range.</td></tr>
-    <tr><td class="paramname">count</td><td>Number of elements to fill.</td></tr>
-    <tr><td class="paramname">value</td><td>Value to fill with.</td></tr>
+    <tr><td class="paramname">allocator</td><td>Allocator for construction. </td></tr>
+    <tr><td class="paramname">first</td><td>Start of destination range. </td></tr>
+    <tr><td class="paramname">count</td><td>Number of elements to fill. </td></tr>
+    <tr><td class="paramname">value</td><td>Value to fill with. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>One past the last constructed element.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>One past the last constructed element. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__memory__algorithm_8h_source.html#l00161">161</a> of file <a class="el" href="flow__memory__algorithm_8h_source.html">flow_memory_algorithm.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  161</span>                                                                                                         {</div>
-<div class="line"><span class="lineno">  162</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="#ae91210e00bd937af8781ad61d96bb7af">uninitializedEmplaceN</a>(allocator, first, count, value);</div>
-<div class="line"><span class="lineno">  163</span>  }</div>
-<div class="ttc" id="anamespaceflow_html_ae91210e00bd937af8781ad61d96bb7af"><div class="ttname"><a href="#ae91210e00bd937af8781ad61d96bb7af">flow::uninitializedEmplaceN</a></div><div class="ttdeci">OutputIt uninitializedEmplaceN(AllocatorType &amp;allocator, OutputIt first, std::size_t count, const Args &amp;... args)</div><div class="ttdoc">Constructs a specified number of objects in uninitialized memory by forwarding arguments to their con...</div><div class="ttdef"><b>Definition</b> <a href="flow__memory__algorithm_8h_source.html#l00142">flow_memory_algorithm.h:142</a></div></div>
+<p class="definition">Definition at line <a class="el" href="flow__memory__algorithm_8h_source.html#l00117">117</a> of file <a class="el" href="flow__memory__algorithm_8h_source.html">flow_memory_algorithm.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  117</span>                                                                                                         {</div>
+<div class="line"><span class="lineno">  118</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="#ae91210e00bd937af8781ad61d96bb7af">uninitializedEmplaceN</a>(allocator, first, count, value);</div>
+<div class="line"><span class="lineno">  119</span>  }</div>
+<div class="ttc" id="anamespaceflow_html_ae91210e00bd937af8781ad61d96bb7af"><div class="ttname"><a href="#ae91210e00bd937af8781ad61d96bb7af">flow::uninitializedEmplaceN</a></div><div class="ttdeci">OutputIt uninitializedEmplaceN(AllocatorType &amp;allocator, OutputIt first, std::size_t count, const Args &amp;... args)</div><div class="ttdoc">Constructs a specified number of objects in uninitialized memory by copying constructor arguments....</div><div class="ttdef"><b>Definition</b> <a href="flow__memory__algorithm_8h_source.html#l00103">flow_memory_algorithm.h:103</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="flow__memory__algorithm_8h_source.html#l00142">uninitializedEmplaceN()</a>.</p>
+<p class="reference">References <a class="el" href="flow__memory__algorithm_8h_source.html#l00103">uninitializedEmplaceN()</a>.</p>
 
 </div>
 </div>
@@ -913,34 +870,26 @@ template&lt;typename AllocatorType, std::input_iterator InputIt, std::forward_it
 </div><div class="memdoc">
 
 <p>Forward elements from a source range to uninitialized memory. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">AllocatorType</td><td>Allocator type.</td></tr>
-    <tr><td class="paramname">InputIt</td><td>Input iterator for source range.</td></tr>
-    <tr><td class="paramname">OutputIt</td><td>Forward iterator for destination range.</td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">allocator</td><td>Allocator for construction.</td></tr>
-    <tr><td class="paramname">first</td><td>Start of source range.</td></tr>
-    <tr><td class="paramname">last</td><td>End of source range.</td></tr>
-    <tr><td class="paramname">dest</td><td>Start of destination range.</td></tr>
+    <tr><td class="paramname">allocator</td><td>Allocator for construction. </td></tr>
+    <tr><td class="paramname">first</td><td>Start of source range. </td></tr>
+    <tr><td class="paramname">last</td><td>End of source range. </td></tr>
+    <tr><td class="paramname">dest</td><td>Start of destination range. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>One past the last constructed element.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>One past the last constructed element. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__memory__algorithm_8h_source.html#l00020">20</a> of file <a class="el" href="flow__memory__algorithm_8h_source.html">flow_memory_algorithm.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   20</span>                                                                                                      {</div>
-<div class="line"><span class="lineno">   21</span>    <span class="keywordflow">for</span> (; first != last; ++first, ++dest) {</div>
-<div class="line"><span class="lineno">   22</span>      std::allocator_traits&lt;AllocatorType&gt;::construct(allocator, std::addressof(*dest), *first);</div>
-<div class="line"><span class="lineno">   23</span>    }</div>
-<div class="line"><span class="lineno">   24</span>    <span class="keywordflow">return</span> dest;</div>
-<div class="line"><span class="lineno">   25</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="flow__memory__algorithm_8h_source.html#l00015">15</a> of file <a class="el" href="flow__memory__algorithm_8h_source.html">flow_memory_algorithm.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   15</span>                                                                                                      {</div>
+<div class="line"><span class="lineno">   16</span>    <span class="keywordflow">for</span> (; first != last; ++first, ++dest) {</div>
+<div class="line"><span class="lineno">   17</span>      std::allocator_traits&lt;AllocatorType&gt;::construct(allocator, std::addressof(*dest), *first);</div>
+<div class="line"><span class="lineno">   18</span>    }</div>
+<div class="line"><span class="lineno">   19</span>    <span class="keywordflow">return</span> dest;</div>
+<div class="line"><span class="lineno">   20</span>  }</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00378">flow::Vector&lt; T, Allocator, Strategy &gt;::insert()</a>, <a class="el" href="flow__memory__algorithm_8h_source.html#l00039">uninitializedMove()</a>, and <a class="el" href="flow__vector_8h_source.html#l00132">flow::Vector&lt; T, Allocator, Strategy &gt;::Vector()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00406">flow::Vector&lt; T, Allocator &gt;::insert()</a>, <a class="el" href="flow__memory__algorithm_8h_source.html#l00029">uninitializedMove()</a>, and <a class="el" href="flow__vector_8h_source.html#l00097">flow::Vector&lt; T, Allocator &gt;::Vector()</a>.</p>
 
 </div>
 </div>
@@ -976,34 +925,26 @@ template&lt;typename AllocatorType, std::input_iterator InputIt, std::forward_it
 </div><div class="memdoc">
 
 <p>Forward <span class="tt">count</span> elements from a source range to uninitialized memory. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">AllocatorType</td><td>Allocator type.</td></tr>
-    <tr><td class="paramname">InputIt</td><td>Input iterator for source range.</td></tr>
-    <tr><td class="paramname">OutputIt</td><td>Forward iterator for destination range.</td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">allocator</td><td>Allocator for construction.</td></tr>
-    <tr><td class="paramname">first</td><td>Start of source range.</td></tr>
-    <tr><td class="paramname">count</td><td>Number of elements to copy.</td></tr>
-    <tr><td class="paramname">dest</td><td>Start of destination range.</td></tr>
+    <tr><td class="paramname">allocator</td><td>Allocator for construction. </td></tr>
+    <tr><td class="paramname">first</td><td>Start of source range. </td></tr>
+    <tr><td class="paramname">count</td><td>Number of elements to copy. </td></tr>
+    <tr><td class="paramname">dest</td><td>Start of destination range. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>One past the last constructed element.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>One past the last constructed element. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__memory__algorithm_8h_source.html#l00106">106</a> of file <a class="el" href="flow__memory__algorithm_8h_source.html">flow_memory_algorithm.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  106</span>                                                                                                          {</div>
-<div class="line"><span class="lineno">  107</span>    <span class="keywordflow">for</span> (std::size_t i = 0; i &lt; count; ++i, ++first, ++dest) {</div>
-<div class="line"><span class="lineno">  108</span>      std::allocator_traits&lt;AllocatorType&gt;::construct(allocator, std::addressof(*dest), *first);</div>
-<div class="line"><span class="lineno">  109</span>    }</div>
-<div class="line"><span class="lineno">  110</span>    <span class="keywordflow">return</span> dest;</div>
-<div class="line"><span class="lineno">  111</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="flow__memory__algorithm_8h_source.html#l00077">77</a> of file <a class="el" href="flow__memory__algorithm_8h_source.html">flow_memory_algorithm.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   77</span>                                                                                                          {</div>
+<div class="line"><span class="lineno">   78</span>    <span class="keywordflow">for</span> (std::size_t i = 0; i &lt; count; ++i, ++first, ++dest) {</div>
+<div class="line"><span class="lineno">   79</span>      std::allocator_traits&lt;AllocatorType&gt;::construct(allocator, std::addressof(*dest), *first);</div>
+<div class="line"><span class="lineno">   80</span>    }</div>
+<div class="line"><span class="lineno">   81</span>    <span class="keywordflow">return</span> dest;</div>
+<div class="line"><span class="lineno">   82</span>  }</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00378">flow::Vector&lt; T, Allocator, Strategy &gt;::insert()</a>, and <a class="el" href="flow__memory__algorithm_8h_source.html#l00125">uninitializedMoveN()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00406">flow::Vector&lt; T, Allocator &gt;::insert()</a>, and <a class="el" href="flow__memory__algorithm_8h_source.html#l00091">uninitializedMoveN()</a>.</p>
 
 </div>
 </div>
@@ -1047,34 +988,26 @@ template&lt;typename AllocatorType, std::input_iterator InputIt, std::forward_it
 </div><div class="memdoc">
 
 <p>Moves elements from a source range to uninitialized memory. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">AllocatorType</td><td>Allocator type.</td></tr>
-    <tr><td class="paramname">InputIt</td><td>Input iterator for source range.</td></tr>
-    <tr><td class="paramname">OutputIt</td><td>Forward iterator for destination range.</td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">allocator</td><td>Allocator for construction.</td></tr>
-    <tr><td class="paramname">first</td><td>Start of source range.</td></tr>
-    <tr><td class="paramname">last</td><td>End of source range.</td></tr>
-    <tr><td class="paramname">dest</td><td>Start of destination range.</td></tr>
+    <tr><td class="paramname">allocator</td><td>Allocator for construction. </td></tr>
+    <tr><td class="paramname">first</td><td>Start of source range. </td></tr>
+    <tr><td class="paramname">last</td><td>End of source range. </td></tr>
+    <tr><td class="paramname">dest</td><td>Start of destination range. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>One past the last constructed element.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>One past the last constructed element. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__memory__algorithm_8h_source.html#l00039">39</a> of file <a class="el" href="flow__memory__algorithm_8h_source.html">flow_memory_algorithm.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   39</span>                                                                                                            {</div>
-<div class="line"><span class="lineno">   40</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="#a7cbf79d9d81ea0bf923173bf94d18282">uninitializedForward</a>(allocator, std::move_iterator(first), std::move_iterator(last), dest);</div>
-<div class="line"><span class="lineno">   41</span>  }</div>
-<div class="ttc" id="anamespaceflow_html_a7cbf79d9d81ea0bf923173bf94d18282"><div class="ttname"><a href="#a7cbf79d9d81ea0bf923173bf94d18282">flow::uninitializedForward</a></div><div class="ttdeci">OutputIt uninitializedForward(AllocatorType &amp;allocator, InputIt first, InputIt last, OutputIt dest)</div><div class="ttdoc">Forward elements from a source range to uninitialized memory.</div><div class="ttdef"><b>Definition</b> <a href="flow__memory__algorithm_8h_source.html#l00020">flow_memory_algorithm.h:20</a></div></div>
+<p class="definition">Definition at line <a class="el" href="flow__memory__algorithm_8h_source.html#l00029">29</a> of file <a class="el" href="flow__memory__algorithm_8h_source.html">flow_memory_algorithm.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   29</span>                                                                                                            {</div>
+<div class="line"><span class="lineno">   30</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="#a7cbf79d9d81ea0bf923173bf94d18282">uninitializedForward</a>(allocator, std::move_iterator(first), std::move_iterator(last), dest);</div>
+<div class="line"><span class="lineno">   31</span>  }</div>
+<div class="ttc" id="anamespaceflow_html_a7cbf79d9d81ea0bf923173bf94d18282"><div class="ttname"><a href="#a7cbf79d9d81ea0bf923173bf94d18282">flow::uninitializedForward</a></div><div class="ttdeci">OutputIt uninitializedForward(AllocatorType &amp;allocator, InputIt first, InputIt last, OutputIt dest)</div><div class="ttdoc">Forward elements from a source range to uninitialized memory.</div><div class="ttdef"><b>Definition</b> <a href="flow__memory__algorithm_8h_source.html#l00015">flow_memory_algorithm.h:15</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="flow__memory__algorithm_8h_source.html#l00020">uninitializedForward()</a>.</p>
+<p class="reference">References <a class="el" href="flow__memory__algorithm_8h_source.html#l00015">uninitializedForward()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00378">flow::Vector&lt; T, Allocator, Strategy &gt;::insert()</a>, <a class="el" href="flow__vector_8h_source.html#l00078">flow::Vector&lt; T, Allocator, Strategy &gt;::relocateBuffer()</a>, and <a class="el" href="flow__vector_8h_source.html#l00087">flow::Vector&lt; T, Allocator, Strategy &gt;::relocateBufferWithHoles()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00406">flow::Vector&lt; T, Allocator &gt;::insert()</a>, <a class="el" href="flow__vector_8h_source.html#l00464">flow::Vector&lt; T, Allocator &gt;::relocateBuffer()</a>, and <a class="el" href="flow__vector_8h_source.html#l00473">flow::Vector&lt; T, Allocator &gt;::relocateBufferWithHoles()</a>.</p>
 
 </div>
 </div>
@@ -1118,32 +1051,24 @@ template&lt;typename AllocatorType, std::input_iterator InputIt, std::forward_it
 </div><div class="memdoc">
 
 <p>Moves <span class="tt">count</span> elements from a source range to uninitialized memory. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">AllocatorType</td><td>Allocator type.</td></tr>
-    <tr><td class="paramname">InputIt</td><td>Input iterator for source range.</td></tr>
-    <tr><td class="paramname">OutputIt</td><td>Forward iterator for destination range.</td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">allocator</td><td>Allocator for construction.</td></tr>
-    <tr><td class="paramname">first</td><td>Start of source range.</td></tr>
-    <tr><td class="paramname">count</td><td>Number of elements to move.</td></tr>
-    <tr><td class="paramname">dest</td><td>Start of destination range.</td></tr>
+    <tr><td class="paramname">allocator</td><td>Allocator for construction. </td></tr>
+    <tr><td class="paramname">first</td><td>Start of source range. </td></tr>
+    <tr><td class="paramname">count</td><td>Number of elements to move. </td></tr>
+    <tr><td class="paramname">dest</td><td>Start of destination range. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>One past the last constructed element.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>One past the last constructed element. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__memory__algorithm_8h_source.html#l00125">125</a> of file <a class="el" href="flow__memory__algorithm_8h_source.html">flow_memory_algorithm.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  125</span>                                                                                                                {</div>
-<div class="line"><span class="lineno">  126</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="#a5f5545b19674be10035741dc55ab7805">uninitializedForwardN</a>(allocator, std::move_iterator(first), count, dest);</div>
-<div class="line"><span class="lineno">  127</span>  }</div>
-<div class="ttc" id="anamespaceflow_html_a5f5545b19674be10035741dc55ab7805"><div class="ttname"><a href="#a5f5545b19674be10035741dc55ab7805">flow::uninitializedForwardN</a></div><div class="ttdeci">OutputIt uninitializedForwardN(AllocatorType &amp;allocator, InputIt first, std::size_t count, OutputIt dest)</div><div class="ttdoc">Forward count elements from a source range to uninitialized memory.</div><div class="ttdef"><b>Definition</b> <a href="flow__memory__algorithm_8h_source.html#l00106">flow_memory_algorithm.h:106</a></div></div>
+<p class="definition">Definition at line <a class="el" href="flow__memory__algorithm_8h_source.html#l00091">91</a> of file <a class="el" href="flow__memory__algorithm_8h_source.html">flow_memory_algorithm.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   91</span>                                                                                                                {</div>
+<div class="line"><span class="lineno">   92</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="#a5f5545b19674be10035741dc55ab7805">uninitializedForwardN</a>(allocator, std::move_iterator(first), count, dest);</div>
+<div class="line"><span class="lineno">   93</span>  }</div>
+<div class="ttc" id="anamespaceflow_html_a5f5545b19674be10035741dc55ab7805"><div class="ttname"><a href="#a5f5545b19674be10035741dc55ab7805">flow::uninitializedForwardN</a></div><div class="ttdeci">OutputIt uninitializedForwardN(AllocatorType &amp;allocator, InputIt first, std::size_t count, OutputIt dest)</div><div class="ttdoc">Forward count elements from a source range to uninitialized memory.</div><div class="ttdef"><b>Definition</b> <a href="flow__memory__algorithm_8h_source.html#l00077">flow_memory_algorithm.h:77</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="flow__memory__algorithm_8h_source.html#l00106">uninitializedForwardN()</a>.</p>
+<p class="reference">References <a class="el" href="flow__memory__algorithm_8h_source.html#l00077">uninitializedForwardN()</a>.</p>
 
 </div>
 </div>

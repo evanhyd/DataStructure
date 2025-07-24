@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['oldbuffer_0',['oldBuffer',['../structflow_1_1_stack_memory_resource_1_1_header.html#af7da697f584166308e1383ffd1970e91',1,'flow::StackMemoryResource::Header']]]
+  ['n1_0',['n1',['../structflow_1_1_vector_growth_strategy_1_1_fibonacci_expand.html#a4afa8328128602deb9ea79a34a2e4590',1,'flow::VectorGrowthStrategy::FibonacciExpand']]],
+  ['n2_1',['n2',['../structflow_1_1_vector_growth_strategy_1_1_fibonacci_expand.html#a5991646915b6f3701053d41556394e06',1,'flow::VectorGrowthStrategy::FibonacciExpand']]],
+  ['next_2',['next',['../structflow_1_1_concurrent_flex_queue_1_1_node.html#aee6686d5a1482935fc4397adfdc54721',1,'flow::ConcurrentFlexQueue::Node::next'],['../structflow_1_1_pool_memory_resource_1_1_header.html#ae67fd9d5f52747e2b0670519f971aa72',1,'flow::PoolMemoryResource::Header::next']]]
 ];

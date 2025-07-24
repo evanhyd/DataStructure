@@ -6,12 +6,11 @@
 
 namespace flow {
 
-  /// <summary>
+  /// @brief
   /// A pool memory resource that manages fixed-size memory blocks from a pre-allocated buffer.
   /// The allocation size must be less or equal to the block size.
   /// The allocation alignment must be less or equal to the block alignment.
   /// Throws std::bad_alloc if the constraint is not met or run out of memory.
-  /// </summary>
   class PoolMemoryResource : public MemoryResource {
   public:
     PoolMemoryResource(void* buffer, std::size_t capacity, std::size_t blockSize, std::size_t blockAlignment = sizeof(std::max_align_t))

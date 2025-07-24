@@ -7,11 +7,10 @@
 
 namespace flow {
 
-  /// <summary>
+  /// @brief
   /// A stack-based memory resource that allocates memory in a LIFO order from a fixed buffer.
   /// Deallocation must happen in reverse order of allocation.
   /// Throws std::bad_alloc if there is insufficient space for an allocation.
-  /// </summary>
   class StackMemoryResource : public MemoryResource {
   public:
     explicit StackMemoryResource(void* buffer, std::size_t capacity) noexcept

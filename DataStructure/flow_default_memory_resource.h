@@ -3,9 +3,8 @@
 
 namespace flow {
 
-  /// <summary>
+  /// @brief
   /// A default memory resource that wraps global ::operator new and ::operator delete.
-  /// </summary>
   class DefaultMemoryResource : public MemoryResource {
   public:
     static DefaultMemoryResource& getResource() {

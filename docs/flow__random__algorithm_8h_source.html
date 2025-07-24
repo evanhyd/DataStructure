@@ -100,7 +100,7 @@ $(function(){initNavTree('flow__random__algorithm_8h_source.html','',''); });
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceflow.html">flow</a> {</div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  <span class="keyword">requires</span> std::integral&lt;T&gt; || std::floating_point&lt;T&gt;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keyword">requires</span> std::integral&lt;T&gt; || std::floating_point&lt;T&gt;</div>
 <div class="foldopen" id="foldopen00014" data-start="{" data-end="}">
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="namespaceflow.html#ab90fae79ddd51259bfc55e73b295fcd9">   14</a></span>  T <a class="code hl_function" href="namespaceflow.html#ab90fae79ddd51259bfc55e73b295fcd9">getRandomNumber</a>(T lower, T upper) {</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keyword">static</span> std::random_device device{};</div>
@@ -121,7 +121,8 @@ $(function(){initNavTree('flow__random__algorithm_8h_source.html','',''); });
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    std::shuffle(begin, end, engine);</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  }</div>
 </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>}</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>}</div>
 <div class="ttc" id="anamespaceflow_html"><div class="ttname"><a href="namespaceflow.html">flow</a></div><div class="ttdef"><b>Definition</b> <a href="flow__arena__memory__resource_8h_source.html#l00008">flow_arena_memory_resource.h:8</a></div></div>
 <div class="ttc" id="anamespaceflow_html_a69464bd65a1f1f8786cf92a34e4d9497"><div class="ttname"><a href="namespaceflow.html#a69464bd65a1f1f8786cf92a34e4d9497">flow::shuffle</a></div><div class="ttdeci">void shuffle(It begin, It end)</div><div class="ttdoc">Randomly shuffle the elements in the range [begin, end).</div><div class="ttdef"><b>Definition</b> <a href="#l00028">flow_random_algorithm.h:28</a></div></div>
 <div class="ttc" id="anamespaceflow_html_ab90fae79ddd51259bfc55e73b295fcd9"><div class="ttname"><a href="namespaceflow.html#ab90fae79ddd51259bfc55e73b295fcd9">flow::getRandomNumber</a></div><div class="ttdeci">T getRandomNumber(T lower, T upper)</div><div class="ttdoc">Produces a random number uniformly distributed on the closed interval [lower, upper].</div><div class="ttdef"><b>Definition</b> <a href="#l00014">flow_random_algorithm.h:14</a></div></div>

@@ -148,14 +148,13 @@ using namespace std;
 #include "benchmark.h"
 
 int main() {
+  using namespace flow;
+
   /*benchmark::benchmarkStdVectorInt64(10000000, 5);
   benchmark::benchmarkFlowVectorInt64(10000000, 5);
   benchmark::benchmarkStdVectorString(1000000, 5);
   benchmark::benchmarkFlowVectorString(1000000, 5);*/
-  benchmark::benchmarkStdPriorityQueueInt64(1000000, 5);
-  benchmark::benchmarkFlowBinaryHeapInt64(1000000, 5);
-  benchmark::benchmarkStdPriorityQueueString(1000000, 5);
-  benchmark::benchmarkFlowBinaryHeapString(1000000, 5);
+  benchmark::benchmarkFlowBinaryHeapInt64(8000000, 5);
 }
 
 /*

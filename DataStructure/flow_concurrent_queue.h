@@ -1,4 +1,5 @@
 #pragma once
+#include <condition_variable>
 #include <deque>
 #include <mutex>
 #include <optional>
@@ -7,19 +8,16 @@
 namespace flow {
   template <typename T, typename Container = std::deque<T>>
   class ConcurrentQueue {
-    using allocator_type = Container::allocator_type;
+    using allocator_type = typename Container::allocator_type;
 
     std::queue<T, Container> queue_;
-    mutable std::mutex mux_{};
-    std::condition_variable blocked_{};
+    mutable std::mutex mux_;
+    std::condition_variable blocked_;
 
   public:
-    /// <summary>
-    /// Construct a concurrent queue. The elements follow the FIFO order.
-    /// </summary>
-    /// <param name="allocator">allocates the elements in the concurrent queue.</param>
+    /// @brief Constructs a concurrent FIFO queue.
     explicit ConcurrentQueue(const allocator_type& allocator = allocator_type())
-        : queue_(allocator) {
+      : queue_(allocator) {
     }
 
     ConcurrentQueue(const ConcurrentQueue&) = delete;
@@ -27,27 +25,20 @@ namespace flow {
     ConcurrentQueue& operator=(const ConcurrentQueue&) = delete;
     ConcurrentQueue& operator=(ConcurrentQueue&&) = delete;
 
-    /// <summary>
-    /// </summary>
-    /// <returns>True if the container size is 0.</returns>
+    /// @brief Checks if the queue is empty.
+    /// @return True if empty, false otherwise.
     bool empty() const {
       std::lock_guard lock(mux_);
       return queue_.empty();
     }
 
-    /// <summary>
-    /// </summary>
-    /// <returns>The number of elements in the concurrent queue.</returns>
+    /// @brief Returns the number of elements in the queue.
     std::size_t size() const {
       std::lock_guard lock(mux_);
       return queue_.size();
     }
 
-    /// <summary>
-    /// Push a new element to the concurrent queue.
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="value">The element to add.</param>
+    /// @brief Pushes a new element into the queue.
     template <typename U>
     void push(U&& value) {
       {
@@ -57,12 +48,8 @@ namespace flow {
       blocked_.notify_one();
     }
 
-    /// <summary>
-    /// Construct a new element in the concurrent queue inplace.
-    /// </summary>
-    /// <typeparam name="...Args"></typeparam>
-    /// <param name="...args">The element constructor's arguments.</param>
-    template <typename ...Args>
+    /// @brief Constructs a new element in place at the end of the queue.
+    template <typename... Args>
     void emplace(Args&&... args) {
       {
         std::lock_guard lock(mux_);
@@ -71,11 +58,8 @@ namespace flow {
       blocked_.notify_one();
     }
 
-    /// <summary>
-    /// Try return the first element in the concurrent queue.
-    /// If the concurrent queue is empty, then return std::nullopt.
-    /// </summary>
-    /// <returns>A copy of the first element if not empty, otherwise std::nullopt.</returns>
+    /// @brief Tries to get a copy of the first element without removing it.
+    /// @return A copy of the first element or std::nullopt if empty.
     std::optional<T> tryFront() const {
       std::lock_guard lock(mux_);
       if (queue_.empty()) {
@@ -84,32 +68,23 @@ namespace flow {
       return queue_.front();
     }
 
-    /// <summary>
-    /// Try pop and return the first element in the concurrent queue.
-    /// If the concurrent queue is empty, then return std::nullopt.
-    /// </summary>
-    /// <returns>The first moved element if not empty, otherwise std::nullopt.</returns>
+    /// @brief Tries to pop and return the first element.
+    /// @return The first element moved or std::nullopt if empty.
     std::optional<T> tryPop() {
       std::lock_guard lock(mux_);
       if (queue_.empty()) {
         return std::nullopt;
       }
-
       std::optional<T> value{ std::move(queue_.front()) };
       queue_.pop();
       return value;
     }
 
-    /// <summary>
-    /// Wait until the concurrent queue has at least one element,
-    /// then pop and return the first element in the concurrent queue.
-    /// </summary>
-    /// <returns>The first element.</returns>
+    /// @brief Waits until the queue is not empty, then pops and returns the first element.
+    /// @return The first element.
     T waitPop() {
       std::unique_lock lock(mux_);
-      blocked_.wait(lock, [&]() {
-        return !queue_.empty();
-      });
+      blocked_.wait(lock, [&]() { return !queue_.empty(); });
 
       T value = std::move(queue_.front());
       queue_.pop();

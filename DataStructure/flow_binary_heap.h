@@ -9,7 +9,7 @@
 
 namespace flow {
 
-  // A min heap.
+  /// @brief A binary min-heap container. Supports custom comparator and allocator.
   template <typename T, typename Compare = std::less<T>, typename Allocator = PolymorphicAllocator<>>
   class BinaryHeap {
   public:
@@ -29,30 +29,31 @@ namespace flow {
     Compare comparator_;
 
   public:
-    // Comparator is default initializable.
-    // T t, T t(), T t{}
-    // Default constructor.
+    /// @brief Constructs an empty heap with default comparator and allocator.
+    /// Comparator must be default initializable.
     constexpr BinaryHeap() 
       noexcept(noexcept(container_type()) && noexcept(Compare()))
       requires std::default_initializable<Compare>
       : data_(), comparator_() {
     }
 
-    // Extended default constructor.
+    /// @brief Constructs an empty heap with a specific allocator.
+    /// Comparator must be default initializable.
     explicit constexpr BinaryHeap(const allocator_type& allocator)
       noexcept(noexcept(container_type(allocator)) && noexcept(Compare()))
       requires std::default_initializable<Compare>
       : data_(allocator), comparator_() {
     }
 
-    // Default constructor with non-default-initializable comparator.
-     explicit constexpr BinaryHeap(Compare comparator, const allocator_type& allocator = {})
+    /// @brief Constructs an empty heap with a specific allocator.
+    /// @param comparator Comparator.
+    /// @param allocator Memory allocator.
+    explicit constexpr BinaryHeap(Compare comparator, const allocator_type& allocator = {})
       noexcept(noexcept(container_type(allocator)) && noexcept(Compare(std::move(comparator))))
       requires !std::default_initializable<Compare>
       : data_(allocator), comparator_(std::move(comparator)) {
     }
 
-    // Copy constructor and move constructor.
     constexpr BinaryHeap(const BinaryHeap&) = default;
     constexpr BinaryHeap(const BinaryHeap& rhs, const allocator_type& allocator)
       : data_(rhs.data_, allocator), comparator_(rhs.comparator_) {
@@ -64,14 +65,22 @@ namespace flow {
       : data_(std::move(rhs.data_), allocator), comparator_(std::move(rhs.comparator_)) {
     }
 
-    // Iterator constructor.
+    /// @brief Iterator range constructor.
+    /// Comparator must be default initializable.
+    /// @param first Iterator to first element.
+    /// @param last Iterator to one-past-last element.
+    /// @param alloc Allocator.
     template <std::input_iterator It>
     constexpr BinaryHeap(It first, It last, const allocator_type& allocator = {})
       : data_(first, last, allocator), comparator_() {
       heapify();
     }
 
-    // Iterator constructor with non-default-initializable comaprator
+    /// @brief Iterator range constructor.
+    /// @param first Iterator to first element.
+    /// @param last Iterator to one-past-last element.
+    /// @param comp Comparator.
+    /// @param alloc Allocator.
     template <std::input_iterator It>
     constexpr BinaryHeap(It first, It last, Compare comparator, const allocator_type& allocator = {})
       : data_(first, last, allocator), comparator_(std::move(comparator)) {
@@ -86,109 +95,129 @@ namespace flow {
     }
 
     // Accessor.
+
+    /// @brief Return the heap size.
+    /// @return The heap size. 
     constexpr std::size_t size() const noexcept {
       return data_.size();
     }
 
+    /// @brief Return the heap capacity.
+    /// @return The heap capacity.
     constexpr std::size_t capacity() const noexcept {
       return data_.capacity();
     }
 
+    /// @brief Return true if empty.
+    /// @return true if empty, otherwise false.
     constexpr bool empty() const noexcept {
       return data_.empty();
     }
 
+    /// @brief Return the min element.
+    /// @return The min element.
     const T& top() const noexcept {
       assert(!data_.empty() && "call top on an empty heap");
       return data_.front();
     }
 
-    // Mutator.
+    /// @brief Clear the heap.
     void clear() noexcept {
       data_.clear();
     }
 
+    /// @brief Reserve the heap capacity.
+    /// @param capacity 
     void reserve(std::size_t capacity) {
       data_.reserve(capacity);
     }
 
-    template <typename ...Args>
-    void emplace(Args&&... args) {
-      data_.emplaceBack(std::forward<Args>(args)...);
-      fixUp(data_.size() - 1);
-    }
-
+    /// @brief Push the value to the heap.
+    /// @param value 
     void push(const T& value) {
       emplace(value);
     }
 
+    /// @brief Push the value to the heap.
+    /// @param value 
     void push(T&& value) {
       emplace(std::move(value));
     }
 
+    /// @brief Construct the value inplace in the heap.
+    /// @param ...args Constructor arguments.
+    template <typename ...Args>
+    void emplace(Args&&... args) {
+      data_.emplaceBack(std::forward<Args>(args)...);
+      T value = std::move(data_.back());
+      fixUp(data_.size() - 1, 0, std::move(value));
+    }
+
+    /// @brief Drop the min element.
     void drop() 
       noexcept(std::is_nothrow_move_assignable_v<T>) {
       assert(!data_.empty() && "call drop on an empty heap");
-      data_.front() = std::move(data_.back());
+      std::size_t index = fixDownWithHole(0);
+      fixUp(index, 0, std::move(data_.back()));
       data_.popBack();
-      fixDown(0);
     }
 
+    /// @brief Pop the min element.
+    /// @return The min element.
     T pop() 
-      noexcept(std::is_nothrow_move_assignable_v<T> && std::is_nothrow_move_constructible_v<T>) {
+      noexcept(std::is_nothrow_move_constructible_v<T> && std::is_nothrow_move_assignable_v<T>) {
       assert(!data_.empty() && "call pop on an empty heap");
-      T popped = std::exchange(data_.front(), std::move(data_.back()));
-      data_.popBack();
-      fixDown(0);
-      return popped;
+      T value = std::move(data_.front());
+      drop();
+      return value;
     }
 
   private:
-    void heapify() 
-      noexcept(std::is_nothrow_swappable_v<T>) {
-      if (data_.size() >= 2) {
-        for (std::size_t i = getParent(data_.size() - 1); i != static_cast<std::size_t>(-1); --i) {
-          fixDown(i);
-        }
-      }
-    }
-
-    void fixDown(std::size_t index)
-      noexcept(std::is_nothrow_swappable_v<T>) {
-      using std::swap;
+    // Fix down by repeatedly choosing the less child.
+    // Return the index of the hole at the bottom.
+    std::size_t fixDownWithHole(std::size_t index)
+      noexcept(std::is_nothrow_move_assignable_v<T>) {
       for (;;) {
-        std::size_t child = getLeftChild(index);
+        size_t child = getLeftChild(index);
         if (child >= data_.size()) {
           break;
         }
 
-        // Choose the smaller one between the two child nodes.
-        std::size_t right = child + 1;
-        if (right < data_.size() && comparator_(data_[right], data_[child])) {
-          child = right;
+        // Select the less child.
+        std::size_t rightChild = child + 1;
+        if (rightChild < data_.size() && comparator_(data_[rightChild], data_[child])) {
+          child = rightChild;
         }
-
-        if (comparator_(data_[child], data_[index])) {
-          swap(data_[child], data_[index]);
-          index = child;
-        } else {
-          break;
-        }
+        data_[index] = std::move(data_[child]);
+        index = child;
       }
+      return index;
     }
 
-    void fixUp(std::size_t index) 
-      noexcept(std::is_nothrow_swappable_v<T>) {
-      using std::swap;
-
-      while (hasParent(index)) {
+    // Fix up the value.
+    void fixUp(std::size_t index, std::size_t top, T&& value) 
+      noexcept(std::is_nothrow_move_assignable_v<T>) {
+      while (index > top) {
         std::size_t parent = getParent(index);
-        if (comparator_(data_[index], data_[parent])) {
-          swap(data_[index], data_[parent]);
+        if (comparator_(value, data_[parent])) {
+          data_[index] = std::move(data_[parent]);
           index = parent;
         } else {
           break;
         }
+      }
+      data_[index] = std::move(value);
+    }
+
+    void heapify() 
+      noexcept(std::is_nothrow_move_constructible_v<T>&& std::is_nothrow_move_assignable_v<T>) {
+      if (data_.size() < 2) {
+        return;
+      }
+      for (std::size_t i = data_.size() / 2; i-- > 0 ;) {
+        T value = std::move(data_[i]);
+        std::size_t hole = fixDownWithHole(i);
+        fixUp(hole, i, std::move(value));
       }
     }
 

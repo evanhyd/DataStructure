@@ -6,5 +6,6 @@ var searchData=
   ['deletebuffer_3',['deleteBuffer',['../namespaceflow.html#a95a53e967634035ab7b02a7a0fd8d41a',1,'flow']]],
   ['destroy_4',['destroy',['../classflow_1_1_polymorphic_allocator.html#abc9cffd1ba2487b9446352c42b8b820d',1,'flow::PolymorphicAllocator']]],
   ['destroyelements_5',['destroyElements',['../namespaceflow.html#a0917ae92fc9372994be63e2b07d7da43',1,'flow']]],
-  ['destroyelementsn_6',['destroyElementsN',['../namespaceflow.html#a2097cda5f5388d27f3c92804fdea2917',1,'flow']]]
+  ['destroyelementsn_6',['destroyElementsN',['../namespaceflow.html#a2097cda5f5388d27f3c92804fdea2917',1,'flow']]],
+  ['drop_7',['drop',['../classflow_1_1_binary_heap.html#af63b727bb21360f3e36325c374c805eb',1,'flow::BinaryHeap']]]
 ];

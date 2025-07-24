@@ -93,7 +93,7 @@ $(function(){initNavTree('classflow_1_1_counted_value_view_iterator.html','','cl
 </div><!--header-->
 <div class="contents">
 
-<p>Iterator that returns a constant value for a fixed number of times. Useful for creating a virtual range of repeated values without storage.  
+<p>Iterator that returns a constant value a fixed number of times. Useful for creating a virtual range of repeated values without overhead.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>&gt;</code></p>
@@ -108,10 +108,10 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aec5e48263e265314df292c11b62b780d" id="r_aec5e48263e265314df292c11b62b780d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec5e48263e265314df292c11b62b780d">CountedValueViewIterator</a> ()</td></tr>
-<tr class="memitem:ae5fcbb0fd603cd40e5562d3f76f846df" id="r_ae5fcbb0fd603cd40e5562d3f76f846df"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5fcbb0fd603cd40e5562d3f76f846df">CountedValueViewIterator</a> (const T &amp;value, std::size_t count=0)</td></tr>
-<tr class="memitem:a15cd12e7b60ac56f657362dda2c5dc68" id="r_a15cd12e7b60ac56f657362dda2c5dc68"><td class="memItemLeft" align="right" valign="top">const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a15cd12e7b60ac56f657362dda2c5dc68">operator*</a> () const</td></tr>
-<tr class="memitem:a634a2db73627fcbd4fee77e1a3c2375e" id="r_a634a2db73627fcbd4fee77e1a3c2375e"><td class="memItemLeft" align="right" valign="top">const T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a634a2db73627fcbd4fee77e1a3c2375e">operator-&gt;</a> () const</td></tr>
+<tr class="memitem:a1018c3a0e080166994db054cb0662a1e" id="r_a1018c3a0e080166994db054cb0662a1e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1018c3a0e080166994db054cb0662a1e">CountedValueViewIterator</a> () noexcept</td></tr>
+<tr class="memitem:a7f2d0927b8d3b014398b0c479161f908" id="r_a7f2d0927b8d3b014398b0c479161f908"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f2d0927b8d3b014398b0c479161f908">CountedValueViewIterator</a> (const T &amp;value, std::size_t count=0) noexcept</td></tr>
+<tr class="memitem:a600cccbc5a16846d832e26afc7c7e6e4" id="r_a600cccbc5a16846d832e26afc7c7e6e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a4fffa537ac2693dd8f3258b909575de9">reference</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a600cccbc5a16846d832e26afc7c7e6e4">operator*</a> () const</td></tr>
+<tr class="memitem:af1a7e79fe387ebbd85a47032080506ae" id="r_af1a7e79fe387ebbd85a47032080506ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a46c830285785216a842c7cb504b56e72">pointer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af1a7e79fe387ebbd85a47032080506ae">operator-&gt;</a> () const</td></tr>
 <tr class="memitem:afd00e1df6549e44a2429e929d8bdf909" id="r_afd00e1df6549e44a2429e929d8bdf909"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classflow_1_1_counted_value_view_iterator.html">CountedValueViewIterator</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd00e1df6549e44a2429e929d8bdf909">operator++</a> ()</td></tr>
 <tr class="memitem:a7fd5897e27305768eaf068cbe4644de5" id="r_a7fd5897e27305768eaf068cbe4644de5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classflow_1_1_counted_value_view_iterator.html">CountedValueViewIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7fd5897e27305768eaf068cbe4644de5">operator++</a> (int)</td></tr>
 </table><table class="memberdecls">
@@ -127,9 +127,9 @@ Friends</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T&gt;<br />
-class flow::CountedValueViewIterator&lt; T &gt;</div><p>Iterator that returns a constant value for a fixed number of times. Useful for creating a virtual range of repeated values without storage. </p>
+class flow::CountedValueViewIterator&lt; T &gt;</div><p>Iterator that returns a constant value a fixed number of times. Useful for creating a virtual range of repeated values without overhead. </p>
 
-<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00013">13</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00011">11</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="ab15d7850ec1d51e9c23b298d79009207" name="ab15d7850ec1d51e9c23b298d79009207"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab15d7850ec1d51e9c23b298d79009207">&#9670;&#160;</a></span>difference_type</h2>
@@ -145,7 +145,7 @@ template&lt;typename T&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00021">21</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00019">19</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
 
 </div>
 </div>
@@ -163,7 +163,7 @@ template&lt;typename T&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00022">22</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00020">20</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
 
 </div>
 </div>
@@ -181,7 +181,7 @@ template&lt;typename T&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00020">20</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00018">18</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
 
 </div>
 </div>
@@ -199,7 +199,7 @@ template&lt;typename T&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00019">19</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00017">17</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
 
 </div>
 </div>
@@ -217,13 +217,13 @@ template&lt;typename T&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00018">18</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00016">16</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
 
 </div>
 </div>
 <a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aec5e48263e265314df292c11b62b780d" name="aec5e48263e265314df292c11b62b780d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aec5e48263e265314df292c11b62b780d">&#9670;&#160;</a></span>CountedValueViewIterator() <span class="overload">[1/2]</span></h2>
+<a id="a1018c3a0e080166994db054cb0662a1e" name="a1018c3a0e080166994db054cb0662a1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1018c3a0e080166994db054cb0662a1e">&#9670;&#160;</a></span>CountedValueViewIterator() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -242,26 +242,25 @@ template&lt;typename T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel noexcept">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00024">24</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   24</span>                               :</div>
-<div class="line"><span class="lineno">   25</span>      <a class="code hl_variable" href="#afe83d60be27bae44aeaf8df0b1daf17a">value_</a>(<span class="keyword">nullptr</span>), <a class="code hl_variable" href="#afa83583c08318439349f6b901aee9b78">count_</a>(0) {</div>
-<div class="line"><span class="lineno">   26</span>    }</div>
-<div class="ttc" id="aclassflow_1_1_counted_value_view_iterator_html_afa83583c08318439349f6b901aee9b78"><div class="ttname"><a href="#afa83583c08318439349f6b901aee9b78">flow::CountedValueViewIterator::count_</a></div><div class="ttdeci">std::size_t count_</div><div class="ttdef"><b>Definition</b> <a href="flow__counted__value__view__iterator_8h_source.html#l00015">flow_counted_value_view_iterator.h:15</a></div></div>
-<div class="ttc" id="aclassflow_1_1_counted_value_view_iterator_html_afe83d60be27bae44aeaf8df0b1daf17a"><div class="ttname"><a href="#afe83d60be27bae44aeaf8df0b1daf17a">flow::CountedValueViewIterator::value_</a></div><div class="ttdeci">const T * value_</div><div class="ttdef"><b>Definition</b> <a href="flow__counted__value__view__iterator_8h_source.html#l00014">flow_counted_value_view_iterator.h:14</a></div></div>
+<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00022">22</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   23</span>      : <a class="code hl_variable" href="#afe83d60be27bae44aeaf8df0b1daf17a">value_</a>(<span class="keyword">nullptr</span>), <a class="code hl_variable" href="#afa83583c08318439349f6b901aee9b78">count_</a>(0) {</div>
+<div class="line"><span class="lineno">   24</span>    }</div>
+<div class="ttc" id="aclassflow_1_1_counted_value_view_iterator_html_afa83583c08318439349f6b901aee9b78"><div class="ttname"><a href="#afa83583c08318439349f6b901aee9b78">flow::CountedValueViewIterator::count_</a></div><div class="ttdeci">std::size_t count_</div><div class="ttdef"><b>Definition</b> <a href="flow__counted__value__view__iterator_8h_source.html#l00013">flow_counted_value_view_iterator.h:13</a></div></div>
+<div class="ttc" id="aclassflow_1_1_counted_value_view_iterator_html_afe83d60be27bae44aeaf8df0b1daf17a"><div class="ttname"><a href="#afe83d60be27bae44aeaf8df0b1daf17a">flow::CountedValueViewIterator::value_</a></div><div class="ttdeci">const T * value_</div><div class="ttdef"><b>Definition</b> <a href="flow__counted__value__view__iterator_8h_source.html#l00012">flow_counted_value_view_iterator.h:12</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00015">count_</a>, and <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00014">value_</a>.</p>
+<p class="reference">References <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00013">count_</a>, and <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00012">value_</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00058">operator!=</a>, <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00042">operator++()</a>, <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00048">operator++()</a>, and <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00054">operator==</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00056">operator!=</a>, <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00040">operator++()</a>, <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00046">operator++()</a>, and <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00052">operator==</a>.</p>
 
 </div>
 </div>
-<a id="ae5fcbb0fd603cd40e5562d3f76f846df" name="ae5fcbb0fd603cd40e5562d3f76f846df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae5fcbb0fd603cd40e5562d3f76f846df">&#9670;&#160;</a></span>CountedValueViewIterator() <span class="overload">[2/2]</span></h2>
+<a id="a7f2d0927b8d3b014398b0c479161f908" name="a7f2d0927b8d3b014398b0c479161f908"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f2d0927b8d3b014398b0c479161f908">&#9670;&#160;</a></span>CountedValueViewIterator() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -284,24 +283,23 @@ template&lt;typename T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel noexcept">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00028">28</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   28</span>                                                                  :</div>
-<div class="line"><span class="lineno">   29</span>      <a class="code hl_variable" href="#afe83d60be27bae44aeaf8df0b1daf17a">value_</a>(&amp;<a class="code hl_class" href="classflow_1_1_counted_value_view_iterator.html">value</a>), <a class="code hl_variable" href="#afa83583c08318439349f6b901aee9b78">count_</a>(<a class="code hl_class" href="classflow_1_1_counted_value_view_iterator.html">count</a>) {</div>
-<div class="line"><span class="lineno">   30</span>    }</div>
-<div class="ttc" id="aclassflow_1_1_counted_value_view_iterator_html"><div class="ttname"><a href="classflow_1_1_counted_value_view_iterator.html">flow::CountedValueViewIterator</a></div><div class="ttdoc">Iterator that returns a constant value for a fixed number of times. Useful for creating a virtual ran...</div><div class="ttdef"><b>Definition</b> <a href="flow__counted__value__view__iterator_8h_source.html#l00013">flow_counted_value_view_iterator.h:13</a></div></div>
+<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00026">26</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   27</span>      : <a class="code hl_variable" href="#afe83d60be27bae44aeaf8df0b1daf17a">value_</a>(&amp;<a class="code hl_class" href="classflow_1_1_counted_value_view_iterator.html">value</a>), <a class="code hl_variable" href="#afa83583c08318439349f6b901aee9b78">count_</a>(<a class="code hl_class" href="classflow_1_1_counted_value_view_iterator.html">count</a>) {</div>
+<div class="line"><span class="lineno">   28</span>    }</div>
+<div class="ttc" id="aclassflow_1_1_counted_value_view_iterator_html"><div class="ttname"><a href="classflow_1_1_counted_value_view_iterator.html">flow::CountedValueViewIterator</a></div><div class="ttdoc">Iterator that returns a constant value a fixed number of times. Useful for creating a virtual range o...</div><div class="ttdef"><b>Definition</b> <a href="flow__counted__value__view__iterator_8h_source.html#l00011">flow_counted_value_view_iterator.h:11</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00015">count_</a>, and <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00014">value_</a>.</p>
+<p class="reference">References <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00013">count_</a>, and <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00012">value_</a>.</p>
 
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a15cd12e7b60ac56f657362dda2c5dc68" name="a15cd12e7b60ac56f657362dda2c5dc68"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a15cd12e7b60ac56f657362dda2c5dc68">&#9670;&#160;</a></span>operator*()</h2>
+<a id="a600cccbc5a16846d832e26afc7c7e6e4" name="a600cccbc5a16846d832e26afc7c7e6e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a600cccbc5a16846d832e26afc7c7e6e4">&#9670;&#160;</a></span>operator*()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -312,7 +310,7 @@ template&lt;typename T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const T &amp; <a class="el" href="classflow_1_1_counted_value_view_iterator.html">flow::CountedValueViewIterator</a>&lt; T &gt;::operator* </td>
+          <td class="memname"><a class="el" href="#a4fffa537ac2693dd8f3258b909575de9">reference</a> <a class="el" href="classflow_1_1_counted_value_view_iterator.html">flow::CountedValueViewIterator</a>&lt; T &gt;::operator* </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -325,13 +323,13 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00032">32</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   32</span>                               {</div>
-<div class="line"><span class="lineno">   33</span>      <a class="code hl_class" href="classflow_1_1_counted_value_view_iterator.html">assert</a>(<a class="code hl_variable" href="#afe83d60be27bae44aeaf8df0b1daf17a">value_</a> &amp;&amp; <span class="stringliteral">&quot;no value&quot;</span>);</div>
-<div class="line"><span class="lineno">   34</span>      <span class="keywordflow">return</span> *<a class="code hl_variable" href="#afe83d60be27bae44aeaf8df0b1daf17a">value_</a>;</div>
-<div class="line"><span class="lineno">   35</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00030">30</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   30</span>                                {</div>
+<div class="line"><span class="lineno">   31</span>      <a class="code hl_class" href="classflow_1_1_counted_value_view_iterator.html">assert</a>(<a class="code hl_variable" href="#afe83d60be27bae44aeaf8df0b1daf17a">value_</a> &amp;&amp; <span class="stringliteral">&quot;no value&quot;</span>);</div>
+<div class="line"><span class="lineno">   32</span>      <span class="keywordflow">return</span> *<a class="code hl_variable" href="#afe83d60be27bae44aeaf8df0b1daf17a">value_</a>;</div>
+<div class="line"><span class="lineno">   33</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00014">value_</a>.</p>
+<p class="reference">References <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00012">value_</a>.</p>
 
 </div>
 </div>
@@ -360,14 +358,14 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00042">42</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   42</span>                                           {</div>
-<div class="line"><span class="lineno">   43</span>      <a class="code hl_class" href="classflow_1_1_counted_value_view_iterator.html">assert</a>(<a class="code hl_variable" href="#afa83583c08318439349f6b901aee9b78">count_</a> &gt; 0 &amp;&amp; <span class="stringliteral">&quot;negative count&quot;</span>);</div>
-<div class="line"><span class="lineno">   44</span>      --<a class="code hl_variable" href="#afa83583c08318439349f6b901aee9b78">count_</a>;</div>
-<div class="line"><span class="lineno">   45</span>      <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><span class="lineno">   46</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00040">40</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   40</span>                                           {</div>
+<div class="line"><span class="lineno">   41</span>      <a class="code hl_class" href="classflow_1_1_counted_value_view_iterator.html">assert</a>(<a class="code hl_variable" href="#afa83583c08318439349f6b901aee9b78">count_</a> &gt; 0 &amp;&amp; <span class="stringliteral">&quot;negative count&quot;</span>);</div>
+<div class="line"><span class="lineno">   42</span>      --<a class="code hl_variable" href="#afa83583c08318439349f6b901aee9b78">count_</a>;</div>
+<div class="line"><span class="lineno">   43</span>      <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><span class="lineno">   44</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00015">count_</a>, and <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00024">CountedValueViewIterator()</a>.</p>
+<p class="reference">References <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00013">count_</a>, and <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00022">CountedValueViewIterator()</a>.</p>
 
 </div>
 </div>
@@ -396,20 +394,20 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00048">48</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   48</span>                                             {</div>
-<div class="line"><span class="lineno">   49</span>      <a class="code hl_function" href="#aec5e48263e265314df292c11b62b780d">CountedValueViewIterator</a> <a class="code hl_class" href="classflow_1_1_counted_value_view_iterator.html">cpy</a> = *<span class="keyword">this</span>;</div>
-<div class="line"><span class="lineno">   50</span>      --<a class="code hl_variable" href="#afa83583c08318439349f6b901aee9b78">count_</a>;</div>
-<div class="line"><span class="lineno">   51</span>      <span class="keywordflow">return</span> <a class="code hl_class" href="classflow_1_1_counted_value_view_iterator.html">cpy</a>;</div>
-<div class="line"><span class="lineno">   52</span>    }</div>
-<div class="ttc" id="aclassflow_1_1_counted_value_view_iterator_html_aec5e48263e265314df292c11b62b780d"><div class="ttname"><a href="#aec5e48263e265314df292c11b62b780d">flow::CountedValueViewIterator::CountedValueViewIterator</a></div><div class="ttdeci">CountedValueViewIterator()</div><div class="ttdef"><b>Definition</b> <a href="flow__counted__value__view__iterator_8h_source.html#l00024">flow_counted_value_view_iterator.h:24</a></div></div>
+<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00046">46</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   46</span>                                             {</div>
+<div class="line"><span class="lineno">   47</span>      <a class="code hl_function" href="#a1018c3a0e080166994db054cb0662a1e">CountedValueViewIterator</a> <a class="code hl_class" href="classflow_1_1_counted_value_view_iterator.html">tmp</a> = *<span class="keyword">this</span>;</div>
+<div class="line"><span class="lineno">   48</span>      --<a class="code hl_variable" href="#afa83583c08318439349f6b901aee9b78">count_</a>;</div>
+<div class="line"><span class="lineno">   49</span>      <span class="keywordflow">return</span> <a class="code hl_class" href="classflow_1_1_counted_value_view_iterator.html">tmp</a>;</div>
+<div class="line"><span class="lineno">   50</span>    }</div>
+<div class="ttc" id="aclassflow_1_1_counted_value_view_iterator_html_a1018c3a0e080166994db054cb0662a1e"><div class="ttname"><a href="#a1018c3a0e080166994db054cb0662a1e">flow::CountedValueViewIterator::CountedValueViewIterator</a></div><div class="ttdeci">CountedValueViewIterator() noexcept</div><div class="ttdef"><b>Definition</b> <a href="flow__counted__value__view__iterator_8h_source.html#l00022">flow_counted_value_view_iterator.h:22</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00015">count_</a>, and <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00024">CountedValueViewIterator()</a>.</p>
+<p class="reference">References <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00013">count_</a>, and <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00022">CountedValueViewIterator()</a>.</p>
 
 </div>
 </div>
-<a id="a634a2db73627fcbd4fee77e1a3c2375e" name="a634a2db73627fcbd4fee77e1a3c2375e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a634a2db73627fcbd4fee77e1a3c2375e">&#9670;&#160;</a></span>operator-&gt;()</h2>
+<a id="af1a7e79fe387ebbd85a47032080506ae" name="af1a7e79fe387ebbd85a47032080506ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1a7e79fe387ebbd85a47032080506ae">&#9670;&#160;</a></span>operator-&gt;()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -420,7 +418,7 @@ template&lt;typename T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const T * <a class="el" href="classflow_1_1_counted_value_view_iterator.html">flow::CountedValueViewIterator</a>&lt; T &gt;::operator-&gt; </td>
+          <td class="memname"><a class="el" href="#a46c830285785216a842c7cb504b56e72">pointer</a> <a class="el" href="classflow_1_1_counted_value_view_iterator.html">flow::CountedValueViewIterator</a>&lt; T &gt;::operator-&gt; </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -433,13 +431,13 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00037">37</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   37</span>                                {</div>
-<div class="line"><span class="lineno">   38</span>      <a class="code hl_class" href="classflow_1_1_counted_value_view_iterator.html">assert</a>(<a class="code hl_variable" href="#afe83d60be27bae44aeaf8df0b1daf17a">value_</a> &amp;&amp; <span class="stringliteral">&quot;no value&quot;</span>);</div>
-<div class="line"><span class="lineno">   39</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="#afe83d60be27bae44aeaf8df0b1daf17a">value_</a>;</div>
-<div class="line"><span class="lineno">   40</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00035">35</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   35</span>                               {</div>
+<div class="line"><span class="lineno">   36</span>      <a class="code hl_class" href="classflow_1_1_counted_value_view_iterator.html">assert</a>(<a class="code hl_variable" href="#afe83d60be27bae44aeaf8df0b1daf17a">value_</a> &amp;&amp; <span class="stringliteral">&quot;no value&quot;</span>);</div>
+<div class="line"><span class="lineno">   37</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="#afe83d60be27bae44aeaf8df0b1daf17a">value_</a>;</div>
+<div class="line"><span class="lineno">   38</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00014">value_</a>.</p>
+<p class="reference">References <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00012">value_</a>.</p>
 
 </div>
 </div>
@@ -473,12 +471,12 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00058">58</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   58</span>                                                                                                     {</div>
-<div class="line"><span class="lineno">   59</span>      <span class="keywordflow">return</span> !(<a class="code hl_class" href="classflow_1_1_counted_value_view_iterator.html">lhs</a> == <a class="code hl_class" href="classflow_1_1_counted_value_view_iterator.html">rhs</a>);</div>
-<div class="line"><span class="lineno">   60</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00056">56</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   56</span>                                                                                                     {</div>
+<div class="line"><span class="lineno">   57</span>      <span class="keywordflow">return</span> !(<a class="code hl_class" href="classflow_1_1_counted_value_view_iterator.html">lhs</a> == <a class="code hl_class" href="classflow_1_1_counted_value_view_iterator.html">rhs</a>);</div>
+<div class="line"><span class="lineno">   58</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00024">CountedValueViewIterator()</a>.</p>
+<p class="reference">References <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00022">CountedValueViewIterator()</a>.</p>
 
 </div>
 </div>
@@ -511,12 +509,12 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00054">54</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   54</span>                                                                                                     {</div>
-<div class="line"><span class="lineno">   55</span>      <span class="keywordflow">return</span> <a class="code hl_class" href="classflow_1_1_counted_value_view_iterator.html">lhs</a>.<a class="code hl_variable" href="#afa83583c08318439349f6b901aee9b78">count_</a> == <a class="code hl_class" href="classflow_1_1_counted_value_view_iterator.html">rhs</a>.<a class="code hl_variable" href="#afa83583c08318439349f6b901aee9b78">count_</a> &amp;&amp; <a class="code hl_class" href="classflow_1_1_counted_value_view_iterator.html">lhs</a>.<a class="code hl_variable" href="#afe83d60be27bae44aeaf8df0b1daf17a">value_</a> == <a class="code hl_class" href="classflow_1_1_counted_value_view_iterator.html">rhs</a>.<a class="code hl_variable" href="#afe83d60be27bae44aeaf8df0b1daf17a">value_</a>;</div>
-<div class="line"><span class="lineno">   56</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00052">52</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   52</span>                                                                                                     {</div>
+<div class="line"><span class="lineno">   53</span>      <span class="keywordflow">return</span> <a class="code hl_class" href="classflow_1_1_counted_value_view_iterator.html">lhs</a>.<a class="code hl_variable" href="#afa83583c08318439349f6b901aee9b78">count_</a> == <a class="code hl_class" href="classflow_1_1_counted_value_view_iterator.html">rhs</a>.<a class="code hl_variable" href="#afa83583c08318439349f6b901aee9b78">count_</a> &amp;&amp; <a class="code hl_class" href="classflow_1_1_counted_value_view_iterator.html">lhs</a>.<a class="code hl_variable" href="#afe83d60be27bae44aeaf8df0b1daf17a">value_</a> == <a class="code hl_class" href="classflow_1_1_counted_value_view_iterator.html">rhs</a>.<a class="code hl_variable" href="#afe83d60be27bae44aeaf8df0b1daf17a">value_</a>;</div>
+<div class="line"><span class="lineno">   54</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00015">count_</a>, <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00024">CountedValueViewIterator()</a>, and <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00014">value_</a>.</p>
+<p class="reference">References <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00013">count_</a>, <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00022">CountedValueViewIterator()</a>, and <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00012">value_</a>.</p>
 
 </div>
 </div>
@@ -543,9 +541,9 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00015">15</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00013">13</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00024">CountedValueViewIterator()</a>, <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00028">CountedValueViewIterator()</a>, <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00042">operator++()</a>, <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00048">operator++()</a>, and <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00054">operator==</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00022">CountedValueViewIterator()</a>, <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00026">CountedValueViewIterator()</a>, <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00040">operator++()</a>, <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00046">operator++()</a>, and <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00052">operator==</a>.</p>
 
 </div>
 </div>
@@ -571,9 +569,9 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00014">14</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00012">12</a> of file <a class="el" href="flow__counted__value__view__iterator_8h_source.html">flow_counted_value_view_iterator.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00024">CountedValueViewIterator()</a>, <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00028">CountedValueViewIterator()</a>, <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00032">operator*()</a>, <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00037">operator-&gt;()</a>, and <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00054">operator==</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00022">CountedValueViewIterator()</a>, <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00026">CountedValueViewIterator()</a>, <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00030">operator*()</a>, <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00035">operator-&gt;()</a>, and <a class="el" href="flow__counted__value__view__iterator_8h_source.html#l00052">operator==</a>.</p>
 
 </div>
 </div>

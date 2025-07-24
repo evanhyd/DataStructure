@@ -96,8 +96,11 @@ $(function(){initNavTree('conceptflow_1_1_growth_strategy.html','',''); });
 <p><code>#include &lt;<a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>&gt;</code></p>
 <h2 id="header-conceptdef" class="groupheader">Concept definition</h2>
 <div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Strategy&gt;</div>
-<div class="line"><span class="keyword">concept </span><a class="code hl_concept" href="conceptflow_1_1_growth_strategy.html">flow::GrowthStrategy</a> =  <span class="keyword">requires</span>(Strategy strategy, std::size_t num) {</div>
-<div class="line">    { strategy(num) } -&gt; std::same_as&lt;std::size_t&gt;;</div>
+<div class="line"><span class="keyword">concept </span><a class="code hl_concept" href="conceptflow_1_1_growth_strategy.html">flow::GrowthStrategy</a> = </div>
+<div class="line">    std::default_initializable&lt;Strategy&gt; &amp;&amp;</div>
+<div class="line">    <span class="keyword">noexcept</span>(Strategy()) &amp;&amp;</div>
+<div class="line">    <span class="keyword">requires</span>(Strategy strategy, std::size_t num) {</div>
+<div class="line">      { strategy(num) } -&gt; std::same_as&lt;std::size_t&gt;;</div>
 <div class="line">  }</div>
 <div class="ttc" id="aconceptflow_1_1_growth_strategy_html"><div class="ttname"><a href="conceptflow_1_1_growth_strategy.html">flow::GrowthStrategy</a></div><div class="ttdef"><b>Definition</b> <a href="flow__vector_8h_source.html#l00014">flow_vector.h:14</a></div></div>
 </div><!-- fragment --><a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>

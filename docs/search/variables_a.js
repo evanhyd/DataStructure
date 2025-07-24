@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['resource_5f_0',['resource_',['../classflow_1_1_polymorphic_allocator.html#a15d7aac64ac85004897b094b38ca73bd',1,'flow::PolymorphicAllocator']]]
+  ['queue_5f_0',['queue_',['../classflow_1_1_concurrent_queue.html#ac343336ca09c2e09f85c0f17addc1010',1,'flow::ConcurrentQueue']]]
 ];

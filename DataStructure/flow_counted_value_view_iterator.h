@@ -5,10 +5,8 @@
 
 namespace flow {
 
-  /// <summary>
-  /// Iterator that returns a constant value for a fixed number of times.
-  /// Useful for creating a virtual range of repeated values without storage.
-  /// </summary>
+  /// @brief Iterator that returns a constant value a fixed number of times.
+  /// Useful for creating a virtual range of repeated values without overhead.
   template <typename T>
   class CountedValueViewIterator {
     const T* value_;
@@ -21,20 +19,20 @@ namespace flow {
     using difference_type = std::ptrdiff_t;
     using iterator_category = std::forward_iterator_tag;
 
-    CountedValueViewIterator() :
-      value_(nullptr), count_(0) {
+    CountedValueViewIterator() noexcept
+      : value_(nullptr), count_(0) {
     }
 
-    CountedValueViewIterator(const T& value, std::size_t count = 0) :
-      value_(&value), count_(count) {
+    CountedValueViewIterator(const T& value, std::size_t count = 0) noexcept
+      : value_(&value), count_(count) {
     }
 
-    const T& operator*() const {
+    reference operator*() const {
       assert(value_ && "no value");
       return *value_;
     }
 
-    const T* operator->() const {
+    pointer operator->() const {
       assert(value_ && "no value");
       return value_;
     }
@@ -46,9 +44,9 @@ namespace flow {
     }
 
     CountedValueViewIterator operator++(int) {
-      CountedValueViewIterator cpy = *this;
+      CountedValueViewIterator tmp = *this;
       --count_;
-      return cpy;
+      return tmp;
     }
 
     friend bool operator==(const CountedValueViewIterator& lhs, const CountedValueViewIterator& rhs) {

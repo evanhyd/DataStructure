@@ -11,12 +11,12 @@
 namespace flow {
 
   template <typename Strategy>
-  concept GrowthStrategy = 
+  concept GrowthStrategy =
     std::default_initializable<Strategy> &&
-    noexcept(Strategy()) && 
+    noexcept(Strategy()) &&
     requires(Strategy strategy, std::size_t num) {
       { strategy(num) } -> std::same_as<std::size_t>;
-    };
+  };
 
   struct VectorGrowthStrategy {
     struct GoldenExpand {
@@ -69,42 +69,49 @@ namespace flow {
     T* buffer_;
 
   public:
-    // Default constructor.
+    /// @brief Constructs an empty vector with default allocator and growth strategy.
     constexpr Vector() noexcept
       : Vector(allocator_type{}) {
     }
 
-    // Extended default constructor.
+    /// @brief Constructs an empty vector with a specific allocator.
+    /// @param allocator Memory allocator.
     explicit constexpr Vector(const allocator_type& allocator)
       noexcept(noexcept(allocator_type(allocator)))
       : allocator_(allocator),
-        growthStrategy_(),
-        size_(0),
-        capacity_(0),
-        buffer_(nullptr) {
+      growthStrategy_(),
+      size_(0),
+      capacity_(0),
+      buffer_(nullptr) {
     }
 
-    // Copy constructor.
+    /// @brief Copy-constructs a vector using the same allocator as the source.
+    /// @param rhs Source vector.
     constexpr Vector(const Vector& rhs)
       : Vector(rhs, rhs.get_allocator()) {
     }
 
-    // Extended copy constructor.
+    /// @brief Copy-constructs a vector with a custom allocator.
+    /// @param rhs Source vector.
+    /// @param allocator Memory allocator.
     constexpr Vector(const Vector& rhs, const allocator_type& allocator)
       : allocator_(allocator),
-        growthStrategy_(rhs.growthStrategy_),
-        size_(rhs.size_),
-        capacity_(rhs.capacity_),
-        buffer_(allocator_trait::allocate(allocator_, rhs.capacity_)) {
+      growthStrategy_(rhs.growthStrategy_),
+      size_(rhs.size_),
+      capacity_(rhs.capacity_),
+      buffer_(allocator_trait::allocate(allocator_, rhs.capacity_)) {
       uninitializedForward(allocator_, rhs.begin(), rhs.end(), buffer_);
     }
 
-    // Move constructor.
+    /// @brief Move-constructs a vector with the same allocator as the source.
+    /// @param rhs Source vector.
     constexpr Vector(Vector&& rhs) noexcept
       : Vector(std::move(rhs), rhs.get_allocator()) {
     }
 
-    // Extended move constructor.
+    /// @brief Move-constructs a vector with a custom allocator.
+    /// @param rhs Source vector.
+    /// @param allocator Memory allocator.
     constexpr Vector(Vector&& rhs, const allocator_type& allocator)
       : Vector(allocator) {
 
@@ -119,35 +126,50 @@ namespace flow {
       }
     }
 
+    /// @brief Constructs a vector from an iterator range.
+    /// @tparam It Input iterator.
+    /// @param first Start of the range.
+    /// @param last End of the range.
+    /// @param allocator Memory allocator.
     template <std::input_iterator It>
     explicit constexpr Vector(It first, It last, const allocator_type& allocator = {})
       : allocator_(allocator),
-        growthStrategy_(),
-        size_(std::distance(first, last)),
-        capacity_(size_),
-        buffer_(allocator_trait::allocate(allocator_, capacity_)) {
+      growthStrategy_(),
+      size_(std::distance(first, last)),
+      capacity_(size_),
+      buffer_(allocator_trait::allocate(allocator_, capacity_)) {
       uninitializedForward(allocator_, first, last, buffer_);
     }
 
+    /// @brief Constructs a vector from an initializer list.
+    /// @param list Elements to initialize the vector with.
+    /// @param allocator Memory allocator.
     constexpr Vector(std::initializer_list<T> list, const allocator_type& allocator = {})
       : Vector(list.begin(), list.end(), allocator) {
     }
 
+    /// @brief Constructs a vector with count default-initialized elements.
+    /// @param count Number of elements.
+    /// @param allocator Memory allocator.
     explicit constexpr Vector(std::size_t count, const allocator_type& allocator = {})
       : allocator_(allocator),
-        growthStrategy_(),
-        size_(count),
-        capacity_(count),
-        buffer_(allocator_trait::allocate(allocator_, count)) {
+      growthStrategy_(),
+      size_(count),
+      capacity_(count),
+      buffer_(allocator_trait::allocate(allocator_, count)) {
       uninitializedEmplaceN(allocator_, buffer_, count);
     }
 
+    /// @brief Constructs a vector with count copies of a given value.
+    /// @param count Number of elements.
+    /// @param value Element value.
+    /// @param allocator Memory allocator.
     explicit constexpr Vector(std::size_t count, const T& value, const allocator_type& allocator = {})
       : allocator_(allocator),
-        growthStrategy_(),
-        size_(count),
-        capacity_(count),
-        buffer_(allocator_trait::allocate(allocator_, count)) {
+      growthStrategy_(),
+      size_(count),
+      capacity_(count),
+      buffer_(allocator_trait::allocate(allocator_, count)) {
       uninitializedFillN(allocator_, buffer_, count, value);
     }
 
@@ -157,7 +179,7 @@ namespace flow {
     }
 
     // Operator.
-    Vector& operator=(Vector rhs) 
+    Vector& operator=(Vector rhs)
       noexcept(std::is_nothrow_swappable_v<Vector>) {
       swap(*this, rhs);
       return *this;
@@ -173,7 +195,8 @@ namespace flow {
       return buffer_[i];
     }
 
-    // Allocator.
+    /// @brief Returns the current allocator.
+    /// @return The allocator.
     allocator_type get_allocator() const noexcept {
       return allocator_;
     }
@@ -195,69 +218,95 @@ namespace flow {
       return buffer_ + size_;
     }
 
-    // Accessers.
+    /// @brief Returns the number of elements in the vector.
+    /// @return Number of elements.
     constexpr std::size_t size() const noexcept {
       return size_;
     }
 
+    /// @brief Returns the total allocated capacity.
+    /// @return Capacity in elements.
     constexpr std::size_t capacity() const noexcept {
       return capacity_;
     }
 
+    /// @brief Checks whether the vector is empty.
+    /// @return true if the vector is empty, false otherwise.
     constexpr bool empty() const noexcept {
       return size_ == 0;
     }
 
+    /// @brief Returns a reference to the first element.
+    /// @return First element.
     T& front() noexcept {
       assert(0 < size_ && "access empty Vector front");
       return buffer_[0];
     }
 
+    /// @brief Returns a reference to the first element.
+    /// @return First element.
     constexpr const T& front() const noexcept {
       assert(0 < size_ && "access empty Vector front");
       return buffer_[0];
     }
 
+    /// @brief Returns a reference to the last element.
+    /// @return Last element.
     T& back() noexcept {
       assert(0 < size_ && "access empty Vector back");
       return buffer_[size_ - 1];
     }
 
+    /// @brief Returns a reference to the last element.
+    /// @return Last element.
     constexpr const T& back() const noexcept {
       assert(0 < size_ && "access empty Vector back");
       return buffer_[size_ - 1];
     }
 
-    // Mutators
+    /// @brief Clears the contents of the vector.
     void clear() noexcept {
       destroyElementsN(allocator_, buffer_, size_);
       size_ = 0;
     }
 
+    /// @brief Ensures the vector can hold at least the given capacity without reallocating.
+    /// @param capacity Desired minimum capacity.
     void reserve(std::size_t capacity) {
       if (capacity_ < capacity) {
         relocateBuffer(capacity);
       }
     }
 
+    /// @brief Resizes the vector to contain the given number of default constructed elements.
+    /// @param size New size.
     void resize(std::size_t size) {
       resizeImp(size);
     }
 
+    /// @brief Resizes the vector and fills new elements with a given value.
+    /// @param size New size.
+    /// @param value Value to fill.
     void resize(std::size_t size, const T& value) {
       resizeImp(size, value);
     }
-     
-    // https://stackoverflow.com/questions/10890653/why-would-i-ever-use-push-back-instead-of-emplace-back
-    // TLDR: Consider emplace back an address when constructing unique_ptr.
+
+    /// @brief Adds an element to the end of the vector.
+    /// @param value Element to add.
     void pushBack(const T& value) {
+      // https://stackoverflow.com/questions/10890653/why-would-i-ever-use-push-back-instead-of-emplace-back
+      // TLDR: Consider emplace back an address when constructing unique_ptr.
       emplaceBack(value);
     }
 
+    /// @brief Adds an element to the end of the vector.
+    /// @param value Element to add.
     void pushBack(T&& value) {
       emplaceBack(std::move(value));
     }
 
+    /// @brief Constructs an element in-place at the end of the vector.
+    /// @param ...args Arguments to forward.
     template <typename ...Args>
     void emplaceBack(Args&&... args) {
       if (size_ == capacity_) {
@@ -267,17 +316,16 @@ namespace flow {
       ++size_;
     }
 
+    /// @brief Removes the last element of the vector.
     void popBack() noexcept {
       assert(0 < size_ && "can not pop back from an empty vector");
       --size_;
       allocator_trait::destroy(allocator_, buffer_ + size_);
     }
 
-    /// <summary>
-    /// Removes the element at the given position.
-    /// </summary>
-    /// <param name="pos">Iterator to the element to remove (must not be end()).</param>
-    /// <returns>Iterator to the next element, or end() if last was removed.</returns>
+    /// @brief Removes an element at the specified iterator position.
+    /// @param pos Iterator to the element to remove.
+    /// @return Iterator to the next element.
     iterator erase(iterator pos) noexcept {
       assert(begin() <= pos && pos < end() && "can not erase before begin() or at the end()");
       std::move(pos + 1, end(), pos);
@@ -285,12 +333,10 @@ namespace flow {
       return pos;
     }
 
-    /// <summary>
-    /// Removes elements in the range [first, last).
-    /// </summary>
-    /// <param name="first">Iterator to the start of the range to remove.</param>
-    /// <param name="last">Iterator to the end of the range to remove.</param>
-    /// <returns>Iterator to the next element, or end() if range ended at the last element.</returns>
+    /// @brief Removes elements in the range [first, last).
+    /// @param first Start of range.
+    /// @param last End of range.
+    /// @return Iterator to the next element.
     iterator erase(iterator first, iterator last) noexcept {
       assert(begin() <= first && last <= end() && "can not erase before begin() or past the end()");
       assert(first <= last && "first must be before last");
@@ -301,6 +347,9 @@ namespace flow {
       return first;
     }
 
+    /// @brief Constructs an element in-place at the specified iterator position.
+    /// @param pos Insertion position.
+    /// @param ...args Arguments to forward.
     template <typename ...Args>
     void emplace(iterator pos, Args&&... args) {
       // Special case: append at the end.
@@ -313,7 +362,7 @@ namespace flow {
         // Enough capacity, right shift the elements.
         // Major optimization to use memcpy, copy_backward, or range move_backward instead of handroll loop. A 70% reduction in computation time.
         allocator_trait::construct(allocator_, end(), std::move(back()));
-        std::move_backward(pos, end()-1, end());
+        std::move_backward(pos, end() - 1, end());
         *pos = T(std::forward<Args>(args)...);
 
       } else {
@@ -325,19 +374,34 @@ namespace flow {
       ++size_;
     }
 
+    /// @brief Inserts a copy of an element at the specified iterator position.
+    /// @param pos Insertion position.
+    /// @param value Value to insert.
     void insert(iterator pos, const T& value) {
       emplace(pos, value);
     }
 
+    /// @brief Inserts a moved element at the specified iterator position.
+    /// @param pos Insertion position.
+    /// @param value Value to insert.
     void insert(iterator pos, T&& value) {
       emplace(pos, std::move(value));
     }
 
+    /// @brief Inserts multiple copies of a value at the specified position.
+    /// @param pos Insertion position.
+    /// @param count Number of copies.
+    /// @param value Value to insert.
     void insert(iterator pos, std::size_t count, const T& value) {
       insert(pos, CountedValueViewIterator(value, count), CountedValueViewIterator(value));
     }
 
-    // Do not support self inserting.
+    /// @brief Inserts a range of elements at the specified position.
+    /// Does not support self-insertion.
+    /// @tparam It Input iterator.
+    /// @param pos Insertion position.
+    /// @param first Start of range.
+    /// @param last End of range.
     template <std::input_iterator It>
     void insert(iterator pos, It first, It last) {
       const std::size_t insertedElementsSize = std::distance(first, last);
@@ -380,6 +444,9 @@ namespace flow {
       size_ = requiredSize;
     }
 
+    /// @brief Inserts an initializer list of elements at the specified position.
+    /// @param pos Insertion position.
+    /// @param list Elements to insert.
     void insert(iterator pos, std::initializer_list<T> list) {
       insert(pos, list.begin(), list.end());
     }

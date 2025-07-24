@@ -3,10 +3,9 @@
 
 namespace flow {
 
-  /// <summary>
+  /// @brief
   /// A memory resource holder interface for the PolymorphicAllocator.
   /// Responsible for allocate and deallocate raw memory.
-  /// </summary>
   class MemoryResource {
   public:
     virtual ~MemoryResource() = default;

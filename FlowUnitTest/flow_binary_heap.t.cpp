@@ -1,8 +1,10 @@
 #include "../DataStructure/flow_vector.h" // DO NOT REMOVE OR REORDER THIS, COMPILER BUG
-#include "../DataStructure/flow_binary_heap.h"
-#include <functional>
 #include <gtest/gtest.h>
 #include <string>
+#include <random>
+#include <algorithm>
+#include <numeric>
+#include "../DataStructure/flow_binary_heap.h"
 
 namespace flow {
 
@@ -84,4 +86,39 @@ namespace flow {
     EXPECT_EQ(heap.top(), 3);
   }
 
+  TEST_F(BinaryHeapTest, LargeDeterministicData) {
+    constexpr size_t N = 10000;
+    std::vector<int> data(N);
+
+    std::iota(data.begin(), data.end(), 0);
+    std::mt19937 rng(69420);
+    std::shuffle(data.begin(), data.end(), rng);
+    
+    BinaryHeap<int> heap(data.begin(), data.end());
+    EXPECT_EQ(heap.size(), data.size());
+
+    // Pop all elements to verify sorted ascending order
+    std::vector<int> sorted;
+    sorted.reserve(data.size());
+    while (!heap.empty()) {
+      sorted.push_back(heap.pop());
+    }
+
+    EXPECT_TRUE(std::is_sorted(sorted.begin(), sorted.end()));
+
+    // Insert elements one by one
+    BinaryHeap<int> heap2;
+    for (int v : data) {
+      heap2.push(v);
+    }
+
+    std::vector<int> sorted2;
+    sorted2.reserve(data.size());
+    while (!heap2.empty()) {
+      sorted2.push_back(heap2.pop());
+    }
+
+    EXPECT_TRUE(std::is_sorted(sorted2.begin(), sorted2.end()));
+    EXPECT_EQ(sorted, sorted2);
+  }
 } // namespace flow

@@ -1,6 +1,7 @@
 var namespaceflow =
 [
     [ "ArenaMemoryResource", "classflow_1_1_arena_memory_resource.html", "classflow_1_1_arena_memory_resource" ],
+    [ "BinaryHeap", "classflow_1_1_binary_heap.html", "classflow_1_1_binary_heap" ],
     [ "ConcurrentFlexQueue", "classflow_1_1_concurrent_flex_queue.html", "classflow_1_1_concurrent_flex_queue" ],
     [ "ConcurrentQueue", "classflow_1_1_concurrent_queue.html", "classflow_1_1_concurrent_queue" ],
     [ "CountedValueViewIterator", "classflow_1_1_counted_value_view_iterator.html", "classflow_1_1_counted_value_view_iterator" ],

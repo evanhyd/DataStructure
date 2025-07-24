@@ -1,5 +1,6 @@
 var hierarchy =
 [
+    [ "flow::BinaryHeap< T, Compare, Allocator >", "classflow_1_1_binary_heap.html", null ],
     [ "flow::ConcurrentFlexQueue< T >", "classflow_1_1_concurrent_flex_queue.html", null ],
     [ "flow::ConcurrentQueue< T, Container >", "classflow_1_1_concurrent_queue.html", null ],
     [ "flow::CountedValueViewIterator< T >", "classflow_1_1_counted_value_view_iterator.html", null ],

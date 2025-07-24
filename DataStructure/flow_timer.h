@@ -2,52 +2,43 @@
 #include <chrono>
 #include <format>
 #include <vector>
+#include <string>
 
 namespace flow {
-  /// <summary>
-  /// A simple timer to record timelapses. Uses chrono::steady_clock by default.
-  /// </summary>
+
+  /// @brief A simple timer to record timelapses. Uses steady_clock by default.
   template <typename ClockType = std::chrono::steady_clock>
   class Timer {
-    using TimePoint = ClockType::time_point;
+    using TimePoint = typename ClockType::time_point;
     TimePoint begin_{};
     std::vector<TimePoint> timepoints_{};
 
   public:
-    /// <summary>
-    /// Constructs a Timer and reserves space for a given number of time points.
-    /// </summary>
+    /// @brief Constructs a Timer and reserves space for time points.
+    /// @param reserveSize Number of time points to reserve space for.
     explicit constexpr Timer(std::size_t reserveSize = 8) {
       timepoints_.reserve(reserveSize);
     }
 
-    /// <summary>
-    /// Returns the number of recorded time points.
-    /// </summary>
-    /// <returns>Count of time points recorded.</returns>
+    /// @brief Returns the number of recorded time points.
+    /// @return Count of recorded time points.
     constexpr std::size_t size() const {
       return timepoints_.size();
     }
 
-    /// <summary>
-    /// Clears all recorded time points and reset the starting time.
-    /// </summary>
+    /// @brief Clears all recorded time points and resets the starting time.
     void reset() {
       timepoints_.clear();
       begin_ = ClockType::now();
     }
 
-    /// <summary>
-    /// Records the current time point relative to the last call to start().
-    /// </summary>
+    /// @brief Records the current time point relative to the last reset.
     void record() {
       timepoints_.push_back(ClockType::now());
     }
 
-    /// <summary>
-    /// Formats and returns a string showing all recorded durations since the timer resets.
-    /// </summary>
-    /// <returns>Formatted string of all recorded time intervals.</returns>
+    /// @brief Formats and returns a string showing all recorded durations since reset.
+    /// @return Formatted string of all recorded time intervals.
     std::string toString() const {
       std::string str = std::format("Total record entries: {}\n", timepoints_.size());
       std::size_t i = 0;
@@ -63,4 +54,5 @@ namespace flow {
       return str;
     }
   };
+
 }

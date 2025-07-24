@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['node_0',['Node',['../structflow_1_1_concurrent_flex_queue_1_1_node.html',1,'flow::ConcurrentFlexQueue']]]
+  ['memoryresource_0',['MemoryResource',['../classflow_1_1_memory_resource.html',1,'flow']]]
 ];

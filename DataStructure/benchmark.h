@@ -332,7 +332,7 @@ namespace benchmark {
     }
   }
 
-  inline void benchmarkStdPriorityQueueInt64(std::size_t elementSize, std::size_t benchTime) {
+  inline void benchmarkFlowBinaryHeapInt64(std::size_t elementSize, std::size_t benchTime) {
     using namespace std;
     using namespace flow;
 
@@ -355,15 +355,6 @@ namespace benchmark {
       timer.record();
       cout << timer.toString() << '\n';
     }
-  }
-
-  inline void benchmarkFlowBinaryHeapInt64(std::size_t elementSize, std::size_t benchTime) {
-    using namespace std;
-    using namespace flow;
-
-    vector<int64_t> nums(elementSize);
-    iota(nums.begin(), nums.end(), int64_t(0));
-    flow::shuffle(nums.begin(), nums.end());
 
     cout << "flow::BinaryHeap<int64_t>\n";
     for (std::size_t bench = 0; bench < benchTime; ++bench) {
@@ -399,12 +390,11 @@ namespace benchmark {
     }
   }
 
-  inline void benchmarkStdPriorityQueueString(std::size_t elementSize, std::size_t benchTime) {
+  inline void benchmarkFlowBinaryHeapString(std::size_t elementSize, std::size_t benchTime) {
     using namespace std;
     using namespace flow;
 
     const string sample = "the quick brown fox jumps over the lazy dog";
-
     vector<string> strings(elementSize);
     for (std::size_t i = 0; i < elementSize; ++i) {
       strings[i] = sample + " " + to_string(i);
@@ -426,19 +416,6 @@ namespace benchmark {
       timer.record();
       cout << timer.toString() << '\n';
     }
-  }
-
-  inline void benchmarkFlowBinaryHeapString(std::size_t elementSize, std::size_t benchTime) {
-    using namespace std;
-    using namespace flow;
-
-    const string sample = "the quick brown fox jumps over the lazy dog";
-
-    vector<string> strings(elementSize);
-    for (std::size_t i = 0; i < elementSize; ++i) {
-      strings[i] = sample + " " + to_string(i);
-    }
-    flow::shuffle(strings.begin(), strings.end());
 
     cout << "flow::BinaryHeap<std::string>\n";
     for (std::size_t bench = 0; bench < benchTime; ++bench) {
