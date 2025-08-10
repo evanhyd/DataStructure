@@ -22,7 +22,7 @@ Flow is a modern C++ library providing efficient, high-performance data structur
 
 ## 📘 Flow C++ Library Documentation
 
-This site contains the auto-generated API documentation for the [Flow C++ Data Structure Library](https://evanhyd.github.io/DataStructure/), built using [Doxygen](https://www.doxygen.nl/).
+This site contains the auto-generated [API documentation](https://evanhyd.github.io/DataStructure/) for the Flow C++ Data Structure Library, built using Doxygen.
 
 ---
 
@@ -32,6 +32,7 @@ This site contains the auto-generated API documentation for the [Flow C++ Data S
 |-------|-------------|
 | **Container** ||
 | [`Vector`](https://evanhyd.github.io/DataStructure/classflow_1_1_vector.html) | A dynamic array container with customizable allocator and growth strategy. Uses `PolymorphicAllocator` by default. |
+| [`BinaryHeap`](https://evanhyd.github.io/DataStructure/classflow_1_1_binary_heap.html) | A binary min heap container with customizable allocator. Uses `PolymorphicAllocator` by default. |
 | [`Tuple`](https://evanhyd.github.io/DataStructure/classflow_1_1_tuple.html) | A fixed-size container for heterogeneous values, similar to `std::tuple`, implemented with recursive inheritance. |
 | **Memory Resource** ||
 | [`PolymorphicAllocator`](https://evanhyd.github.io/DataStructure/classflow_1_1_polymorphic_allocator.html) | A polymorphic allocator that wraps around a non-owning memory resource. Memory allocation strategy is decided by the memory resource's implementation. |
