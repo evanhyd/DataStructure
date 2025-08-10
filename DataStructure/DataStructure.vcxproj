@@ -189,11 +189,14 @@
       <ControlFlowGuard>Guard</ControlFlowGuard>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <StackReserveSize>2097152</StackReserveSize>
+      <StackCommitSize>1048576</StackCommitSize>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugMemoryLeak|x64'">
@@ -205,14 +208,17 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <ControlFlowGuard>false</ControlFlowGuard>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <ControlFlowGuard>Guard</ControlFlowGuard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <StackCommitSize>1048576</StackCommitSize>
+      <StackReserveSize>2097152</StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -240,6 +246,8 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <StackReserveSize>2097152</StackReserveSize>
+      <StackCommitSize>1048576</StackCommitSize>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -257,10 +265,12 @@
     <ClInclude Include="DisjointSet.h" />
     <ClInclude Include="flow_memory_algorithm.h" />
     <ClInclude Include="flow_arena_memory_resource.h" />
+    <ClInclude Include="flow_multi_queue_thread_pool.h" />
     <ClInclude Include="flow_pool_memory_resource.h" />
     <ClInclude Include="flow_random_algorithm.h" />
     <ClInclude Include="flow_stack_memory_resource.h" />
     <ClInclude Include="flow_timer.h" />
+    <ClInclude Include="flow_work_stealing_queue.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="IntegerIterator.h" />
     <ClInclude Include="flow_memory_resource.h" />
@@ -269,8 +279,10 @@
     <ClInclude Include="RandomMeldableHeap.h" />
     <ClInclude Include="flow_counted_value_view_iterator.h" />
     <ClInclude Include="SegmentTree.h" />
+    <ClInclude Include="flow_simple_thread_pool.h" />
     <ClInclude Include="SkipList.h" />
     <ClInclude Include="SparseTable.h" />
+    <ClInclude Include="flow_thread_task.h" />
     <ClInclude Include="Trie.h" />
     <ClInclude Include="flow_tuple.h" />
     <ClInclude Include="flow_vector.h" />

@@ -40,12 +40,24 @@ namespace flow {
 
     /// @brief Pushes a new element into the queue.
     /// @param value The element to add.
-    template <typename U>
-    void push(U&& value) {
+    void push(const T& value) {
       auto dummy = std::make_unique<Node>();
       {
         std::lock_guard lock(tailMux_);
-        tail_->value = std::forward<U>(value);
+        tail_->value = value;
+        tail_->next = std::move(dummy);
+        tail_ = tail_->next.get();
+      }
+      blocked_.notify_one();
+    }
+
+    /// @brief Pushes a new element into the queue.
+    /// @param value The element to add.
+    void push(T&& value) {
+      auto dummy = std::make_unique<Node>();
+      {
+        std::lock_guard lock(tailMux_);
+        tail_->value = std::move(value);
         tail_->next = std::move(dummy);
         tail_ = tail_->next.get();
       }

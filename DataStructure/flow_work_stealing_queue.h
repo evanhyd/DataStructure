@@ -3,30 +3,31 @@
 #include <deque>
 #include <mutex>
 #include <optional>
-#include <queue>
 
 namespace flow {
-  template <typename T, typename Container = std::deque<T>>
-  class ConcurrentQueue {
-    using allocator_type = typename Container::allocator_type;
+
+  // A work-stealing queue. Similar to the concurrent queue, but it allows trySteal that pop the last element.
+  template <typename T>
+  class WorkStealingQueue {
+    using allocator_type = typename std::deque<T>::allocator_type;
 
     mutable std::mutex mux_;
     std::condition_variable blocked_;
-    std::queue<T, Container> queue_;
+    std::deque<T> queue_;
 
   public:
     /// @brief Constructs a concurrent FIFO queue.
-    ConcurrentQueue() = default;
+    WorkStealingQueue() = default;
 
     /// @brief Constructs a concurrent FIFO queue.
-    explicit ConcurrentQueue(const allocator_type& allocator)
+    explicit WorkStealingQueue(const allocator_type& allocator)
       : queue_(allocator) {
     }
 
-    ConcurrentQueue(const ConcurrentQueue&) = delete;
-    ConcurrentQueue(ConcurrentQueue&&) = delete;
-    ConcurrentQueue& operator=(const ConcurrentQueue&) = delete;
-    ConcurrentQueue& operator=(ConcurrentQueue&&) = delete;
+    WorkStealingQueue(const WorkStealingQueue&) = delete;
+    WorkStealingQueue(WorkStealingQueue&&) = delete;
+    WorkStealingQueue& operator=(const WorkStealingQueue&) = delete;
+    WorkStealingQueue& operator=(WorkStealingQueue&&) = delete;
 
     /// @brief Checks if the queue is empty. Value can be obsolete in concurrency code.
     /// @return True if empty, false otherwise.
@@ -45,7 +46,7 @@ namespace flow {
     void push(const T& value) {
       {
         std::lock_guard lock(mux_);
-        queue_.push(value);
+        queue_.push_back(value);
       }
       blocked_.notify_one();
     }
@@ -54,7 +55,7 @@ namespace flow {
     void push(T&& value) {
       {
         std::lock_guard lock(mux_);
-        queue_.push(std::move(value));
+        queue_.push_back(std::move(value));
       }
       blocked_.notify_one();
     }
@@ -64,7 +65,7 @@ namespace flow {
     void emplace(Args&&... args) {
       {
         std::lock_guard lock(mux_);
-        queue_.emplace(std::forward<Args>(args)...);
+        queue_.emplace_back(std::forward<Args>(args)...);
       }
       blocked_.notify_one();
     }
@@ -79,7 +80,7 @@ namespace flow {
       return queue_.front();
     }
 
-    /// @brief Tries to pop and return the first element.
+    /// @brief Tries to pop front and return the first element.
     /// @return The first element moved or std::nullopt if empty.
     std::optional<T> tryPop() {
       std::lock_guard lock(mux_);
@@ -88,7 +89,7 @@ namespace flow {
       }
       std::optional<T> value = std::move(queue_.front());
 
-      queue_.pop();
+      queue_.pop_front();
       return value;
     }
 
@@ -99,8 +100,22 @@ namespace flow {
       blocked_.wait(lock, [&]() { return !queue_.empty(); });
 
       T value = std::move(queue_.front());
-      queue_.pop();
+      queue_.pop_front();
+      return value;
+    }
+
+    /// @brief Tries to pop back and return the last element.
+    /// @return The last element moved or std::nullopt if empty.
+    std::optional<T> trySteal() {
+      std::lock_guard lock(mux_);
+      if (queue_.empty()) {
+        return std::nullopt;
+      }
+      std::optional<T> value = std::move(queue_.back());
+
+      queue_.pop_back();
       return value;
     }
   };
+
 }

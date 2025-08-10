@@ -1,6 +1,3 @@
-#define IN_USE
-#ifdef IN_USE
-
 #define CP_TEMPLATE
 #ifdef CP_TEMPLATE
 //io
@@ -31,6 +28,7 @@
 
 //algorithm && helper
 #include <algorithm>
+#include <execution>
 #include <cassert>
 #include <cctype>
 #include <chrono>
@@ -85,6 +83,12 @@ namespace std {
   };
 }
 
+template <typename T, typename U>
+std::ostream& operator<<(std::ostream& out, const std::pair<T, U>& vec) {
+  out << '(' << vec.first << ' ' << vec.second << ')';
+  return out;
+}
+
 #if defined _WIN32 || defined _WIN64
 template <
   typename T,
@@ -92,20 +96,29 @@ template <
   typename = std::enable_if_t<std::is_base_of_v<std::input_iterator_tag, typename std::iterator_traits<typename T::iterator>::iterator_category>>
 >
 std::ostream& operator<<(std::ostream& out, const T& vec) {
-  auto it = vec.begin();
-  if (it == vec.end()) {
+  auto beginIt = std::begin(vec);
+  auto endIt = std::end(vec);
+  if (beginIt == endIt) {
     return out;
   }
-  out << *it;
-  while (++it != vec.end()) {
-    out << ' ' << *it;
+  out << *beginIt;
+  while (++beginIt != endIt) {
+    out << ' ' << *beginIt;
   }
   return out;
 }
 
-template <typename T, typename U>
-std::ostream& operator<<(std::ostream& out, const std::pair<T, U>& vec) {
-  out << '(' << vec.first << ' ' << vec.second << ')';
+template <typename T>
+std::ostream& operator<<(std::ostream& out, const std::vector<std::vector<T>>& vec) {
+  auto beginIt = std::begin(vec);
+  auto endIt = std::end(vec);
+  if (beginIt == endIt) {
+    return out;
+  }
+  out << *beginIt;
+  while (++beginIt != endIt) {
+    out << '\n' << *beginIt;
+  }
   return out;
 }
 #endif
@@ -144,17 +157,157 @@ const auto __ = std::atexit([]() { std::ofstream("display_runtime.txt") << INT_M
 
 using namespace std;
 
-#include "flow_binary_heap.h"
-#include "benchmark.h"
+#include "flow_simple_thread_pool.h"
+#include "flow_multi_queue_thread_pool.h"
+#include "flow_random_algorithm.h"
+#include "flow_timer.h"
+
+flow::SimpleThreadPool simplePool{};
+flow::MultiQueueThreadPool multiPool{};
+
+void mergeSort(vector<int>::iterator begin, vector<int>::iterator end) {
+  std::size_t size = std::distance(begin, end);
+  if (size <= 1) {
+    return;
+  }
+
+  auto mid = begin + size / 2;
+  mergeSort(begin, mid);
+  mergeSort(mid, end);
+  std::inplace_merge(begin, mid, end);
+}
+
+void mergeSort1(vector<int>::iterator begin, vector<int>::iterator end, int depth) {
+  std::size_t size = std::distance(begin, end);
+  if (size <= 1) {
+    return;
+  }
+
+  auto mid = begin + size / 2;
+
+  if (depth <= 4) {
+    auto leftReady = simplePool.submit(mergeSort1, begin, mid, depth + 1);
+    mergeSort1(mid, end, depth + 1);
+    while (leftReady.wait_for(0ms) != future_status::ready) {
+      simplePool.runPendingTask();
+    }
+  } else {
+    mergeSort1(begin, mid, depth + 1);
+    mergeSort1(mid, end, depth + 1);
+  }
+
+  std::inplace_merge(begin, mid, end);
+}
+
+void mergeSort2(vector<int>::iterator begin, vector<int>::iterator end, int depth) {
+  std::size_t size = std::distance(begin, end);
+  if (size <= 1) {
+    return;
+  }
+
+  auto mid = begin + size / 2;
+  if (depth <= 4) {
+    auto leftReady = multiPool.submit(mergeSort2, begin, mid, depth + 1);
+    mergeSort2(mid, end, depth + 1);
+    while (leftReady.wait_for(0ms) != future_status::ready) {
+      multiPool.runPendingTask();
+    }
+
+  } else {
+    mergeSort2(begin, mid, depth + 1);
+    mergeSort2(mid, end, depth + 1);
+  }
+
+  std::inplace_merge(begin, mid, end);
+}
+
+void mergeSort3(vector<int>::iterator begin, vector<int>::iterator end, int depth) {
+  std::size_t size = std::distance(begin, end);
+  if (size <= 1) {
+    return;
+  }
+
+  auto mid = begin + size / 2;
+  if (depth <= 4) {
+    std::thread t(mergeSort3, begin, mid, depth + 1);
+    mergeSort3(mid, end, depth + 1);
+    t.join();
+  } else {
+    mergeSort3(begin, mid, depth + 1);
+    mergeSort3(mid, end, depth + 1);
+  }
+
+  std::inplace_merge(begin, mid, end);
+}
 
 int main() {
-  using namespace flow;
+  try {
+    vector<int> original;
+    for (int i = 0; i < 500000; ++i) {
+      original.push_back(flow::getRandomNumber(0, 100000));
+    }
 
-  /*benchmark::benchmarkStdVectorInt64(10000000, 5);
-  benchmark::benchmarkFlowVectorInt64(10000000, 5);
-  benchmark::benchmarkStdVectorString(1000000, 5);
-  benchmark::benchmarkFlowVectorString(1000000, 5);*/
-  benchmark::benchmarkFlowBinaryHeapInt64(8000000, 5);
+    {
+      flow::Timer timer(1);
+      timer.reset();
+      for (int i = 0; i < 100; ++i) {
+        vector<int> nums = original;
+        mergeSort(nums.begin(), nums.end());
+      }
+      timer.record();
+      cout <<"std::sort " << timer.toString() << '\n';
+    }
+
+    {
+      flow::Timer timer(1);
+      timer.reset();
+      for (int i = 0; i < 100; ++i) {
+        vector<int> nums = original;
+        std::sort(std::execution::par_unseq, nums.begin(), nums.end());
+      }
+      timer.record();
+      cout << "std::sort parallel " << timer.toString() << '\n';
+    }
+
+    {
+      flow::Timer timer(1);
+      timer.reset();
+      for (int i = 0; i < 100; ++i) {
+        vector<int> nums = original;
+        auto ready = simplePool.submit(mergeSort1, nums.begin(), nums.end(), 0);
+        ready.get();
+      }
+      timer.record();
+      cout << "simple thread pool" << timer.toString() << '\n';
+    }
+
+    {
+      flow::Timer timer(1);
+      timer.reset();
+      for (int i = 0; i < 100; ++i) {
+        vector<int> nums = original;
+        auto ready = multiPool.submit(mergeSort2, nums.begin(), nums.end(), 0);
+        ready.get();
+      }
+      timer.record();
+      cout << "multi queue thread pool" << timer.toString() << '\n';
+    }
+
+    {
+      flow::Timer timer(1);
+      timer.reset();
+      for (int i = 0; i < 1000; ++i) {
+        vector<int> nums = original;
+        mergeSort3(nums.begin(), nums.end(), 0);
+      }
+      timer.record();
+      cout << "raw thread pool" << timer.toString() << '\n';
+    }
+    
+
+  } catch (const exception& err) {
+    cout << err.what() << '\n';
+  }
 }
 
 /*
@@ -162,5 +315,3 @@ priority queue is a max heap
 sort the data to find the pattern
 vec.size() - 1 may underflow
 */
-
-#endif

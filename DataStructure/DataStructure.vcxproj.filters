@@ -31,6 +31,12 @@
     <Filter Include="flow\container">
       <UniqueIdentifier>{6365e23d-f4ea-4ba1-960d-5122d6385233}</UniqueIdentifier>
     </Filter>
+    <Filter Include="flow\concurrency\container">
+      <UniqueIdentifier>{46afeadd-f4b9-4160-aae6-d9b1f307c37b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="flow\concurrency\threadpool">
+      <UniqueIdentifier>{0f3552e8-f31d-420b-b91b-81ba49dfff46}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AVLTree.h">
@@ -68,12 +74,6 @@
     </ClInclude>
     <ClInclude Include="flow_polymorphic_allocator.h">
       <Filter>flow\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="flow_concurrent_flex_queue.h">
-      <Filter>flow\concurrency</Filter>
-    </ClInclude>
-    <ClInclude Include="flow_concurrent_queue.h">
-      <Filter>flow\concurrency</Filter>
     </ClInclude>
     <ClInclude Include="flow_memory_algorithm.h">
       <Filter>flow\algorithm</Filter>
@@ -114,6 +114,24 @@
     </ClInclude>
     <ClInclude Include="flow_binary_heap.h">
       <Filter>flow\container</Filter>
+    </ClInclude>
+    <ClInclude Include="flow_concurrent_queue.h">
+      <Filter>flow\concurrency\container</Filter>
+    </ClInclude>
+    <ClInclude Include="flow_concurrent_flex_queue.h">
+      <Filter>flow\concurrency\container</Filter>
+    </ClInclude>
+    <ClInclude Include="flow_simple_thread_pool.h">
+      <Filter>flow\concurrency\threadpool</Filter>
+    </ClInclude>
+    <ClInclude Include="flow_thread_task.h">
+      <Filter>flow\concurrency\threadpool</Filter>
+    </ClInclude>
+    <ClInclude Include="flow_multi_queue_thread_pool.h">
+      <Filter>flow\concurrency\threadpool</Filter>
+    </ClInclude>
+    <ClInclude Include="flow_work_stealing_queue.h">
+      <Filter>flow\concurrency\container</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
