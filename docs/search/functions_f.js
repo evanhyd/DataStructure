@@ -1,4 +1,12 @@
 var searchData=
 [
-  ['vector_0',['Vector',['../classflow_1_1_vector.html#af0f1a455c67e5f7a9d10849ed88b7559',1,'flow::Vector::Vector() noexcept'],['../classflow_1_1_vector.html#a9cb2a0d73ea6fb50bd9ed8c083ee0b23',1,'flow::Vector::Vector(const allocator_type &amp;allocator) noexcept(noexcept(allocator_type(allocator)))'],['../classflow_1_1_vector.html#a5daa11faad80d18ed87c7e0f409b0645',1,'flow::Vector::Vector(const Vector &amp;rhs)'],['../classflow_1_1_vector.html#aebbcc7115c8718581e35b4702247907d',1,'flow::Vector::Vector(const Vector &amp;rhs, const allocator_type &amp;allocator)'],['../classflow_1_1_vector.html#a1b81dfaab65161f7a66038bffabc7248',1,'flow::Vector::Vector(Vector &amp;&amp;rhs) noexcept'],['../classflow_1_1_vector.html#a411e4c3e8586db8943dfce5c3d7340a6',1,'flow::Vector::Vector(Vector &amp;&amp;rhs, const allocator_type &amp;allocator)'],['../classflow_1_1_vector.html#abb3aa43549b77168fb56371086ec4447',1,'flow::Vector::Vector(It first, It last, const allocator_type &amp;allocator={})'],['../classflow_1_1_vector.html#ae0c4ade36741c6f196021349b5485526',1,'flow::Vector::Vector(std::initializer_list&lt; T &gt; list, const allocator_type &amp;allocator={})'],['../classflow_1_1_vector.html#a67fd714b4b2af6bda5df8b7f1d152869',1,'flow::Vector::Vector(std::size_t count, const allocator_type &amp;allocator={})'],['../classflow_1_1_vector.html#a9153f6768f8c3b6aa92c6d8f9538722f',1,'flow::Vector::Vector(std::size_t count, const T &amp;value, const allocator_type &amp;allocator={})']]]
+  ['uninitializedemplace_0',['uninitializedEmplace',['../namespaceflow.html#a003a0f5de60743211f4a12ad692ea545',1,'flow']]],
+  ['uninitializedemplacen_1',['uninitializedEmplaceN',['../namespaceflow.html#ae91210e00bd937af8781ad61d96bb7af',1,'flow']]],
+  ['uninitializedfill_2',['uninitializedFill',['../namespaceflow.html#ac44af902cb4c10b49fa9f5992daa6c92',1,'flow']]],
+  ['uninitializedfilln_3',['uninitializedFillN',['../namespaceflow.html#a5991193d2c2c3220704b7ffe43284798',1,'flow']]],
+  ['uninitializedforward_4',['uninitializedForward',['../namespaceflow.html#a7cbf79d9d81ea0bf923173bf94d18282',1,'flow']]],
+  ['uninitializedforwardn_5',['uninitializedForwardN',['../namespaceflow.html#a5f5545b19674be10035741dc55ab7805',1,'flow']]],
+  ['uninitializedmove_6',['uninitializedMove',['../namespaceflow.html#a51e3de912b53f5b8d08f6167efae5d43',1,'flow']]],
+  ['uninitializedmoven_7',['uninitializedMoveN',['../namespaceflow.html#a1110956ca4c95ee5c42c1e988dab6ecd',1,'flow']]],
+  ['updatebuffer_8',['updateBuffer',['../classflow_1_1_vector.html#ab9a6c86d36489ee0b22dcc7ffadba93b',1,'flow::Vector']]]
 ];

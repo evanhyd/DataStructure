@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['_7ebinaryheap_0',['~BinaryHeap',['../classflow_1_1_binary_heap.html#adef5dc8144c1279d70526ece7f6e7a5d',1,'flow::BinaryHeap']]],
-  ['_7edebugclass_1',['~DebugClass',['../classflow_1_1_debug_class.html#a48a695f9cec5b0115ebdf61a5f15b5ea',1,'flow::DebugClass']]],
-  ['_7ememoryresource_2',['~MemoryResource',['../classflow_1_1_memory_resource.html#aed7eed2f0372002ff66df9decc501071',1,'flow::MemoryResource']]],
-  ['_7epoolmemoryresource_3',['~PoolMemoryResource',['../classflow_1_1_pool_memory_resource.html#a5fd5e0967552063825e24232b3c4c5bc',1,'flow::PoolMemoryResource']]],
-  ['_7evector_4',['~Vector',['../classflow_1_1_vector.html#a2ed0e854ec90587355a567fa8c2efdc0',1,'flow::Vector']]]
+  ['waitpop_0',['waitPop',['../classflow_1_1_concurrent_flex_queue.html#a9695c97533ad20970414839cbb147374',1,'flow::ConcurrentFlexQueue::waitPop()'],['../classflow_1_1_concurrent_queue.html#a0bf4edf07e01dc7ac12f2277f71230ef',1,'flow::ConcurrentQueue::waitPop()'],['../classflow_1_1_work_stealing_queue.html#a412fa23b2f9bd74803ad19a9d8312a4d',1,'flow::WorkStealingQueue::waitPop()']]],
+  ['workstealingqueue_1',['WorkStealingQueue',['../classflow_1_1_work_stealing_queue.html',1,'flow::WorkStealingQueue&lt; T &gt;'],['../classflow_1_1_work_stealing_queue.html#a4d0676ffe22e9f51e12ff854462c1451',1,'flow::WorkStealingQueue::WorkStealingQueue()=default'],['../classflow_1_1_work_stealing_queue.html#a802f8d39d35da66098b611691208799d',1,'flow::WorkStealingQueue::WorkStealingQueue(const allocator_type &amp;allocator)'],['../classflow_1_1_work_stealing_queue.html#a23e3073a9ed3204242261967c245ea1d',1,'flow::WorkStealingQueue::WorkStealingQueue(const WorkStealingQueue &amp;)=delete'],['../classflow_1_1_work_stealing_queue.html#a49d72099034b9007ae1d028bc225a2d0',1,'flow::WorkStealingQueue::WorkStealingQueue(WorkStealingQueue &amp;&amp;)=delete']]],
+  ['workstealingqueue_3c_20threadtask_20_3e_2',['WorkStealingQueue&lt; ThreadTask &gt;',['../classflow_1_1_work_stealing_queue.html',1,'flow']]]
 ];

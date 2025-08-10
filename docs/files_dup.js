@@ -9,11 +9,15 @@ var files_dup =
     [ "flow_default_memory_resource.h", "flow__default__memory__resource_8h.html", "flow__default__memory__resource_8h" ],
     [ "flow_memory_algorithm.h", "flow__memory__algorithm_8h.html", "flow__memory__algorithm_8h" ],
     [ "flow_memory_resource.h", "flow__memory__resource_8h.html", "flow__memory__resource_8h" ],
+    [ "flow_multi_queue_thread_pool.h", "flow__multi__queue__thread__pool_8h.html", "flow__multi__queue__thread__pool_8h" ],
     [ "flow_polymorphic_allocator.h", "flow__polymorphic__allocator_8h.html", "flow__polymorphic__allocator_8h" ],
     [ "flow_pool_memory_resource.h", "flow__pool__memory__resource_8h.html", "flow__pool__memory__resource_8h" ],
     [ "flow_random_algorithm.h", "flow__random__algorithm_8h.html", "flow__random__algorithm_8h" ],
+    [ "flow_simple_thread_pool.h", "flow__simple__thread__pool_8h.html", "flow__simple__thread__pool_8h" ],
     [ "flow_stack_memory_resource.h", "flow__stack__memory__resource_8h.html", "flow__stack__memory__resource_8h" ],
+    [ "flow_thread_task.h", "flow__thread__task_8h.html", "flow__thread__task_8h" ],
     [ "flow_timer.h", "flow__timer_8h.html", "flow__timer_8h" ],
     [ "flow_tuple.h", "flow__tuple_8h.html", "flow__tuple_8h" ],
-    [ "flow_vector.h", "flow__vector_8h.html", "flow__vector_8h" ]
+    [ "flow_vector.h", "flow__vector_8h.html", "flow__vector_8h" ],
+    [ "flow_work_stealing_queue.h", "flow__work__stealing__queue_8h.html", "flow__work__stealing__queue_8h" ]
 ];

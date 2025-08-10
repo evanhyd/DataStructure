@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['n1_0',['n1',['../structflow_1_1_vector_growth_strategy_1_1_fibonacci_expand.html#a4afa8328128602deb9ea79a34a2e4590',1,'flow::VectorGrowthStrategy::FibonacciExpand']]],
-  ['n2_1',['n2',['../structflow_1_1_vector_growth_strategy_1_1_fibonacci_expand.html#a5991646915b6f3701053d41556394e06',1,'flow::VectorGrowthStrategy::FibonacciExpand']]],
-  ['next_2',['next',['../structflow_1_1_concurrent_flex_queue_1_1_node.html#aee6686d5a1482935fc4397adfdc54721',1,'flow::ConcurrentFlexQueue::Node::next'],['../structflow_1_1_pool_memory_resource_1_1_header.html#ae67fd9d5f52747e2b0670519f971aa72',1,'flow::PoolMemoryResource::Header::next']]],
-  ['node_3',['Node',['../structflow_1_1_concurrent_flex_queue_1_1_node.html',1,'flow::ConcurrentFlexQueue']]]
+  ['memoryresource_0',['MemoryResource',['../classflow_1_1_memory_resource.html',1,'flow']]],
+  ['multiqueuethreadpool_1',['MultiQueueThreadPool',['../classflow_1_1_multi_queue_thread_pool.html',1,'flow::MultiQueueThreadPool&lt; ThreadSafeQueue, LocalQueue &gt;'],['../classflow_1_1_multi_queue_thread_pool.html#a1e9f192c2e8a765bb9ee5fdd1716c09d',1,'flow::MultiQueueThreadPool::MultiQueueThreadPool()']]],
+  ['mux_5f_2',['mux_',['../classflow_1_1_concurrent_queue.html#a3f443bd583da922327024612530e33ea',1,'flow::ConcurrentQueue::mux_'],['../classflow_1_1_work_stealing_queue.html#a9fbadfa7e05a95c2be9e473eb40e48ce',1,'flow::WorkStealingQueue::mux_']]]
 ];

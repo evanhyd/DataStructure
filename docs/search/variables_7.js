@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['mux_5f_0',['mux_',['../classflow_1_1_concurrent_queue.html#a3f443bd583da922327024612530e33ea',1,'flow::ConcurrentQueue']]]
+  ['localqueue_0',['localQueue',['../classflow_1_1_multi_queue_thread_pool.html#acea898c1e801511cf302f106175978f0',1,'flow::MultiQueueThreadPool']]],
+  ['localqueues_5f_1',['localQueues_',['../classflow_1_1_multi_queue_thread_pool.html#a1b358ba708a348a18ae8897933220710',1,'flow::MultiQueueThreadPool']]]
 ];

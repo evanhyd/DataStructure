@@ -97,19 +97,22 @@ $(function(){initNavTree('classflow_1_1_concurrent_queue.html','','classflow_1_1
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a33be3ac6f7a386943a9bf1b73b15af7d" id="r_a33be3ac6f7a386943a9bf1b73b15af7d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33be3ac6f7a386943a9bf1b73b15af7d">ConcurrentQueue</a> (const <a class="el" href="#a963454572801ec58ac62b6f40a9d8f0f">allocator_type</a> &amp;allocator=<a class="el" href="#a963454572801ec58ac62b6f40a9d8f0f">allocator_type</a>())</td></tr>
-<tr class="memdesc:a33be3ac6f7a386943a9bf1b73b15af7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a concurrent FIFO queue.  <br /></td></tr>
+<tr class="memitem:a899fc9d89d69c54d99f33b5e3b0d3d04" id="r_a899fc9d89d69c54d99f33b5e3b0d3d04"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a899fc9d89d69c54d99f33b5e3b0d3d04">ConcurrentQueue</a> ()=default</td></tr>
+<tr class="memdesc:a899fc9d89d69c54d99f33b5e3b0d3d04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a concurrent FIFO queue.  <br /></td></tr>
+<tr class="memitem:a41e9e23bb7c42e6cc1a2b39b9b84d183" id="r_a41e9e23bb7c42e6cc1a2b39b9b84d183"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a41e9e23bb7c42e6cc1a2b39b9b84d183">ConcurrentQueue</a> (const <a class="el" href="#a963454572801ec58ac62b6f40a9d8f0f">allocator_type</a> &amp;allocator)</td></tr>
+<tr class="memdesc:a41e9e23bb7c42e6cc1a2b39b9b84d183"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a concurrent FIFO queue.  <br /></td></tr>
 <tr class="memitem:abdcc25822ea84611d059f0164c29bf40" id="r_abdcc25822ea84611d059f0164c29bf40"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abdcc25822ea84611d059f0164c29bf40">ConcurrentQueue</a> (const <a class="el" href="classflow_1_1_concurrent_queue.html">ConcurrentQueue</a> &amp;)=delete</td></tr>
 <tr class="memitem:a9afa84e43f840bafec48b21caf7f3243" id="r_a9afa84e43f840bafec48b21caf7f3243"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9afa84e43f840bafec48b21caf7f3243">ConcurrentQueue</a> (<a class="el" href="classflow_1_1_concurrent_queue.html">ConcurrentQueue</a> &amp;&amp;)=delete</td></tr>
 <tr class="memitem:a3f76748bdaf041ab31cf52b0faef44fe" id="r_a3f76748bdaf041ab31cf52b0faef44fe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classflow_1_1_concurrent_queue.html">ConcurrentQueue</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f76748bdaf041ab31cf52b0faef44fe">operator=</a> (const <a class="el" href="classflow_1_1_concurrent_queue.html">ConcurrentQueue</a> &amp;)=delete</td></tr>
 <tr class="memitem:ab09b66803142e1105763c5887ec1c546" id="r_ab09b66803142e1105763c5887ec1c546"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classflow_1_1_concurrent_queue.html">ConcurrentQueue</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab09b66803142e1105763c5887ec1c546">operator=</a> (<a class="el" href="classflow_1_1_concurrent_queue.html">ConcurrentQueue</a> &amp;&amp;)=delete</td></tr>
 <tr class="memitem:af0e073c9657bbc9ac2a70e97df5a1d1d" id="r_af0e073c9657bbc9ac2a70e97df5a1d1d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af0e073c9657bbc9ac2a70e97df5a1d1d">empty</a> () const</td></tr>
-<tr class="memdesc:af0e073c9657bbc9ac2a70e97df5a1d1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the queue is empty.  <br /></td></tr>
+<tr class="memdesc:af0e073c9657bbc9ac2a70e97df5a1d1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the queue is empty. Value can be obsolete in concurrency code.  <br /></td></tr>
 <tr class="memitem:ad62cf85a47644dbbb06268bdc68988bc" id="r_ad62cf85a47644dbbb06268bdc68988bc"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad62cf85a47644dbbb06268bdc68988bc">size</a> () const</td></tr>
-<tr class="memdesc:ad62cf85a47644dbbb06268bdc68988bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of elements in the queue.  <br /></td></tr>
-<tr class="memitem:a8afd8f92a60a59cf6c42da30a6eb2a0e" id="r_a8afd8f92a60a59cf6c42da30a6eb2a0e"><td class="memTemplParams" colspan="2">template&lt;typename U&gt; </td></tr>
-<tr class="memitem:a8afd8f92a60a59cf6c42da30a6eb2a0e template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8afd8f92a60a59cf6c42da30a6eb2a0e">push</a> (U &amp;&amp;value)</td></tr>
-<tr class="memdesc:a8afd8f92a60a59cf6c42da30a6eb2a0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pushes a new element into the queue.  <br /></td></tr>
+<tr class="memdesc:ad62cf85a47644dbbb06268bdc68988bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of elements in the queue. Value can be obsolete in concurrency code.  <br /></td></tr>
+<tr class="memitem:af0824a5ba24454c5f39c3e952356883a" id="r_af0824a5ba24454c5f39c3e952356883a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af0824a5ba24454c5f39c3e952356883a">push</a> (const T &amp;value)</td></tr>
+<tr class="memdesc:af0824a5ba24454c5f39c3e952356883a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pushes a new element into the queue.  <br /></td></tr>
+<tr class="memitem:acaf1a36685d3042db9b6fc608deb5fc4" id="r_acaf1a36685d3042db9b6fc608deb5fc4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acaf1a36685d3042db9b6fc608deb5fc4">push</a> (T &amp;&amp;value)</td></tr>
+<tr class="memdesc:acaf1a36685d3042db9b6fc608deb5fc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pushes a new element into the queue.  <br /></td></tr>
 <tr class="memitem:a921fb77ec80aefbf0954a21ebfe49d67" id="r_a921fb77ec80aefbf0954a21ebfe49d67"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
 <tr class="memitem:a921fb77ec80aefbf0954a21ebfe49d67 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a921fb77ec80aefbf0954a21ebfe49d67">emplace</a> (Args &amp;&amp;... args)</td></tr>
 <tr class="memdesc:a921fb77ec80aefbf0954a21ebfe49d67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new element in place at the end of the queue.  <br /></td></tr>
@@ -126,9 +129,9 @@ Private Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:ac343336ca09c2e09f85c0f17addc1010" id="r_ac343336ca09c2e09f85c0f17addc1010"><td class="memItemLeft" align="right" valign="top">std::queue&lt; T, Container &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac343336ca09c2e09f85c0f17addc1010">queue_</a></td></tr>
 <tr class="memitem:a3f443bd583da922327024612530e33ea" id="r_a3f443bd583da922327024612530e33ea"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f443bd583da922327024612530e33ea">mux_</a></td></tr>
 <tr class="memitem:ae41447f6c7b2caafcbfce2533219ad0c" id="r_ae41447f6c7b2caafcbfce2533219ad0c"><td class="memItemLeft" align="right" valign="top">std::condition_variable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae41447f6c7b2caafcbfce2533219ad0c">blocked_</a></td></tr>
+<tr class="memitem:ac343336ca09c2e09f85c0f17addc1010" id="r_ac343336ca09c2e09f85c0f17addc1010"><td class="memItemLeft" align="right" valign="top">std::queue&lt; T, Container &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac343336ca09c2e09f85c0f17addc1010">queue_</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T, typename Container = std::deque&lt;T&gt;&gt;<br />
@@ -162,8 +165,8 @@ template&lt;typename T, typename Container = std::deque&lt;T&gt;&gt; </div>
 </div>
 </div>
 <a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a33be3ac6f7a386943a9bf1b73b15af7d" name="a33be3ac6f7a386943a9bf1b73b15af7d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a33be3ac6f7a386943a9bf1b73b15af7d">&#9670;&#160;</a></span>ConcurrentQueue() <span class="overload">[1/3]</span></h2>
+<a id="a899fc9d89d69c54d99f33b5e3b0d3d04" name="a899fc9d89d69c54d99f33b5e3b0d3d04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a899fc9d89d69c54d99f33b5e3b0d3d04">&#9670;&#160;</a></span>ConcurrentQueue() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -176,7 +179,38 @@ template&lt;typename T, typename Container = std::deque&lt;T&gt;&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="classflow_1_1_concurrent_queue.html">flow::ConcurrentQueue</a>&lt; T, Container &gt;::ConcurrentQueue </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="#a963454572801ec58ac62b6f40a9d8f0f">allocator_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>allocator</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="#a963454572801ec58ac62b6f40a9d8f0f">allocator_type</a>()</span></td><td>)</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructs a concurrent FIFO queue. </p>
+
+<p class="reference">Referenced by <a class="el" href="#a9afa84e43f840bafec48b21caf7f3243">ConcurrentQueue()</a>, <a class="el" href="#abdcc25822ea84611d059f0164c29bf40">ConcurrentQueue()</a>, <a class="el" href="#ab09b66803142e1105763c5887ec1c546">operator=()</a>, and <a class="el" href="#a3f76748bdaf041ab31cf52b0faef44fe">operator=()</a>.</p>
+
+</div>
+</div>
+<a id="a41e9e23bb7c42e6cc1a2b39b9b84d183" name="a41e9e23bb7c42e6cc1a2b39b9b84d183"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41e9e23bb7c42e6cc1a2b39b9b84d183">&#9670;&#160;</a></span>ConcurrentQueue() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T, typename Container = std::deque&lt;T&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classflow_1_1_concurrent_queue.html">flow::ConcurrentQueue</a>&lt; T, Container &gt;::ConcurrentQueue </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#a963454572801ec58ac62b6f40a9d8f0f">allocator_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>allocator</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -189,20 +223,18 @@ template&lt;typename T, typename Container = std::deque&lt;T&gt;&gt; </div>
 
 <p>Constructs a concurrent FIFO queue. </p>
 
-<p class="definition">Definition at line <a class="el" href="flow__concurrent__queue_8h_source.html#l00019">19</a> of file <a class="el" href="flow__concurrent__queue_8h_source.html">flow_concurrent_queue.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   20</span>      : <a class="code hl_variable" href="#ac343336ca09c2e09f85c0f17addc1010">queue_</a>(<a class="code hl_class" href="classflow_1_1_concurrent_queue.html">allocator</a>) {</div>
-<div class="line"><span class="lineno">   21</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__concurrent__queue_8h_source.html#l00022">22</a> of file <a class="el" href="flow__concurrent__queue_8h_source.html">flow_concurrent_queue.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   23</span>      : <a class="code hl_variable" href="#ac343336ca09c2e09f85c0f17addc1010">queue_</a>(<a class="code hl_class" href="classflow_1_1_concurrent_queue.html">allocator</a>) {</div>
+<div class="line"><span class="lineno">   24</span>    }</div>
 <div class="ttc" id="aclassflow_1_1_concurrent_queue_html"><div class="ttname"><a href="classflow_1_1_concurrent_queue.html">flow::ConcurrentQueue</a></div><div class="ttdef"><b>Definition</b> <a href="flow__concurrent__queue_8h_source.html#l00010">flow_concurrent_queue.h:10</a></div></div>
-<div class="ttc" id="aclassflow_1_1_concurrent_queue_html_ac343336ca09c2e09f85c0f17addc1010"><div class="ttname"><a href="#ac343336ca09c2e09f85c0f17addc1010">flow::ConcurrentQueue::queue_</a></div><div class="ttdeci">std::queue&lt; T, Container &gt; queue_</div><div class="ttdef"><b>Definition</b> <a href="flow__concurrent__queue_8h_source.html#l00013">flow_concurrent_queue.h:13</a></div></div>
+<div class="ttc" id="aclassflow_1_1_concurrent_queue_html_ac343336ca09c2e09f85c0f17addc1010"><div class="ttname"><a href="#ac343336ca09c2e09f85c0f17addc1010">flow::ConcurrentQueue::queue_</a></div><div class="ttdeci">std::queue&lt; T, Container &gt; queue_</div><div class="ttdef"><b>Definition</b> <a href="flow__concurrent__queue_8h_source.html#l00015">flow_concurrent_queue.h:15</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="flow__concurrent__queue_8h_source.html#l00013">queue_</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="#a9afa84e43f840bafec48b21caf7f3243">ConcurrentQueue()</a>, <a class="el" href="#abdcc25822ea84611d059f0164c29bf40">ConcurrentQueue()</a>, <a class="el" href="#ab09b66803142e1105763c5887ec1c546">operator=()</a>, and <a class="el" href="#a3f76748bdaf041ab31cf52b0faef44fe">operator=()</a>.</p>
+<p class="reference">References <a class="el" href="flow__concurrent__queue_8h_source.html#l00015">queue_</a>.</p>
 
 </div>
 </div>
 <a id="abdcc25822ea84611d059f0164c29bf40" name="abdcc25822ea84611d059f0164c29bf40"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abdcc25822ea84611d059f0164c29bf40">&#9670;&#160;</a></span>ConcurrentQueue() <span class="overload">[2/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#abdcc25822ea84611d059f0164c29bf40">&#9670;&#160;</a></span>ConcurrentQueue() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -226,12 +258,12 @@ template&lt;typename T, typename Container = std::deque&lt;T&gt;&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="flow__concurrent__queue_8h_source.html#l00019">ConcurrentQueue()</a>.</p>
+<p class="reference">References <a class="el" href="#a899fc9d89d69c54d99f33b5e3b0d3d04">ConcurrentQueue()</a>.</p>
 
 </div>
 </div>
 <a id="a9afa84e43f840bafec48b21caf7f3243" name="a9afa84e43f840bafec48b21caf7f3243"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9afa84e43f840bafec48b21caf7f3243">&#9670;&#160;</a></span>ConcurrentQueue() <span class="overload">[3/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a9afa84e43f840bafec48b21caf7f3243">&#9670;&#160;</a></span>ConcurrentQueue() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -255,7 +287,7 @@ template&lt;typename T, typename Container = std::deque&lt;T&gt;&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="flow__concurrent__queue_8h_source.html#l00019">ConcurrentQueue()</a>.</p>
+<p class="reference">References <a class="el" href="#a899fc9d89d69c54d99f33b5e3b0d3d04">ConcurrentQueue()</a>.</p>
 
 </div>
 </div>
@@ -289,18 +321,18 @@ template&lt;typename... Args&gt; </div>
 
 <p>Constructs a new element in place at the end of the queue. </p>
 
-<p class="definition">Definition at line <a class="el" href="flow__concurrent__queue_8h_source.html#l00053">53</a> of file <a class="el" href="flow__concurrent__queue_8h_source.html">flow_concurrent_queue.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   53</span>                                 {</div>
-<div class="line"><span class="lineno">   54</span>      {</div>
-<div class="line"><span class="lineno">   55</span>        <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">std::lock_guard</a> <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">lock</a>(<a class="code hl_variable" href="#a3f443bd583da922327024612530e33ea">mux_</a>);</div>
-<div class="line"><span class="lineno">   56</span>        <a class="code hl_variable" href="#ac343336ca09c2e09f85c0f17addc1010">queue_</a>.emplace(<a class="code hl_class" href="classflow_1_1_concurrent_queue.html">std::forward&lt;Args&gt;</a>(<a class="code hl_class" href="classflow_1_1_concurrent_queue.html">args</a>)...);</div>
-<div class="line"><span class="lineno">   57</span>      }</div>
-<div class="line"><span class="lineno">   58</span>      <a class="code hl_variable" href="#ae41447f6c7b2caafcbfce2533219ad0c">blocked_</a>.notify_one();</div>
-<div class="line"><span class="lineno">   59</span>    }</div>
-<div class="ttc" id="aclassflow_1_1_concurrent_queue_html_a3f443bd583da922327024612530e33ea"><div class="ttname"><a href="#a3f443bd583da922327024612530e33ea">flow::ConcurrentQueue::mux_</a></div><div class="ttdeci">std::mutex mux_</div><div class="ttdef"><b>Definition</b> <a href="flow__concurrent__queue_8h_source.html#l00014">flow_concurrent_queue.h:14</a></div></div>
-<div class="ttc" id="aclassflow_1_1_concurrent_queue_html_ae41447f6c7b2caafcbfce2533219ad0c"><div class="ttname"><a href="#ae41447f6c7b2caafcbfce2533219ad0c">flow::ConcurrentQueue::blocked_</a></div><div class="ttdeci">std::condition_variable blocked_</div><div class="ttdef"><b>Definition</b> <a href="flow__concurrent__queue_8h_source.html#l00015">flow_concurrent_queue.h:15</a></div></div>
+<p class="definition">Definition at line <a class="el" href="flow__concurrent__queue_8h_source.html#l00064">64</a> of file <a class="el" href="flow__concurrent__queue_8h_source.html">flow_concurrent_queue.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   64</span>                                 {</div>
+<div class="line"><span class="lineno">   65</span>      {</div>
+<div class="line"><span class="lineno">   66</span>        <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">std::lock_guard</a> <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">lock</a>(<a class="code hl_variable" href="#a3f443bd583da922327024612530e33ea">mux_</a>);</div>
+<div class="line"><span class="lineno">   67</span>        <a class="code hl_variable" href="#ac343336ca09c2e09f85c0f17addc1010">queue_</a>.emplace(<a class="code hl_class" href="classflow_1_1_concurrent_queue.html">std::forward&lt;Args&gt;</a>(<a class="code hl_class" href="classflow_1_1_concurrent_queue.html">args</a>)...);</div>
+<div class="line"><span class="lineno">   68</span>      }</div>
+<div class="line"><span class="lineno">   69</span>      <a class="code hl_variable" href="#ae41447f6c7b2caafcbfce2533219ad0c">blocked_</a>.notify_one();</div>
+<div class="line"><span class="lineno">   70</span>    }</div>
+<div class="ttc" id="aclassflow_1_1_concurrent_queue_html_a3f443bd583da922327024612530e33ea"><div class="ttname"><a href="#a3f443bd583da922327024612530e33ea">flow::ConcurrentQueue::mux_</a></div><div class="ttdeci">std::mutex mux_</div><div class="ttdef"><b>Definition</b> <a href="flow__concurrent__queue_8h_source.html#l00013">flow_concurrent_queue.h:13</a></div></div>
+<div class="ttc" id="aclassflow_1_1_concurrent_queue_html_ae41447f6c7b2caafcbfce2533219ad0c"><div class="ttname"><a href="#ae41447f6c7b2caafcbfce2533219ad0c">flow::ConcurrentQueue::blocked_</a></div><div class="ttdeci">std::condition_variable blocked_</div><div class="ttdef"><b>Definition</b> <a href="flow__concurrent__queue_8h_source.html#l00014">flow_concurrent_queue.h:14</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="flow__concurrent__queue_8h_source.html#l00015">blocked_</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00014">mux_</a>, and <a class="el" href="flow__concurrent__queue_8h_source.html#l00013">queue_</a>.</p>
+<p class="reference">References <a class="el" href="flow__concurrent__queue_8h_source.html#l00014">blocked_</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00013">mux_</a>, and <a class="el" href="flow__concurrent__queue_8h_source.html#l00015">queue_</a>.</p>
 
 </div>
 </div>
@@ -329,16 +361,16 @@ template&lt;typename T, typename Container = std::deque&lt;T&gt;&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Checks if the queue is empty. </p>
+<p>Checks if the queue is empty. Value can be obsolete in concurrency code. </p>
 <dl class="section return"><dt>Returns</dt><dd>True if empty, false otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__concurrent__queue_8h_source.html#l00030">30</a> of file <a class="el" href="flow__concurrent__queue_8h_source.html">flow_concurrent_queue.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   30</span>                       {</div>
-<div class="line"><span class="lineno">   31</span>      <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">std::lock_guard</a> <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">lock</a>(<a class="code hl_variable" href="#a3f443bd583da922327024612530e33ea">mux_</a>);</div>
-<div class="line"><span class="lineno">   32</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="#ac343336ca09c2e09f85c0f17addc1010">queue_</a>.empty();</div>
-<div class="line"><span class="lineno">   33</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__concurrent__queue_8h_source.html#l00033">33</a> of file <a class="el" href="flow__concurrent__queue_8h_source.html">flow_concurrent_queue.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   33</span>                       {</div>
+<div class="line"><span class="lineno">   34</span>      <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">std::lock_guard</a> <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">lock</a>(<a class="code hl_variable" href="#a3f443bd583da922327024612530e33ea">mux_</a>);</div>
+<div class="line"><span class="lineno">   35</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="#ac343336ca09c2e09f85c0f17addc1010">queue_</a>.empty();</div>
+<div class="line"><span class="lineno">   36</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="flow__concurrent__queue_8h_source.html#l00014">mux_</a>, and <a class="el" href="flow__concurrent__queue_8h_source.html#l00013">queue_</a>.</p>
+<p class="reference">References <a class="el" href="flow__concurrent__queue_8h_source.html#l00013">mux_</a>, and <a class="el" href="flow__concurrent__queue_8h_source.html#l00015">queue_</a>.</p>
 
 </div>
 </div>
@@ -367,7 +399,7 @@ template&lt;typename T, typename Container = std::deque&lt;T&gt;&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="flow__concurrent__queue_8h_source.html#l00019">ConcurrentQueue()</a>.</p>
+<p class="reference">References <a class="el" href="#a899fc9d89d69c54d99f33b5e3b0d3d04">ConcurrentQueue()</a>.</p>
 
 </div>
 </div>
@@ -396,19 +428,17 @@ template&lt;typename T, typename Container = std::deque&lt;T&gt;&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="flow__concurrent__queue_8h_source.html#l00019">ConcurrentQueue()</a>.</p>
+<p class="reference">References <a class="el" href="#a899fc9d89d69c54d99f33b5e3b0d3d04">ConcurrentQueue()</a>.</p>
 
 </div>
 </div>
-<a id="a8afd8f92a60a59cf6c42da30a6eb2a0e" name="a8afd8f92a60a59cf6c42da30a6eb2a0e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8afd8f92a60a59cf6c42da30a6eb2a0e">&#9670;&#160;</a></span>push()</h2>
+<a id="af0824a5ba24454c5f39c3e952356883a" name="af0824a5ba24454c5f39c3e952356883a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0824a5ba24454c5f39c3e952356883a">&#9670;&#160;</a></span>push() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename T, typename Container = std::deque&lt;T&gt;&gt; </div>
-<div class="memtemplate">
-template&lt;typename U&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -416,7 +446,7 @@ template&lt;typename U&gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="classflow_1_1_concurrent_queue.html">flow::ConcurrentQueue</a>&lt; T, Container &gt;::push </td>
           <td>(</td>
-          <td class="paramtype">U &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
+          <td class="paramtype">const T &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -429,16 +459,56 @@ template&lt;typename U&gt; </div>
 
 <p>Pushes a new element into the queue. </p>
 
-<p class="definition">Definition at line <a class="el" href="flow__concurrent__queue_8h_source.html#l00043">43</a> of file <a class="el" href="flow__concurrent__queue_8h_source.html">flow_concurrent_queue.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   43</span>                         {</div>
-<div class="line"><span class="lineno">   44</span>      {</div>
-<div class="line"><span class="lineno">   45</span>        <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">std::lock_guard</a> <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">lock</a>(<a class="code hl_variable" href="#a3f443bd583da922327024612530e33ea">mux_</a>);</div>
-<div class="line"><span class="lineno">   46</span>        <a class="code hl_variable" href="#ac343336ca09c2e09f85c0f17addc1010">queue_</a>.push(<a class="code hl_class" href="classflow_1_1_concurrent_queue.html">std::forward&lt;U&gt;</a>(<a class="code hl_class" href="classflow_1_1_concurrent_queue.html">value</a>));</div>
-<div class="line"><span class="lineno">   47</span>      }</div>
-<div class="line"><span class="lineno">   48</span>      <a class="code hl_variable" href="#ae41447f6c7b2caafcbfce2533219ad0c">blocked_</a>.notify_one();</div>
-<div class="line"><span class="lineno">   49</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__concurrent__queue_8h_source.html#l00045">45</a> of file <a class="el" href="flow__concurrent__queue_8h_source.html">flow_concurrent_queue.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   45</span>                              {</div>
+<div class="line"><span class="lineno">   46</span>      {</div>
+<div class="line"><span class="lineno">   47</span>        <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">std::lock_guard</a> <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">lock</a>(<a class="code hl_variable" href="#a3f443bd583da922327024612530e33ea">mux_</a>);</div>
+<div class="line"><span class="lineno">   48</span>        <a class="code hl_variable" href="#ac343336ca09c2e09f85c0f17addc1010">queue_</a>.push(<a class="code hl_class" href="classflow_1_1_concurrent_queue.html">value</a>);</div>
+<div class="line"><span class="lineno">   49</span>      }</div>
+<div class="line"><span class="lineno">   50</span>      <a class="code hl_variable" href="#ae41447f6c7b2caafcbfce2533219ad0c">blocked_</a>.notify_one();</div>
+<div class="line"><span class="lineno">   51</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="flow__concurrent__queue_8h_source.html#l00015">blocked_</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00014">mux_</a>, and <a class="el" href="flow__concurrent__queue_8h_source.html#l00013">queue_</a>.</p>
+<p class="reference">References <a class="el" href="flow__concurrent__queue_8h_source.html#l00014">blocked_</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00013">mux_</a>, and <a class="el" href="flow__concurrent__queue_8h_source.html#l00015">queue_</a>.</p>
+
+</div>
+</div>
+<a id="acaf1a36685d3042db9b6fc608deb5fc4" name="acaf1a36685d3042db9b6fc608deb5fc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaf1a36685d3042db9b6fc608deb5fc4">&#9670;&#160;</a></span>push() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T, typename Container = std::deque&lt;T&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classflow_1_1_concurrent_queue.html">flow::ConcurrentQueue</a>&lt; T, Container &gt;::push </td>
+          <td>(</td>
+          <td class="paramtype">T &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pushes a new element into the queue. </p>
+
+<p class="definition">Definition at line <a class="el" href="flow__concurrent__queue_8h_source.html#l00054">54</a> of file <a class="el" href="flow__concurrent__queue_8h_source.html">flow_concurrent_queue.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   54</span>                         {</div>
+<div class="line"><span class="lineno">   55</span>      {</div>
+<div class="line"><span class="lineno">   56</span>        <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">std::lock_guard</a> <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">lock</a>(<a class="code hl_variable" href="#a3f443bd583da922327024612530e33ea">mux_</a>);</div>
+<div class="line"><span class="lineno">   57</span>        <a class="code hl_variable" href="#ac343336ca09c2e09f85c0f17addc1010">queue_</a>.push(<a class="code hl_class" href="classflow_1_1_concurrent_queue.html">std::move</a>(<a class="code hl_class" href="classflow_1_1_concurrent_queue.html">value</a>));</div>
+<div class="line"><span class="lineno">   58</span>      }</div>
+<div class="line"><span class="lineno">   59</span>      <a class="code hl_variable" href="#ae41447f6c7b2caafcbfce2533219ad0c">blocked_</a>.notify_one();</div>
+<div class="line"><span class="lineno">   60</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="flow__concurrent__queue_8h_source.html#l00014">blocked_</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00013">mux_</a>, and <a class="el" href="flow__concurrent__queue_8h_source.html#l00015">queue_</a>.</p>
 
 </div>
 </div>
@@ -467,15 +537,15 @@ template&lt;typename T, typename Container = std::deque&lt;T&gt;&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Returns the number of elements in the queue. </p>
+<p>Returns the number of elements in the queue. Value can be obsolete in concurrency code. </p>
 
-<p class="definition">Definition at line <a class="el" href="flow__concurrent__queue_8h_source.html#l00036">36</a> of file <a class="el" href="flow__concurrent__queue_8h_source.html">flow_concurrent_queue.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   36</span>                           {</div>
-<div class="line"><span class="lineno">   37</span>      <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">std::lock_guard</a> <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">lock</a>(<a class="code hl_variable" href="#a3f443bd583da922327024612530e33ea">mux_</a>);</div>
-<div class="line"><span class="lineno">   38</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="#ac343336ca09c2e09f85c0f17addc1010">queue_</a>.size();</div>
-<div class="line"><span class="lineno">   39</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__concurrent__queue_8h_source.html#l00039">39</a> of file <a class="el" href="flow__concurrent__queue_8h_source.html">flow_concurrent_queue.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   39</span>                           {</div>
+<div class="line"><span class="lineno">   40</span>      <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">std::lock_guard</a> <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">lock</a>(<a class="code hl_variable" href="#a3f443bd583da922327024612530e33ea">mux_</a>);</div>
+<div class="line"><span class="lineno">   41</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="#ac343336ca09c2e09f85c0f17addc1010">queue_</a>.size();</div>
+<div class="line"><span class="lineno">   42</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="flow__concurrent__queue_8h_source.html#l00014">mux_</a>, and <a class="el" href="flow__concurrent__queue_8h_source.html#l00013">queue_</a>.</p>
+<p class="reference">References <a class="el" href="flow__concurrent__queue_8h_source.html#l00013">mux_</a>, and <a class="el" href="flow__concurrent__queue_8h_source.html#l00015">queue_</a>.</p>
 
 </div>
 </div>
@@ -507,16 +577,16 @@ template&lt;typename T, typename Container = std::deque&lt;T&gt;&gt; </div>
 <p>Tries to get a copy of the first element without removing it. </p>
 <dl class="section return"><dt>Returns</dt><dd>A copy of the first element or std::nullopt if empty. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__concurrent__queue_8h_source.html#l00063">63</a> of file <a class="el" href="flow__concurrent__queue_8h_source.html">flow_concurrent_queue.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   63</span>                                    {</div>
-<div class="line"><span class="lineno">   64</span>      <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">std::lock_guard</a> <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">lock</a>(<a class="code hl_variable" href="#a3f443bd583da922327024612530e33ea">mux_</a>);</div>
-<div class="line"><span class="lineno">   65</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="#ac343336ca09c2e09f85c0f17addc1010">queue_</a>.empty()) {</div>
-<div class="line"><span class="lineno">   66</span>        <span class="keywordflow">return</span> <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">std::nullopt</a>;</div>
-<div class="line"><span class="lineno">   67</span>      }</div>
-<div class="line"><span class="lineno">   68</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="#ac343336ca09c2e09f85c0f17addc1010">queue_</a>.front();</div>
-<div class="line"><span class="lineno">   69</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__concurrent__queue_8h_source.html#l00074">74</a> of file <a class="el" href="flow__concurrent__queue_8h_source.html">flow_concurrent_queue.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   74</span>                                    {</div>
+<div class="line"><span class="lineno">   75</span>      <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">std::lock_guard</a> <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">lock</a>(<a class="code hl_variable" href="#a3f443bd583da922327024612530e33ea">mux_</a>);</div>
+<div class="line"><span class="lineno">   76</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="#ac343336ca09c2e09f85c0f17addc1010">queue_</a>.empty()) {</div>
+<div class="line"><span class="lineno">   77</span>        <span class="keywordflow">return</span> <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">std::nullopt</a>;</div>
+<div class="line"><span class="lineno">   78</span>      }</div>
+<div class="line"><span class="lineno">   79</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="#ac343336ca09c2e09f85c0f17addc1010">queue_</a>.front();</div>
+<div class="line"><span class="lineno">   80</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="flow__concurrent__queue_8h_source.html#l00014">mux_</a>, and <a class="el" href="flow__concurrent__queue_8h_source.html#l00013">queue_</a>.</p>
+<p class="reference">References <a class="el" href="flow__concurrent__queue_8h_source.html#l00013">mux_</a>, and <a class="el" href="flow__concurrent__queue_8h_source.html#l00015">queue_</a>.</p>
 
 </div>
 </div>
@@ -548,18 +618,19 @@ template&lt;typename T, typename Container = std::deque&lt;T&gt;&gt; </div>
 <p>Tries to pop and return the first element. </p>
 <dl class="section return"><dt>Returns</dt><dd>The first element moved or std::nullopt if empty. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__concurrent__queue_8h_source.html#l00073">73</a> of file <a class="el" href="flow__concurrent__queue_8h_source.html">flow_concurrent_queue.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   73</span>                            {</div>
-<div class="line"><span class="lineno">   74</span>      <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">std::lock_guard</a> <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">lock</a>(<a class="code hl_variable" href="#a3f443bd583da922327024612530e33ea">mux_</a>);</div>
-<div class="line"><span class="lineno">   75</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="#ac343336ca09c2e09f85c0f17addc1010">queue_</a>.empty()) {</div>
-<div class="line"><span class="lineno">   76</span>        <span class="keywordflow">return</span> <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">std::nullopt</a>;</div>
-<div class="line"><span class="lineno">   77</span>      }</div>
-<div class="line"><span class="lineno">   78</span>      <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">std::optional&lt;T&gt;</a> <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">value</a>{ <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">std::move</a>(<a class="code hl_variable" href="#ac343336ca09c2e09f85c0f17addc1010">queue_</a>.front()) };</div>
-<div class="line"><span class="lineno">   79</span>      <a class="code hl_variable" href="#ac343336ca09c2e09f85c0f17addc1010">queue_</a>.pop();</div>
-<div class="line"><span class="lineno">   80</span>      <span class="keywordflow">return</span> <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">value</a>;</div>
-<div class="line"><span class="lineno">   81</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__concurrent__queue_8h_source.html#l00084">84</a> of file <a class="el" href="flow__concurrent__queue_8h_source.html">flow_concurrent_queue.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   84</span>                            {</div>
+<div class="line"><span class="lineno">   85</span>      <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">std::lock_guard</a> <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">lock</a>(<a class="code hl_variable" href="#a3f443bd583da922327024612530e33ea">mux_</a>);</div>
+<div class="line"><span class="lineno">   86</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="#ac343336ca09c2e09f85c0f17addc1010">queue_</a>.empty()) {</div>
+<div class="line"><span class="lineno">   87</span>        <span class="keywordflow">return</span> <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">std::nullopt</a>;</div>
+<div class="line"><span class="lineno">   88</span>      }</div>
+<div class="line"><span class="lineno">   89</span>      <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">std::optional&lt;T&gt;</a> <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">value</a> = <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">std::move</a>(<a class="code hl_variable" href="#ac343336ca09c2e09f85c0f17addc1010">queue_</a>.front());</div>
+<div class="line"><span class="lineno">   90</span> </div>
+<div class="line"><span class="lineno">   91</span>      <a class="code hl_variable" href="#ac343336ca09c2e09f85c0f17addc1010">queue_</a>.pop();</div>
+<div class="line"><span class="lineno">   92</span>      <span class="keywordflow">return</span> <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">value</a>;</div>
+<div class="line"><span class="lineno">   93</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="flow__concurrent__queue_8h_source.html#l00014">mux_</a>, and <a class="el" href="flow__concurrent__queue_8h_source.html#l00013">queue_</a>.</p>
+<p class="reference">References <a class="el" href="flow__concurrent__queue_8h_source.html#l00013">mux_</a>, and <a class="el" href="flow__concurrent__queue_8h_source.html#l00015">queue_</a>.</p>
 
 </div>
 </div>
@@ -591,17 +662,17 @@ template&lt;typename T, typename Container = std::deque&lt;T&gt;&gt; </div>
 <p>Waits until the queue is not empty, then pops and returns the first element. </p>
 <dl class="section return"><dt>Returns</dt><dd>The first element. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__concurrent__queue_8h_source.html#l00085">85</a> of file <a class="el" href="flow__concurrent__queue_8h_source.html">flow_concurrent_queue.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   85</span>                {</div>
-<div class="line"><span class="lineno">   86</span>      <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">std::unique_lock</a> <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">lock</a>(<a class="code hl_variable" href="#a3f443bd583da922327024612530e33ea">mux_</a>);</div>
-<div class="line"><span class="lineno">   87</span>      <a class="code hl_variable" href="#ae41447f6c7b2caafcbfce2533219ad0c">blocked_</a>.wait(<a class="code hl_class" href="classflow_1_1_concurrent_queue.html">lock</a>, [&amp;]() { <span class="keywordflow">return</span> !<a class="code hl_variable" href="#ac343336ca09c2e09f85c0f17addc1010">queue_</a>.empty(); });</div>
-<div class="line"><span class="lineno">   88</span> </div>
-<div class="line"><span class="lineno">   89</span>      <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">T</a> <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">value</a> = <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">std::move</a>(<a class="code hl_variable" href="#ac343336ca09c2e09f85c0f17addc1010">queue_</a>.front());</div>
-<div class="line"><span class="lineno">   90</span>      <a class="code hl_variable" href="#ac343336ca09c2e09f85c0f17addc1010">queue_</a>.pop();</div>
-<div class="line"><span class="lineno">   91</span>      <span class="keywordflow">return</span> <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">value</a>;</div>
-<div class="line"><span class="lineno">   92</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__concurrent__queue_8h_source.html#l00097">97</a> of file <a class="el" href="flow__concurrent__queue_8h_source.html">flow_concurrent_queue.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   97</span>                {</div>
+<div class="line"><span class="lineno">   98</span>      <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">std::unique_lock</a> <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">lock</a>(<a class="code hl_variable" href="#a3f443bd583da922327024612530e33ea">mux_</a>);</div>
+<div class="line"><span class="lineno">   99</span>      <a class="code hl_variable" href="#ae41447f6c7b2caafcbfce2533219ad0c">blocked_</a>.wait(<a class="code hl_class" href="classflow_1_1_concurrent_queue.html">lock</a>, [&amp;]() { <span class="keywordflow">return</span> !<a class="code hl_variable" href="#ac343336ca09c2e09f85c0f17addc1010">queue_</a>.empty(); });</div>
+<div class="line"><span class="lineno">  100</span> </div>
+<div class="line"><span class="lineno">  101</span>      <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">T</a> <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">value</a> = <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">std::move</a>(<a class="code hl_variable" href="#ac343336ca09c2e09f85c0f17addc1010">queue_</a>.front());</div>
+<div class="line"><span class="lineno">  102</span>      <a class="code hl_variable" href="#ac343336ca09c2e09f85c0f17addc1010">queue_</a>.pop();</div>
+<div class="line"><span class="lineno">  103</span>      <span class="keywordflow">return</span> <a class="code hl_class" href="classflow_1_1_concurrent_queue.html">value</a>;</div>
+<div class="line"><span class="lineno">  104</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="flow__concurrent__queue_8h_source.html#l00015">blocked_</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00014">mux_</a>, and <a class="el" href="flow__concurrent__queue_8h_source.html#l00013">queue_</a>.</p>
+<p class="reference">References <a class="el" href="flow__concurrent__queue_8h_source.html#l00014">blocked_</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00013">mux_</a>, and <a class="el" href="flow__concurrent__queue_8h_source.html#l00015">queue_</a>.</p>
 
 </div>
 </div>
@@ -628,9 +699,9 @@ template&lt;typename T, typename Container = std::deque&lt;T&gt;&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__concurrent__queue_8h_source.html#l00015">15</a> of file <a class="el" href="flow__concurrent__queue_8h_source.html">flow_concurrent_queue.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="flow__concurrent__queue_8h_source.html#l00014">14</a> of file <a class="el" href="flow__concurrent__queue_8h_source.html">flow_concurrent_queue.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="flow__concurrent__queue_8h_source.html#l00053">emplace()</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00043">push()</a>, and <a class="el" href="flow__concurrent__queue_8h_source.html#l00085">waitPop()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__concurrent__queue_8h_source.html#l00064">emplace()</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00045">push()</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00054">push()</a>, and <a class="el" href="flow__concurrent__queue_8h_source.html#l00097">waitPop()</a>.</p>
 
 </div>
 </div>
@@ -656,9 +727,9 @@ template&lt;typename T, typename Container = std::deque&lt;T&gt;&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__concurrent__queue_8h_source.html#l00014">14</a> of file <a class="el" href="flow__concurrent__queue_8h_source.html">flow_concurrent_queue.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="flow__concurrent__queue_8h_source.html#l00013">13</a> of file <a class="el" href="flow__concurrent__queue_8h_source.html">flow_concurrent_queue.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="flow__concurrent__queue_8h_source.html#l00053">emplace()</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00030">empty()</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00043">push()</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00036">size()</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00063">tryFront()</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00073">tryPop()</a>, and <a class="el" href="flow__concurrent__queue_8h_source.html#l00085">waitPop()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__concurrent__queue_8h_source.html#l00064">emplace()</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00033">empty()</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00045">push()</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00054">push()</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00039">size()</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00074">tryFront()</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00084">tryPop()</a>, and <a class="el" href="flow__concurrent__queue_8h_source.html#l00097">waitPop()</a>.</p>
 
 </div>
 </div>
@@ -684,9 +755,9 @@ template&lt;typename T, typename Container = std::deque&lt;T&gt;&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__concurrent__queue_8h_source.html#l00013">13</a> of file <a class="el" href="flow__concurrent__queue_8h_source.html">flow_concurrent_queue.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="flow__concurrent__queue_8h_source.html#l00015">15</a> of file <a class="el" href="flow__concurrent__queue_8h_source.html">flow_concurrent_queue.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="flow__concurrent__queue_8h_source.html#l00019">ConcurrentQueue()</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00053">emplace()</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00030">empty()</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00043">push()</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00036">size()</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00063">tryFront()</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00073">tryPop()</a>, and <a class="el" href="flow__concurrent__queue_8h_source.html#l00085">waitPop()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__concurrent__queue_8h_source.html#l00022">ConcurrentQueue()</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00064">emplace()</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00033">empty()</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00045">push()</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00054">push()</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00039">size()</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00074">tryFront()</a>, <a class="el" href="flow__concurrent__queue_8h_source.html#l00084">tryPop()</a>, and <a class="el" href="flow__concurrent__queue_8h_source.html#l00097">waitPop()</a>.</p>
 
 </div>
 </div>
