@@ -1,6 +1,5 @@
 # Flow C++ Data Structure Library
-
-Flow is a modern C++ library providing efficient, high-performance data structures built with custom allocator support.
+Flow is a modern C++ data structure library that provides high-performance allocator-awared containers as an extension to the STL.
 
 ---
 
