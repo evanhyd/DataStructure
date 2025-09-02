@@ -60,5 +60,8 @@
     <ClCompile Include="flow_binary_heap.t.cpp">
       <Filter>flow\container</Filter>
     </ClCompile>
+    <ClCompile Include="flow_integral_iterator.t.cpp">
+      <Filter>flow\iterator</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

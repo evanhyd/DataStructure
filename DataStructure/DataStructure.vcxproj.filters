@@ -48,9 +48,6 @@
     <ClInclude Include="DisjointSet.h">
       <Filter>DataStructure</Filter>
     </ClInclude>
-    <ClInclude Include="LinkedList.h">
-      <Filter>DataStructure</Filter>
-    </ClInclude>
     <ClInclude Include="PSDA.h">
       <Filter>DataStructure</Filter>
     </ClInclude>
@@ -67,9 +64,6 @@
       <Filter>DataStructure</Filter>
     </ClInclude>
     <ClInclude Include="SegmentTree.h">
-      <Filter>DataStructure</Filter>
-    </ClInclude>
-    <ClInclude Include="IntegerIterator.h">
       <Filter>DataStructure</Filter>
     </ClInclude>
     <ClInclude Include="flow_polymorphic_allocator.h">
@@ -133,8 +127,8 @@
     <ClInclude Include="flow_work_stealing_queue.h">
       <Filter>flow\concurrency\container</Filter>
     </ClInclude>
-    <ClInclude Include="flow_singly_linked_list.h">
-      <Filter>flow\container</Filter>
+    <ClInclude Include="flow_integral_iterator.h">
+      <Filter>flow\iterator</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

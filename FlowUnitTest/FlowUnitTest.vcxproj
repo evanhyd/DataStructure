@@ -114,6 +114,7 @@
     <ClCompile Include="flow_concurrent_flex_queue.t.cpp" />
     <ClCompile Include="flow_concurrent_queue.t.cpp" />
     <ClCompile Include="flow_counted_value_view_iterator.t.cpp" />
+    <ClCompile Include="flow_integral_iterator.t.cpp" />
     <ClCompile Include="flow_memory_algorithm.t.cpp" />
     <ClCompile Include="flow_memory_resource.t.cpp" />
     <ClCompile Include="flow_pool_memory_resource.t.cpp" />
