@@ -9,7 +9,7 @@ var searchData=
   ['destroy_6',['destroy',['../classflow_1_1_polymorphic_allocator.html#abc9cffd1ba2487b9446352c42b8b820d',1,'flow::PolymorphicAllocator']]],
   ['destroyelements_7',['destroyElements',['../namespaceflow.html#a0917ae92fc9372994be63e2b07d7da43',1,'flow']]],
   ['destroyelementsn_8',['destroyElementsN',['../namespaceflow.html#a2097cda5f5388d27f3c92804fdea2917',1,'flow']]],
-  ['difference_5ftype_9',['difference_type',['../classflow_1_1_binary_heap.html#a338d587f9d7cdac535b24e7444792723',1,'flow::BinaryHeap::difference_type'],['../classflow_1_1_counted_value_view_iterator.html#ab15d7850ec1d51e9c23b298d79009207',1,'flow::CountedValueViewIterator::difference_type'],['../classflow_1_1_vector.html#ad698ac46b7cd873095875b41509e0a3c',1,'flow::Vector::difference_type']]],
+  ['difference_5ftype_9',['difference_type',['../classflow_1_1_binary_heap.html#a338d587f9d7cdac535b24e7444792723',1,'flow::BinaryHeap::difference_type'],['../classflow_1_1_counted_value_view_iterator.html#ab15d7850ec1d51e9c23b298d79009207',1,'flow::CountedValueViewIterator::difference_type'],['../classflow_1_1_integral_iterator.html#abbd6e64e4fc4d0237be87ce3871b9b3a',1,'flow::IntegralIterator::difference_type'],['../classflow_1_1_vector.html#ad698ac46b7cd873095875b41509e0a3c',1,'flow::Vector::difference_type']]],
   ['doubleexpand_10',['DoubleExpand',['../structflow_1_1_vector_growth_strategy_1_1_double_expand.html',1,'flow::VectorGrowthStrategy']]],
   ['drop_11',['drop',['../classflow_1_1_binary_heap.html#af63b727bb21360f3e36325c374c805eb',1,'flow::BinaryHeap']]]
 ];

@@ -256,3 +256,162 @@ using namespace std;
 int main() {
 
 }
+
+//#include "flow_simple_thread_pool.h"
+//#include "flow_multi_queue_thread_pool.h"
+//#include "flow_random_algorithm.h"
+//#include "flow_timer.h"
+//
+//flow::SimpleThreadPool simplePool{};
+//flow::MultiQueueThreadPool multiPool{};
+//
+//void mergeSort(vector<int>::iterator begin, vector<int>::iterator end) {
+//  std::size_t size = std::distance(begin, end);
+//  if (size <= 1) {
+//    return;
+//  }
+//
+//  auto mid = begin + size / 2;
+//  mergeSort(begin, mid);
+//  mergeSort(mid, end);
+//  std::inplace_merge(begin, mid, end);
+//}
+//
+//void mergeSort1(vector<int>::iterator begin, vector<int>::iterator end, int depth) {
+//  std::size_t size = std::distance(begin, end);
+//  if (size <= 1) {
+//    return;
+//  }
+//
+//  auto mid = begin + size / 2;
+//
+//  if (depth <= 4) {
+//    auto leftReady = simplePool.submit(mergeSort1, begin, mid, depth + 1);
+//    mergeSort1(mid, end, depth + 1);
+//    while (leftReady.wait_for(0ms) != future_status::ready) {
+//      simplePool.runPendingTask();
+//    }
+//  } else {
+//    mergeSort1(begin, mid, depth + 1);
+//    mergeSort1(mid, end, depth + 1);
+//  }
+//
+//  std::inplace_merge(begin, mid, end);
+//}
+//
+//void mergeSort2(vector<int>::iterator begin, vector<int>::iterator end, int depth) {
+//  std::size_t size = std::distance(begin, end);
+//  if (size <= 1) {
+//    return;
+//  }
+//
+//  auto mid = begin + size / 2;
+//  if (depth <= 4) {
+//    auto leftReady = multiPool.submit(mergeSort2, begin, mid, depth + 1);
+//    mergeSort2(mid, end, depth + 1);
+//    while (leftReady.wait_for(0ms) != future_status::ready) {
+//      multiPool.runPendingTask();
+//    }
+//
+//  } else {
+//    mergeSort2(begin, mid, depth + 1);
+//    mergeSort2(mid, end, depth + 1);
+//  }
+//
+//  std::inplace_merge(begin, mid, end);
+//}
+//
+//void mergeSort3(vector<int>::iterator begin, vector<int>::iterator end, int depth) {
+//  std::size_t size = std::distance(begin, end);
+//  if (size <= 1) {
+//    return;
+//  }
+//
+//  auto mid = begin + size / 2;
+//  if (depth <= 4) {
+//    std::thread t(mergeSort3, begin, mid, depth + 1);
+//    mergeSort3(mid, end, depth + 1);
+//    t.join();
+//  } else {
+//    mergeSort3(begin, mid, depth + 1);
+//    mergeSort3(mid, end, depth + 1);
+//  }
+//
+//  std::inplace_merge(begin, mid, end);
+//}
+//
+//int main() {
+//  try {
+//    vector<int> original;
+//    for (int i = 0; i < 500000; ++i) {
+//      original.push_back(flow::getRandomNumber(0, 100000));
+//    }
+//
+//    {
+//      flow::Timer timer(1);
+//      timer.reset();
+//      for (int i = 0; i < 100; ++i) {
+//        vector<int> nums = original;
+//        mergeSort(nums.begin(), nums.end());
+//      }
+//      timer.record();
+//      cout <<"std::sort " << timer.toString() << '\n';
+//    }
+//
+//    {
+//      flow::Timer timer(1);
+//      timer.reset();
+//      for (int i = 0; i < 100; ++i) {
+//        vector<int> nums = original;
+//        std::sort(std::execution::par_unseq, nums.begin(), nums.end());
+//      }
+//      timer.record();
+//      cout << "std::sort parallel " << timer.toString() << '\n';
+//    }
+//
+//    {
+//      flow::Timer timer(1);
+//      timer.reset();
+//      for (int i = 0; i < 100; ++i) {
+//        vector<int> nums = original;
+//        auto ready = simplePool.submit(mergeSort1, nums.begin(), nums.end(), 0);
+//        ready.get();
+//      }
+//      timer.record();
+//      cout << "simple thread pool" << timer.toString() << '\n';
+//    }
+//
+//    {
+//      flow::Timer timer(1);
+//      timer.reset();
+//      for (int i = 0; i < 100; ++i) {
+//        vector<int> nums = original;
+//        auto ready = multiPool.submit(mergeSort2, nums.begin(), nums.end(), 0);
+//        ready.get();
+//      }
+//      timer.record();
+//      cout << "multi queue thread pool" << timer.toString() << '\n';
+//    }
+//
+//    {
+//      flow::Timer timer(1);
+//      timer.reset();
+//      for (int i = 0; i < 1000; ++i) {
+//        vector<int> nums = original;
+//        mergeSort3(nums.begin(), nums.end(), 0);
+//      }
+//      timer.record();
+//      cout << "raw thread pool" << timer.toString() << '\n';
+//    }
+//    
+//
+//  } catch (const exception& err) {
+//    cout << err.what() << '\n';
+//  }
+//}
+
+/*
+priority queue is a max heap
+sort the data to find the pattern
+vec.size() - 1 may underflow
+*/

@@ -8,6 +8,7 @@ var annotated_dup =
       [ "CountedValueViewIterator", "classflow_1_1_counted_value_view_iterator.html", "classflow_1_1_counted_value_view_iterator" ],
       [ "DebugClass", "classflow_1_1_debug_class.html", "classflow_1_1_debug_class" ],
       [ "DefaultMemoryResource", "classflow_1_1_default_memory_resource.html", "classflow_1_1_default_memory_resource" ],
+      [ "IntegralIterator", "classflow_1_1_integral_iterator.html", "classflow_1_1_integral_iterator" ],
       [ "MemoryResource", "classflow_1_1_memory_resource.html", "classflow_1_1_memory_resource" ],
       [ "MultiQueueThreadPool", "classflow_1_1_multi_queue_thread_pool.html", "classflow_1_1_multi_queue_thread_pool" ],
       [ "PolymorphicAllocator", "classflow_1_1_polymorphic_allocator.html", "classflow_1_1_polymorphic_allocator" ],

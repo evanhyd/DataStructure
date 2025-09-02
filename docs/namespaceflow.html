@@ -108,6 +108,8 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Debug class to track copy/move operations. Some operations may be optimized away in release builds.  <a href="classflow_1_1_debug_class.html#details">More...</a><br /></td></tr>
 <tr class="memitem:DefaultMemoryResource" id="r_DefaultMemoryResource"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classflow_1_1_default_memory_resource.html">DefaultMemoryResource</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A default memory resource that wraps global ::operator new and ::operator delete.  <a href="classflow_1_1_default_memory_resource.html#details">More...</a><br /></td></tr>
+<tr class="memitem:IntegralIterator" id="r_IntegralIterator"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classflow_1_1_integral_iterator.html">IntegralIterator</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An iterator that can iterate through a range of integer. Useful when the search space is too big to fit into a container.  <a href="classflow_1_1_integral_iterator.html#details">More...</a><br /></td></tr>
 <tr class="memitem:MemoryResource" id="r_MemoryResource"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classflow_1_1_memory_resource.html">MemoryResource</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A memory resource holder interface for the <a class="el" href="classflow_1_1_polymorphic_allocator.html" title="Polymorphic allocator wrapping a non-owning memory resource. Allocation strategy depends on the memor...">PolymorphicAllocator</a>. Responsible for allocate and deallocate raw memory.  <a href="classflow_1_1_memory_resource.html#details">More...</a><br /></td></tr>
 <tr class="memitem:MultiQueueThreadPool" id="r_MultiQueueThreadPool"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classflow_1_1_multi_queue_thread_pool.html">MultiQueueThreadPool</a></td></tr>
@@ -138,6 +140,12 @@ Concepts</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a66db7e81436bb94ac54e68f4f13be960" id="r_a66db7e81436bb94ac54e68f4f13be960"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66db7e81436bb94ac54e68f4f13be960">enableMemoryGuard</a> ()</td></tr>
 <tr class="memdesc:a66db7e81436bb94ac54e68f4f13be960"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable MSVC native memory leak checker in debug mode. Not compatible with address sanitizer.  <br /></td></tr>
+<tr class="memitem:a1321b7fd6e2e4def40eaf4c6eae0db43" id="r_a1321b7fd6e2e4def40eaf4c6eae0db43"><td class="memTemplParams" colspan="2">template&lt;std::integral T&gt; </td></tr>
+<tr class="memitem:a1321b7fd6e2e4def40eaf4c6eae0db43 template"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classflow_1_1_integral_iterator.html">IntegralIterator</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1321b7fd6e2e4def40eaf4c6eae0db43">operator+</a> (<a class="el" href="classflow_1_1_integral_iterator.html">IntegralIterator</a>&lt; T &gt; it, typename <a class="el" href="classflow_1_1_integral_iterator.html">IntegralIterator</a>&lt; T &gt;::difference_type n) noexcept</td></tr>
+<tr class="memitem:a4845f9cb5028da4c0a900e7c425e25b9" id="r_a4845f9cb5028da4c0a900e7c425e25b9"><td class="memTemplParams" colspan="2">template&lt;std::integral T&gt; </td></tr>
+<tr class="memitem:a4845f9cb5028da4c0a900e7c425e25b9 template"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classflow_1_1_integral_iterator.html">IntegralIterator</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4845f9cb5028da4c0a900e7c425e25b9">operator+</a> (typename <a class="el" href="classflow_1_1_integral_iterator.html">IntegralIterator</a>&lt; T &gt;::difference_type n, <a class="el" href="classflow_1_1_integral_iterator.html">IntegralIterator</a>&lt; T &gt; it) noexcept</td></tr>
+<tr class="memitem:afb1e966ec2c12a1de9b93dfadcce6535" id="r_afb1e966ec2c12a1de9b93dfadcce6535"><td class="memTemplParams" colspan="2">template&lt;std::integral T&gt; </td></tr>
+<tr class="memitem:afb1e966ec2c12a1de9b93dfadcce6535 template"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classflow_1_1_integral_iterator.html">IntegralIterator</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afb1e966ec2c12a1de9b93dfadcce6535">operator-</a> (<a class="el" href="classflow_1_1_integral_iterator.html">IntegralIterator</a>&lt; T &gt; it, typename <a class="el" href="classflow_1_1_integral_iterator.html">IntegralIterator</a>&lt; T &gt;::difference_type n) noexcept</td></tr>
 <tr class="memitem:a7cbf79d9d81ea0bf923173bf94d18282" id="r_a7cbf79d9d81ea0bf923173bf94d18282"><td class="memTemplParams" colspan="2">template&lt;typename AllocatorType, std::input_iterator InputIt, std::forward_iterator OutputIt&gt; </td></tr>
 <tr class="memitem:a7cbf79d9d81ea0bf923173bf94d18282 template"><td class="memItemLeft" align="right" valign="top">OutputIt&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7cbf79d9d81ea0bf923173bf94d18282">uninitializedForward</a> (AllocatorType &amp;allocator, InputIt first, InputIt last, OutputIt dest)</td></tr>
 <tr class="memdesc:a7cbf79d9d81ea0bf923173bf94d18282"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forward elements from a source range to uninitialized memory.  <br /></td></tr>
@@ -523,6 +531,116 @@ requires std::integral&lt;T&gt; || std::floating_point&lt;T&gt;</div>
 <div class="line"><span class="lineno">   20</span>      <span class="keywordflow">return</span> std::uniform_real_distribution&lt;T&gt;(lower, upper)(engine);</div>
 <div class="line"><span class="lineno">   21</span>    }</div>
 <div class="line"><span class="lineno">   22</span>  }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a1321b7fd6e2e4def40eaf4c6eae0db43" name="a1321b7fd6e2e4def40eaf4c6eae0db43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1321b7fd6e2e4def40eaf4c6eae0db43">&#9670;&#160;</a></span>operator+() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;std::integral T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classflow_1_1_integral_iterator.html">IntegralIterator</a>&lt; T &gt; flow::operator+ </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classflow_1_1_integral_iterator.html">IntegralIterator</a>&lt; T &gt;</td>          <td class="paramname"><span class="paramname"><em>it</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename <a class="el" href="classflow_1_1_integral_iterator.html">IntegralIterator</a>&lt; T &gt;::difference_type</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="flow__integral__iterator_8h_source.html#l00075">75</a> of file <a class="el" href="flow__integral__iterator_8h_source.html">flow_integral_iterator.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   76</span>                                                                                                  {</div>
+<div class="line"><span class="lineno">   77</span>    it += n;</div>
+<div class="line"><span class="lineno">   78</span>    <span class="keywordflow">return</span> it;</div>
+<div class="line"><span class="lineno">   79</span>  }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a4845f9cb5028da4c0a900e7c425e25b9" name="a4845f9cb5028da4c0a900e7c425e25b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4845f9cb5028da4c0a900e7c425e25b9">&#9670;&#160;</a></span>operator+() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;std::integral T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classflow_1_1_integral_iterator.html">IntegralIterator</a>&lt; T &gt; flow::operator+ </td>
+          <td>(</td>
+          <td class="paramtype">typename <a class="el" href="classflow_1_1_integral_iterator.html">IntegralIterator</a>&lt; T &gt;::difference_type</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classflow_1_1_integral_iterator.html">IntegralIterator</a>&lt; T &gt;</td>          <td class="paramname"><span class="paramname"><em>it</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="flow__integral__iterator_8h_source.html#l00082">82</a> of file <a class="el" href="flow__integral__iterator_8h_source.html">flow_integral_iterator.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   83</span>                                                                           {</div>
+<div class="line"><span class="lineno">   84</span>    <span class="keywordflow">return</span> it + n;</div>
+<div class="line"><span class="lineno">   85</span>  }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="afb1e966ec2c12a1de9b93dfadcce6535" name="afb1e966ec2c12a1de9b93dfadcce6535"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb1e966ec2c12a1de9b93dfadcce6535">&#9670;&#160;</a></span>operator-()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;std::integral T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classflow_1_1_integral_iterator.html">IntegralIterator</a>&lt; T &gt; flow::operator- </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classflow_1_1_integral_iterator.html">IntegralIterator</a>&lt; T &gt;</td>          <td class="paramname"><span class="paramname"><em>it</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename <a class="el" href="classflow_1_1_integral_iterator.html">IntegralIterator</a>&lt; T &gt;::difference_type</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="flow__integral__iterator_8h_source.html#l00088">88</a> of file <a class="el" href="flow__integral__iterator_8h_source.html">flow_integral_iterator.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   89</span>                                                                                                  {</div>
+<div class="line"><span class="lineno">   90</span>    it -= n;</div>
+<div class="line"><span class="lineno">   91</span>    <span class="keywordflow">return</span> it;</div>
+<div class="line"><span class="lineno">   92</span>  }</div>
 </div><!-- fragment -->
 </div>
 </div>

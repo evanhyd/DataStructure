@@ -10,6 +10,7 @@ var hierarchy =
     [ "flow::VectorGrowthStrategy::GoldenExpand", "structflow_1_1_vector_growth_strategy_1_1_golden_expand.html", null ],
     [ "flow::PoolMemoryResource::Header", "structflow_1_1_pool_memory_resource_1_1_header.html", null ],
     [ "flow::StackMemoryResource::Header", "structflow_1_1_stack_memory_resource_1_1_header.html", null ],
+    [ "flow::IntegralIterator< T >", "classflow_1_1_integral_iterator.html", null ],
     [ "flow::MemoryResource", "classflow_1_1_memory_resource.html", [
       [ "flow::ArenaMemoryResource", "classflow_1_1_arena_memory_resource.html", null ],
       [ "flow::DefaultMemoryResource", "classflow_1_1_default_memory_resource.html", null ],

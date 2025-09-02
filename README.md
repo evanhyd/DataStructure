@@ -52,4 +52,5 @@ Click Here >> [API documentation](https://evanhyd.github.io/DataStructure/) gene
 | &emsp; [`MultiQueueThreadPool`](https://evanhyd.github.io/DataStructure/classflow_1_1_multi_queue_thread_pool.html) | A work-stealing multiqueue threadpool. Each worker thread has a thread_local task queue and can steal from each other.
 | **Iterator**|
 | &emsp; [`CountedValueViewIterator`](https://evanhyd.github.io/DataStructure/classflow_1_1_counted_value_view_iterator.html) | Iterator that returns a constant value a fixed number of times. Useful for creating a virtual range of repeated values without overhead.
+| &emsp; [`IntegralIterator`](https://evanhyd.github.io/DataStructure/classflow_1_1_integral_iterator.html) | Iterator that iterates through a range of contiguous integers. Useful for creating a virtual range of contiguous values without overhead.
 ---
