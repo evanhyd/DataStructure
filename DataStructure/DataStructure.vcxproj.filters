@@ -133,5 +133,8 @@
     <ClInclude Include="flow_work_stealing_queue.h">
       <Filter>flow\concurrency\container</Filter>
     </ClInclude>
+    <ClInclude Include="flow_singly_linked_list.h">
+      <Filter>flow\container</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
