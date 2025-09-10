@@ -59,7 +59,8 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "classflow_1_1_integral_iterator.html#a6dddba52bf2e5ed9b64053b95ce47f92",
-"classflow_1_1_vector.html#aad83e0ac5232072e914bd75e4b116473"
+"classflow_1_1_vector.html#aad83e0ac5232072e914bd75e4b116473",
+"structflow_1_1_pop_back_3_01_non_type_list_3_01value_00_01values_8_8_8_01_4_01_4.html#aab5927c87c882cfd4bd5f8df9a13637e"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

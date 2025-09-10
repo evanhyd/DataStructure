@@ -393,7 +393,7 @@ template&lt;std::integral T&gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="flow__integral__iterator_8h_source.html#l00048">48</a> of file <a class="el" href="flow__integral__iterator_8h_source.html">flow_integral_iterator.h</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   48</span>                                                                       {</div>
-<div class="line"><span class="lineno">   49</span>      <a class="code hl_variable" href="#a09b039853428731fdee71624537ce97c">value_</a> += <a class="code hl_class" href="classflow_1_1_integral_iterator.html">n</a>;</div>
+<div class="line"><span class="lineno">   49</span>      <a class="code hl_variable" href="#a09b039853428731fdee71624537ce97c">value_</a> += <span class="keyword">static_cast&lt;</span><a class="code hl_class" href="classflow_1_1_integral_iterator.html">T</a><span class="keyword">&gt;</span>(<a class="code hl_class" href="classflow_1_1_integral_iterator.html">n</a>);</div>
 <div class="line"><span class="lineno">   50</span>      <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
 <div class="line"><span class="lineno">   51</span>    }</div>
 </div><!-- fragment -->
@@ -534,7 +534,7 @@ template&lt;std::integral T&gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="flow__integral__iterator_8h_source.html#l00053">53</a> of file <a class="el" href="flow__integral__iterator_8h_source.html">flow_integral_iterator.h</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   53</span>                                                                       {</div>
-<div class="line"><span class="lineno">   54</span>      <a class="code hl_variable" href="#a09b039853428731fdee71624537ce97c">value_</a> -= <a class="code hl_class" href="classflow_1_1_integral_iterator.html">n</a>;</div>
+<div class="line"><span class="lineno">   54</span>      <a class="code hl_variable" href="#a09b039853428731fdee71624537ce97c">value_</a> -= <span class="keyword">static_cast&lt;</span><a class="code hl_class" href="classflow_1_1_integral_iterator.html">T</a><span class="keyword">&gt;</span>(<a class="code hl_class" href="classflow_1_1_integral_iterator.html">n</a>);</div>
 <div class="line"><span class="lineno">   55</span>      <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
 <div class="line"><span class="lineno">   56</span>    }</div>
 </div><!-- fragment -->
@@ -598,8 +598,9 @@ template&lt;std::integral T&gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="flow__integral__iterator_8h_source.html#l00058">58</a> of file <a class="el" href="flow__integral__iterator_8h_source.html">flow_integral_iterator.h</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   58</span>                                                                     { </div>
-<div class="line"><span class="lineno">   59</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="#a09b039853428731fdee71624537ce97c">value_</a> + <a class="code hl_class" href="classflow_1_1_integral_iterator.html">n</a>; </div>
+<div class="line"><span class="lineno">   59</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="#a09b039853428731fdee71624537ce97c">value_</a> + <span class="keyword">static_cast&lt;</span><a class="code hl_typedef" href="#a8fe8a7ac28dccb627d58cd22066caf7b">reference</a><span class="keyword">&gt;</span>(<a class="code hl_class" href="classflow_1_1_integral_iterator.html">n</a>);</div>
 <div class="line"><span class="lineno">   60</span>    }</div>
+<div class="ttc" id="aclassflow_1_1_integral_iterator_html_a8fe8a7ac28dccb627d58cd22066caf7b"><div class="ttname"><a href="#a8fe8a7ac28dccb627d58cd22066caf7b">flow::IntegralIterator::reference</a></div><div class="ttdeci">T reference</div><div class="ttdef"><b>Definition</b> <a href="flow__integral__iterator_8h_source.html#l00016">flow_integral_iterator.h:16</a></div></div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="flow__integral__iterator_8h_source.html#l00011">value_</a>.</p>
 
