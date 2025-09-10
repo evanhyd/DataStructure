@@ -33,6 +33,7 @@ Click Here >> [API documentation](https://evanhyd.github.io/DataStructure/) gene
 | [`Vector`](https://evanhyd.github.io/DataStructure/classflow_1_1_vector.html) | A dynamic array container with customizable allocator and growth strategy. Uses `PolymorphicAllocator` by default. |
 | [`BinaryHeap`](https://evanhyd.github.io/DataStructure/classflow_1_1_binary_heap.html) | A binary min heap container with customizable allocator. Uses `PolymorphicAllocator` by default. |
 | [`Tuple`](https://evanhyd.github.io/DataStructure/classflow_1_1_tuple.html) | A fixed-size container for heterogeneous values, similar to `std::tuple`, implemented with recursive inheritance. |
+| [`NonTypeList`](https://evanhyd.github.io/DataStructure/structflow_1_1_non_type_list.html) | A compiled-time homogeneous value list. |
 | **Memory** |
 | [`PolymorphicAllocator`](https://evanhyd.github.io/DataStructure/classflow_1_1_polymorphic_allocator.html) | A polymorphic allocator that wraps around a non-owning memory resource. Memory allocation strategy is decided by the memory resource's implementation. |
 | [`DebugClass`](https://evanhyd.github.io/DataStructure/classflow_1_1_debug_class.html) | Debug class to track copy/move operations. Some operations may be optimized away in release builds. |
