@@ -1,7 +1,7 @@
 #pragma once
-#include <vector>
-#include <utility>
 #include <cassert>
+#include <utility>
+#include <vector>
 
 #ifdef _DEBUG
 #include <iostream>

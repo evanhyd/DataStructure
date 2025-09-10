@@ -63,5 +63,8 @@
     <ClCompile Include="flow_integral_iterator.t.cpp">
       <Filter>flow\iterator</Filter>
     </ClCompile>
+    <ClCompile Include="flow_non_type_list.t.cpp">
+      <Filter>flow\container</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

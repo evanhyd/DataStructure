@@ -46,17 +46,17 @@ namespace flow {
     }
 
     constexpr IntegralIterator& operator+=(difference_type n) noexcept {
-      value_ += n;
+      value_ += static_cast<T>(n);
       return *this;
     }
 
     constexpr IntegralIterator& operator-=(difference_type n) noexcept {
-      value_ -= n;
+      value_ -= static_cast<T>(n);
       return *this;
     }
 
     constexpr reference operator[](difference_type n) const noexcept { 
-      return value_ + n; 
+      return value_ + static_cast<reference>(n);
     }
 
     constexpr difference_type operator-(const IntegralIterator& rhs) const noexcept {

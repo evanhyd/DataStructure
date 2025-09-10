@@ -48,9 +48,6 @@
     <ClInclude Include="DisjointSet.h">
       <Filter>DataStructure</Filter>
     </ClInclude>
-    <ClInclude Include="PSDA.h">
-      <Filter>DataStructure</Filter>
-    </ClInclude>
     <ClInclude Include="RandomMeldableHeap.h">
       <Filter>DataStructure</Filter>
     </ClInclude>
@@ -129,6 +126,9 @@
     </ClInclude>
     <ClInclude Include="flow_integral_iterator.h">
       <Filter>flow\iterator</Filter>
+    </ClInclude>
+    <ClInclude Include="flow_non_type_list.h">
+      <Filter>flow\container</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
