@@ -270,6 +270,7 @@
     <ClInclude Include="flow_multi_queue_thread_pool.h" />
     <ClInclude Include="flow_pool_memory_resource.h" />
     <ClInclude Include="flow_random_algorithm.h" />
+    <ClInclude Include="flow_segment_tree.h" />
     <ClInclude Include="flow_stack_memory_resource.h" />
     <ClInclude Include="flow_timer.h" />
     <ClInclude Include="flow_work_stealing_queue.h" />
@@ -283,7 +284,6 @@
     <ClInclude Include="SparseTable.h" />
     <ClInclude Include="flow_thread_task.h" />
     <ClInclude Include="Trie.h" />
-    <ClInclude Include="flow_tuple.h" />
     <ClInclude Include="flow_vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

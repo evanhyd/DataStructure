@@ -28,6 +28,12 @@ namespace flow {
   /// @tparam value The new value.
   template <typename T, std::size_t index, auto value> struct Set;
 
+  /// @brief Splice out a list from the range [first, last).
+  /// @tparam T The NonTypeList type.
+  /// @tparam first The begin.
+  /// @tparam last The end.
+  template <typename T, std::size_t first, std::size_t last> struct Splice;
+
   // A compiled time homogeneous value list.
   template <auto... values>
   struct NonTypeList {
@@ -50,6 +56,11 @@ namespace flow {
     template <std::size_t index, type value>
     using set = Set<NonTypeList, index, value>::type;
 
+    template <std::size_t first, std::size_t last>
+    using splice = Splice<NonTypeList, first, last>::type;
+
+    /// @brief Return all the values in an array.
+    /// @return An array of template value.
     static constexpr std::array<type, sizeof...(values)> data() {
       return { values... };
     }
@@ -61,6 +72,8 @@ namespace flow {
 
   template <>
   struct NonTypeList<> {
+    using type = int;
+
     constexpr static std::size_t size = 0;
 
     template <auto value>
@@ -69,43 +82,52 @@ namespace flow {
     template <auto value>
     using prepend = Prepend<NonTypeList, value>::type;
 
-    template <std::size_t index, auto value>
+    template <std::size_t index, type value>
     using set = Set<NonTypeList, index, value>::type;
+
+    template <std::size_t first, std::size_t last>
+    using splice = Splice<NonTypeList, first, last>::type;
+
+    /// @brief Return all the values in an array.
+    /// @return An array of template value.
+    static constexpr std::array<type, 0> data() {
+      return {};
+    }
   };
 
   // NonTypeList type checking and concept.
   template <typename>
   struct IsNonTypeList : std::false_type {};
 
-  template <auto... values>
-  struct IsNonTypeList<NonTypeList<values...>> : std::true_type {};
+  template <auto... vs>
+  struct IsNonTypeList<NonTypeList<vs...>> : std::true_type {};
 
-  template <auto... values, auto value>
-  struct Append<NonTypeList<values...>, value> {
-    static_assert((std::is_same_v<decltype(value), decltype(values)> && ...), "value has a different type");
-    using type = NonTypeList<values..., value>;
+  template <auto... vs, auto v>
+  struct Append<NonTypeList<vs...>, v> {
+    static_assert((std::is_same_v<decltype(v), decltype(vs)> && ...), "value has a different type");
+    using type = NonTypeList<vs..., v>;
   };
 
-  template <auto... values, auto value>
-  struct Prepend<NonTypeList<values...>, value> {
-    static_assert((std::is_same_v<decltype(value), decltype(values)> && ...), "value has a different type");
-    using type = NonTypeList<value, values...>;
+  template <auto... vs, auto v>
+  struct Prepend<NonTypeList<vs...>, v> {
+    static_assert((std::is_same_v<decltype(v), decltype(vs)> && ...), "value has a different type");
+    using type = NonTypeList<v, vs...>;
   };
 
-  template <auto value, auto... values>
-  struct PopFront<NonTypeList<value, values...>> {
-    using type = NonTypeList<values...>;
+  template <auto v, auto... vs>
+  struct PopFront<NonTypeList<v, vs...>> {
+    using type = NonTypeList<vs...>;
   };
 
-  template <auto value, auto... values>
-  struct PopBack<NonTypeList<value, values...>> {
+  template <auto v, auto... vs>
+  struct PopBack<NonTypeList<v, vs...>> {
     using type = Prepend<
-      typename PopBack<NonTypeList<values...>>::type,
-      value>::type;
+      typename PopBack<NonTypeList<vs...>>::type,
+      v>::type;
   };
 
-  template <auto value>
-  struct PopBack<NonTypeList<value>> {
+  template <auto v>
+  struct PopBack<NonTypeList<v>> {
     using type = NonTypeList<>;
   };
 
@@ -120,5 +142,23 @@ namespace flow {
   requires (index == 0)
   struct Set<NonTypeList<v, vs...>, index, sv> {
     using type = NonTypeList<sv, vs...>;
+  };
+
+  template <auto v, auto... vs, std::size_t first, std::size_t last>
+    requires (first < last && first > 0)
+  struct Splice<NonTypeList<v, vs...>, first, last> {
+    using type = Splice<NonTypeList<vs...>, first - 1, last - 1>::type;
+  };
+
+  template <auto v, auto... vs, std::size_t first, std::size_t last>
+    requires (first < last && first == 0)
+  struct Splice<NonTypeList<v, vs...>, first, last> {
+    using type = Prepend<typename Splice<NonTypeList<vs...>, first, last - 1>::type, v>::type;
+  };
+
+  template <auto... vs, std::size_t first, std::size_t last>
+    requires (first == last)
+  struct Splice<NonTypeList<vs...>, first, last> {
+    using type = NonTypeList<>;
   };
 }

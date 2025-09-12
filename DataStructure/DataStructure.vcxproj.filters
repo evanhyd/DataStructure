@@ -100,9 +100,6 @@
     <ClInclude Include="flow_vector.h">
       <Filter>flow\container</Filter>
     </ClInclude>
-    <ClInclude Include="flow_tuple.h">
-      <Filter>flow\container</Filter>
-    </ClInclude>
     <ClInclude Include="flow_binary_heap.h">
       <Filter>flow\container</Filter>
     </ClInclude>
@@ -128,6 +125,9 @@
       <Filter>flow\iterator</Filter>
     </ClInclude>
     <ClInclude Include="flow_non_type_list.h">
+      <Filter>flow\container</Filter>
+    </ClInclude>
+    <ClInclude Include="flow_segment_tree.h">
       <Filter>flow\container</Filter>
     </ClInclude>
   </ItemGroup>

@@ -66,24 +66,22 @@ namespace flow {
     }
 
     /// @brief Iterator range constructor.
-    /// Comparator must be default initializable.
-    /// @param first Iterator to first element.
-    /// @param last Iterator to one-past-last element.
-    /// @param alloc Allocator.
-    template <std::input_iterator It>
-    constexpr BinaryHeap(It first, It last, const allocator_type& allocator = {})
-      : data_(first, last, allocator), comparator_() {
-      heapify();
-    }
-
-    /// @brief Iterator range constructor.
     /// @param first Iterator to first element.
     /// @param last Iterator to one-past-last element.
     /// @param comp Comparator.
     /// @param alloc Allocator.
     template <std::input_iterator It>
-    constexpr BinaryHeap(It first, It last, Compare comparator, const allocator_type& allocator = {})
+    explicit constexpr BinaryHeap(It first, It last, Compare comparator = {}, const allocator_type& allocator = {})
       : data_(first, last, allocator), comparator_(std::move(comparator)) {
+      heapify();
+    }
+
+    /// @brief Initializer list range constructor.
+    /// @param list Initializer list.
+    /// @param comp Comparator.
+    /// @param alloc Allocator.
+    explicit constexpr BinaryHeap(std::initializer_list<T> list, Compare comparator = {}, const allocator_type& allocator = {})
+      : data_(list, allocator), comparator_(std::move(comparator)) {
       heapify();
     }
 

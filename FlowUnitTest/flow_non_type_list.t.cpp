@@ -92,4 +92,73 @@ namespace flow {
     static_assert(L::get(2) == 30);
   }
 
+  // ---------------------- Splice --------------------------
+  TEST(NonTypeListTest, SpliceEmptyList) {
+    using L = NonTypeList<>;
+    using R = L::splice<0, 0>;
+    static_assert(std::is_same_v<R, NonTypeList<>>);
+    static_assert(R::size == 0);
+  }
+
+  TEST(NonTypeListTest, SpliceSingleElement) {
+    using L = NonTypeList<5>;
+    using R1 = L::splice<0, 0>; // empty
+    using R2 = L::splice<0, 1>; // full element
+
+    static_assert(std::is_same_v<R1, NonTypeList<>>);
+    static_assert(std::is_same_v<R2, NonTypeList<5>>);
+    static_assert(R1::size == 0);
+    static_assert(R2::size == 1);
+    static_assert(R2::data()[0] == 5);
+  }
+
+  TEST(NonTypeListTest, SpliceFromBeginning) {
+    using L = NonTypeList<1, 2, 3, 4>;
+    using R = L::splice<0, 2>; // [1,2]
+
+    static_assert(std::is_same_v<R, NonTypeList<1, 2>>);
+    static_assert(R::size == 2);
+    static_assert(R::data()[0] == 1);
+    static_assert(R::data()[1] == 2);
+  }
+
+  TEST(NonTypeListTest, SpliceFromMiddle) {
+    using L = NonTypeList<1, 2, 3, 4, 5>;
+    using R = L::splice<1, 4>; // [2,3,4]
+
+    static_assert(std::is_same_v<R, NonTypeList<2, 3, 4>>);
+    static_assert(R::size == 3);
+    static_assert(R::data()[0] == 2);
+    static_assert(R::data()[1] == 3);
+    static_assert(R::data()[2] == 4);
+  }
+
+  TEST(NonTypeListTest, SpliceUntilEnd) {
+    using L = NonTypeList<10, 20, 30, 40>;
+    using R = L::splice<2, 4>; // [30,40]
+
+    static_assert(std::is_same_v<R, NonTypeList<30, 40>>);
+    static_assert(R::size == 2);
+    static_assert(R::data()[0] == 30);
+    static_assert(R::data()[1] == 40);
+  }
+
+  TEST(NonTypeListTest, SpliceFirstEqualsLastEmpty) {
+    using L = NonTypeList<7, 8, 9>;
+    using R = L::splice<2, 2>; // empty
+
+    static_assert(std::is_same_v<R, NonTypeList<>>);
+    static_assert(R::size == 0);
+  }
+
+  TEST(NonTypeListTest, SpliceFullSplice) {
+    using L = NonTypeList<-1, -2, -3>;
+    using R = L::splice<0, 3>;
+
+    static_assert(std::is_same_v<R, NonTypeList<-1, -2, -3>>);
+    static_assert(R::size == 3);
+    static_assert(R::data()[0] == -1);
+    static_assert(R::data()[1] == -2);
+    static_assert(R::data()[2] == -3);
+  }
 }

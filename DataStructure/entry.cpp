@@ -255,12 +255,16 @@ const auto __ = std::atexit([]() { std::ofstream("display_runtime.txt") << INT_M
 using namespace std;
 
 #include "flow_non_type_list.h"
+#include <ranges>
 
 int main() {
   using namespace flow;
+  vector<int> v1 = { 1, 2, 3, 4, 5, 6 };
+  auto v2 = v1 | views::transform([](int a) {return to_string(a) + "hello"; });
 
-  using t1 = NonTypeList<>;
-  using t2 = t1::append<1.2>;
+  for (const auto& v : v2) {
+    cout << v << '\n';
+  }
 }
 
 /*
