@@ -39,17 +39,20 @@ namespace flow {
     /// @param binOp Binary operator.
     /// @param alloc Allocator.
     template <std::input_iterator It>
-    explicit constexpr SegmentTree(It first, It last, BinOp binOp, const allocator_type& allocator = {})
-      : data_(first, last, allocator), binOp_(std::move(binOp)) {
-
+    explicit constexpr SegmentTree(It first, It last, BinOp binOp = {}, const allocator_type& allocator = {})
+      : data_(std::distance(first, last) * 2, allocator), binOp_(std::move(binOp)) {
+      std::copy(first, last, data_.begin() + size());
+      buildParent();
     }
 
     /// @brief Initializer list constructor.
     /// @param list Initializer list.
     /// @param binOp Binary operator.
     /// @param alloc Allocator.
-    explicit constexpr SegmentTree(std::initializer_list<T> list, BinOp binOp, const allocator_type& allocator = {})
-      : data_(list, allocator), binOp_(std::move(binOp)) {
+    explicit constexpr SegmentTree(std::initializer_list<T> list, BinOp binOp = {}, const allocator_type& allocator = {})
+      : data_(list.size() * 2, allocator), binOp_(std::move(binOp)) {
+      std::copy(list.begin(), list.end(), data_.begin() + size());
+      buildParent();
     }
 
     ~SegmentTree() = default;
@@ -59,17 +62,99 @@ namespace flow {
       return data_.get_allocator();
     }
 
+    // Accessor.
+
+    /// @brief Return the number of input elements. This only counts the leaf node from the input.
+    /// @return The number of elements.
+    std::size_t size() const {
+      return data_.size() / 2;
+    }
+
+    /// @brief Set the new value at index i, then update the tree structure.
+    /// @param i The index.
+    /// @param value New value.
+    void setPoint(std::size_t i, const T& value) {
+      i += size();
+      data_[i] = value;
+      while (hasParent(i)) {
+        std::size_t parent = getParent(i);
+        std::size_t sibling = getSibling(i);
+        data_[parent] = binOp_(data_[i], data_[sibling]);
+        i = parent;
+      }
+    }
+
+    /// @brief Query the value from [first, last) after applying the binary operator adjacent-pair wise.
+    /// The range must not be empty, otherwise the result is undefined.
+    /// @param first The begin index.
+    /// @param last The end index.
+    /// @return The range value.
+    T getRange(std::size_t first, std::size_t last) const {
+      assert(first < last && "first must be smaller than last");
+      std::size_t elementSize = size();
+      first += elementSize;
+      last += elementSize;
+
+      std::optional<T> result{};
+
+      for (; first < last;) {
+        if (isRightChild(first)) {
+          if (!result) {
+            result = data_[first];
+          } else {
+            *result = binOp_(*result, data_[first]);
+          }
+          ++first;
+        }
+
+        if (isRightChild(last)) {
+          --last;
+          if (!result) {
+            result = data_[last];
+          } else {
+            *result = binOp_(*result, data_[last]);
+          }
+        }
+
+        first = getParent(first);
+        last = getParent(last);
+      }
+
+      return *result;
+    }
+
+  private:
+    void buildParent() {
+      for (std::size_t i = size(); i-- > 1;) {
+        std::size_t left = getLeftChild(i);
+        std::size_t right = left + 1;
+        data_[i] = binOp_(data_[left], data_[right]);
+      }
+    }
+
     static constexpr bool hasParent(std::size_t i) noexcept {
-      return i > 0;
+      return i > 1;
     }
 
     static constexpr std::size_t getParent(std::size_t i) noexcept {
-      assert(i > 0 && "calling parent on the root node");
-      return (i - 1) / 2;
+      assert(hasParent(i) && "calling parent on the root node");
+      return i / 2;
     }
 
     static constexpr std::size_t getLeftChild(std::size_t i) noexcept {
-      return i * 2 + 1;
+      return i * 2;
+    }
+
+    static constexpr std::size_t getSibling(std::size_t i) noexcept {
+      return i ^ 1;
+    }
+
+    static constexpr bool isLeftChild(std::size_t i) noexcept {
+      return (i % 2) == 0;
+    }
+
+    static constexpr bool isRightChild(std::size_t i) noexcept {
+      return !isLeftChild(i);
     }
   };
 }

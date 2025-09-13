@@ -254,17 +254,15 @@ const auto __ = std::atexit([]() { std::ofstream("display_runtime.txt") << INT_M
 
 using namespace std;
 
-#include "flow_non_type_list.h"
-#include <ranges>
+//#include "SegmentTree.h"
+#include "flow_segment_tree.h"
+
 
 int main() {
-  using namespace flow;
-  vector<int> v1 = { 1, 2, 3, 4, 5, 6 };
-  auto v2 = v1 | views::transform([](int a) {return to_string(a) + "hello"; });
+  const auto binOp = [](int a, int b) {return a + b; };
 
-  for (const auto& v : v2) {
-    cout << v << '\n';
-  }
+  flow::SegmentTree<int, decltype(binOp)> tree({ 1, 1, 1, 1 });
+  cout << tree.getRange(1, 2) << '\n';
 }
 
 /*
