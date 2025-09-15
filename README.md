@@ -31,7 +31,8 @@ Click Here >> [API documentation](https://evanhyd.github.io/DataStructure/) gene
 | **Container** |
 | [`Vector`](https://evanhyd.github.io/DataStructure/classflow_1_1_vector.html) | A dynamic array container with customizable allocator and growth strategy. Uses `PolymorphicAllocator` by default. |
 | [`BinaryHeap`](https://evanhyd.github.io/DataStructure/classflow_1_1_binary_heap.html) | A binary min heap container with customizable allocator. Uses `PolymorphicAllocator` by default. |
-| [`SegmentTree`](https://evanhyd.github.io/DataStructure/classflow_1_1_segment_tree.html) | A segment tree that supports logarithmic point update and range query. |
+| [`SegmentTree`](https://evanhyd.github.io/DataStructure/classflow_1_1_disjoint_set.html) | A disjoint set with path compresssion and union by rank optimization. |
+| [`DisjointSet`](https://evanhyd.github.io/DataStructure/classflow_1_1_segment_tree.html) | A segment tree that supports logarithmic point update and range query. |
 | [`NonTypeList`](https://evanhyd.github.io/DataStructure/structflow_1_1_non_type_list.html) | A compiled-time homogeneous value list. |
 | **Memory** |
 | [`PolymorphicAllocator`](https://evanhyd.github.io/DataStructure/classflow_1_1_polymorphic_allocator.html) | A polymorphic allocator that wraps around a non-owning memory resource. Memory allocation strategy is decided by the memory resource's implementation. |
