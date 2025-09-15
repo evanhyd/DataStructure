@@ -263,6 +263,7 @@
     <ClInclude Include="flow_debug_memory.h" />
     <ClInclude Include="flow_default_memory_resource.h" />
     <ClInclude Include="DisjointSet.h" />
+    <ClInclude Include="flow_disjoint_set.h" />
     <ClInclude Include="flow_integral_iterator.h" />
     <ClInclude Include="flow_memory_algorithm.h" />
     <ClInclude Include="flow_arena_memory_resource.h" />

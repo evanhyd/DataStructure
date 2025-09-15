@@ -9,6 +9,7 @@ var namespaceflow =
     [ "CountedValueViewIterator", "classflow_1_1_counted_value_view_iterator.html", "classflow_1_1_counted_value_view_iterator" ],
     [ "DebugClass", "classflow_1_1_debug_class.html", "classflow_1_1_debug_class" ],
     [ "DefaultMemoryResource", "classflow_1_1_default_memory_resource.html", "classflow_1_1_default_memory_resource" ],
+    [ "DisjointSet", "classflow_1_1_disjoint_set.html", "classflow_1_1_disjoint_set" ],
     [ "IntegralIterator", "classflow_1_1_integral_iterator.html", "classflow_1_1_integral_iterator" ],
     [ "IsNonTypeList", "structflow_1_1_is_non_type_list.html", null ],
     [ "IsNonTypeList< NonTypeList< vs... > >", "structflow_1_1_is_non_type_list_3_01_non_type_list_3_01vs_8_8_8_01_4_01_4.html", null ],

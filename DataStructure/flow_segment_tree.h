@@ -21,14 +21,24 @@ namespace flow {
     using iterator = T*;
     using const_iterator = const T*;
     using difference_type = std::ptrdiff_t;
-    using allocator_type = std::allocator_traits<Allocator>::template rebind_alloc<T>;
+    using container_type = Vector<T, Allocator>;
+    using allocator_type = container_type::allocator_type;
 
   private:
-    using container_type = Vector<T, Allocator>;
     container_type data_;
     BinOp binOp_;
 
   public:
+    constexpr SegmentTree()
+      noexcept(noexcept(container_type()) && noexcept(BinOp()))
+      : data_(), binOp_() {
+    }
+
+    explicit constexpr SegmentTree(const allocator_type& allocator)
+      noexcept(noexcept(container_type(allocator)) && noexcept(BinOp()))
+      : data_(allocator), binOp_(){
+    }
+
     constexpr SegmentTree(const SegmentTree&) = default;
     constexpr SegmentTree(const SegmentTree& rhs, const allocator_type& allocator)
       : data_(rhs.data_, allocator), binOp_(rhs.binOp_) {
@@ -57,9 +67,7 @@ namespace flow {
     /// @param binOp Binary operator.
     /// @param alloc Allocator.
     explicit constexpr SegmentTree(std::initializer_list<T> list, BinOp binOp = {}, const allocator_type& allocator = {})
-      : data_(list.size() * 2, allocator), binOp_(std::move(binOp)) {
-      std::copy(list.begin(), list.end(), data_.begin() + size());
-      buildParent();
+      : SegmentTree(list.begin(), list.end(), std::move(binOp), allocator) {
     }
 
     ~SegmentTree() = default;
@@ -73,20 +81,20 @@ namespace flow {
 
     /// @brief Return the number of input elements. This only counts the leaf node from the input.
     /// @return The number of elements.
-    std::size_t size() const {
+    constexpr std::size_t size() const {
       return data_.size() / 2;
     }
 
     /// @brief Check if the segmeent tree is empty.
     /// @return true if the segment tree is empty.
-    bool empty() const {
-      return data_.size() == 0;
+    constexpr bool empty() const {
+      return data_.empty();
     }
 
     /// @brief Set the new value at index i, then update the tree structure.
     /// @param i The index.
     /// @param value New value.
-    void setPoint(std::size_t i, const T& value) {
+    constexpr void setPoint(std::size_t i, const T& value) {
       i += size();
       data_[i] = value;
       while (hasParent(i)) {
@@ -102,7 +110,7 @@ namespace flow {
     /// @param first The begin index.
     /// @param last The end index.
     /// @return The range value or std::nullopt.
-    std::optional<T> getRange(std::size_t first, std::size_t last) const {
+    constexpr std::optional<T> getRange(std::size_t first, std::size_t last) const {
       assert(first <= last && "invalid range");
       std::size_t elementSize = size();
       first += elementSize;
@@ -136,7 +144,7 @@ namespace flow {
     }
 
   private:
-    void buildParent() {
+    constexpr void buildParent() {
       for (std::size_t i = size(); i-- > 1;) {
         std::size_t left = getLeftChild(i);
         std::size_t right = left + 1;

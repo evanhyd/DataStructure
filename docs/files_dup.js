@@ -7,6 +7,7 @@ var files_dup =
     [ "flow_counted_value_view_iterator.h", "flow__counted__value__view__iterator_8h.html", "flow__counted__value__view__iterator_8h" ],
     [ "flow_debug_memory.h", "flow__debug__memory_8h.html", "flow__debug__memory_8h" ],
     [ "flow_default_memory_resource.h", "flow__default__memory__resource_8h.html", "flow__default__memory__resource_8h" ],
+    [ "flow_disjoint_set.h", "flow__disjoint__set_8h.html", "flow__disjoint__set_8h" ],
     [ "flow_integral_iterator.h", "flow__integral__iterator_8h.html", "flow__integral__iterator_8h" ],
     [ "flow_memory_algorithm.h", "flow__memory__algorithm_8h.html", "flow__memory__algorithm_8h" ],
     [ "flow_memory_resource.h", "flow__memory__resource_8h.html", "flow__memory__resource_8h" ],

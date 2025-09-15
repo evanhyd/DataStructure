@@ -7,6 +7,7 @@ var hierarchy =
     [ "flow::ConcurrentQueue< T, Container >", "classflow_1_1_concurrent_queue.html", null ],
     [ "flow::CountedValueViewIterator< T >", "classflow_1_1_counted_value_view_iterator.html", null ],
     [ "flow::DebugClass", "classflow_1_1_debug_class.html", null ],
+    [ "flow::DisjointSet< T, Allocator >", "classflow_1_1_disjoint_set.html", null ],
     [ "flow::VectorGrowthStrategy::DoubleExpand", "structflow_1_1_vector_growth_strategy_1_1_double_expand.html", null ],
     [ "std::false_type", null, [
       [ "flow::IsNonTypeList< NonTypeList< vs... > >", "structflow_1_1_is_non_type_list_3_01_non_type_list_3_01vs_8_8_8_01_4_01_4.html", null ],
@@ -25,6 +26,7 @@ var hierarchy =
     ] ],
     [ "flow::MultiQueueThreadPool< ThreadSafeQueue, LocalQueue >", "classflow_1_1_multi_queue_thread_pool.html", null ],
     [ "flow::ConcurrentFlexQueue< T >::Node", "structflow_1_1_concurrent_flex_queue_1_1_node.html", null ],
+    [ "flow::DisjointSet< T, Allocator >::Node", "structflow_1_1_disjoint_set_1_1_node.html", null ],
     [ "flow::NonTypeList< values >", "structflow_1_1_non_type_list.html", null ],
     [ "flow::PolymorphicAllocator< T >", "classflow_1_1_polymorphic_allocator.html", null ],
     [ "flow::PopBack< T >", "structflow_1_1_pop_back.html", null ],

@@ -296,6 +296,7 @@ namespace flow {
     void pushBack(const T& value) {
       // https://stackoverflow.com/questions/10890653/why-would-i-ever-use-push-back-instead-of-emplace-back
       // TLDR: Consider emplace back an address when constructing unique_ptr.
+      // pushBack disallows implicit constructor call.
       emplaceBack(value);
     }
 

@@ -21,10 +21,10 @@ namespace flow {
     using iterator = T*;
     using const_iterator = const T*;
     using difference_type = std::ptrdiff_t;
-    using allocator_type = std::allocator_traits<Allocator>::template rebind_alloc<T>;
+    using container_type = Vector<T, Allocator>;
+    using allocator_type = container_type::allocator_type;
 
   private:
-    using container_type = Vector<T, Allocator>;
     container_type data_;
     Compare comparator_;
 
@@ -81,8 +81,7 @@ namespace flow {
     /// @param comp Comparator.
     /// @param alloc Allocator.
     explicit constexpr BinaryHeap(std::initializer_list<T> list, Compare comparator = {}, const allocator_type& allocator = {})
-      : data_(list, allocator), comparator_(std::move(comparator)) {
-      heapify();
+      : BinaryHeap(list.begin(), list.end(), std::move(comparator), allocator) {
     }
 
     ~BinaryHeap() = default;

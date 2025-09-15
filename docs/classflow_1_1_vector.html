@@ -693,7 +693,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;, Growt
 <div class="line"><span class="lineno">  125</span>        <a class="code hl_friend" href="#acc30803f60627ed546fa47629ef134c1">swap</a>(*<span class="keyword">this</span>, <a class="code hl_class" href="classflow_1_1_vector.html">rhsCopy</a>);</div>
 <div class="line"><span class="lineno">  126</span>      }</div>
 <div class="line"><span class="lineno">  127</span>    }</div>
-<div class="ttc" id="aclassflow_1_1_vector_html_acc30803f60627ed546fa47629ef134c1"><div class="ttname"><a href="#acc30803f60627ed546fa47629ef134c1">flow::Vector::swap</a></div><div class="ttdeci">friend void swap(Vector &amp;lhs, Vector &amp;rhs) noexcept</div><div class="ttdef"><b>Definition</b> <a href="flow__vector_8h_source.html#l00500">flow_vector.h:500</a></div></div>
+<div class="ttc" id="aclassflow_1_1_vector_html_acc30803f60627ed546fa47629ef134c1"><div class="ttname"><a href="#acc30803f60627ed546fa47629ef134c1">flow::Vector::swap</a></div><div class="ttdeci">friend void swap(Vector &amp;lhs, Vector &amp;rhs) noexcept</div><div class="ttdef"><b>Definition</b> <a href="flow__vector_8h_source.html#l00501">flow_vector.h:501</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1019,7 +1019,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;, Growt
 <div class="line"><span class="lineno">  257</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="#a597edff02196a283944224a5464c62a0">buffer_</a>[<a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a> - 1];</div>
 <div class="line"><span class="lineno">  258</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00354">flow::Vector&lt; T, Allocator &gt;::emplace()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00355">flow::Vector&lt; T, Allocator &gt;::emplace()</a>.</p>
 
 </div>
 </div>
@@ -1085,7 +1085,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;, Growt
 <div class="line"><span class="lineno">  206</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="#a597edff02196a283944224a5464c62a0">buffer_</a>;</div>
 <div class="line"><span class="lineno">  207</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00340">flow::Vector&lt; T, Allocator &gt;::erase()</a>, <a class="el" href="flow__vector_8h_source.html#l00329">flow::Vector&lt; T, Allocator &gt;::erase()</a>, <a class="el" href="flow__vector_8h_source.html#l00406">flow::Vector&lt; T, Allocator &gt;::insert()</a>, <a class="el" href="flow__vector_8h_source.html#l00464">flow::Vector&lt; T, Allocator &gt;::relocateBuffer()</a>, <a class="el" href="flow__vector_8h_source.html#l00473">flow::Vector&lt; T, Allocator &gt;::relocateBufferWithHoles()</a>, and <a class="el" href="flow__vector_8h_source.html#l00097">flow::Vector&lt; T, Allocator &gt;::Vector()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00341">flow::Vector&lt; T, Allocator &gt;::erase()</a>, <a class="el" href="flow__vector_8h_source.html#l00330">flow::Vector&lt; T, Allocator &gt;::erase()</a>, <a class="el" href="flow__vector_8h_source.html#l00407">flow::Vector&lt; T, Allocator &gt;::insert()</a>, <a class="el" href="flow__vector_8h_source.html#l00465">flow::Vector&lt; T, Allocator &gt;::relocateBuffer()</a>, <a class="el" href="flow__vector_8h_source.html#l00474">flow::Vector&lt; T, Allocator &gt;::relocateBufferWithHoles()</a>, and <a class="el" href="flow__vector_8h_source.html#l00097">flow::Vector&lt; T, Allocator &gt;::Vector()</a>.</p>
 
 </div>
 </div>
@@ -1200,34 +1200,34 @@ template&lt;typename ... Args&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00354">354</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  354</span>                                               {</div>
-<div class="line"><span class="lineno">  355</span>      <span class="comment">// Special case: append at the end.</span></div>
-<div class="line"><span class="lineno">  356</span>      <span class="keywordflow">if</span> (<a class="code hl_class" href="classflow_1_1_vector.html">pos</a> == <a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>()) {</div>
-<div class="line"><span class="lineno">  357</span>        <a class="code hl_function" href="#a1246fe8e463045cd9acefd4ffed3bea2">emplaceBack</a>(<a class="code hl_class" href="classflow_1_1_vector.html">std::forward&lt;Args&gt;</a>(<a class="code hl_class" href="classflow_1_1_vector.html">args</a>)...);</div>
-<div class="line"><span class="lineno">  358</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  359</span>      }</div>
-<div class="line"><span class="lineno">  360</span> </div>
-<div class="line"><span class="lineno">  361</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a> &lt; <a class="code hl_variable" href="#ac2b41594b3b91f858c9c429ef98f4ae0">capacity_</a>) {</div>
-<div class="line"><span class="lineno">  362</span>        <span class="comment">// Enough capacity, right shift the elements.</span></div>
-<div class="line"><span class="lineno">  363</span>        <span class="comment">// Major optimization to use memcpy, copy_backward, or range move_backward instead of handroll loop. A 70% reduction in computation time.</span></div>
-<div class="line"><span class="lineno">  364</span>        <a class="code hl_class" href="classflow_1_1_vector.html">allocator_trait::construct</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>(), <a class="code hl_class" href="classflow_1_1_vector.html">std::move</a>(<a class="code hl_function" href="#ad02fbe2f355e1bea83186cbb97b53d69">back</a>()));</div>
-<div class="line"><span class="lineno">  365</span>        <a class="code hl_class" href="classflow_1_1_vector.html">std::move_backward</a>(<a class="code hl_class" href="classflow_1_1_vector.html">pos</a>, <a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>() - 1, <a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>());</div>
-<div class="line"><span class="lineno">  366</span>        *<a class="code hl_class" href="classflow_1_1_vector.html">pos</a> = <a class="code hl_class" href="classflow_1_1_vector.html">T</a>(<a class="code hl_class" href="classflow_1_1_vector.html">std::forward&lt;Args&gt;</a>(<a class="code hl_class" href="classflow_1_1_vector.html">args</a>)...);</div>
-<div class="line"><span class="lineno">  367</span> </div>
-<div class="line"><span class="lineno">  368</span>      } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  369</span>        <span class="comment">// Not enough capacity, relocate all to a new buffer.</span></div>
-<div class="line"><span class="lineno">  370</span>        <a class="code hl_class" href="classflow_1_1_vector.html">std::size_t</a> <a class="code hl_class" href="classflow_1_1_vector.html">index</a> = <a class="code hl_class" href="classflow_1_1_vector.html">pos</a> - <a class="code hl_variable" href="#a597edff02196a283944224a5464c62a0">buffer_</a>;</div>
-<div class="line"><span class="lineno">  371</span>        <a class="code hl_function" href="#a53fca75839ead5d5a63aa334effc2663">relocateBufferWithHoles</a>(<a class="code hl_variable" href="#a6194e8a003c84766b0e07ab59129fd60">growthStrategy_</a>(<a class="code hl_variable" href="#ac2b41594b3b91f858c9c429ef98f4ae0">capacity_</a>), <a class="code hl_class" href="classflow_1_1_vector.html">pos</a>, 1);</div>
-<div class="line"><span class="lineno">  372</span>        <a class="code hl_class" href="classflow_1_1_vector.html">allocator_trait::construct</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_variable" href="#a597edff02196a283944224a5464c62a0">buffer_</a> + <a class="code hl_class" href="classflow_1_1_vector.html">index</a>, <a class="code hl_class" href="classflow_1_1_vector.html">std::forward&lt;Args&gt;</a>(<a class="code hl_class" href="classflow_1_1_vector.html">args</a>)...);</div>
-<div class="line"><span class="lineno">  373</span>      }</div>
-<div class="line"><span class="lineno">  374</span>      ++<a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a>;</div>
-<div class="line"><span class="lineno">  375</span>    }</div>
-<div class="ttc" id="aclassflow_1_1_vector_html_a1246fe8e463045cd9acefd4ffed3bea2"><div class="ttname"><a href="#a1246fe8e463045cd9acefd4ffed3bea2">flow::Vector::emplaceBack</a></div><div class="ttdeci">void emplaceBack(Args &amp;&amp;... args)</div><div class="ttdoc">Constructs an element in-place at the end of the vector.</div><div class="ttdef"><b>Definition</b> <a href="flow__vector_8h_source.html#l00311">flow_vector.h:311</a></div></div>
-<div class="ttc" id="aclassflow_1_1_vector_html_a53fca75839ead5d5a63aa334effc2663"><div class="ttname"><a href="#a53fca75839ead5d5a63aa334effc2663">flow::Vector::relocateBufferWithHoles</a></div><div class="ttdeci">void relocateBufferWithHoles(std::size_t capacity, iterator pos, std::size_t holeSize)</div><div class="ttdef"><b>Definition</b> <a href="flow__vector_8h_source.html#l00473">flow_vector.h:473</a></div></div>
+<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00355">355</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  355</span>                                               {</div>
+<div class="line"><span class="lineno">  356</span>      <span class="comment">// Special case: append at the end.</span></div>
+<div class="line"><span class="lineno">  357</span>      <span class="keywordflow">if</span> (<a class="code hl_class" href="classflow_1_1_vector.html">pos</a> == <a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>()) {</div>
+<div class="line"><span class="lineno">  358</span>        <a class="code hl_function" href="#a1246fe8e463045cd9acefd4ffed3bea2">emplaceBack</a>(<a class="code hl_class" href="classflow_1_1_vector.html">std::forward&lt;Args&gt;</a>(<a class="code hl_class" href="classflow_1_1_vector.html">args</a>)...);</div>
+<div class="line"><span class="lineno">  359</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  360</span>      }</div>
+<div class="line"><span class="lineno">  361</span> </div>
+<div class="line"><span class="lineno">  362</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a> &lt; <a class="code hl_variable" href="#ac2b41594b3b91f858c9c429ef98f4ae0">capacity_</a>) {</div>
+<div class="line"><span class="lineno">  363</span>        <span class="comment">// Enough capacity, right shift the elements.</span></div>
+<div class="line"><span class="lineno">  364</span>        <span class="comment">// Major optimization to use memcpy, copy_backward, or range move_backward instead of handroll loop. A 70% reduction in computation time.</span></div>
+<div class="line"><span class="lineno">  365</span>        <a class="code hl_class" href="classflow_1_1_vector.html">allocator_trait::construct</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>(), <a class="code hl_class" href="classflow_1_1_vector.html">std::move</a>(<a class="code hl_function" href="#ad02fbe2f355e1bea83186cbb97b53d69">back</a>()));</div>
+<div class="line"><span class="lineno">  366</span>        <a class="code hl_class" href="classflow_1_1_vector.html">std::move_backward</a>(<a class="code hl_class" href="classflow_1_1_vector.html">pos</a>, <a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>() - 1, <a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>());</div>
+<div class="line"><span class="lineno">  367</span>        *<a class="code hl_class" href="classflow_1_1_vector.html">pos</a> = <a class="code hl_class" href="classflow_1_1_vector.html">T</a>(<a class="code hl_class" href="classflow_1_1_vector.html">std::forward&lt;Args&gt;</a>(<a class="code hl_class" href="classflow_1_1_vector.html">args</a>)...);</div>
+<div class="line"><span class="lineno">  368</span> </div>
+<div class="line"><span class="lineno">  369</span>      } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  370</span>        <span class="comment">// Not enough capacity, relocate all to a new buffer.</span></div>
+<div class="line"><span class="lineno">  371</span>        <a class="code hl_class" href="classflow_1_1_vector.html">std::size_t</a> <a class="code hl_class" href="classflow_1_1_vector.html">index</a> = <a class="code hl_class" href="classflow_1_1_vector.html">pos</a> - <a class="code hl_variable" href="#a597edff02196a283944224a5464c62a0">buffer_</a>;</div>
+<div class="line"><span class="lineno">  372</span>        <a class="code hl_function" href="#a53fca75839ead5d5a63aa334effc2663">relocateBufferWithHoles</a>(<a class="code hl_variable" href="#a6194e8a003c84766b0e07ab59129fd60">growthStrategy_</a>(<a class="code hl_variable" href="#ac2b41594b3b91f858c9c429ef98f4ae0">capacity_</a>), <a class="code hl_class" href="classflow_1_1_vector.html">pos</a>, 1);</div>
+<div class="line"><span class="lineno">  373</span>        <a class="code hl_class" href="classflow_1_1_vector.html">allocator_trait::construct</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_variable" href="#a597edff02196a283944224a5464c62a0">buffer_</a> + <a class="code hl_class" href="classflow_1_1_vector.html">index</a>, <a class="code hl_class" href="classflow_1_1_vector.html">std::forward&lt;Args&gt;</a>(<a class="code hl_class" href="classflow_1_1_vector.html">args</a>)...);</div>
+<div class="line"><span class="lineno">  374</span>      }</div>
+<div class="line"><span class="lineno">  375</span>      ++<a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a>;</div>
+<div class="line"><span class="lineno">  376</span>    }</div>
+<div class="ttc" id="aclassflow_1_1_vector_html_a1246fe8e463045cd9acefd4ffed3bea2"><div class="ttname"><a href="#a1246fe8e463045cd9acefd4ffed3bea2">flow::Vector::emplaceBack</a></div><div class="ttdeci">void emplaceBack(Args &amp;&amp;... args)</div><div class="ttdoc">Constructs an element in-place at the end of the vector.</div><div class="ttdef"><b>Definition</b> <a href="flow__vector_8h_source.html#l00312">flow_vector.h:312</a></div></div>
+<div class="ttc" id="aclassflow_1_1_vector_html_a53fca75839ead5d5a63aa334effc2663"><div class="ttname"><a href="#a53fca75839ead5d5a63aa334effc2663">flow::Vector::relocateBufferWithHoles</a></div><div class="ttdeci">void relocateBufferWithHoles(std::size_t capacity, iterator pos, std::size_t holeSize)</div><div class="ttdef"><b>Definition</b> <a href="flow__vector_8h_source.html#l00474">flow_vector.h:474</a></div></div>
 <div class="ttc" id="aclassflow_1_1_vector_html_ad02fbe2f355e1bea83186cbb97b53d69"><div class="ttname"><a href="#ad02fbe2f355e1bea83186cbb97b53d69">flow::Vector::back</a></div><div class="ttdeci">T &amp; back() noexcept</div><div class="ttdoc">Returns a reference to the last element.</div><div class="ttdef"><b>Definition</b> <a href="flow__vector_8h_source.html#l00255">flow_vector.h:255</a></div></div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00380">flow::Vector&lt; T, Allocator &gt;::insert()</a>, and <a class="el" href="flow__vector_8h_source.html#l00387">flow::Vector&lt; T, Allocator &gt;::insert()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00381">flow::Vector&lt; T, Allocator &gt;::insert()</a>, and <a class="el" href="flow__vector_8h_source.html#l00388">flow::Vector&lt; T, Allocator &gt;::insert()</a>.</p>
 
 </div>
 </div>
@@ -1266,17 +1266,17 @@ template&lt;typename ... Args&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00311">311</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  311</span>                                     {</div>
-<div class="line"><span class="lineno">  312</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a> == <a class="code hl_variable" href="#ac2b41594b3b91f858c9c429ef98f4ae0">capacity_</a>) {</div>
-<div class="line"><span class="lineno">  313</span>        <a class="code hl_function" href="#aad83e0ac5232072e914bd75e4b116473">relocateBuffer</a>(<a class="code hl_variable" href="#a6194e8a003c84766b0e07ab59129fd60">growthStrategy_</a>(<a class="code hl_variable" href="#ac2b41594b3b91f858c9c429ef98f4ae0">capacity_</a>));</div>
-<div class="line"><span class="lineno">  314</span>      }</div>
-<div class="line"><span class="lineno">  315</span>      <a class="code hl_class" href="classflow_1_1_vector.html">allocator_trait::construct</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_variable" href="#a597edff02196a283944224a5464c62a0">buffer_</a> + <a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a>, <a class="code hl_class" href="classflow_1_1_vector.html">std::forward&lt;Args&gt;</a>(<a class="code hl_class" href="classflow_1_1_vector.html">args</a>)...);</div>
-<div class="line"><span class="lineno">  316</span>      ++<a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a>;</div>
-<div class="line"><span class="lineno">  317</span>    }</div>
-<div class="ttc" id="aclassflow_1_1_vector_html_aad83e0ac5232072e914bd75e4b116473"><div class="ttname"><a href="#aad83e0ac5232072e914bd75e4b116473">flow::Vector::relocateBuffer</a></div><div class="ttdeci">void relocateBuffer(std::size_t capacity)</div><div class="ttdef"><b>Definition</b> <a href="flow__vector_8h_source.html#l00464">flow_vector.h:464</a></div></div>
+<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00312">312</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  312</span>                                     {</div>
+<div class="line"><span class="lineno">  313</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a> == <a class="code hl_variable" href="#ac2b41594b3b91f858c9c429ef98f4ae0">capacity_</a>) {</div>
+<div class="line"><span class="lineno">  314</span>        <a class="code hl_function" href="#aad83e0ac5232072e914bd75e4b116473">relocateBuffer</a>(<a class="code hl_variable" href="#a6194e8a003c84766b0e07ab59129fd60">growthStrategy_</a>(<a class="code hl_variable" href="#ac2b41594b3b91f858c9c429ef98f4ae0">capacity_</a>));</div>
+<div class="line"><span class="lineno">  315</span>      }</div>
+<div class="line"><span class="lineno">  316</span>      <a class="code hl_class" href="classflow_1_1_vector.html">allocator_trait::construct</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_variable" href="#a597edff02196a283944224a5464c62a0">buffer_</a> + <a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a>, <a class="code hl_class" href="classflow_1_1_vector.html">std::forward&lt;Args&gt;</a>(<a class="code hl_class" href="classflow_1_1_vector.html">args</a>)...);</div>
+<div class="line"><span class="lineno">  317</span>      ++<a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a>;</div>
+<div class="line"><span class="lineno">  318</span>    }</div>
+<div class="ttc" id="aclassflow_1_1_vector_html_aad83e0ac5232072e914bd75e4b116473"><div class="ttname"><a href="#aad83e0ac5232072e914bd75e4b116473">flow::Vector::relocateBuffer</a></div><div class="ttdeci">void relocateBuffer(std::size_t capacity)</div><div class="ttdef"><b>Definition</b> <a href="flow__vector_8h_source.html#l00465">flow_vector.h:465</a></div></div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00354">flow::Vector&lt; T, Allocator &gt;::emplace()</a>, <a class="el" href="flow__vector_8h_source.html#l00296">flow::Vector&lt; T, Allocator &gt;::pushBack()</a>, and <a class="el" href="flow__vector_8h_source.html#l00304">flow::Vector&lt; T, Allocator &gt;::pushBack()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00355">flow::Vector&lt; T, Allocator &gt;::emplace()</a>, <a class="el" href="flow__vector_8h_source.html#l00296">flow::Vector&lt; T, Allocator &gt;::pushBack()</a>, and <a class="el" href="flow__vector_8h_source.html#l00305">flow::Vector&lt; T, Allocator &gt;::pushBack()</a>.</p>
 
 </div>
 </div>
@@ -1377,7 +1377,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;, Growt
 <div class="line"><span class="lineno">  214</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="#a597edff02196a283944224a5464c62a0">buffer_</a> + <a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a>;</div>
 <div class="line"><span class="lineno">  215</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00354">flow::Vector&lt; T, Allocator &gt;::emplace()</a>, <a class="el" href="flow__vector_8h_source.html#l00340">flow::Vector&lt; T, Allocator &gt;::erase()</a>, <a class="el" href="flow__vector_8h_source.html#l00329">flow::Vector&lt; T, Allocator &gt;::erase()</a>, <a class="el" href="flow__vector_8h_source.html#l00406">flow::Vector&lt; T, Allocator &gt;::insert()</a>, <a class="el" href="flow__vector_8h_source.html#l00464">flow::Vector&lt; T, Allocator &gt;::relocateBuffer()</a>, <a class="el" href="flow__vector_8h_source.html#l00473">flow::Vector&lt; T, Allocator &gt;::relocateBufferWithHoles()</a>, and <a class="el" href="flow__vector_8h_source.html#l00097">flow::Vector&lt; T, Allocator &gt;::Vector()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00355">flow::Vector&lt; T, Allocator &gt;::emplace()</a>, <a class="el" href="flow__vector_8h_source.html#l00341">flow::Vector&lt; T, Allocator &gt;::erase()</a>, <a class="el" href="flow__vector_8h_source.html#l00330">flow::Vector&lt; T, Allocator &gt;::erase()</a>, <a class="el" href="flow__vector_8h_source.html#l00407">flow::Vector&lt; T, Allocator &gt;::insert()</a>, <a class="el" href="flow__vector_8h_source.html#l00465">flow::Vector&lt; T, Allocator &gt;::relocateBuffer()</a>, <a class="el" href="flow__vector_8h_source.html#l00474">flow::Vector&lt; T, Allocator &gt;::relocateBufferWithHoles()</a>, and <a class="el" href="flow__vector_8h_source.html#l00097">flow::Vector&lt; T, Allocator &gt;::Vector()</a>.</p>
 
 </div>
 </div>
@@ -1420,16 +1420,16 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;, Growt
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Iterator to the next element. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00340">340</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  340</span>                                                           {</div>
-<div class="line"><span class="lineno">  341</span>      <a class="code hl_class" href="classflow_1_1_vector.html">assert</a>(<a class="code hl_function" href="#a52107e19ce15e50a4a610a1486203a55">begin</a>() &lt;= <a class="code hl_class" href="classflow_1_1_vector.html">first</a> &amp;&amp; <a class="code hl_class" href="classflow_1_1_vector.html">last</a> &lt;= <a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>() &amp;&amp; <span class="stringliteral">&quot;can not erase before begin() or past the end()&quot;</span>);</div>
-<div class="line"><span class="lineno">  342</span>      <a class="code hl_class" href="classflow_1_1_vector.html">assert</a>(<a class="code hl_class" href="classflow_1_1_vector.html">first</a> &lt;= <a class="code hl_class" href="classflow_1_1_vector.html">last</a> &amp;&amp; <span class="stringliteral">&quot;first must be before last&quot;</span>);</div>
-<div class="line"><span class="lineno">  343</span> </div>
-<div class="line"><span class="lineno">  344</span>      <a class="code hl_typedef" href="#a3133e96d4479ecd0534588a8df0b5eb7">iterator</a> <a class="code hl_class" href="classflow_1_1_vector.html">afterMoved</a> = <a class="code hl_class" href="classflow_1_1_vector.html">std::move</a>(<a class="code hl_class" href="classflow_1_1_vector.html">last</a>, <a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>(), <a class="code hl_class" href="classflow_1_1_vector.html">first</a>);</div>
-<div class="line"><span class="lineno">  345</span>      <a class="code hl_function" href="namespaceflow.html#a0917ae92fc9372994be63e2b07d7da43">destroyElements</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_class" href="classflow_1_1_vector.html">afterMoved</a>, <a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>());</div>
-<div class="line"><span class="lineno">  346</span>      <a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a> -= <a class="code hl_class" href="classflow_1_1_vector.html">last</a> - <a class="code hl_class" href="classflow_1_1_vector.html">first</a>;</div>
-<div class="line"><span class="lineno">  347</span>      <span class="keywordflow">return</span> <a class="code hl_class" href="classflow_1_1_vector.html">first</a>;</div>
-<div class="line"><span class="lineno">  348</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00341">341</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  341</span>                                                           {</div>
+<div class="line"><span class="lineno">  342</span>      <a class="code hl_class" href="classflow_1_1_vector.html">assert</a>(<a class="code hl_function" href="#a52107e19ce15e50a4a610a1486203a55">begin</a>() &lt;= <a class="code hl_class" href="classflow_1_1_vector.html">first</a> &amp;&amp; <a class="code hl_class" href="classflow_1_1_vector.html">last</a> &lt;= <a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>() &amp;&amp; <span class="stringliteral">&quot;can not erase before begin() or past the end()&quot;</span>);</div>
+<div class="line"><span class="lineno">  343</span>      <a class="code hl_class" href="classflow_1_1_vector.html">assert</a>(<a class="code hl_class" href="classflow_1_1_vector.html">first</a> &lt;= <a class="code hl_class" href="classflow_1_1_vector.html">last</a> &amp;&amp; <span class="stringliteral">&quot;first must be before last&quot;</span>);</div>
+<div class="line"><span class="lineno">  344</span> </div>
+<div class="line"><span class="lineno">  345</span>      <a class="code hl_typedef" href="#a3133e96d4479ecd0534588a8df0b5eb7">iterator</a> <a class="code hl_class" href="classflow_1_1_vector.html">afterMoved</a> = <a class="code hl_class" href="classflow_1_1_vector.html">std::move</a>(<a class="code hl_class" href="classflow_1_1_vector.html">last</a>, <a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>(), <a class="code hl_class" href="classflow_1_1_vector.html">first</a>);</div>
+<div class="line"><span class="lineno">  346</span>      <a class="code hl_function" href="namespaceflow.html#a0917ae92fc9372994be63e2b07d7da43">destroyElements</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_class" href="classflow_1_1_vector.html">afterMoved</a>, <a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>());</div>
+<div class="line"><span class="lineno">  347</span>      <a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a> -= <a class="code hl_class" href="classflow_1_1_vector.html">last</a> - <a class="code hl_class" href="classflow_1_1_vector.html">first</a>;</div>
+<div class="line"><span class="lineno">  348</span>      <span class="keywordflow">return</span> <a class="code hl_class" href="classflow_1_1_vector.html">first</a>;</div>
+<div class="line"><span class="lineno">  349</span>    }</div>
 <div class="ttc" id="aclassflow_1_1_vector_html_a3133e96d4479ecd0534588a8df0b5eb7"><div class="ttname"><a href="#a3133e96d4479ecd0534588a8df0b5eb7">flow::Vector::iterator</a></div><div class="ttdeci">T * iterator</div><div class="ttdef"><b>Definition</b> <a href="flow__vector_8h_source.html#l00056">flow_vector.h:56</a></div></div>
 <div class="ttc" id="anamespaceflow_html_a0917ae92fc9372994be63e2b07d7da43"><div class="ttname"><a href="namespaceflow.html#a0917ae92fc9372994be63e2b07d7da43">flow::destroyElements</a></div><div class="ttdeci">void destroyElements(AllocatorType &amp;allocator, InputIt first, InputIt last) noexcept</div><div class="ttdoc">Destroys a range of constructed objects in memory.</div><div class="ttdef"><b>Definition</b> <a href="flow__memory__algorithm_8h_source.html#l00064">flow_memory_algorithm.h:64</a></div></div>
 </div><!-- fragment -->
@@ -1469,14 +1469,14 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;, Growt
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Iterator to the next element. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00329">329</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  329</span>                                          {</div>
-<div class="line"><span class="lineno">  330</span>      <a class="code hl_class" href="classflow_1_1_vector.html">assert</a>(<a class="code hl_function" href="#a52107e19ce15e50a4a610a1486203a55">begin</a>() &lt;= <a class="code hl_class" href="classflow_1_1_vector.html">pos</a> &amp;&amp; <a class="code hl_class" href="classflow_1_1_vector.html">pos</a> &lt; <a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>() &amp;&amp; <span class="stringliteral">&quot;can not erase before begin() or at the end()&quot;</span>);</div>
-<div class="line"><span class="lineno">  331</span>      <a class="code hl_class" href="classflow_1_1_vector.html">std::move</a>(<a class="code hl_class" href="classflow_1_1_vector.html">pos</a> + 1, <a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>(), <a class="code hl_class" href="classflow_1_1_vector.html">pos</a>);</div>
-<div class="line"><span class="lineno">  332</span>      <a class="code hl_function" href="#ae39c634ffc7d4719734a727dd4e9eb02">popBack</a>();</div>
-<div class="line"><span class="lineno">  333</span>      <span class="keywordflow">return</span> <a class="code hl_class" href="classflow_1_1_vector.html">pos</a>;</div>
-<div class="line"><span class="lineno">  334</span>    }</div>
-<div class="ttc" id="aclassflow_1_1_vector_html_ae39c634ffc7d4719734a727dd4e9eb02"><div class="ttname"><a href="#ae39c634ffc7d4719734a727dd4e9eb02">flow::Vector::popBack</a></div><div class="ttdeci">void popBack() noexcept</div><div class="ttdoc">Removes the last element of the vector.</div><div class="ttdef"><b>Definition</b> <a href="flow__vector_8h_source.html#l00320">flow_vector.h:320</a></div></div>
+<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00330">330</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  330</span>                                          {</div>
+<div class="line"><span class="lineno">  331</span>      <a class="code hl_class" href="classflow_1_1_vector.html">assert</a>(<a class="code hl_function" href="#a52107e19ce15e50a4a610a1486203a55">begin</a>() &lt;= <a class="code hl_class" href="classflow_1_1_vector.html">pos</a> &amp;&amp; <a class="code hl_class" href="classflow_1_1_vector.html">pos</a> &lt; <a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>() &amp;&amp; <span class="stringliteral">&quot;can not erase before begin() or at the end()&quot;</span>);</div>
+<div class="line"><span class="lineno">  332</span>      <a class="code hl_class" href="classflow_1_1_vector.html">std::move</a>(<a class="code hl_class" href="classflow_1_1_vector.html">pos</a> + 1, <a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>(), <a class="code hl_class" href="classflow_1_1_vector.html">pos</a>);</div>
+<div class="line"><span class="lineno">  333</span>      <a class="code hl_function" href="#ae39c634ffc7d4719734a727dd4e9eb02">popBack</a>();</div>
+<div class="line"><span class="lineno">  334</span>      <span class="keywordflow">return</span> <a class="code hl_class" href="classflow_1_1_vector.html">pos</a>;</div>
+<div class="line"><span class="lineno">  335</span>    }</div>
+<div class="ttc" id="aclassflow_1_1_vector_html_ae39c634ffc7d4719734a727dd4e9eb02"><div class="ttname"><a href="#ae39c634ffc7d4719734a727dd4e9eb02">flow::Vector::popBack</a></div><div class="ttdeci">void popBack() noexcept</div><div class="ttdoc">Removes the last element of the vector.</div><div class="ttdef"><b>Definition</b> <a href="flow__vector_8h_source.html#l00321">flow_vector.h:321</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1625,13 +1625,13 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;, Growt
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00380">380</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  380</span>                                              {</div>
-<div class="line"><span class="lineno">  381</span>      <a class="code hl_function" href="#a63907d377f79ae43c766427da7391471">emplace</a>(<a class="code hl_class" href="classflow_1_1_vector.html">pos</a>, <a class="code hl_class" href="classflow_1_1_vector.html">value</a>);</div>
-<div class="line"><span class="lineno">  382</span>    }</div>
-<div class="ttc" id="aclassflow_1_1_vector_html_a63907d377f79ae43c766427da7391471"><div class="ttname"><a href="#a63907d377f79ae43c766427da7391471">flow::Vector::emplace</a></div><div class="ttdeci">void emplace(iterator pos, Args &amp;&amp;... args)</div><div class="ttdoc">Constructs an element in-place at the specified iterator position.</div><div class="ttdef"><b>Definition</b> <a href="flow__vector_8h_source.html#l00354">flow_vector.h:354</a></div></div>
+<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00381">381</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  381</span>                                              {</div>
+<div class="line"><span class="lineno">  382</span>      <a class="code hl_function" href="#a63907d377f79ae43c766427da7391471">emplace</a>(<a class="code hl_class" href="classflow_1_1_vector.html">pos</a>, <a class="code hl_class" href="classflow_1_1_vector.html">value</a>);</div>
+<div class="line"><span class="lineno">  383</span>    }</div>
+<div class="ttc" id="aclassflow_1_1_vector_html_a63907d377f79ae43c766427da7391471"><div class="ttname"><a href="#a63907d377f79ae43c766427da7391471">flow::Vector::emplace</a></div><div class="ttdeci">void emplace(iterator pos, Args &amp;&amp;... args)</div><div class="ttdoc">Constructs an element in-place at the specified iterator position.</div><div class="ttdef"><b>Definition</b> <a href="flow__vector_8h_source.html#l00355">flow_vector.h:355</a></div></div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00450">flow::Vector&lt; T, Allocator &gt;::insert()</a>, and <a class="el" href="flow__vector_8h_source.html#l00395">flow::Vector&lt; T, Allocator &gt;::insert()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00451">flow::Vector&lt; T, Allocator &gt;::insert()</a>, and <a class="el" href="flow__vector_8h_source.html#l00396">flow::Vector&lt; T, Allocator &gt;::insert()</a>.</p>
 
 </div>
 </div>
@@ -1687,47 +1687,47 @@ template&lt;std::input_iterator It&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00406">406</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  406</span>                                                 {</div>
-<div class="line"><span class="lineno">  407</span>      <span class="keyword">const</span> <a class="code hl_class" href="classflow_1_1_vector.html">std::size_t</a> <a class="code hl_class" href="classflow_1_1_vector.html">insertedElementsSize</a> = <a class="code hl_class" href="classflow_1_1_vector.html">std::distance</a>(<a class="code hl_class" href="classflow_1_1_vector.html">first</a>, <a class="code hl_class" href="classflow_1_1_vector.html">last</a>);</div>
-<div class="line"><span class="lineno">  408</span>      <span class="keyword">const</span> <a class="code hl_class" href="classflow_1_1_vector.html">std::size_t</a> <a class="code hl_class" href="classflow_1_1_vector.html">requiredSize</a> = <a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a> + <a class="code hl_class" href="classflow_1_1_vector.html">insertedElementsSize</a>;</div>
-<div class="line"><span class="lineno">  409</span> </div>
-<div class="line"><span class="lineno">  410</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="#ac2b41594b3b91f858c9c429ef98f4ae0">capacity_</a> &lt; <a class="code hl_class" href="classflow_1_1_vector.html">requiredSize</a>) {</div>
-<div class="line"><span class="lineno">  411</span>        <span class="comment">// Not enough capacity, relocate to a new buffer.</span></div>
-<div class="line"><span class="lineno">  412</span>        <a class="code hl_class" href="classflow_1_1_vector.html">std::size_t</a> <a class="code hl_class" href="classflow_1_1_vector.html">index</a> = <a class="code hl_class" href="classflow_1_1_vector.html">pos</a> - <a class="code hl_function" href="#a52107e19ce15e50a4a610a1486203a55">begin</a>();</div>
-<div class="line"><span class="lineno">  413</span>        <a class="code hl_class" href="classflow_1_1_vector.html">std::size_t</a> <a class="code hl_class" href="classflow_1_1_vector.html">newCapacity</a> = <a class="code hl_variable" href="#a6194e8a003c84766b0e07ab59129fd60">growthStrategy_</a>(<a class="code hl_class" href="classflow_1_1_vector.html">requiredSize</a>);</div>
-<div class="line"><span class="lineno">  414</span>        <a class="code hl_function" href="#a53fca75839ead5d5a63aa334effc2663">relocateBufferWithHoles</a>(<a class="code hl_class" href="classflow_1_1_vector.html">newCapacity</a>, <a class="code hl_class" href="classflow_1_1_vector.html">pos</a>, <a class="code hl_class" href="classflow_1_1_vector.html">insertedElementsSize</a>);</div>
-<div class="line"><span class="lineno">  415</span>        <a class="code hl_function" href="namespaceflow.html#a7cbf79d9d81ea0bf923173bf94d18282">uninitializedForward</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_class" href="classflow_1_1_vector.html">first</a>, <a class="code hl_class" href="classflow_1_1_vector.html">last</a>, <a class="code hl_function" href="#a52107e19ce15e50a4a610a1486203a55">begin</a>() + <a class="code hl_class" href="classflow_1_1_vector.html">index</a>);</div>
-<div class="line"><span class="lineno">  416</span>      } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  417</span>        <span class="comment">// Enough capacity, shift elements.</span></div>
-<div class="line"><span class="lineno">  418</span>        <span class="comment">// Inserted that are inbound = Shifted that are outbound.</span></div>
-<div class="line"><span class="lineno">  419</span>        <span class="keyword">const</span> <a class="code hl_class" href="classflow_1_1_vector.html">std::size_t</a> <a class="code hl_class" href="classflow_1_1_vector.html">shiftedElementSize</a> = <a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>() - <a class="code hl_class" href="classflow_1_1_vector.html">pos</a>;</div>
-<div class="line"><span class="lineno">  420</span>        <span class="keyword">const</span> <a class="code hl_class" href="classflow_1_1_vector.html">std::size_t</a> <a class="code hl_class" href="classflow_1_1_vector.html">conflictedRangeSize</a> = <a class="code hl_class" href="classflow_1_1_vector.html">std::min</a>(<a class="code hl_class" href="classflow_1_1_vector.html">insertedElementsSize</a>, <a class="code hl_class" href="classflow_1_1_vector.html">shiftedElementSize</a>);</div>
-<div class="line"><span class="lineno">  421</span>        <span class="keyword">const</span> <a class="code hl_class" href="classflow_1_1_vector.html">std::size_t</a> <a class="code hl_class" href="classflow_1_1_vector.html">shiftedElementsInboundSize</a> = <a class="code hl_class" href="classflow_1_1_vector.html">shiftedElementSize</a> - <a class="code hl_class" href="classflow_1_1_vector.html">conflictedRangeSize</a>;</div>
-<div class="line"><span class="lineno">  422</span>        <span class="keyword">const</span> <a class="code hl_class" href="classflow_1_1_vector.html">std::size_t</a> <a class="code hl_class" href="classflow_1_1_vector.html">insertedElementsOutboundSize</a> = <a class="code hl_class" href="classflow_1_1_vector.html">insertedElementsSize</a> - <a class="code hl_class" href="classflow_1_1_vector.html">conflictedRangeSize</a>;</div>
-<div class="line"><span class="lineno">  423</span> </div>
-<div class="line"><span class="lineno">  424</span>        <span class="comment">// Shifted elements that are on uninitialized buffer range.</span></div>
-<div class="line"><span class="lineno">  425</span>        <span class="comment">// This range can be empty if insert at end().</span></div>
-<div class="line"><span class="lineno">  426</span>        <a class="code hl_function" href="namespaceflow.html#a51e3de912b53f5b8d08f6167efae5d43">uninitializedMove</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>() - <a class="code hl_class" href="classflow_1_1_vector.html">conflictedRangeSize</a>, <a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>(), <a class="code hl_class" href="classflow_1_1_vector.html">pos</a> + <a class="code hl_class" href="classflow_1_1_vector.html">insertedElementsSize</a> + <a class="code hl_class" href="classflow_1_1_vector.html">shiftedElementsInboundSize</a>);</div>
-<div class="line"><span class="lineno">  427</span> </div>
-<div class="line"><span class="lineno">  428</span>        <span class="comment">// Shifted elements that are on initialized buffer range.</span></div>
-<div class="line"><span class="lineno">  429</span>        <span class="comment">// This range can be empty if all shifted elements must move to the uninitialized buffer from the previous step.</span></div>
-<div class="line"><span class="lineno">  430</span>        <a class="code hl_class" href="classflow_1_1_vector.html">std::move_backward</a>(<a class="code hl_class" href="classflow_1_1_vector.html">pos</a>, <a class="code hl_class" href="classflow_1_1_vector.html">pos</a> + <a class="code hl_class" href="classflow_1_1_vector.html">shiftedElementsInboundSize</a>, <a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>());</div>
-<div class="line"><span class="lineno">  431</span> </div>
-<div class="line"><span class="lineno">  432</span>        <span class="comment">// Inserted elements that are on initialized buffer range starting at pos.</span></div>
-<div class="line"><span class="lineno">  433</span>        <span class="comment">// This range can be empty if insert at end().</span></div>
-<div class="line"><span class="lineno">  434</span>        <span class="keywordflow">for</span> (<a class="code hl_class" href="classflow_1_1_vector.html">std::size_t</a> <a class="code hl_class" href="classflow_1_1_vector.html">i</a> = 0; <a class="code hl_class" href="classflow_1_1_vector.html">i</a> &lt; <a class="code hl_class" href="classflow_1_1_vector.html">conflictedRangeSize</a>; ++<a class="code hl_class" href="classflow_1_1_vector.html">i</a>, ++<a class="code hl_class" href="classflow_1_1_vector.html">first</a>, ++<a class="code hl_class" href="classflow_1_1_vector.html">pos</a>) {</div>
-<div class="line"><span class="lineno">  435</span>          *<a class="code hl_class" href="classflow_1_1_vector.html">pos</a> = *<a class="code hl_class" href="classflow_1_1_vector.html">first</a>;</div>
-<div class="line"><span class="lineno">  436</span>        }</div>
-<div class="line"><span class="lineno">  437</span> </div>
-<div class="line"><span class="lineno">  438</span>        <span class="comment">// Inserted elements that are on uninitialized buffer range.</span></div>
-<div class="line"><span class="lineno">  439</span>        <span class="comment">// This range can be empty if insertedElementSize &lt;= shiftedElementSize -&gt; conflictedRangeSize = insertedElementSize.</span></div>
-<div class="line"><span class="lineno">  440</span>        <span class="comment">// Such that there are enough space in the initialized buffer range.</span></div>
-<div class="line"><span class="lineno">  441</span>        <a class="code hl_function" href="namespaceflow.html#a5f5545b19674be10035741dc55ab7805">uninitializedForwardN</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_class" href="classflow_1_1_vector.html">first</a>, <a class="code hl_class" href="classflow_1_1_vector.html">insertedElementsOutboundSize</a>, <a class="code hl_class" href="classflow_1_1_vector.html">pos</a>);</div>
-<div class="line"><span class="lineno">  442</span>      }</div>
-<div class="line"><span class="lineno">  443</span> </div>
-<div class="line"><span class="lineno">  444</span>      <a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a> = <a class="code hl_class" href="classflow_1_1_vector.html">requiredSize</a>;</div>
-<div class="line"><span class="lineno">  445</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00407">407</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  407</span>                                                 {</div>
+<div class="line"><span class="lineno">  408</span>      <span class="keyword">const</span> <a class="code hl_class" href="classflow_1_1_vector.html">std::size_t</a> <a class="code hl_class" href="classflow_1_1_vector.html">insertedElementsSize</a> = <a class="code hl_class" href="classflow_1_1_vector.html">std::distance</a>(<a class="code hl_class" href="classflow_1_1_vector.html">first</a>, <a class="code hl_class" href="classflow_1_1_vector.html">last</a>);</div>
+<div class="line"><span class="lineno">  409</span>      <span class="keyword">const</span> <a class="code hl_class" href="classflow_1_1_vector.html">std::size_t</a> <a class="code hl_class" href="classflow_1_1_vector.html">requiredSize</a> = <a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a> + <a class="code hl_class" href="classflow_1_1_vector.html">insertedElementsSize</a>;</div>
+<div class="line"><span class="lineno">  410</span> </div>
+<div class="line"><span class="lineno">  411</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="#ac2b41594b3b91f858c9c429ef98f4ae0">capacity_</a> &lt; <a class="code hl_class" href="classflow_1_1_vector.html">requiredSize</a>) {</div>
+<div class="line"><span class="lineno">  412</span>        <span class="comment">// Not enough capacity, relocate to a new buffer.</span></div>
+<div class="line"><span class="lineno">  413</span>        <a class="code hl_class" href="classflow_1_1_vector.html">std::size_t</a> <a class="code hl_class" href="classflow_1_1_vector.html">index</a> = <a class="code hl_class" href="classflow_1_1_vector.html">pos</a> - <a class="code hl_function" href="#a52107e19ce15e50a4a610a1486203a55">begin</a>();</div>
+<div class="line"><span class="lineno">  414</span>        <a class="code hl_class" href="classflow_1_1_vector.html">std::size_t</a> <a class="code hl_class" href="classflow_1_1_vector.html">newCapacity</a> = <a class="code hl_variable" href="#a6194e8a003c84766b0e07ab59129fd60">growthStrategy_</a>(<a class="code hl_class" href="classflow_1_1_vector.html">requiredSize</a>);</div>
+<div class="line"><span class="lineno">  415</span>        <a class="code hl_function" href="#a53fca75839ead5d5a63aa334effc2663">relocateBufferWithHoles</a>(<a class="code hl_class" href="classflow_1_1_vector.html">newCapacity</a>, <a class="code hl_class" href="classflow_1_1_vector.html">pos</a>, <a class="code hl_class" href="classflow_1_1_vector.html">insertedElementsSize</a>);</div>
+<div class="line"><span class="lineno">  416</span>        <a class="code hl_function" href="namespaceflow.html#a7cbf79d9d81ea0bf923173bf94d18282">uninitializedForward</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_class" href="classflow_1_1_vector.html">first</a>, <a class="code hl_class" href="classflow_1_1_vector.html">last</a>, <a class="code hl_function" href="#a52107e19ce15e50a4a610a1486203a55">begin</a>() + <a class="code hl_class" href="classflow_1_1_vector.html">index</a>);</div>
+<div class="line"><span class="lineno">  417</span>      } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  418</span>        <span class="comment">// Enough capacity, shift elements.</span></div>
+<div class="line"><span class="lineno">  419</span>        <span class="comment">// Inserted that are inbound = Shifted that are outbound.</span></div>
+<div class="line"><span class="lineno">  420</span>        <span class="keyword">const</span> <a class="code hl_class" href="classflow_1_1_vector.html">std::size_t</a> <a class="code hl_class" href="classflow_1_1_vector.html">shiftedElementSize</a> = <a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>() - <a class="code hl_class" href="classflow_1_1_vector.html">pos</a>;</div>
+<div class="line"><span class="lineno">  421</span>        <span class="keyword">const</span> <a class="code hl_class" href="classflow_1_1_vector.html">std::size_t</a> <a class="code hl_class" href="classflow_1_1_vector.html">conflictedRangeSize</a> = <a class="code hl_class" href="classflow_1_1_vector.html">std::min</a>(<a class="code hl_class" href="classflow_1_1_vector.html">insertedElementsSize</a>, <a class="code hl_class" href="classflow_1_1_vector.html">shiftedElementSize</a>);</div>
+<div class="line"><span class="lineno">  422</span>        <span class="keyword">const</span> <a class="code hl_class" href="classflow_1_1_vector.html">std::size_t</a> <a class="code hl_class" href="classflow_1_1_vector.html">shiftedElementsInboundSize</a> = <a class="code hl_class" href="classflow_1_1_vector.html">shiftedElementSize</a> - <a class="code hl_class" href="classflow_1_1_vector.html">conflictedRangeSize</a>;</div>
+<div class="line"><span class="lineno">  423</span>        <span class="keyword">const</span> <a class="code hl_class" href="classflow_1_1_vector.html">std::size_t</a> <a class="code hl_class" href="classflow_1_1_vector.html">insertedElementsOutboundSize</a> = <a class="code hl_class" href="classflow_1_1_vector.html">insertedElementsSize</a> - <a class="code hl_class" href="classflow_1_1_vector.html">conflictedRangeSize</a>;</div>
+<div class="line"><span class="lineno">  424</span> </div>
+<div class="line"><span class="lineno">  425</span>        <span class="comment">// Shifted elements that are on uninitialized buffer range.</span></div>
+<div class="line"><span class="lineno">  426</span>        <span class="comment">// This range can be empty if insert at end().</span></div>
+<div class="line"><span class="lineno">  427</span>        <a class="code hl_function" href="namespaceflow.html#a51e3de912b53f5b8d08f6167efae5d43">uninitializedMove</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>() - <a class="code hl_class" href="classflow_1_1_vector.html">conflictedRangeSize</a>, <a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>(), <a class="code hl_class" href="classflow_1_1_vector.html">pos</a> + <a class="code hl_class" href="classflow_1_1_vector.html">insertedElementsSize</a> + <a class="code hl_class" href="classflow_1_1_vector.html">shiftedElementsInboundSize</a>);</div>
+<div class="line"><span class="lineno">  428</span> </div>
+<div class="line"><span class="lineno">  429</span>        <span class="comment">// Shifted elements that are on initialized buffer range.</span></div>
+<div class="line"><span class="lineno">  430</span>        <span class="comment">// This range can be empty if all shifted elements must move to the uninitialized buffer from the previous step.</span></div>
+<div class="line"><span class="lineno">  431</span>        <a class="code hl_class" href="classflow_1_1_vector.html">std::move_backward</a>(<a class="code hl_class" href="classflow_1_1_vector.html">pos</a>, <a class="code hl_class" href="classflow_1_1_vector.html">pos</a> + <a class="code hl_class" href="classflow_1_1_vector.html">shiftedElementsInboundSize</a>, <a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>());</div>
+<div class="line"><span class="lineno">  432</span> </div>
+<div class="line"><span class="lineno">  433</span>        <span class="comment">// Inserted elements that are on initialized buffer range starting at pos.</span></div>
+<div class="line"><span class="lineno">  434</span>        <span class="comment">// This range can be empty if insert at end().</span></div>
+<div class="line"><span class="lineno">  435</span>        <span class="keywordflow">for</span> (<a class="code hl_class" href="classflow_1_1_vector.html">std::size_t</a> <a class="code hl_class" href="classflow_1_1_vector.html">i</a> = 0; <a class="code hl_class" href="classflow_1_1_vector.html">i</a> &lt; <a class="code hl_class" href="classflow_1_1_vector.html">conflictedRangeSize</a>; ++<a class="code hl_class" href="classflow_1_1_vector.html">i</a>, ++<a class="code hl_class" href="classflow_1_1_vector.html">first</a>, ++<a class="code hl_class" href="classflow_1_1_vector.html">pos</a>) {</div>
+<div class="line"><span class="lineno">  436</span>          *<a class="code hl_class" href="classflow_1_1_vector.html">pos</a> = *<a class="code hl_class" href="classflow_1_1_vector.html">first</a>;</div>
+<div class="line"><span class="lineno">  437</span>        }</div>
+<div class="line"><span class="lineno">  438</span> </div>
+<div class="line"><span class="lineno">  439</span>        <span class="comment">// Inserted elements that are on uninitialized buffer range.</span></div>
+<div class="line"><span class="lineno">  440</span>        <span class="comment">// This range can be empty if insertedElementSize &lt;= shiftedElementSize -&gt; conflictedRangeSize = insertedElementSize.</span></div>
+<div class="line"><span class="lineno">  441</span>        <span class="comment">// Such that there are enough space in the initialized buffer range.</span></div>
+<div class="line"><span class="lineno">  442</span>        <a class="code hl_function" href="namespaceflow.html#a5f5545b19674be10035741dc55ab7805">uninitializedForwardN</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_class" href="classflow_1_1_vector.html">first</a>, <a class="code hl_class" href="classflow_1_1_vector.html">insertedElementsOutboundSize</a>, <a class="code hl_class" href="classflow_1_1_vector.html">pos</a>);</div>
+<div class="line"><span class="lineno">  443</span>      }</div>
+<div class="line"><span class="lineno">  444</span> </div>
+<div class="line"><span class="lineno">  445</span>      <a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a> = <a class="code hl_class" href="classflow_1_1_vector.html">requiredSize</a>;</div>
+<div class="line"><span class="lineno">  446</span>    }</div>
 <div class="ttc" id="anamespaceflow_html_a51e3de912b53f5b8d08f6167efae5d43"><div class="ttname"><a href="namespaceflow.html#a51e3de912b53f5b8d08f6167efae5d43">flow::uninitializedMove</a></div><div class="ttdeci">OutputIt uninitializedMove(AllocatorType &amp;allocator, InputIt first, InputIt last, OutputIt dest) noexcept</div><div class="ttdoc">Moves elements from a source range to uninitialized memory.</div><div class="ttdef"><b>Definition</b> <a href="flow__memory__algorithm_8h_source.html#l00029">flow_memory_algorithm.h:29</a></div></div>
 <div class="ttc" id="anamespaceflow_html_a5f5545b19674be10035741dc55ab7805"><div class="ttname"><a href="namespaceflow.html#a5f5545b19674be10035741dc55ab7805">flow::uninitializedForwardN</a></div><div class="ttdeci">OutputIt uninitializedForwardN(AllocatorType &amp;allocator, InputIt first, std::size_t count, OutputIt dest)</div><div class="ttdoc">Forward count elements from a source range to uninitialized memory.</div><div class="ttdef"><b>Definition</b> <a href="flow__memory__algorithm_8h_source.html#l00077">flow_memory_algorithm.h:77</a></div></div>
 </div><!-- fragment -->
@@ -1771,11 +1771,11 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;, Growt
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00450">450</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  450</span>                                                           {</div>
-<div class="line"><span class="lineno">  451</span>      <a class="code hl_function" href="#afc9e7deb83d7e224959f1d0c2bcfb2b6">insert</a>(<a class="code hl_class" href="classflow_1_1_vector.html">pos</a>, <a class="code hl_class" href="classflow_1_1_vector.html">list</a>.<a class="code hl_function" href="#a52107e19ce15e50a4a610a1486203a55">begin</a>(), <a class="code hl_class" href="classflow_1_1_vector.html">list</a>.<a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>());</div>
-<div class="line"><span class="lineno">  452</span>    }</div>
-<div class="ttc" id="aclassflow_1_1_vector_html_afc9e7deb83d7e224959f1d0c2bcfb2b6"><div class="ttname"><a href="#afc9e7deb83d7e224959f1d0c2bcfb2b6">flow::Vector::insert</a></div><div class="ttdeci">void insert(iterator pos, const T &amp;value)</div><div class="ttdoc">Inserts a copy of an element at the specified iterator position.</div><div class="ttdef"><b>Definition</b> <a href="flow__vector_8h_source.html#l00380">flow_vector.h:380</a></div></div>
+<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00451">451</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  451</span>                                                           {</div>
+<div class="line"><span class="lineno">  452</span>      <a class="code hl_function" href="#afc9e7deb83d7e224959f1d0c2bcfb2b6">insert</a>(<a class="code hl_class" href="classflow_1_1_vector.html">pos</a>, <a class="code hl_class" href="classflow_1_1_vector.html">list</a>.<a class="code hl_function" href="#a52107e19ce15e50a4a610a1486203a55">begin</a>(), <a class="code hl_class" href="classflow_1_1_vector.html">list</a>.<a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>());</div>
+<div class="line"><span class="lineno">  453</span>    }</div>
+<div class="ttc" id="aclassflow_1_1_vector_html_afc9e7deb83d7e224959f1d0c2bcfb2b6"><div class="ttname"><a href="#afc9e7deb83d7e224959f1d0c2bcfb2b6">flow::Vector::insert</a></div><div class="ttdeci">void insert(iterator pos, const T &amp;value)</div><div class="ttdoc">Inserts a copy of an element at the specified iterator position.</div><div class="ttdef"><b>Definition</b> <a href="flow__vector_8h_source.html#l00381">flow_vector.h:381</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1823,10 +1823,10 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;, Growt
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00395">395</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  395</span>                                                               {</div>
-<div class="line"><span class="lineno">  396</span>      <a class="code hl_function" href="#afc9e7deb83d7e224959f1d0c2bcfb2b6">insert</a>(<a class="code hl_class" href="classflow_1_1_vector.html">pos</a>, <a class="code hl_class" href="classflow_1_1_vector.html">CountedValueViewIterator</a>(<a class="code hl_class" href="classflow_1_1_vector.html">value</a>, <a class="code hl_class" href="classflow_1_1_vector.html">count</a>), <a class="code hl_class" href="classflow_1_1_vector.html">CountedValueViewIterator</a>(<a class="code hl_class" href="classflow_1_1_vector.html">value</a>));</div>
-<div class="line"><span class="lineno">  397</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00396">396</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  396</span>                                                               {</div>
+<div class="line"><span class="lineno">  397</span>      <a class="code hl_function" href="#afc9e7deb83d7e224959f1d0c2bcfb2b6">insert</a>(<a class="code hl_class" href="classflow_1_1_vector.html">pos</a>, <a class="code hl_class" href="classflow_1_1_vector.html">CountedValueViewIterator</a>(<a class="code hl_class" href="classflow_1_1_vector.html">value</a>, <a class="code hl_class" href="classflow_1_1_vector.html">count</a>), <a class="code hl_class" href="classflow_1_1_vector.html">CountedValueViewIterator</a>(<a class="code hl_class" href="classflow_1_1_vector.html">value</a>));</div>
+<div class="line"><span class="lineno">  398</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1868,10 +1868,10 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;, Growt
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00387">387</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  387</span>                                         {</div>
-<div class="line"><span class="lineno">  388</span>      <a class="code hl_function" href="#a63907d377f79ae43c766427da7391471">emplace</a>(<a class="code hl_class" href="classflow_1_1_vector.html">pos</a>, <a class="code hl_class" href="classflow_1_1_vector.html">std::move</a>(<a class="code hl_class" href="classflow_1_1_vector.html">value</a>));</div>
-<div class="line"><span class="lineno">  389</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00388">388</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  388</span>                                         {</div>
+<div class="line"><span class="lineno">  389</span>      <a class="code hl_function" href="#a63907d377f79ae43c766427da7391471">emplace</a>(<a class="code hl_class" href="classflow_1_1_vector.html">pos</a>, <a class="code hl_class" href="classflow_1_1_vector.html">std::move</a>(<a class="code hl_class" href="classflow_1_1_vector.html">value</a>));</div>
+<div class="line"><span class="lineno">  390</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -2001,14 +2001,14 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;, Growt
 
 <p>Removes the last element of the vector. </p>
 
-<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00320">320</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  320</span>                            {</div>
-<div class="line"><span class="lineno">  321</span>      <a class="code hl_class" href="classflow_1_1_vector.html">assert</a>(0 &lt; <a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a> &amp;&amp; <span class="stringliteral">&quot;can not pop back from an empty vector&quot;</span>);</div>
-<div class="line"><span class="lineno">  322</span>      --<a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a>;</div>
-<div class="line"><span class="lineno">  323</span>      <a class="code hl_class" href="classflow_1_1_vector.html">allocator_trait::destroy</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_variable" href="#a597edff02196a283944224a5464c62a0">buffer_</a> + <a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a>);</div>
-<div class="line"><span class="lineno">  324</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00321">321</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  321</span>                            {</div>
+<div class="line"><span class="lineno">  322</span>      <a class="code hl_class" href="classflow_1_1_vector.html">assert</a>(0 &lt; <a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a> &amp;&amp; <span class="stringliteral">&quot;can not pop back from an empty vector&quot;</span>);</div>
+<div class="line"><span class="lineno">  323</span>      --<a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a>;</div>
+<div class="line"><span class="lineno">  324</span>      <a class="code hl_class" href="classflow_1_1_vector.html">allocator_trait::destroy</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_variable" href="#a597edff02196a283944224a5464c62a0">buffer_</a> + <a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a>);</div>
+<div class="line"><span class="lineno">  325</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00329">flow::Vector&lt; T, Allocator &gt;::erase()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00330">flow::Vector&lt; T, Allocator &gt;::erase()</a>.</p>
 
 </div>
 </div>
@@ -2049,8 +2049,9 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;, Growt
 <div class="fragment"><div class="line"><span class="lineno">  296</span>                                  {</div>
 <div class="line"><span class="lineno">  297</span>      <span class="comment">// https://stackoverflow.com/questions/10890653/why-would-i-ever-use-push-back-instead-of-emplace-back</span></div>
 <div class="line"><span class="lineno">  298</span>      <span class="comment">// TLDR: Consider emplace back an address when constructing unique_ptr.</span></div>
-<div class="line"><span class="lineno">  299</span>      <a class="code hl_function" href="#a1246fe8e463045cd9acefd4ffed3bea2">emplaceBack</a>(<a class="code hl_class" href="classflow_1_1_vector.html">value</a>);</div>
-<div class="line"><span class="lineno">  300</span>    }</div>
+<div class="line"><span class="lineno">  299</span>      <span class="comment">// pushBack disallows implicit constructor call.</span></div>
+<div class="line"><span class="lineno">  300</span>      <a class="code hl_function" href="#a1246fe8e463045cd9acefd4ffed3bea2">emplaceBack</a>(<a class="code hl_class" href="classflow_1_1_vector.html">value</a>);</div>
+<div class="line"><span class="lineno">  301</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -2087,10 +2088,10 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;, Growt
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00304">304</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  304</span>                             {</div>
-<div class="line"><span class="lineno">  305</span>      <a class="code hl_function" href="#a1246fe8e463045cd9acefd4ffed3bea2">emplaceBack</a>(<a class="code hl_class" href="classflow_1_1_vector.html">std::move</a>(<a class="code hl_class" href="classflow_1_1_vector.html">value</a>));</div>
-<div class="line"><span class="lineno">  306</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00305">305</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  305</span>                             {</div>
+<div class="line"><span class="lineno">  306</span>      <a class="code hl_function" href="#a1246fe8e463045cd9acefd4ffed3bea2">emplaceBack</a>(<a class="code hl_class" href="classflow_1_1_vector.html">std::move</a>(<a class="code hl_class" href="classflow_1_1_vector.html">value</a>));</div>
+<div class="line"><span class="lineno">  307</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -2119,18 +2120,18 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;, Growt
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00464">464</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  464</span>                                            {</div>
-<div class="line"><span class="lineno">  465</span>      <a class="code hl_class" href="classflow_1_1_vector.html">assert</a>(<a class="code hl_variable" href="#ac2b41594b3b91f858c9c429ef98f4ae0">capacity_</a> &lt; <a class="code hl_function" href="#a5fdda2faa17a39759f1068d09d94f980">capacity</a> &amp;&amp; <span class="stringliteral">&quot;new capacity is no larger than the old capacity&quot;</span>);</div>
-<div class="line"><span class="lineno">  466</span> </div>
-<div class="line"><span class="lineno">  467</span>      <a class="code hl_class" href="classflow_1_1_vector.html">T</a>* <a class="code hl_class" href="classflow_1_1_vector.html">buffer</a> = <a class="code hl_class" href="classflow_1_1_vector.html">allocator_trait::allocate</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_function" href="#a5fdda2faa17a39759f1068d09d94f980">capacity</a>);</div>
-<div class="line"><span class="lineno">  468</span>      <a class="code hl_function" href="namespaceflow.html#a51e3de912b53f5b8d08f6167efae5d43">uninitializedMove</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_function" href="#a52107e19ce15e50a4a610a1486203a55">begin</a>(), <a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>(), <a class="code hl_class" href="classflow_1_1_vector.html">buffer</a>);</div>
-<div class="line"><span class="lineno">  469</span>      <a class="code hl_function" href="#ab9a6c86d36489ee0b22dcc7ffadba93b">updateBuffer</a>(<a class="code hl_class" href="classflow_1_1_vector.html">buffer</a>, <a class="code hl_function" href="#a5fdda2faa17a39759f1068d09d94f980">capacity</a>);</div>
-<div class="line"><span class="lineno">  470</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00465">465</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  465</span>                                            {</div>
+<div class="line"><span class="lineno">  466</span>      <a class="code hl_class" href="classflow_1_1_vector.html">assert</a>(<a class="code hl_variable" href="#ac2b41594b3b91f858c9c429ef98f4ae0">capacity_</a> &lt; <a class="code hl_function" href="#a5fdda2faa17a39759f1068d09d94f980">capacity</a> &amp;&amp; <span class="stringliteral">&quot;new capacity is no larger than the old capacity&quot;</span>);</div>
+<div class="line"><span class="lineno">  467</span> </div>
+<div class="line"><span class="lineno">  468</span>      <a class="code hl_class" href="classflow_1_1_vector.html">T</a>* <a class="code hl_class" href="classflow_1_1_vector.html">buffer</a> = <a class="code hl_class" href="classflow_1_1_vector.html">allocator_trait::allocate</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_function" href="#a5fdda2faa17a39759f1068d09d94f980">capacity</a>);</div>
+<div class="line"><span class="lineno">  469</span>      <a class="code hl_function" href="namespaceflow.html#a51e3de912b53f5b8d08f6167efae5d43">uninitializedMove</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_function" href="#a52107e19ce15e50a4a610a1486203a55">begin</a>(), <a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>(), <a class="code hl_class" href="classflow_1_1_vector.html">buffer</a>);</div>
+<div class="line"><span class="lineno">  470</span>      <a class="code hl_function" href="#ab9a6c86d36489ee0b22dcc7ffadba93b">updateBuffer</a>(<a class="code hl_class" href="classflow_1_1_vector.html">buffer</a>, <a class="code hl_function" href="#a5fdda2faa17a39759f1068d09d94f980">capacity</a>);</div>
+<div class="line"><span class="lineno">  471</span>    }</div>
 <div class="ttc" id="aclassflow_1_1_vector_html_a5fdda2faa17a39759f1068d09d94f980"><div class="ttname"><a href="#a5fdda2faa17a39759f1068d09d94f980">flow::Vector::capacity</a></div><div class="ttdeci">constexpr std::size_t capacity() const noexcept</div><div class="ttdoc">Returns the total allocated capacity.</div><div class="ttdef"><b>Definition</b> <a href="flow__vector_8h_source.html#l00229">flow_vector.h:229</a></div></div>
-<div class="ttc" id="aclassflow_1_1_vector_html_ab9a6c86d36489ee0b22dcc7ffadba93b"><div class="ttname"><a href="#ab9a6c86d36489ee0b22dcc7ffadba93b">flow::Vector::updateBuffer</a></div><div class="ttdeci">void updateBuffer(T *buffer, std::size_t capacity)</div><div class="ttdef"><b>Definition</b> <a href="flow__vector_8h_source.html#l00456">flow_vector.h:456</a></div></div>
+<div class="ttc" id="aclassflow_1_1_vector_html_ab9a6c86d36489ee0b22dcc7ffadba93b"><div class="ttname"><a href="#ab9a6c86d36489ee0b22dcc7ffadba93b">flow::Vector::updateBuffer</a></div><div class="ttdeci">void updateBuffer(T *buffer, std::size_t capacity)</div><div class="ttdef"><b>Definition</b> <a href="flow__vector_8h_source.html#l00457">flow_vector.h:457</a></div></div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00311">flow::Vector&lt; T, Allocator &gt;::emplaceBack()</a>, <a class="el" href="flow__vector_8h_source.html#l00275">flow::Vector&lt; T, Allocator &gt;::reserve()</a>, and <a class="el" href="flow__vector_8h_source.html#l00483">flow::Vector&lt; T, Allocator &gt;::resizeImp()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00312">flow::Vector&lt; T, Allocator &gt;::emplaceBack()</a>, <a class="el" href="flow__vector_8h_source.html#l00275">flow::Vector&lt; T, Allocator &gt;::reserve()</a>, and <a class="el" href="flow__vector_8h_source.html#l00484">flow::Vector&lt; T, Allocator &gt;::resizeImp()</a>.</p>
 
 </div>
 </div>
@@ -2168,17 +2169,17 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;, Growt
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00473">473</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  473</span>                                                                                       {</div>
-<div class="line"><span class="lineno">  474</span>      <a class="code hl_class" href="classflow_1_1_vector.html">assert</a>(<a class="code hl_variable" href="#ac2b41594b3b91f858c9c429ef98f4ae0">capacity_</a> &lt; <a class="code hl_function" href="#a5fdda2faa17a39759f1068d09d94f980">capacity</a> &amp;&amp; <span class="stringliteral">&quot;new capacity is no larger than the old capacity&quot;</span>);</div>
-<div class="line"><span class="lineno">  475</span> </div>
-<div class="line"><span class="lineno">  476</span>      <a class="code hl_class" href="classflow_1_1_vector.html">T</a>* <a class="code hl_class" href="classflow_1_1_vector.html">buffer</a> = <a class="code hl_class" href="classflow_1_1_vector.html">allocator_trait::allocate</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_function" href="#a5fdda2faa17a39759f1068d09d94f980">capacity</a>);</div>
-<div class="line"><span class="lineno">  477</span>      <a class="code hl_typedef" href="#a3133e96d4479ecd0534588a8df0b5eb7">iterator</a> <a class="code hl_class" href="classflow_1_1_vector.html">leftHalf</a> = <a class="code hl_function" href="namespaceflow.html#a51e3de912b53f5b8d08f6167efae5d43">uninitializedMove</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_function" href="#a52107e19ce15e50a4a610a1486203a55">begin</a>(), <a class="code hl_class" href="classflow_1_1_vector.html">pos</a>, <a class="code hl_class" href="classflow_1_1_vector.html">buffer</a>); <span class="comment">// Move left half.</span></div>
-<div class="line"><span class="lineno">  478</span>      <a class="code hl_function" href="namespaceflow.html#a51e3de912b53f5b8d08f6167efae5d43">uninitializedMove</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_class" href="classflow_1_1_vector.html">pos</a>, <a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>(), <a class="code hl_class" href="classflow_1_1_vector.html">leftHalf</a> + <a class="code hl_class" href="classflow_1_1_vector.html">holeSize</a>); <span class="comment">// Move right half.</span></div>
-<div class="line"><span class="lineno">  479</span>      <a class="code hl_function" href="#ab9a6c86d36489ee0b22dcc7ffadba93b">updateBuffer</a>(<a class="code hl_class" href="classflow_1_1_vector.html">buffer</a>, <a class="code hl_function" href="#a5fdda2faa17a39759f1068d09d94f980">capacity</a>);</div>
-<div class="line"><span class="lineno">  480</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00474">474</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  474</span>                                                                                       {</div>
+<div class="line"><span class="lineno">  475</span>      <a class="code hl_class" href="classflow_1_1_vector.html">assert</a>(<a class="code hl_variable" href="#ac2b41594b3b91f858c9c429ef98f4ae0">capacity_</a> &lt; <a class="code hl_function" href="#a5fdda2faa17a39759f1068d09d94f980">capacity</a> &amp;&amp; <span class="stringliteral">&quot;new capacity is no larger than the old capacity&quot;</span>);</div>
+<div class="line"><span class="lineno">  476</span> </div>
+<div class="line"><span class="lineno">  477</span>      <a class="code hl_class" href="classflow_1_1_vector.html">T</a>* <a class="code hl_class" href="classflow_1_1_vector.html">buffer</a> = <a class="code hl_class" href="classflow_1_1_vector.html">allocator_trait::allocate</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_function" href="#a5fdda2faa17a39759f1068d09d94f980">capacity</a>);</div>
+<div class="line"><span class="lineno">  478</span>      <a class="code hl_typedef" href="#a3133e96d4479ecd0534588a8df0b5eb7">iterator</a> <a class="code hl_class" href="classflow_1_1_vector.html">leftHalf</a> = <a class="code hl_function" href="namespaceflow.html#a51e3de912b53f5b8d08f6167efae5d43">uninitializedMove</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_function" href="#a52107e19ce15e50a4a610a1486203a55">begin</a>(), <a class="code hl_class" href="classflow_1_1_vector.html">pos</a>, <a class="code hl_class" href="classflow_1_1_vector.html">buffer</a>); <span class="comment">// Move left half.</span></div>
+<div class="line"><span class="lineno">  479</span>      <a class="code hl_function" href="namespaceflow.html#a51e3de912b53f5b8d08f6167efae5d43">uninitializedMove</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_class" href="classflow_1_1_vector.html">pos</a>, <a class="code hl_function" href="#ad9bee88ac142d52bc14d3b7c12c5d27a">end</a>(), <a class="code hl_class" href="classflow_1_1_vector.html">leftHalf</a> + <a class="code hl_class" href="classflow_1_1_vector.html">holeSize</a>); <span class="comment">// Move right half.</span></div>
+<div class="line"><span class="lineno">  480</span>      <a class="code hl_function" href="#ab9a6c86d36489ee0b22dcc7ffadba93b">updateBuffer</a>(<a class="code hl_class" href="classflow_1_1_vector.html">buffer</a>, <a class="code hl_function" href="#a5fdda2faa17a39759f1068d09d94f980">capacity</a>);</div>
+<div class="line"><span class="lineno">  481</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00354">flow::Vector&lt; T, Allocator &gt;::emplace()</a>, and <a class="el" href="flow__vector_8h_source.html#l00406">flow::Vector&lt; T, Allocator &gt;::insert()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00355">flow::Vector&lt; T, Allocator &gt;::emplace()</a>, and <a class="el" href="flow__vector_8h_source.html#l00407">flow::Vector&lt; T, Allocator &gt;::insert()</a>.</p>
 
 </div>
 </div>
@@ -2262,7 +2263,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;, Growt
 <div class="line"><span class="lineno">  284</span>      <a class="code hl_function" href="#aa28bafb52ffd5943f74f969f3970700d">resizeImp</a>(<a class="code hl_function" href="#a174ef01cedf42bda75a148f1e665506e">size</a>);</div>
 <div class="line"><span class="lineno">  285</span>    }</div>
 <div class="ttc" id="aclassflow_1_1_vector_html_a174ef01cedf42bda75a148f1e665506e"><div class="ttname"><a href="#a174ef01cedf42bda75a148f1e665506e">flow::Vector::size</a></div><div class="ttdeci">constexpr std::size_t size() const noexcept</div><div class="ttdoc">Returns the number of elements in the vector.</div><div class="ttdef"><b>Definition</b> <a href="flow__vector_8h_source.html#l00223">flow_vector.h:223</a></div></div>
-<div class="ttc" id="aclassflow_1_1_vector_html_aa28bafb52ffd5943f74f969f3970700d"><div class="ttname"><a href="#aa28bafb52ffd5943f74f969f3970700d">flow::Vector::resizeImp</a></div><div class="ttdeci">void resizeImp(std::size_t size, const U &amp;... optionalValue)</div><div class="ttdef"><b>Definition</b> <a href="flow__vector_8h_source.html#l00483">flow_vector.h:483</a></div></div>
+<div class="ttc" id="aclassflow_1_1_vector_html_aa28bafb52ffd5943f74f969f3970700d"><div class="ttname"><a href="#aa28bafb52ffd5943f74f969f3970700d">flow::Vector::resizeImp</a></div><div class="ttdeci">void resizeImp(std::size_t size, const U &amp;... optionalValue)</div><div class="ttdef"><b>Definition</b> <a href="flow__vector_8h_source.html#l00484">flow_vector.h:484</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -2342,22 +2343,22 @@ template&lt;typename ... U&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00483">483</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  483</span>                                                              {</div>
-<div class="line"><span class="lineno">  484</span>      <span class="keyword">static_assert</span>(<span class="keyword">sizeof</span>...(optionalValue) &lt;= 1, <span class="stringliteral">&quot;no fill value or exactly one copy&quot;</span>);</div>
-<div class="line"><span class="lineno">  485</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a> &lt; <a class="code hl_function" href="#a174ef01cedf42bda75a148f1e665506e">size</a>) {</div>
-<div class="line"><span class="lineno">  486</span>        <span class="comment">// Relocate if not enough capacity.</span></div>
-<div class="line"><span class="lineno">  487</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="#ac2b41594b3b91f858c9c429ef98f4ae0">capacity_</a> &lt; <a class="code hl_function" href="#a174ef01cedf42bda75a148f1e665506e">size</a>) {</div>
-<div class="line"><span class="lineno">  488</span>          <a class="code hl_function" href="#aad83e0ac5232072e914bd75e4b116473">relocateBuffer</a>(<a class="code hl_function" href="#a174ef01cedf42bda75a148f1e665506e">size</a>);</div>
-<div class="line"><span class="lineno">  489</span>        }</div>
-<div class="line"><span class="lineno">  490</span>        <a class="code hl_function" href="namespaceflow.html#a003a0f5de60743211f4a12ad692ea545">uninitializedEmplace</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_variable" href="#a597edff02196a283944224a5464c62a0">buffer_</a> + <a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a>, <a class="code hl_variable" href="#a597edff02196a283944224a5464c62a0">buffer_</a> + <a class="code hl_function" href="#a174ef01cedf42bda75a148f1e665506e">size</a>, <a class="code hl_class" href="classflow_1_1_vector.html">optionalValue</a>...);</div>
-<div class="line"><span class="lineno">  491</span> </div>
-<div class="line"><span class="lineno">  492</span>      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_function" href="#a174ef01cedf42bda75a148f1e665506e">size</a> &lt; <a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a>) {</div>
-<div class="line"><span class="lineno">  493</span>        <span class="comment">// Shrink.</span></div>
-<div class="line"><span class="lineno">  494</span>        <a class="code hl_function" href="namespaceflow.html#a0917ae92fc9372994be63e2b07d7da43">destroyElements</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_variable" href="#a597edff02196a283944224a5464c62a0">buffer_</a> + <a class="code hl_function" href="#a174ef01cedf42bda75a148f1e665506e">size</a>, <a class="code hl_variable" href="#a597edff02196a283944224a5464c62a0">buffer_</a> + <a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a>);</div>
-<div class="line"><span class="lineno">  495</span>      }</div>
-<div class="line"><span class="lineno">  496</span>      <a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a> = <a class="code hl_function" href="#a174ef01cedf42bda75a148f1e665506e">size</a>;</div>
-<div class="line"><span class="lineno">  497</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00484">484</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  484</span>                                                              {</div>
+<div class="line"><span class="lineno">  485</span>      <span class="keyword">static_assert</span>(<span class="keyword">sizeof</span>...(optionalValue) &lt;= 1, <span class="stringliteral">&quot;no fill value or exactly one copy&quot;</span>);</div>
+<div class="line"><span class="lineno">  486</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a> &lt; <a class="code hl_function" href="#a174ef01cedf42bda75a148f1e665506e">size</a>) {</div>
+<div class="line"><span class="lineno">  487</span>        <span class="comment">// Relocate if not enough capacity.</span></div>
+<div class="line"><span class="lineno">  488</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="#ac2b41594b3b91f858c9c429ef98f4ae0">capacity_</a> &lt; <a class="code hl_function" href="#a174ef01cedf42bda75a148f1e665506e">size</a>) {</div>
+<div class="line"><span class="lineno">  489</span>          <a class="code hl_function" href="#aad83e0ac5232072e914bd75e4b116473">relocateBuffer</a>(<a class="code hl_function" href="#a174ef01cedf42bda75a148f1e665506e">size</a>);</div>
+<div class="line"><span class="lineno">  490</span>        }</div>
+<div class="line"><span class="lineno">  491</span>        <a class="code hl_function" href="namespaceflow.html#a003a0f5de60743211f4a12ad692ea545">uninitializedEmplace</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_variable" href="#a597edff02196a283944224a5464c62a0">buffer_</a> + <a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a>, <a class="code hl_variable" href="#a597edff02196a283944224a5464c62a0">buffer_</a> + <a class="code hl_function" href="#a174ef01cedf42bda75a148f1e665506e">size</a>, <a class="code hl_class" href="classflow_1_1_vector.html">optionalValue</a>...);</div>
+<div class="line"><span class="lineno">  492</span> </div>
+<div class="line"><span class="lineno">  493</span>      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_function" href="#a174ef01cedf42bda75a148f1e665506e">size</a> &lt; <a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a>) {</div>
+<div class="line"><span class="lineno">  494</span>        <span class="comment">// Shrink.</span></div>
+<div class="line"><span class="lineno">  495</span>        <a class="code hl_function" href="namespaceflow.html#a0917ae92fc9372994be63e2b07d7da43">destroyElements</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_variable" href="#a597edff02196a283944224a5464c62a0">buffer_</a> + <a class="code hl_function" href="#a174ef01cedf42bda75a148f1e665506e">size</a>, <a class="code hl_variable" href="#a597edff02196a283944224a5464c62a0">buffer_</a> + <a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a>);</div>
+<div class="line"><span class="lineno">  496</span>      }</div>
+<div class="line"><span class="lineno">  497</span>      <a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a> = <a class="code hl_function" href="#a174ef01cedf42bda75a148f1e665506e">size</a>;</div>
+<div class="line"><span class="lineno">  498</span>    }</div>
 <div class="ttc" id="anamespaceflow_html_a003a0f5de60743211f4a12ad692ea545"><div class="ttname"><a href="namespaceflow.html#a003a0f5de60743211f4a12ad692ea545">flow::uninitializedEmplace</a></div><div class="ttdeci">OutputIt uninitializedEmplace(AllocatorType &amp;allocator, OutputIt first, OutputIt last, const Args &amp;... args)</div><div class="ttdoc">Constructs objects in uninitialized memory by copying arguments to their constructor....</div><div class="ttdef"><b>Definition</b> <a href="flow__memory__algorithm_8h_source.html#l00041">flow_memory_algorithm.h:41</a></div></div>
 </div><!-- fragment -->
 <p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00283">flow::Vector&lt; T, Allocator &gt;::resize()</a>, and <a class="el" href="flow__vector_8h_source.html#l00290">flow::Vector&lt; T, Allocator &gt;::resize()</a>.</p>
@@ -2428,14 +2429,14 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;, Growt
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00456">456</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  456</span>                                                     {</div>
-<div class="line"><span class="lineno">  457</span>      <a class="code hl_function" href="namespaceflow.html#a95a53e967634035ab7b02a7a0fd8d41a">deleteBuffer</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_variable" href="#a597edff02196a283944224a5464c62a0">buffer_</a>, <a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a>, <a class="code hl_variable" href="#ac2b41594b3b91f858c9c429ef98f4ae0">capacity_</a>);</div>
-<div class="line"><span class="lineno">  458</span>      <a class="code hl_variable" href="#a597edff02196a283944224a5464c62a0">buffer_</a> = <a class="code hl_class" href="classflow_1_1_vector.html">buffer</a>;</div>
-<div class="line"><span class="lineno">  459</span>      <a class="code hl_variable" href="#ac2b41594b3b91f858c9c429ef98f4ae0">capacity_</a> = <a class="code hl_function" href="#a5fdda2faa17a39759f1068d09d94f980">capacity</a>;</div>
-<div class="line"><span class="lineno">  460</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00457">457</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  457</span>                                                     {</div>
+<div class="line"><span class="lineno">  458</span>      <a class="code hl_function" href="namespaceflow.html#a95a53e967634035ab7b02a7a0fd8d41a">deleteBuffer</a>(<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_variable" href="#a597edff02196a283944224a5464c62a0">buffer_</a>, <a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a>, <a class="code hl_variable" href="#ac2b41594b3b91f858c9c429ef98f4ae0">capacity_</a>);</div>
+<div class="line"><span class="lineno">  459</span>      <a class="code hl_variable" href="#a597edff02196a283944224a5464c62a0">buffer_</a> = <a class="code hl_class" href="classflow_1_1_vector.html">buffer</a>;</div>
+<div class="line"><span class="lineno">  460</span>      <a class="code hl_variable" href="#ac2b41594b3b91f858c9c429ef98f4ae0">capacity_</a> = <a class="code hl_function" href="#a5fdda2faa17a39759f1068d09d94f980">capacity</a>;</div>
+<div class="line"><span class="lineno">  461</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00464">flow::Vector&lt; T, Allocator &gt;::relocateBuffer()</a>, and <a class="el" href="flow__vector_8h_source.html#l00473">flow::Vector&lt; T, Allocator &gt;::relocateBufferWithHoles()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00465">flow::Vector&lt; T, Allocator &gt;::relocateBuffer()</a>, and <a class="el" href="flow__vector_8h_source.html#l00474">flow::Vector&lt; T, Allocator &gt;::relocateBufferWithHoles()</a>.</p>
 
 </div>
 </div>
@@ -2469,17 +2470,17 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;, Growt
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00500">500</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  500</span>                                                        {</div>
-<div class="line"><span class="lineno">  501</span>      <span class="keyword">using </span><a class="code hl_class" href="classflow_1_1_vector.html">std::swap</a>;</div>
-<div class="line"><span class="lineno">  502</span>      <a class="code hl_friend" href="#acc30803f60627ed546fa47629ef134c1">swap</a>(<a class="code hl_class" href="classflow_1_1_vector.html">lhs</a>.<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_class" href="classflow_1_1_vector.html">rhs</a>.<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>);</div>
-<div class="line"><span class="lineno">  503</span>      <a class="code hl_friend" href="#acc30803f60627ed546fa47629ef134c1">swap</a>(<a class="code hl_class" href="classflow_1_1_vector.html">lhs</a>.<a class="code hl_variable" href="#a6194e8a003c84766b0e07ab59129fd60">growthStrategy_</a>, <a class="code hl_class" href="classflow_1_1_vector.html">rhs</a>.<a class="code hl_variable" href="#a6194e8a003c84766b0e07ab59129fd60">growthStrategy_</a>);</div>
-<div class="line"><span class="lineno">  504</span>      <a class="code hl_friend" href="#acc30803f60627ed546fa47629ef134c1">swap</a>(<a class="code hl_class" href="classflow_1_1_vector.html">lhs</a>.<a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a>, <a class="code hl_class" href="classflow_1_1_vector.html">rhs</a>.<a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a>);</div>
-<div class="line"><span class="lineno">  505</span>      <a class="code hl_friend" href="#acc30803f60627ed546fa47629ef134c1">swap</a>(<a class="code hl_class" href="classflow_1_1_vector.html">lhs</a>.<a class="code hl_variable" href="#ac2b41594b3b91f858c9c429ef98f4ae0">capacity_</a>, <a class="code hl_class" href="classflow_1_1_vector.html">rhs</a>.<a class="code hl_variable" href="#ac2b41594b3b91f858c9c429ef98f4ae0">capacity_</a>);</div>
-<div class="line"><span class="lineno">  506</span>      <a class="code hl_friend" href="#acc30803f60627ed546fa47629ef134c1">swap</a>(<a class="code hl_class" href="classflow_1_1_vector.html">lhs</a>.<a class="code hl_variable" href="#a597edff02196a283944224a5464c62a0">buffer_</a>, <a class="code hl_class" href="classflow_1_1_vector.html">rhs</a>.<a class="code hl_variable" href="#a597edff02196a283944224a5464c62a0">buffer_</a>);</div>
-<div class="line"><span class="lineno">  507</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00501">501</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  501</span>                                                        {</div>
+<div class="line"><span class="lineno">  502</span>      <span class="keyword">using </span><a class="code hl_class" href="classflow_1_1_vector.html">std::swap</a>;</div>
+<div class="line"><span class="lineno">  503</span>      <a class="code hl_friend" href="#acc30803f60627ed546fa47629ef134c1">swap</a>(<a class="code hl_class" href="classflow_1_1_vector.html">lhs</a>.<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>, <a class="code hl_class" href="classflow_1_1_vector.html">rhs</a>.<a class="code hl_variable" href="#ad06c3b5cb971e7dbf7cdba5be93f7f06">allocator_</a>);</div>
+<div class="line"><span class="lineno">  504</span>      <a class="code hl_friend" href="#acc30803f60627ed546fa47629ef134c1">swap</a>(<a class="code hl_class" href="classflow_1_1_vector.html">lhs</a>.<a class="code hl_variable" href="#a6194e8a003c84766b0e07ab59129fd60">growthStrategy_</a>, <a class="code hl_class" href="classflow_1_1_vector.html">rhs</a>.<a class="code hl_variable" href="#a6194e8a003c84766b0e07ab59129fd60">growthStrategy_</a>);</div>
+<div class="line"><span class="lineno">  505</span>      <a class="code hl_friend" href="#acc30803f60627ed546fa47629ef134c1">swap</a>(<a class="code hl_class" href="classflow_1_1_vector.html">lhs</a>.<a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a>, <a class="code hl_class" href="classflow_1_1_vector.html">rhs</a>.<a class="code hl_variable" href="#a6205cfde685f45023d7f26941997a3ee">size_</a>);</div>
+<div class="line"><span class="lineno">  506</span>      <a class="code hl_friend" href="#acc30803f60627ed546fa47629ef134c1">swap</a>(<a class="code hl_class" href="classflow_1_1_vector.html">lhs</a>.<a class="code hl_variable" href="#ac2b41594b3b91f858c9c429ef98f4ae0">capacity_</a>, <a class="code hl_class" href="classflow_1_1_vector.html">rhs</a>.<a class="code hl_variable" href="#ac2b41594b3b91f858c9c429ef98f4ae0">capacity_</a>);</div>
+<div class="line"><span class="lineno">  507</span>      <a class="code hl_friend" href="#acc30803f60627ed546fa47629ef134c1">swap</a>(<a class="code hl_class" href="classflow_1_1_vector.html">lhs</a>.<a class="code hl_variable" href="#a597edff02196a283944224a5464c62a0">buffer_</a>, <a class="code hl_class" href="classflow_1_1_vector.html">rhs</a>.<a class="code hl_variable" href="#a597edff02196a283944224a5464c62a0">buffer_</a>);</div>
+<div class="line"><span class="lineno">  508</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00182">flow::Vector&lt; T, Allocator &gt;::operator=()</a>, and <a class="el" href="flow__vector_8h_source.html#l00500">flow::Vector&lt; T, Allocator &gt;::swap</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00182">flow::Vector&lt; T, Allocator &gt;::operator=()</a>, and <a class="el" href="flow__vector_8h_source.html#l00501">flow::Vector&lt; T, Allocator &gt;::swap</a>.</p>
 
 </div>
 </div>
@@ -2586,7 +2587,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;, Growt
 
 <p class="definition">Definition at line <a class="el" href="flow__vector_8h_source.html#l00066">66</a> of file <a class="el" href="flow__vector_8h_source.html">flow_vector.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00354">flow::Vector&lt; T, Allocator &gt;::emplace()</a>, <a class="el" href="flow__vector_8h_source.html#l00311">flow::Vector&lt; T, Allocator &gt;::emplaceBack()</a>, and <a class="el" href="flow__vector_8h_source.html#l00406">flow::Vector&lt; T, Allocator &gt;::insert()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00355">flow::Vector&lt; T, Allocator &gt;::emplace()</a>, <a class="el" href="flow__vector_8h_source.html#l00312">flow::Vector&lt; T, Allocator &gt;::emplaceBack()</a>, and <a class="el" href="flow__vector_8h_source.html#l00407">flow::Vector&lt; T, Allocator &gt;::insert()</a>.</p>
 
 </div>
 </div>

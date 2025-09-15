@@ -127,5 +127,8 @@
     <ClInclude Include="flow_segment_tree.h">
       <Filter>flow\container</Filter>
     </ClInclude>
+    <ClInclude Include="flow_disjoint_set.h">
+      <Filter>flow\container</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

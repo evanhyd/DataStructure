@@ -69,5 +69,8 @@
     <ClCompile Include="flow_segment_tree.t.cpp">
       <Filter>flow\container</Filter>
     </ClCompile>
+    <ClCompile Include="flow_disjoint_set.t.cpp">
+      <Filter>flow\container</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

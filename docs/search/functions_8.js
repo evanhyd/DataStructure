@@ -3,5 +3,6 @@ var searchData=
   ['insert_0',['insert',['../classflow_1_1_vector.html#afc9e7deb83d7e224959f1d0c2bcfb2b6',1,'flow::Vector::insert(iterator pos, const T &amp;value)'],['../classflow_1_1_vector.html#a7b99f7d13471a841f4b0bbe7b7e81f00',1,'flow::Vector::insert(iterator pos, T &amp;&amp;value)'],['../classflow_1_1_vector.html#ac33ba3bee9a3d91ec7233e5ed5767695',1,'flow::Vector::insert(iterator pos, std::size_t count, const T &amp;value)'],['../classflow_1_1_vector.html#a022a327a5db05b8c23158aa44aa642ea',1,'flow::Vector::insert(iterator pos, It first, It last)'],['../classflow_1_1_vector.html#ac98171a9ca91d6e2b7c77f2b531b7ca1',1,'flow::Vector::insert(iterator pos, std::initializer_list&lt; T &gt; list)']]],
   ['integraliterator_1',['IntegralIterator',['../classflow_1_1_integral_iterator.html#a5297679ef2166de46d5038ff6843340e',1,'flow::IntegralIterator']]],
   ['isleftchild_2',['isLeftChild',['../classflow_1_1_segment_tree.html#aa01b4fdb959a9abfb0104f3f79860de6',1,'flow::SegmentTree']]],
-  ['isrightchild_3',['isRightChild',['../classflow_1_1_segment_tree.html#a9129ec32297e43e8644071f7d4cd5e18',1,'flow::SegmentTree']]]
+  ['isrightchild_3',['isRightChild',['../classflow_1_1_segment_tree.html#a9129ec32297e43e8644071f7d4cd5e18',1,'flow::SegmentTree']]],
+  ['issamegroup_4',['isSameGroup',['../classflow_1_1_disjoint_set.html#a0655b4d7ab07dbfb289e131f2803a7a7',1,'flow::DisjointSet']]]
 ];
