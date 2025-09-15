@@ -278,7 +278,6 @@
     <ClInclude Include="flow_polymorphic_allocator.h" />
     <ClInclude Include="RandomMeldableHeap.h" />
     <ClInclude Include="flow_counted_value_view_iterator.h" />
-    <ClInclude Include="SegmentTree.h" />
     <ClInclude Include="flow_simple_thread_pool.h" />
     <ClInclude Include="SkipList.h" />
     <ClInclude Include="SparseTable.h" />

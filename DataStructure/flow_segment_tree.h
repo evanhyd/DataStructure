@@ -1,8 +1,15 @@
 #pragma once
 #include "flow_vector.h"
+#include <cassert>
+#include <optional>
 
 namespace flow {
 
+  /// @brief A standard segment tree that supports O(log n) for point update and range query.
+  /// The binary operation must be commutative.
+  /// @tparam T 
+  /// @tparam Allocator 
+  /// @tparam BinOp 
   template <typename T, typename BinOp, typename Allocator = PolymorphicAllocator<>>
   class SegmentTree {
   public:
@@ -38,7 +45,7 @@ namespace flow {
     /// @param last Iterator to one-past-last element.
     /// @param binOp Binary operator.
     /// @param alloc Allocator.
-    template <std::input_iterator It>
+    template <std::forward_iterator It>
     explicit constexpr SegmentTree(It first, It last, BinOp binOp = {}, const allocator_type& allocator = {})
       : data_(std::distance(first, last) * 2, allocator), binOp_(std::move(binOp)) {
       std::copy(first, last, data_.begin() + size());
@@ -70,6 +77,12 @@ namespace flow {
       return data_.size() / 2;
     }
 
+    /// @brief Check if the segmeent tree is empty.
+    /// @return true if the segment tree is empty.
+    bool empty() const {
+      return data_.size() == 0;
+    }
+
     /// @brief Set the new value at index i, then update the tree structure.
     /// @param i The index.
     /// @param value New value.
@@ -85,18 +98,17 @@ namespace flow {
     }
 
     /// @brief Query the value from [first, last) after applying the binary operator adjacent-pair wise.
-    /// The range must not be empty, otherwise the result is undefined.
+    /// If the range is empty, return std::nullopt.
     /// @param first The begin index.
     /// @param last The end index.
-    /// @return The range value.
-    T getRange(std::size_t first, std::size_t last) const {
-      assert(first < last && "first must be smaller than last");
+    /// @return The range value or std::nullopt.
+    std::optional<T> getRange(std::size_t first, std::size_t last) const {
+      assert(first <= last && "invalid range");
       std::size_t elementSize = size();
       first += elementSize;
       last += elementSize;
 
       std::optional<T> result{};
-
       for (; first < last;) {
         if (isRightChild(first)) {
           if (!result) {
@@ -120,7 +132,7 @@ namespace flow {
         last = getParent(last);
       }
 
-      return *result;
+      return result;
     }
 
   private:

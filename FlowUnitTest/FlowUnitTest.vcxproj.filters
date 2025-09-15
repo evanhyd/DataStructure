@@ -66,5 +66,8 @@
     <ClCompile Include="flow_non_type_list.t.cpp">
       <Filter>flow\container</Filter>
     </ClCompile>
+    <ClCompile Include="flow_segment_tree.t.cpp">
+      <Filter>flow\container</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

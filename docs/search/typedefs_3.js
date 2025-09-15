@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['difference_5ftype_0',['difference_type',['../classflow_1_1_binary_heap.html#a338d587f9d7cdac535b24e7444792723',1,'flow::BinaryHeap::difference_type'],['../classflow_1_1_counted_value_view_iterator.html#ab15d7850ec1d51e9c23b298d79009207',1,'flow::CountedValueViewIterator::difference_type'],['../classflow_1_1_integral_iterator.html#abbd6e64e4fc4d0237be87ce3871b9b3a',1,'flow::IntegralIterator::difference_type'],['../classflow_1_1_vector.html#ad698ac46b7cd873095875b41509e0a3c',1,'flow::Vector::difference_type']]]
+  ['iterator_0',['iterator',['../classflow_1_1_binary_heap.html#a581c482759e1bc41a4f2f3f83f63c8f7',1,'flow::BinaryHeap::iterator'],['../classflow_1_1_segment_tree.html#a5cd367eb52c9a844924631f25de2ca99',1,'flow::SegmentTree::iterator'],['../classflow_1_1_vector.html#a3133e96d4479ecd0534588a8df0b5eb7',1,'flow::Vector::iterator']]],
+  ['iterator_5fcategory_1',['iterator_category',['../classflow_1_1_counted_value_view_iterator.html#ae3c6ce089aca7af55dbd0ea85d083a0b',1,'flow::CountedValueViewIterator::iterator_category'],['../classflow_1_1_integral_iterator.html#a7a6d2bdf09ea8b356e002138da6d4304',1,'flow::IntegralIterator::iterator_category']]]
 ];

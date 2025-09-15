@@ -254,15 +254,10 @@ const auto __ = std::atexit([]() { std::ofstream("display_runtime.txt") << INT_M
 
 using namespace std;
 
-//#include "SegmentTree.h"
 #include "flow_segment_tree.h"
 
-
 int main() {
-  const auto binOp = [](int a, int b) {return a + b; };
 
-  flow::SegmentTree<int, decltype(binOp)> tree({ 1, 1, 1, 1 });
-  cout << tree.getRange(1, 2) << '\n';
 }
 
 /*

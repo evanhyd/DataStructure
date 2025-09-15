@@ -122,12 +122,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2a14ce43ff183228a2678ac85969c86e" id="r_a2a14ce43ff183228a2678ac85969c86e"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2a14ce43ff183228a2678ac85969c86e">BinaryHeap</a> (const <a class="el" href="classflow_1_1_binary_heap.html">BinaryHeap</a> &amp;rhs, const <a class="el" href="#aeaf3791590bb3a2a84fc9786a38507e5">allocator_type</a> &amp;allocator)</td></tr>
 <tr class="memitem:a1b3318cf5be2abad7904167a0a9d964f" id="r_a1b3318cf5be2abad7904167a0a9d964f"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b3318cf5be2abad7904167a0a9d964f">BinaryHeap</a> (<a class="el" href="classflow_1_1_binary_heap.html">BinaryHeap</a> &amp;&amp;)=default</td></tr>
 <tr class="memitem:a7ac118b4b5014b14ac70e2ea7d37e6d4" id="r_a7ac118b4b5014b14ac70e2ea7d37e6d4"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ac118b4b5014b14ac70e2ea7d37e6d4">BinaryHeap</a> (<a class="el" href="classflow_1_1_binary_heap.html">BinaryHeap</a> &amp;&amp;rhs, const <a class="el" href="#aeaf3791590bb3a2a84fc9786a38507e5">allocator_type</a> &amp;allocator) noexcept(noexcept(<a class="el" href="#a496b9e276e98d2c70fead25c3a55a8a8">container_type</a>(std::move(rhs.data_), allocator)) &amp;&amp;noexcept(Compare(std::move(rhs.comparator_))))</td></tr>
-<tr class="memitem:af11f9e88ad8ba1ee9064e7915ec222c6" id="r_af11f9e88ad8ba1ee9064e7915ec222c6"><td class="memTemplParams" colspan="2">template&lt;std::input_iterator It&gt; </td></tr>
-<tr class="memitem:af11f9e88ad8ba1ee9064e7915ec222c6 template"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af11f9e88ad8ba1ee9064e7915ec222c6">BinaryHeap</a> (It first, It last, const <a class="el" href="#aeaf3791590bb3a2a84fc9786a38507e5">allocator_type</a> &amp;allocator={})</td></tr>
-<tr class="memdesc:af11f9e88ad8ba1ee9064e7915ec222c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator range constructor. Comparator must be default initializable.  <br /></td></tr>
-<tr class="memitem:a9e4cd0fe27bcf2fa07ccc0fb571fb8d5" id="r_a9e4cd0fe27bcf2fa07ccc0fb571fb8d5"><td class="memTemplParams" colspan="2">template&lt;std::input_iterator It&gt; </td></tr>
-<tr class="memitem:a9e4cd0fe27bcf2fa07ccc0fb571fb8d5 template"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e4cd0fe27bcf2fa07ccc0fb571fb8d5">BinaryHeap</a> (It first, It last, Compare comparator, const <a class="el" href="#aeaf3791590bb3a2a84fc9786a38507e5">allocator_type</a> &amp;allocator={})</td></tr>
-<tr class="memdesc:a9e4cd0fe27bcf2fa07ccc0fb571fb8d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator range constructor.  <br /></td></tr>
+<tr class="memitem:aaf784c4b801cdbb887f2f7ade5f82f7f" id="r_aaf784c4b801cdbb887f2f7ade5f82f7f"><td class="memTemplParams" colspan="2">template&lt;std::input_iterator It&gt; </td></tr>
+<tr class="memitem:aaf784c4b801cdbb887f2f7ade5f82f7f template"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaf784c4b801cdbb887f2f7ade5f82f7f">BinaryHeap</a> (It first, It last, Compare comparator={}, const <a class="el" href="#aeaf3791590bb3a2a84fc9786a38507e5">allocator_type</a> &amp;allocator={})</td></tr>
+<tr class="memdesc:aaf784c4b801cdbb887f2f7ade5f82f7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator range constructor.  <br /></td></tr>
+<tr class="memitem:a7ab6fc2b8a0a1b50f5c315a2f84177cc" id="r_a7ab6fc2b8a0a1b50f5c315a2f84177cc"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ab6fc2b8a0a1b50f5c315a2f84177cc">BinaryHeap</a> (std::initializer_list&lt; T &gt; list, Compare comparator={}, const <a class="el" href="#aeaf3791590bb3a2a84fc9786a38507e5">allocator_type</a> &amp;allocator={})</td></tr>
+<tr class="memdesc:a7ab6fc2b8a0a1b50f5c315a2f84177cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializer list range constructor.  <br /></td></tr>
 <tr class="memitem:adef5dc8144c1279d70526ece7f6e7a5d" id="r_adef5dc8144c1279d70526ece7f6e7a5d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adef5dc8144c1279d70526ece7f6e7a5d">~BinaryHeap</a> ()=default</td></tr>
 <tr class="memitem:a870a318ee28de1355eeafd236cc5f43f" id="r_a870a318ee28de1355eeafd236cc5f43f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#aeaf3791590bb3a2a84fc9786a38507e5">allocator_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a870a318ee28de1355eeafd236cc5f43f">get_allocator</a> () const noexcept</td></tr>
 <tr class="memitem:ab1b3b8e39831b95254ef5f152a81e916" id="r_ab1b3b8e39831b95254ef5f152a81e916"><td class="memItemLeft" align="right" valign="top">constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab1b3b8e39831b95254ef5f152a81e916">size</a> () const noexcept</td></tr>
@@ -625,8 +624,8 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 
 </div>
 </div>
-<a id="af11f9e88ad8ba1ee9064e7915ec222c6" name="af11f9e88ad8ba1ee9064e7915ec222c6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af11f9e88ad8ba1ee9064e7915ec222c6">&#9670;&#160;</a></span>BinaryHeap() <span class="overload">[8/9]</span></h2>
+<a id="aaf784c4b801cdbb887f2f7ade5f82f7f" name="aaf784c4b801cdbb887f2f7ade5f82f7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf784c4b801cdbb887f2f7ade5f82f7f">&#9670;&#160;</a></span>BinaryHeap() <span class="overload">[8/9]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -651,62 +650,7 @@ template&lt;std::input_iterator It&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="#aeaf3791590bb3a2a84fc9786a38507e5">allocator_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>allocator</em></span><span class="paramdefsep"> = </span><span class="paramdefval">{}</span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel constexpr">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Iterator range constructor. Comparator must be default initializable. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">first</td><td>Iterator to first element. </td></tr>
-    <tr><td class="paramname">last</td><td>Iterator to one-past-last element. </td></tr>
-    <tr><td class="paramname">alloc</td><td>Allocator. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00074">74</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   74</span>                                                                              {})</div>
-<div class="line"><span class="lineno">   75</span>      : <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">first</a>, <a class="code hl_class" href="classflow_1_1_binary_heap.html">last</a>, <a class="code hl_class" href="classflow_1_1_binary_heap.html">allocator</a>), <a class="code hl_variable" href="#a3e6622a66cab256701593dc42db188fd">comparator_</a>() {</div>
-<div class="line"><span class="lineno">   76</span>      <a class="code hl_function" href="#a593d816a7ce2240726f7f8c8d23e1d8f">heapify</a>();</div>
-<div class="line"><span class="lineno">   77</span>    }</div>
-<div class="ttc" id="aclassflow_1_1_binary_heap_html_a593d816a7ce2240726f7f8c8d23e1d8f"><div class="ttname"><a href="#a593d816a7ce2240726f7f8c8d23e1d8f">flow::BinaryHeap::heapify</a></div><div class="ttdeci">void heapify() noexcept(std::is_nothrow_move_constructible_v&lt; T &gt; &amp;&amp;std::is_nothrow_move_assignable_v&lt; T &gt;)</div><div class="ttdef"><b>Definition</b> <a href="flow__binary__heap_8h_source.html#l00212">flow_binary_heap.h:212</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="a9e4cd0fe27bcf2fa07ccc0fb571fb8d5" name="a9e4cd0fe27bcf2fa07ccc0fb571fb8d5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9e4cd0fe27bcf2fa07ccc0fb571fb8d5">&#9670;&#160;</a></span>BinaryHeap() <span class="overload">[9/9]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
-<div class="memtemplate">
-template&lt;std::input_iterator It&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classflow_1_1_binary_heap.html">flow::BinaryHeap</a>&lt; T, Compare, Allocator &gt;::BinaryHeap </td>
-          <td>(</td>
-          <td class="paramtype">It</td>          <td class="paramname"><span class="paramname"><em>first</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">It</td>          <td class="paramname"><span class="paramname"><em>last</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Compare</td>          <td class="paramname"><span class="paramname"><em>comparator</em></span>, </td>
+          <td class="paramtype">Compare</td>          <td class="paramname"><span class="paramname"><em>comparator</em></span><span class="paramdefsep"> = </span><span class="paramdefval">{}</span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -716,7 +660,7 @@ template&lt;std::input_iterator It&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel explicit">explicit</span><span class="mlabel constexpr">constexpr</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -732,11 +676,65 @@ template&lt;std::input_iterator It&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00085">85</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   85</span>                                                                                                  {})</div>
-<div class="line"><span class="lineno">   86</span>      : <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">first</a>, <a class="code hl_class" href="classflow_1_1_binary_heap.html">last</a>, <a class="code hl_class" href="classflow_1_1_binary_heap.html">allocator</a>), <a class="code hl_variable" href="#a3e6622a66cab256701593dc42db188fd">comparator_</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">std</a>::<a class="code hl_class" href="classflow_1_1_binary_heap.html">move</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">comparator</a>)) {</div>
-<div class="line"><span class="lineno">   87</span>      <a class="code hl_function" href="#a593d816a7ce2240726f7f8c8d23e1d8f">heapify</a>();</div>
-<div class="line"><span class="lineno">   88</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00074">74</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   74</span>                                                                          {}, <span class="keyword">const</span> <a class="code hl_typedef" href="#aeaf3791590bb3a2a84fc9786a38507e5">allocator_type</a>&amp; <a class="code hl_class" href="classflow_1_1_binary_heap.html">allocator</a> = {})</div>
+<div class="line"><span class="lineno">   75</span>      : <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">first</a>, <a class="code hl_class" href="classflow_1_1_binary_heap.html">last</a>, <a class="code hl_class" href="classflow_1_1_binary_heap.html">allocator</a>), <a class="code hl_variable" href="#a3e6622a66cab256701593dc42db188fd">comparator_</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">std</a>::<a class="code hl_class" href="classflow_1_1_binary_heap.html">move</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">comparator</a>)) {</div>
+<div class="line"><span class="lineno">   76</span>      <a class="code hl_function" href="#a593d816a7ce2240726f7f8c8d23e1d8f">heapify</a>();</div>
+<div class="line"><span class="lineno">   77</span>    }</div>
+<div class="ttc" id="aclassflow_1_1_binary_heap_html_a593d816a7ce2240726f7f8c8d23e1d8f"><div class="ttname"><a href="#a593d816a7ce2240726f7f8c8d23e1d8f">flow::BinaryHeap::heapify</a></div><div class="ttdeci">void heapify() noexcept(std::is_nothrow_move_constructible_v&lt; T &gt; &amp;&amp;std::is_nothrow_move_assignable_v&lt; T &gt;)</div><div class="ttdef"><b>Definition</b> <a href="flow__binary__heap_8h_source.html#l00210">flow_binary_heap.h:210</a></div></div>
+<div class="ttc" id="aclassflow_1_1_binary_heap_html_aeaf3791590bb3a2a84fc9786a38507e5"><div class="ttname"><a href="#aeaf3791590bb3a2a84fc9786a38507e5">flow::BinaryHeap::allocator_type</a></div><div class="ttdeci">std::allocator_traits&lt; Allocator &gt;::template rebind_alloc&lt; T &gt; allocator_type</div><div class="ttdef"><b>Definition</b> <a href="flow__binary__heap_8h_source.html#l00024">flow_binary_heap.h:24</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a7ab6fc2b8a0a1b50f5c315a2f84177cc" name="a7ab6fc2b8a0a1b50f5c315a2f84177cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ab6fc2b8a0a1b50f5c315a2f84177cc">&#9670;&#160;</a></span>BinaryHeap() <span class="overload">[9/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classflow_1_1_binary_heap.html">flow::BinaryHeap</a>&lt; T, Compare, Allocator &gt;::BinaryHeap </td>
+          <td>(</td>
+          <td class="paramtype">std::initializer_list&lt; T &gt;</td>          <td class="paramname"><span class="paramname"><em>list</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Compare</td>          <td class="paramname"><span class="paramname"><em>comparator</em></span><span class="paramdefsep"> = </span><span class="paramdefval">{}</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#aeaf3791590bb3a2a84fc9786a38507e5">allocator_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>allocator</em></span><span class="paramdefsep"> = </span><span class="paramdefval">{}</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel explicit">explicit</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initializer list range constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">list</td><td>Initializer list. </td></tr>
+    <tr><td class="paramname">comp</td><td>Comparator. </td></tr>
+    <tr><td class="paramname">alloc</td><td>Allocator. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00083">83</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   83</span>                                                                                    {}, <span class="keyword">const</span> <a class="code hl_typedef" href="#aeaf3791590bb3a2a84fc9786a38507e5">allocator_type</a>&amp; <a class="code hl_class" href="classflow_1_1_binary_heap.html">allocator</a> = {})</div>
+<div class="line"><span class="lineno">   84</span>      : <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">list</a>, <a class="code hl_class" href="classflow_1_1_binary_heap.html">allocator</a>), <a class="code hl_variable" href="#a3e6622a66cab256701593dc42db188fd">comparator_</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">std</a>::<a class="code hl_class" href="classflow_1_1_binary_heap.html">move</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">comparator</a>)) {</div>
+<div class="line"><span class="lineno">   85</span>      <a class="code hl_function" href="#a593d816a7ce2240726f7f8c8d23e1d8f">heapify</a>();</div>
+<div class="line"><span class="lineno">   86</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -796,14 +794,14 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <p>Return the heap capacity. </p>
 <dl class="section return"><dt>Returns</dt><dd>The heap capacity. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00107">107</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  107</span>                                                  {</div>
-<div class="line"><span class="lineno">  108</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.capacity();</div>
-<div class="line"><span class="lineno">  109</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00105">105</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  105</span>                                                  {</div>
+<div class="line"><span class="lineno">  106</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.capacity();</div>
+<div class="line"><span class="lineno">  107</span>    }</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="flow__binary__heap_8h_source.html#l00028">data_</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="flow__binary__heap_8h_source.html#l00131">reserve()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__binary__heap_8h_source.html#l00129">reserve()</a>.</p>
 
 </div>
 </div>
@@ -834,10 +832,10 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 
 <p>Clear the heap. </p>
 
-<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00125">125</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  125</span>                          {</div>
-<div class="line"><span class="lineno">  126</span>      <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.clear();</div>
-<div class="line"><span class="lineno">  127</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00123">123</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  123</span>                          {</div>
+<div class="line"><span class="lineno">  124</span>      <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.clear();</div>
+<div class="line"><span class="lineno">  125</span>    }</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="flow__binary__heap_8h_source.html#l00028">data_</a>.</p>
 
@@ -870,19 +868,19 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 
 <p>Drop the min element. </p>
 
-<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00157">157</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  158</span>                                                   {</div>
-<div class="line"><span class="lineno">  159</span>      <a class="code hl_class" href="classflow_1_1_binary_heap.html">assert</a>(!<a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.empty() &amp;&amp; <span class="stringliteral">&quot;call drop on an empty heap&quot;</span>);</div>
-<div class="line"><span class="lineno">  160</span>      <a class="code hl_class" href="classflow_1_1_binary_heap.html">std::size_t</a> <a class="code hl_class" href="classflow_1_1_binary_heap.html">index</a> = <a class="code hl_function" href="#a182cd0a75546233d32878fcb00e97e1c">fixDownWithHole</a>(0);</div>
-<div class="line"><span class="lineno">  161</span>      <a class="code hl_function" href="#afc20b79ddbefc2b4be5b14609011536e">fixUp</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">index</a>, 0, <a class="code hl_class" href="classflow_1_1_binary_heap.html">std::move</a>(<a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.back()));</div>
-<div class="line"><span class="lineno">  162</span>      <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.popBack();</div>
-<div class="line"><span class="lineno">  163</span>    }</div>
-<div class="ttc" id="aclassflow_1_1_binary_heap_html_a182cd0a75546233d32878fcb00e97e1c"><div class="ttname"><a href="#a182cd0a75546233d32878fcb00e97e1c">flow::BinaryHeap::fixDownWithHole</a></div><div class="ttdeci">std::size_t fixDownWithHole(std::size_t index) noexcept(std::is_nothrow_move_assignable_v&lt; T &gt;)</div><div class="ttdef"><b>Definition</b> <a href="flow__binary__heap_8h_source.html#l00178">flow_binary_heap.h:178</a></div></div>
-<div class="ttc" id="aclassflow_1_1_binary_heap_html_afc20b79ddbefc2b4be5b14609011536e"><div class="ttname"><a href="#afc20b79ddbefc2b4be5b14609011536e">flow::BinaryHeap::fixUp</a></div><div class="ttdeci">void fixUp(std::size_t index, std::size_t top, T &amp;&amp;value) noexcept(std::is_nothrow_move_assignable_v&lt; T &gt;)</div><div class="ttdef"><b>Definition</b> <a href="flow__binary__heap_8h_source.html#l00198">flow_binary_heap.h:198</a></div></div>
+<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00155">155</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  156</span>                                                   {</div>
+<div class="line"><span class="lineno">  157</span>      <a class="code hl_class" href="classflow_1_1_binary_heap.html">assert</a>(!<a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.empty() &amp;&amp; <span class="stringliteral">&quot;call drop on an empty heap&quot;</span>);</div>
+<div class="line"><span class="lineno">  158</span>      <a class="code hl_class" href="classflow_1_1_binary_heap.html">std::size_t</a> <a class="code hl_class" href="classflow_1_1_binary_heap.html">index</a> = <a class="code hl_function" href="#a182cd0a75546233d32878fcb00e97e1c">fixDownWithHole</a>(0);</div>
+<div class="line"><span class="lineno">  159</span>      <a class="code hl_function" href="#afc20b79ddbefc2b4be5b14609011536e">fixUp</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">index</a>, 0, <a class="code hl_class" href="classflow_1_1_binary_heap.html">std::move</a>(<a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.back()));</div>
+<div class="line"><span class="lineno">  160</span>      <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.popBack();</div>
+<div class="line"><span class="lineno">  161</span>    }</div>
+<div class="ttc" id="aclassflow_1_1_binary_heap_html_a182cd0a75546233d32878fcb00e97e1c"><div class="ttname"><a href="#a182cd0a75546233d32878fcb00e97e1c">flow::BinaryHeap::fixDownWithHole</a></div><div class="ttdeci">std::size_t fixDownWithHole(std::size_t index) noexcept(std::is_nothrow_move_assignable_v&lt; T &gt;)</div><div class="ttdef"><b>Definition</b> <a href="flow__binary__heap_8h_source.html#l00176">flow_binary_heap.h:176</a></div></div>
+<div class="ttc" id="aclassflow_1_1_binary_heap_html_afc20b79ddbefc2b4be5b14609011536e"><div class="ttname"><a href="#afc20b79ddbefc2b4be5b14609011536e">flow::BinaryHeap::fixUp</a></div><div class="ttdeci">void fixUp(std::size_t index, std::size_t top, T &amp;&amp;value) noexcept(std::is_nothrow_move_assignable_v&lt; T &gt;)</div><div class="ttdef"><b>Definition</b> <a href="flow__binary__heap_8h_source.html#l00196">flow_binary_heap.h:196</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="flow__binary__heap_8h_source.html#l00028">data_</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00178">fixDownWithHole()</a>, and <a class="el" href="flow__binary__heap_8h_source.html#l00198">fixUp()</a>.</p>
+<p class="reference">References <a class="el" href="flow__binary__heap_8h_source.html#l00028">data_</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00176">fixDownWithHole()</a>, and <a class="el" href="flow__binary__heap_8h_source.html#l00196">fixUp()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="flow__binary__heap_8h_source.html#l00167">pop()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__binary__heap_8h_source.html#l00165">pop()</a>.</p>
 
 </div>
 </div>
@@ -921,16 +919,16 @@ template&lt;typename ... Args&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00150">150</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  150</span>                                 {</div>
-<div class="line"><span class="lineno">  151</span>      <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.emplaceBack(<a class="code hl_class" href="classflow_1_1_binary_heap.html">std::forward&lt;Args&gt;</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">args</a>)...);</div>
-<div class="line"><span class="lineno">  152</span>      <a class="code hl_class" href="classflow_1_1_binary_heap.html">T</a> <a class="code hl_class" href="classflow_1_1_binary_heap.html">value</a> = <a class="code hl_class" href="classflow_1_1_binary_heap.html">std::move</a>(<a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.back());</div>
-<div class="line"><span class="lineno">  153</span>      <a class="code hl_function" href="#afc20b79ddbefc2b4be5b14609011536e">fixUp</a>(<a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.size() - 1, 0, <a class="code hl_class" href="classflow_1_1_binary_heap.html">std::move</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">value</a>));</div>
-<div class="line"><span class="lineno">  154</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00148">148</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  148</span>                                 {</div>
+<div class="line"><span class="lineno">  149</span>      <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.emplaceBack(<a class="code hl_class" href="classflow_1_1_binary_heap.html">std::forward&lt;Args&gt;</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">args</a>)...);</div>
+<div class="line"><span class="lineno">  150</span>      <a class="code hl_class" href="classflow_1_1_binary_heap.html">T</a> <a class="code hl_class" href="classflow_1_1_binary_heap.html">value</a> = <a class="code hl_class" href="classflow_1_1_binary_heap.html">std::move</a>(<a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.back());</div>
+<div class="line"><span class="lineno">  151</span>      <a class="code hl_function" href="#afc20b79ddbefc2b4be5b14609011536e">fixUp</a>(<a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.size() - 1, 0, <a class="code hl_class" href="classflow_1_1_binary_heap.html">std::move</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">value</a>));</div>
+<div class="line"><span class="lineno">  152</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="flow__binary__heap_8h_source.html#l00028">data_</a>, and <a class="el" href="flow__binary__heap_8h_source.html#l00198">fixUp()</a>.</p>
+<p class="reference">References <a class="el" href="flow__binary__heap_8h_source.html#l00028">data_</a>, and <a class="el" href="flow__binary__heap_8h_source.html#l00196">fixUp()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="flow__binary__heap_8h_source.html#l00137">push()</a>, and <a class="el" href="flow__binary__heap_8h_source.html#l00143">push()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__binary__heap_8h_source.html#l00135">push()</a>, and <a class="el" href="flow__binary__heap_8h_source.html#l00141">push()</a>.</p>
 
 </div>
 </div>
@@ -962,10 +960,10 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <p>Return true if empty. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if empty, otherwise false. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00113">113</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  113</span>                                          {</div>
-<div class="line"><span class="lineno">  114</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.empty();</div>
-<div class="line"><span class="lineno">  115</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00111">111</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  111</span>                                          {</div>
+<div class="line"><span class="lineno">  112</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.empty();</div>
+<div class="line"><span class="lineno">  113</span>    }</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="flow__binary__heap_8h_source.html#l00028">data_</a>.</p>
 
@@ -996,29 +994,29 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00178">178</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  179</span>                                                   {</div>
-<div class="line"><span class="lineno">  180</span>      <span class="keywordflow">for</span> (;;) {</div>
-<div class="line"><span class="lineno">  181</span>        <span class="keywordtype">size_t</span> <a class="code hl_class" href="classflow_1_1_binary_heap.html">child</a> = <a class="code hl_function" href="#a8f1554517e15da6be22fef810ad7c693">getLeftChild</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">index</a>);</div>
-<div class="line"><span class="lineno">  182</span>        <span class="keywordflow">if</span> (<a class="code hl_class" href="classflow_1_1_binary_heap.html">child</a> &gt;= <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.size()) {</div>
-<div class="line"><span class="lineno">  183</span>          <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  184</span>        }</div>
-<div class="line"><span class="lineno">  185</span> </div>
-<div class="line"><span class="lineno">  186</span>        <span class="comment">// Select the less child.</span></div>
-<div class="line"><span class="lineno">  187</span>        <a class="code hl_class" href="classflow_1_1_binary_heap.html">std::size_t</a> <a class="code hl_class" href="classflow_1_1_binary_heap.html">rightChild</a> = <a class="code hl_class" href="classflow_1_1_binary_heap.html">child</a> + 1;</div>
-<div class="line"><span class="lineno">  188</span>        <span class="keywordflow">if</span> (<a class="code hl_class" href="classflow_1_1_binary_heap.html">rightChild</a> &lt; <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.size() &amp;&amp; <a class="code hl_variable" href="#a3e6622a66cab256701593dc42db188fd">comparator_</a>(<a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>[<a class="code hl_class" href="classflow_1_1_binary_heap.html">rightChild</a>], <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>[<a class="code hl_class" href="classflow_1_1_binary_heap.html">child</a>])) {</div>
-<div class="line"><span class="lineno">  189</span>          <a class="code hl_class" href="classflow_1_1_binary_heap.html">child</a> = <a class="code hl_class" href="classflow_1_1_binary_heap.html">rightChild</a>;</div>
-<div class="line"><span class="lineno">  190</span>        }</div>
-<div class="line"><span class="lineno">  191</span>        <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>[<a class="code hl_class" href="classflow_1_1_binary_heap.html">index</a>] = <a class="code hl_class" href="classflow_1_1_binary_heap.html">std::move</a>(<a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>[<a class="code hl_class" href="classflow_1_1_binary_heap.html">child</a>]);</div>
-<div class="line"><span class="lineno">  192</span>        <a class="code hl_class" href="classflow_1_1_binary_heap.html">index</a> = <a class="code hl_class" href="classflow_1_1_binary_heap.html">child</a>;</div>
-<div class="line"><span class="lineno">  193</span>      }</div>
-<div class="line"><span class="lineno">  194</span>      <span class="keywordflow">return</span> <a class="code hl_class" href="classflow_1_1_binary_heap.html">index</a>;</div>
-<div class="line"><span class="lineno">  195</span>    }</div>
-<div class="ttc" id="aclassflow_1_1_binary_heap_html_a8f1554517e15da6be22fef810ad7c693"><div class="ttname"><a href="#a8f1554517e15da6be22fef810ad7c693">flow::BinaryHeap::getLeftChild</a></div><div class="ttdeci">static constexpr std::size_t getLeftChild(std::size_t i) noexcept</div><div class="ttdef"><b>Definition</b> <a href="flow__binary__heap_8h_source.html#l00233">flow_binary_heap.h:233</a></div></div>
+<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00176">176</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  177</span>                                                   {</div>
+<div class="line"><span class="lineno">  178</span>      <span class="keywordflow">for</span> (;;) {</div>
+<div class="line"><span class="lineno">  179</span>        <span class="keywordtype">size_t</span> <a class="code hl_class" href="classflow_1_1_binary_heap.html">child</a> = <a class="code hl_function" href="#a8f1554517e15da6be22fef810ad7c693">getLeftChild</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">index</a>);</div>
+<div class="line"><span class="lineno">  180</span>        <span class="keywordflow">if</span> (<a class="code hl_class" href="classflow_1_1_binary_heap.html">child</a> &gt;= <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.size()) {</div>
+<div class="line"><span class="lineno">  181</span>          <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  182</span>        }</div>
+<div class="line"><span class="lineno">  183</span> </div>
+<div class="line"><span class="lineno">  184</span>        <span class="comment">// Select the less child.</span></div>
+<div class="line"><span class="lineno">  185</span>        <a class="code hl_class" href="classflow_1_1_binary_heap.html">std::size_t</a> <a class="code hl_class" href="classflow_1_1_binary_heap.html">rightChild</a> = <a class="code hl_class" href="classflow_1_1_binary_heap.html">child</a> + 1;</div>
+<div class="line"><span class="lineno">  186</span>        <span class="keywordflow">if</span> (<a class="code hl_class" href="classflow_1_1_binary_heap.html">rightChild</a> &lt; <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.size() &amp;&amp; <a class="code hl_variable" href="#a3e6622a66cab256701593dc42db188fd">comparator_</a>(<a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>[<a class="code hl_class" href="classflow_1_1_binary_heap.html">rightChild</a>], <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>[<a class="code hl_class" href="classflow_1_1_binary_heap.html">child</a>])) {</div>
+<div class="line"><span class="lineno">  187</span>          <a class="code hl_class" href="classflow_1_1_binary_heap.html">child</a> = <a class="code hl_class" href="classflow_1_1_binary_heap.html">rightChild</a>;</div>
+<div class="line"><span class="lineno">  188</span>        }</div>
+<div class="line"><span class="lineno">  189</span>        <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>[<a class="code hl_class" href="classflow_1_1_binary_heap.html">index</a>] = <a class="code hl_class" href="classflow_1_1_binary_heap.html">std::move</a>(<a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>[<a class="code hl_class" href="classflow_1_1_binary_heap.html">child</a>]);</div>
+<div class="line"><span class="lineno">  190</span>        <a class="code hl_class" href="classflow_1_1_binary_heap.html">index</a> = <a class="code hl_class" href="classflow_1_1_binary_heap.html">child</a>;</div>
+<div class="line"><span class="lineno">  191</span>      }</div>
+<div class="line"><span class="lineno">  192</span>      <span class="keywordflow">return</span> <a class="code hl_class" href="classflow_1_1_binary_heap.html">index</a>;</div>
+<div class="line"><span class="lineno">  193</span>    }</div>
+<div class="ttc" id="aclassflow_1_1_binary_heap_html_a8f1554517e15da6be22fef810ad7c693"><div class="ttname"><a href="#a8f1554517e15da6be22fef810ad7c693">flow::BinaryHeap::getLeftChild</a></div><div class="ttdeci">static constexpr std::size_t getLeftChild(std::size_t i) noexcept</div><div class="ttdef"><b>Definition</b> <a href="flow__binary__heap_8h_source.html#l00231">flow_binary_heap.h:231</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="flow__binary__heap_8h_source.html#l00029">comparator_</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00028">data_</a>, and <a class="el" href="flow__binary__heap_8h_source.html#l00233">getLeftChild()</a>.</p>
+<p class="reference">References <a class="el" href="flow__binary__heap_8h_source.html#l00029">comparator_</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00028">data_</a>, and <a class="el" href="flow__binary__heap_8h_source.html#l00231">getLeftChild()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="flow__binary__heap_8h_source.html#l00157">drop()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__binary__heap_8h_source.html#l00155">drop()</a>.</p>
 
 </div>
 </div>
@@ -1056,25 +1054,25 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00198">198</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  199</span>                                                   {</div>
-<div class="line"><span class="lineno">  200</span>      <span class="keywordflow">while</span> (<a class="code hl_class" href="classflow_1_1_binary_heap.html">index</a> &gt; <a class="code hl_function" href="#a614b5fed643c5450f2fabe0d3dde3493">top</a>) {</div>
-<div class="line"><span class="lineno">  201</span>        <a class="code hl_class" href="classflow_1_1_binary_heap.html">std::size_t</a> <a class="code hl_class" href="classflow_1_1_binary_heap.html">parent</a> = <a class="code hl_function" href="#aa8f6eeb6614f0330d43a8ec2d9d2532d">getParent</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">index</a>);</div>
-<div class="line"><span class="lineno">  202</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a3e6622a66cab256701593dc42db188fd">comparator_</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">value</a>, <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>[<a class="code hl_class" href="classflow_1_1_binary_heap.html">parent</a>])) {</div>
-<div class="line"><span class="lineno">  203</span>          <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>[<a class="code hl_class" href="classflow_1_1_binary_heap.html">index</a>] = <a class="code hl_class" href="classflow_1_1_binary_heap.html">std::move</a>(<a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>[<a class="code hl_class" href="classflow_1_1_binary_heap.html">parent</a>]);</div>
-<div class="line"><span class="lineno">  204</span>          <a class="code hl_class" href="classflow_1_1_binary_heap.html">index</a> = <a class="code hl_class" href="classflow_1_1_binary_heap.html">parent</a>;</div>
-<div class="line"><span class="lineno">  205</span>        } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  206</span>          <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  207</span>        }</div>
-<div class="line"><span class="lineno">  208</span>      }</div>
-<div class="line"><span class="lineno">  209</span>      <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>[<a class="code hl_class" href="classflow_1_1_binary_heap.html">index</a>] = <a class="code hl_class" href="classflow_1_1_binary_heap.html">std::move</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">value</a>);</div>
-<div class="line"><span class="lineno">  210</span>    }</div>
-<div class="ttc" id="aclassflow_1_1_binary_heap_html_a614b5fed643c5450f2fabe0d3dde3493"><div class="ttname"><a href="#a614b5fed643c5450f2fabe0d3dde3493">flow::BinaryHeap::top</a></div><div class="ttdeci">const T &amp; top() const noexcept</div><div class="ttdoc">Return the min element.</div><div class="ttdef"><b>Definition</b> <a href="flow__binary__heap_8h_source.html#l00119">flow_binary_heap.h:119</a></div></div>
-<div class="ttc" id="aclassflow_1_1_binary_heap_html_aa8f6eeb6614f0330d43a8ec2d9d2532d"><div class="ttname"><a href="#aa8f6eeb6614f0330d43a8ec2d9d2532d">flow::BinaryHeap::getParent</a></div><div class="ttdeci">static constexpr std::size_t getParent(std::size_t i) noexcept</div><div class="ttdef"><b>Definition</b> <a href="flow__binary__heap_8h_source.html#l00228">flow_binary_heap.h:228</a></div></div>
+<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00196">196</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  197</span>                                                   {</div>
+<div class="line"><span class="lineno">  198</span>      <span class="keywordflow">while</span> (<a class="code hl_class" href="classflow_1_1_binary_heap.html">index</a> &gt; <a class="code hl_function" href="#a614b5fed643c5450f2fabe0d3dde3493">top</a>) {</div>
+<div class="line"><span class="lineno">  199</span>        <a class="code hl_class" href="classflow_1_1_binary_heap.html">std::size_t</a> <a class="code hl_class" href="classflow_1_1_binary_heap.html">parent</a> = <a class="code hl_function" href="#aa8f6eeb6614f0330d43a8ec2d9d2532d">getParent</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">index</a>);</div>
+<div class="line"><span class="lineno">  200</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a3e6622a66cab256701593dc42db188fd">comparator_</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">value</a>, <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>[<a class="code hl_class" href="classflow_1_1_binary_heap.html">parent</a>])) {</div>
+<div class="line"><span class="lineno">  201</span>          <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>[<a class="code hl_class" href="classflow_1_1_binary_heap.html">index</a>] = <a class="code hl_class" href="classflow_1_1_binary_heap.html">std::move</a>(<a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>[<a class="code hl_class" href="classflow_1_1_binary_heap.html">parent</a>]);</div>
+<div class="line"><span class="lineno">  202</span>          <a class="code hl_class" href="classflow_1_1_binary_heap.html">index</a> = <a class="code hl_class" href="classflow_1_1_binary_heap.html">parent</a>;</div>
+<div class="line"><span class="lineno">  203</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  204</span>          <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  205</span>        }</div>
+<div class="line"><span class="lineno">  206</span>      }</div>
+<div class="line"><span class="lineno">  207</span>      <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>[<a class="code hl_class" href="classflow_1_1_binary_heap.html">index</a>] = <a class="code hl_class" href="classflow_1_1_binary_heap.html">std::move</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">value</a>);</div>
+<div class="line"><span class="lineno">  208</span>    }</div>
+<div class="ttc" id="aclassflow_1_1_binary_heap_html_a614b5fed643c5450f2fabe0d3dde3493"><div class="ttname"><a href="#a614b5fed643c5450f2fabe0d3dde3493">flow::BinaryHeap::top</a></div><div class="ttdeci">const T &amp; top() const noexcept</div><div class="ttdoc">Return the min element.</div><div class="ttdef"><b>Definition</b> <a href="flow__binary__heap_8h_source.html#l00117">flow_binary_heap.h:117</a></div></div>
+<div class="ttc" id="aclassflow_1_1_binary_heap_html_aa8f6eeb6614f0330d43a8ec2d9d2532d"><div class="ttname"><a href="#aa8f6eeb6614f0330d43a8ec2d9d2532d">flow::BinaryHeap::getParent</a></div><div class="ttdeci">static constexpr std::size_t getParent(std::size_t i) noexcept</div><div class="ttdef"><b>Definition</b> <a href="flow__binary__heap_8h_source.html#l00226">flow_binary_heap.h:226</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="flow__binary__heap_8h_source.html#l00029">comparator_</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00028">data_</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00228">getParent()</a>, and <a class="el" href="flow__binary__heap_8h_source.html#l00119">top()</a>.</p>
+<p class="reference">References <a class="el" href="flow__binary__heap_8h_source.html#l00029">comparator_</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00028">data_</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00226">getParent()</a>, and <a class="el" href="flow__binary__heap_8h_source.html#l00117">top()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="flow__binary__heap_8h_source.html#l00157">drop()</a>, and <a class="el" href="flow__binary__heap_8h_source.html#l00150">emplace()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__binary__heap_8h_source.html#l00155">drop()</a>, and <a class="el" href="flow__binary__heap_8h_source.html#l00148">emplace()</a>.</p>
 
 </div>
 </div>
@@ -1103,10 +1101,10 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00093">93</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   93</span>                                                  {</div>
-<div class="line"><span class="lineno">   94</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.get_allocator();</div>
-<div class="line"><span class="lineno">   95</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00091">91</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   91</span>                                                  {</div>
+<div class="line"><span class="lineno">   92</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.get_allocator();</div>
+<div class="line"><span class="lineno">   93</span>    }</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="flow__binary__heap_8h_source.html#l00028">data_</a>.</p>
 
@@ -1137,12 +1135,12 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00233">233</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  233</span>                                                                  {</div>
-<div class="line"><span class="lineno">  234</span>      <span class="keywordflow">return</span> <a class="code hl_class" href="classflow_1_1_binary_heap.html">i</a> * 2 + 1;</div>
-<div class="line"><span class="lineno">  235</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00231">231</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  231</span>                                                                  {</div>
+<div class="line"><span class="lineno">  232</span>      <span class="keywordflow">return</span> <a class="code hl_class" href="classflow_1_1_binary_heap.html">i</a> * 2 + 1;</div>
+<div class="line"><span class="lineno">  233</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="flow__binary__heap_8h_source.html#l00178">fixDownWithHole()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__binary__heap_8h_source.html#l00176">fixDownWithHole()</a>.</p>
 
 </div>
 </div>
@@ -1171,13 +1169,13 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00228">228</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  228</span>                                                               {</div>
-<div class="line"><span class="lineno">  229</span>      <a class="code hl_class" href="classflow_1_1_binary_heap.html">assert</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">i</a> &gt; 0 &amp;&amp; <span class="stringliteral">&quot;calling parent on the root node&quot;</span>);</div>
-<div class="line"><span class="lineno">  230</span>      <span class="keywordflow">return</span> (<a class="code hl_class" href="classflow_1_1_binary_heap.html">i</a> - 1) / 2;</div>
-<div class="line"><span class="lineno">  231</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00226">226</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  226</span>                                                               {</div>
+<div class="line"><span class="lineno">  227</span>      <a class="code hl_class" href="classflow_1_1_binary_heap.html">assert</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">i</a> &gt; 0 &amp;&amp; <span class="stringliteral">&quot;calling parent on the root node&quot;</span>);</div>
+<div class="line"><span class="lineno">  228</span>      <span class="keywordflow">return</span> (<a class="code hl_class" href="classflow_1_1_binary_heap.html">i</a> - 1) / 2;</div>
+<div class="line"><span class="lineno">  229</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="flow__binary__heap_8h_source.html#l00198">fixUp()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__binary__heap_8h_source.html#l00196">fixUp()</a>.</p>
 
 </div>
 </div>
@@ -1206,10 +1204,10 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00224">224</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  224</span>                                                          {</div>
-<div class="line"><span class="lineno">  225</span>      <span class="keywordflow">return</span> <a class="code hl_class" href="classflow_1_1_binary_heap.html">i</a> &gt; 0;</div>
-<div class="line"><span class="lineno">  226</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00222">222</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  222</span>                                                          {</div>
+<div class="line"><span class="lineno">  223</span>      <span class="keywordflow">return</span> <a class="code hl_class" href="classflow_1_1_binary_heap.html">i</a> &gt; 0;</div>
+<div class="line"><span class="lineno">  224</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1238,17 +1236,17 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00212">212</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  213</span>                                                                                           {</div>
-<div class="line"><span class="lineno">  214</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.size() &lt; 2) {</div>
-<div class="line"><span class="lineno">  215</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  216</span>      }</div>
-<div class="line"><span class="lineno">  217</span>      <span class="keywordflow">for</span> (<a class="code hl_class" href="classflow_1_1_binary_heap.html">std::size_t</a> <a class="code hl_class" href="classflow_1_1_binary_heap.html">i</a> = <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.size() / 2; <a class="code hl_class" href="classflow_1_1_binary_heap.html">i</a>-- &gt; 0 ;) {</div>
-<div class="line"><span class="lineno">  218</span>        <a class="code hl_class" href="classflow_1_1_binary_heap.html">T</a> <a class="code hl_class" href="classflow_1_1_binary_heap.html">value</a> = <a class="code hl_class" href="classflow_1_1_binary_heap.html">std::move</a>(<a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>[<a class="code hl_class" href="classflow_1_1_binary_heap.html">i</a>]);</div>
-<div class="line"><span class="lineno">  219</span>        <a class="code hl_class" href="classflow_1_1_binary_heap.html">std::size_t</a> <a class="code hl_class" href="classflow_1_1_binary_heap.html">hole</a> = <a class="code hl_function" href="#a182cd0a75546233d32878fcb00e97e1c">fixDownWithHole</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">i</a>);</div>
-<div class="line"><span class="lineno">  220</span>        <a class="code hl_function" href="#afc20b79ddbefc2b4be5b14609011536e">fixUp</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">hole</a>, <a class="code hl_class" href="classflow_1_1_binary_heap.html">i</a>, <a class="code hl_class" href="classflow_1_1_binary_heap.html">std::move</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">value</a>));</div>
-<div class="line"><span class="lineno">  221</span>      }</div>
-<div class="line"><span class="lineno">  222</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00210">210</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  211</span>                                                                                           {</div>
+<div class="line"><span class="lineno">  212</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.size() &lt; 2) {</div>
+<div class="line"><span class="lineno">  213</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  214</span>      }</div>
+<div class="line"><span class="lineno">  215</span>      <span class="keywordflow">for</span> (<a class="code hl_class" href="classflow_1_1_binary_heap.html">std::size_t</a> <a class="code hl_class" href="classflow_1_1_binary_heap.html">i</a> = <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.size() / 2; <a class="code hl_class" href="classflow_1_1_binary_heap.html">i</a>-- &gt; 0 ;) {</div>
+<div class="line"><span class="lineno">  216</span>        <a class="code hl_class" href="classflow_1_1_binary_heap.html">T</a> <a class="code hl_class" href="classflow_1_1_binary_heap.html">value</a> = <a class="code hl_class" href="classflow_1_1_binary_heap.html">std::move</a>(<a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>[<a class="code hl_class" href="classflow_1_1_binary_heap.html">i</a>]);</div>
+<div class="line"><span class="lineno">  217</span>        <a class="code hl_class" href="classflow_1_1_binary_heap.html">std::size_t</a> <a class="code hl_class" href="classflow_1_1_binary_heap.html">hole</a> = <a class="code hl_function" href="#a182cd0a75546233d32878fcb00e97e1c">fixDownWithHole</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">i</a>);</div>
+<div class="line"><span class="lineno">  218</span>        <a class="code hl_function" href="#afc20b79ddbefc2b4be5b14609011536e">fixUp</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">hole</a>, <a class="code hl_class" href="classflow_1_1_binary_heap.html">i</a>, <a class="code hl_class" href="classflow_1_1_binary_heap.html">std::move</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">value</a>));</div>
+<div class="line"><span class="lineno">  219</span>      }</div>
+<div class="line"><span class="lineno">  220</span>    }</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="flow__binary__heap_8h_source.html#l00028">data_</a>.</p>
 
@@ -1282,16 +1280,16 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <p>Pop the min element. </p>
 <dl class="section return"><dt>Returns</dt><dd>The min element. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00167">167</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  168</span>                                                                                            {</div>
-<div class="line"><span class="lineno">  169</span>      <a class="code hl_class" href="classflow_1_1_binary_heap.html">assert</a>(!<a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.empty() &amp;&amp; <span class="stringliteral">&quot;call pop on an empty heap&quot;</span>);</div>
-<div class="line"><span class="lineno">  170</span>      <a class="code hl_class" href="classflow_1_1_binary_heap.html">T</a> <a class="code hl_class" href="classflow_1_1_binary_heap.html">value</a> = <a class="code hl_class" href="classflow_1_1_binary_heap.html">std::move</a>(<a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.front());</div>
-<div class="line"><span class="lineno">  171</span>      <a class="code hl_function" href="#af63b727bb21360f3e36325c374c805eb">drop</a>();</div>
-<div class="line"><span class="lineno">  172</span>      <span class="keywordflow">return</span> <a class="code hl_class" href="classflow_1_1_binary_heap.html">value</a>;</div>
-<div class="line"><span class="lineno">  173</span>    }</div>
-<div class="ttc" id="aclassflow_1_1_binary_heap_html_af63b727bb21360f3e36325c374c805eb"><div class="ttname"><a href="#af63b727bb21360f3e36325c374c805eb">flow::BinaryHeap::drop</a></div><div class="ttdeci">void drop() noexcept(std::is_nothrow_move_assignable_v&lt; T &gt;)</div><div class="ttdoc">Drop the min element.</div><div class="ttdef"><b>Definition</b> <a href="flow__binary__heap_8h_source.html#l00157">flow_binary_heap.h:157</a></div></div>
+<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00165">165</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  166</span>                                                                                            {</div>
+<div class="line"><span class="lineno">  167</span>      <a class="code hl_class" href="classflow_1_1_binary_heap.html">assert</a>(!<a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.empty() &amp;&amp; <span class="stringliteral">&quot;call pop on an empty heap&quot;</span>);</div>
+<div class="line"><span class="lineno">  168</span>      <a class="code hl_class" href="classflow_1_1_binary_heap.html">T</a> <a class="code hl_class" href="classflow_1_1_binary_heap.html">value</a> = <a class="code hl_class" href="classflow_1_1_binary_heap.html">std::move</a>(<a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.front());</div>
+<div class="line"><span class="lineno">  169</span>      <a class="code hl_function" href="#af63b727bb21360f3e36325c374c805eb">drop</a>();</div>
+<div class="line"><span class="lineno">  170</span>      <span class="keywordflow">return</span> <a class="code hl_class" href="classflow_1_1_binary_heap.html">value</a>;</div>
+<div class="line"><span class="lineno">  171</span>    }</div>
+<div class="ttc" id="aclassflow_1_1_binary_heap_html_af63b727bb21360f3e36325c374c805eb"><div class="ttname"><a href="#af63b727bb21360f3e36325c374c805eb">flow::BinaryHeap::drop</a></div><div class="ttdeci">void drop() noexcept(std::is_nothrow_move_assignable_v&lt; T &gt;)</div><div class="ttdoc">Drop the min element.</div><div class="ttdef"><b>Definition</b> <a href="flow__binary__heap_8h_source.html#l00155">flow_binary_heap.h:155</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="flow__binary__heap_8h_source.html#l00028">data_</a>, and <a class="el" href="flow__binary__heap_8h_source.html#l00157">drop()</a>.</p>
+<p class="reference">References <a class="el" href="flow__binary__heap_8h_source.html#l00028">data_</a>, and <a class="el" href="flow__binary__heap_8h_source.html#l00155">drop()</a>.</p>
 
 </div>
 </div>
@@ -1328,13 +1326,13 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00137">137</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  137</span>                              {</div>
-<div class="line"><span class="lineno">  138</span>      <a class="code hl_function" href="#aeb8a5f82c0d7d193bca6df0df66df2ab">emplace</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">value</a>);</div>
-<div class="line"><span class="lineno">  139</span>    }</div>
-<div class="ttc" id="aclassflow_1_1_binary_heap_html_aeb8a5f82c0d7d193bca6df0df66df2ab"><div class="ttname"><a href="#aeb8a5f82c0d7d193bca6df0df66df2ab">flow::BinaryHeap::emplace</a></div><div class="ttdeci">void emplace(Args &amp;&amp;... args)</div><div class="ttdoc">Construct the value inplace in the heap.</div><div class="ttdef"><b>Definition</b> <a href="flow__binary__heap_8h_source.html#l00150">flow_binary_heap.h:150</a></div></div>
+<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00135">135</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  135</span>                              {</div>
+<div class="line"><span class="lineno">  136</span>      <a class="code hl_function" href="#aeb8a5f82c0d7d193bca6df0df66df2ab">emplace</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">value</a>);</div>
+<div class="line"><span class="lineno">  137</span>    }</div>
+<div class="ttc" id="aclassflow_1_1_binary_heap_html_aeb8a5f82c0d7d193bca6df0df66df2ab"><div class="ttname"><a href="#aeb8a5f82c0d7d193bca6df0df66df2ab">flow::BinaryHeap::emplace</a></div><div class="ttdeci">void emplace(Args &amp;&amp;... args)</div><div class="ttdoc">Construct the value inplace in the heap.</div><div class="ttdef"><b>Definition</b> <a href="flow__binary__heap_8h_source.html#l00148">flow_binary_heap.h:148</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="flow__binary__heap_8h_source.html#l00150">emplace()</a>.</p>
+<p class="reference">References <a class="el" href="flow__binary__heap_8h_source.html#l00148">emplace()</a>.</p>
 
 </div>
 </div>
@@ -1371,12 +1369,12 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00143">143</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  143</span>                         {</div>
-<div class="line"><span class="lineno">  144</span>      <a class="code hl_function" href="#aeb8a5f82c0d7d193bca6df0df66df2ab">emplace</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">std::move</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">value</a>));</div>
-<div class="line"><span class="lineno">  145</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00141">141</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  141</span>                         {</div>
+<div class="line"><span class="lineno">  142</span>      <a class="code hl_function" href="#aeb8a5f82c0d7d193bca6df0df66df2ab">emplace</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">std::move</a>(<a class="code hl_class" href="classflow_1_1_binary_heap.html">value</a>));</div>
+<div class="line"><span class="lineno">  143</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="flow__binary__heap_8h_source.html#l00150">emplace()</a>.</p>
+<p class="reference">References <a class="el" href="flow__binary__heap_8h_source.html#l00148">emplace()</a>.</p>
 
 </div>
 </div>
@@ -1413,13 +1411,13 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00131">131</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  131</span>                                     {</div>
-<div class="line"><span class="lineno">  132</span>      <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.reserve(<a class="code hl_function" href="#a30041933467ccaa15a75927d0e9e48ed">capacity</a>);</div>
-<div class="line"><span class="lineno">  133</span>    }</div>
-<div class="ttc" id="aclassflow_1_1_binary_heap_html_a30041933467ccaa15a75927d0e9e48ed"><div class="ttname"><a href="#a30041933467ccaa15a75927d0e9e48ed">flow::BinaryHeap::capacity</a></div><div class="ttdeci">constexpr std::size_t capacity() const noexcept</div><div class="ttdoc">Return the heap capacity.</div><div class="ttdef"><b>Definition</b> <a href="flow__binary__heap_8h_source.html#l00107">flow_binary_heap.h:107</a></div></div>
+<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00129">129</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  129</span>                                     {</div>
+<div class="line"><span class="lineno">  130</span>      <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.reserve(<a class="code hl_function" href="#a30041933467ccaa15a75927d0e9e48ed">capacity</a>);</div>
+<div class="line"><span class="lineno">  131</span>    }</div>
+<div class="ttc" id="aclassflow_1_1_binary_heap_html_a30041933467ccaa15a75927d0e9e48ed"><div class="ttname"><a href="#a30041933467ccaa15a75927d0e9e48ed">flow::BinaryHeap::capacity</a></div><div class="ttdeci">constexpr std::size_t capacity() const noexcept</div><div class="ttdoc">Return the heap capacity.</div><div class="ttdef"><b>Definition</b> <a href="flow__binary__heap_8h_source.html#l00105">flow_binary_heap.h:105</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="flow__binary__heap_8h_source.html#l00107">capacity()</a>, and <a class="el" href="flow__binary__heap_8h_source.html#l00028">data_</a>.</p>
+<p class="reference">References <a class="el" href="flow__binary__heap_8h_source.html#l00105">capacity()</a>, and <a class="el" href="flow__binary__heap_8h_source.html#l00028">data_</a>.</p>
 
 </div>
 </div>
@@ -1451,10 +1449,10 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <p>Return the heap size. </p>
 <dl class="section return"><dt>Returns</dt><dd>The heap size. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00101">101</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  101</span>                                              {</div>
-<div class="line"><span class="lineno">  102</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.size();</div>
-<div class="line"><span class="lineno">  103</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00099">99</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   99</span>                                              {</div>
+<div class="line"><span class="lineno">  100</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.size();</div>
+<div class="line"><span class="lineno">  101</span>    }</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="flow__binary__heap_8h_source.html#l00028">data_</a>.</p>
 
@@ -1488,15 +1486,15 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <p>Return the min element. </p>
 <dl class="section return"><dt>Returns</dt><dd>The min element. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00119">119</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  119</span>                                  {</div>
-<div class="line"><span class="lineno">  120</span>      <a class="code hl_class" href="classflow_1_1_binary_heap.html">assert</a>(!<a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.empty() &amp;&amp; <span class="stringliteral">&quot;call top on an empty heap&quot;</span>);</div>
-<div class="line"><span class="lineno">  121</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.front();</div>
-<div class="line"><span class="lineno">  122</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00117">117</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  117</span>                                  {</div>
+<div class="line"><span class="lineno">  118</span>      <a class="code hl_class" href="classflow_1_1_binary_heap.html">assert</a>(!<a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.empty() &amp;&amp; <span class="stringliteral">&quot;call top on an empty heap&quot;</span>);</div>
+<div class="line"><span class="lineno">  119</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="#ae8374fa403c121a0e0a303f50f39a245">data_</a>.front();</div>
+<div class="line"><span class="lineno">  120</span>    }</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="flow__binary__heap_8h_source.html#l00028">data_</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="flow__binary__heap_8h_source.html#l00198">fixUp()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__binary__heap_8h_source.html#l00196">fixUp()</a>.</p>
 
 </div>
 </div>
@@ -1525,7 +1523,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 
 <p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00029">29</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="flow__binary__heap_8h_source.html#l00034">BinaryHeap()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00063">BinaryHeap()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00042">BinaryHeap()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00058">BinaryHeap()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00178">fixDownWithHole()</a>, and <a class="el" href="flow__binary__heap_8h_source.html#l00198">fixUp()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__binary__heap_8h_source.html#l00034">BinaryHeap()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00063">BinaryHeap()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00042">BinaryHeap()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00058">BinaryHeap()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00176">fixDownWithHole()</a>, and <a class="el" href="flow__binary__heap_8h_source.html#l00196">fixUp()</a>.</p>
 
 </div>
 </div>
@@ -1553,7 +1551,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 
 <p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00028">28</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="flow__binary__heap_8h_source.html#l00034">BinaryHeap()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00063">BinaryHeap()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00042">BinaryHeap()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00058">BinaryHeap()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00107">capacity()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00125">clear()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00157">drop()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00150">emplace()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00113">empty()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00178">fixDownWithHole()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00198">fixUp()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00093">get_allocator()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00212">heapify()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00167">pop()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00131">reserve()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00101">size()</a>, and <a class="el" href="flow__binary__heap_8h_source.html#l00119">top()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__binary__heap_8h_source.html#l00034">BinaryHeap()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00063">BinaryHeap()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00042">BinaryHeap()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00058">BinaryHeap()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00105">capacity()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00123">clear()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00155">drop()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00148">emplace()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00111">empty()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00176">fixDownWithHole()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00196">fixUp()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00091">get_allocator()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00210">heapify()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00165">pop()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00129">reserve()</a>, <a class="el" href="flow__binary__heap_8h_source.html#l00099">size()</a>, and <a class="el" href="flow__binary__heap_8h_source.html#l00117">top()</a>.</p>
 
 </div>
 </div>

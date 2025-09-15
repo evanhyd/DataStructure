@@ -106,10 +106,13 @@ Public Types</h2></td></tr>
 <tr class="memitem:a369c390923fa90e4213e07eb6d777ecc" id="r_a369c390923fa90e4213e07eb6d777ecc"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a369c390923fa90e4213e07eb6d777ecc">popBack</a> = <a class="el" href="structflow_1_1_pop_back.html">PopBack</a>&lt;<a class="el" href="structflow_1_1_non_type_list.html">NonTypeList</a>&gt;<a class="el" href="#ac10f66a548cb39ab9eb3ec1a2f30ae7a">::type</a></td></tr>
 <tr class="memitem:ad8bf0d463dca0560a61359c5a3013ff4" id="r_ad8bf0d463dca0560a61359c5a3013ff4"><td class="memTemplParams" colspan="2">template&lt;std::size_t index, <a class="el" href="#ac10f66a548cb39ab9eb3ec1a2f30ae7a">type</a> value&gt; </td></tr>
 <tr class="memitem:ad8bf0d463dca0560a61359c5a3013ff4 template"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad8bf0d463dca0560a61359c5a3013ff4">set</a> = <a class="el" href="structflow_1_1_set.html">Set</a>&lt;<a class="el" href="structflow_1_1_non_type_list.html">NonTypeList</a>, index, value&gt;<a class="el" href="#ac10f66a548cb39ab9eb3ec1a2f30ae7a">::type</a></td></tr>
+<tr class="memitem:aac180fff0182716e41be08a7fa641662" id="r_aac180fff0182716e41be08a7fa641662"><td class="memTemplParams" colspan="2">template&lt;std::size_t first, std::size_t last&gt; </td></tr>
+<tr class="memitem:aac180fff0182716e41be08a7fa641662 template"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aac180fff0182716e41be08a7fa641662">splice</a> = <a class="el" href="structflow_1_1_splice.html">Splice</a>&lt;<a class="el" href="structflow_1_1_non_type_list.html">NonTypeList</a>, first, last&gt;<a class="el" href="#ac10f66a548cb39ab9eb3ec1a2f30ae7a">::type</a></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a69c13c831b0b66866357260cde7626d8" id="r_a69c13c831b0b66866357260cde7626d8"><td class="memItemLeft" align="right" valign="top">static constexpr std::array&lt; <a class="el" href="#ac10f66a548cb39ab9eb3ec1a2f30ae7a">type</a>, sizeof...(values)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69c13c831b0b66866357260cde7626d8">data</a> ()</td></tr>
+<tr class="memdesc:a69c13c831b0b66866357260cde7626d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return all the values in an array.  <br /></td></tr>
 <tr class="memitem:a7f4ae7e35e4073d62874f502dd3d1a80" id="r_a7f4ae7e35e4073d62874f502dd3d1a80"><td class="memItemLeft" align="right" valign="top">static constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f4ae7e35e4073d62874f502dd3d1a80">get</a> (std::size_t index)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
@@ -119,7 +122,7 @@ Static Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;auto... values&gt;<br />
 struct flow::NonTypeList&lt; values &gt;</div>
-<p class="definition">Definition at line <a class="el" href="flow__non__type__list_8h_source.html#l00033">33</a> of file <a class="el" href="flow__non__type__list_8h_source.html">flow_non_type_list.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="flow__non__type__list_8h_source.html#l00039">39</a> of file <a class="el" href="flow__non__type__list_8h_source.html">flow_non_type_list.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="ad40918e76b1c7bbc03f4511e12eb69d4" name="ad40918e76b1c7bbc03f4511e12eb69d4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad40918e76b1c7bbc03f4511e12eb69d4">&#9670;&#160;</a></span>append</h2>
@@ -137,7 +140,7 @@ template&lt;auto value&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__non__type__list_8h_source.html#l00041">41</a> of file <a class="el" href="flow__non__type__list_8h_source.html">flow_non_type_list.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="flow__non__type__list_8h_source.html#l00047">47</a> of file <a class="el" href="flow__non__type__list_8h_source.html">flow_non_type_list.h</a>.</p>
 
 </div>
 </div>
@@ -155,7 +158,7 @@ template&lt;auto... values&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__non__type__list_8h_source.html#l00048">48</a> of file <a class="el" href="flow__non__type__list_8h_source.html">flow_non_type_list.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="flow__non__type__list_8h_source.html#l00054">54</a> of file <a class="el" href="flow__non__type__list_8h_source.html">flow_non_type_list.h</a>.</p>
 
 </div>
 </div>
@@ -173,7 +176,7 @@ template&lt;auto... values&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__non__type__list_8h_source.html#l00046">46</a> of file <a class="el" href="flow__non__type__list_8h_source.html">flow_non_type_list.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="flow__non__type__list_8h_source.html#l00052">52</a> of file <a class="el" href="flow__non__type__list_8h_source.html">flow_non_type_list.h</a>.</p>
 
 </div>
 </div>
@@ -193,7 +196,7 @@ template&lt;auto value&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__non__type__list_8h_source.html#l00044">44</a> of file <a class="el" href="flow__non__type__list_8h_source.html">flow_non_type_list.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="flow__non__type__list_8h_source.html#l00050">50</a> of file <a class="el" href="flow__non__type__list_8h_source.html">flow_non_type_list.h</a>.</p>
 
 </div>
 </div>
@@ -213,7 +216,27 @@ template&lt;std::size_t index, <a class="el" href="#ac10f66a548cb39ab9eb3ec1a2f3
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__non__type__list_8h_source.html#l00051">51</a> of file <a class="el" href="flow__non__type__list_8h_source.html">flow_non_type_list.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="flow__non__type__list_8h_source.html#l00057">57</a> of file <a class="el" href="flow__non__type__list_8h_source.html">flow_non_type_list.h</a>.</p>
+
+</div>
+</div>
+<a id="aac180fff0182716e41be08a7fa641662" name="aac180fff0182716e41be08a7fa641662"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac180fff0182716e41be08a7fa641662">&#9670;&#160;</a></span>splice</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;auto... values&gt; </div>
+<div class="memtemplate">
+template&lt;std::size_t first, std::size_t last&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="structflow_1_1_non_type_list.html">flow::NonTypeList</a>&lt; values &gt;::splice = <a class="el" href="structflow_1_1_splice.html">Splice</a>&lt;<a class="el" href="structflow_1_1_non_type_list.html">NonTypeList</a>, first, last&gt;<a class="el" href="#ac10f66a548cb39ab9eb3ec1a2f30ae7a">::type</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="flow__non__type__list_8h_source.html#l00060">60</a> of file <a class="el" href="flow__non__type__list_8h_source.html">flow_non_type_list.h</a>.</p>
 
 </div>
 </div>
@@ -231,7 +254,7 @@ template&lt;auto... values&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__non__type__list_8h_source.html#l00034">34</a> of file <a class="el" href="flow__non__type__list_8h_source.html">flow_non_type_list.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="flow__non__type__list_8h_source.html#l00040">40</a> of file <a class="el" href="flow__non__type__list_8h_source.html">flow_non_type_list.h</a>.</p>
 
 </div>
 </div>
@@ -261,13 +284,16 @@ template&lt;auto... values&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__non__type__list_8h_source.html#l00053">53</a> of file <a class="el" href="flow__non__type__list_8h_source.html">flow_non_type_list.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   53</span>                                                              {</div>
-<div class="line"><span class="lineno">   54</span>      <span class="keywordflow">return</span> { <a class="code hl_struct" href="structflow_1_1_non_type_list.html">values</a>... };</div>
-<div class="line"><span class="lineno">   55</span>    }</div>
-<div class="ttc" id="astructflow_1_1_non_type_list_html"><div class="ttname"><a href="structflow_1_1_non_type_list.html">flow::NonTypeList</a></div><div class="ttdef"><b>Definition</b> <a href="flow__non__type__list_8h_source.html#l00033">flow_non_type_list.h:33</a></div></div>
+<p>Return all the values in an array. </p>
+<dl class="section return"><dt>Returns</dt><dd>An array of template value. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="flow__non__type__list_8h_source.html#l00064">64</a> of file <a class="el" href="flow__non__type__list_8h_source.html">flow_non_type_list.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   64</span>                                                              {</div>
+<div class="line"><span class="lineno">   65</span>      <span class="keywordflow">return</span> { <a class="code hl_struct" href="structflow_1_1_non_type_list.html">values</a>... };</div>
+<div class="line"><span class="lineno">   66</span>    }</div>
+<div class="ttc" id="astructflow_1_1_non_type_list_html"><div class="ttname"><a href="structflow_1_1_non_type_list.html">flow::NonTypeList</a></div><div class="ttdef"><b>Definition</b> <a href="flow__non__type__list_8h_source.html#l00039">flow_non_type_list.h:39</a></div></div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="flow__non__type__list_8h_source.html#l00057">flow::NonTypeList&lt; values..., value &gt;::get()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__non__type__list_8h_source.html#l00068">flow::NonTypeList&lt; vs..., v &gt;::get()</a>.</p>
 
 </div>
 </div>
@@ -296,11 +322,11 @@ template&lt;auto... values&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__non__type__list_8h_source.html#l00057">57</a> of file <a class="el" href="flow__non__type__list_8h_source.html">flow_non_type_list.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   57</span>                                               {</div>
-<div class="line"><span class="lineno">   58</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="#a69c13c831b0b66866357260cde7626d8">data</a>()[<a class="code hl_struct" href="structflow_1_1_non_type_list.html">index</a>];</div>
-<div class="line"><span class="lineno">   59</span>    }</div>
-<div class="ttc" id="astructflow_1_1_non_type_list_html_a69c13c831b0b66866357260cde7626d8"><div class="ttname"><a href="#a69c13c831b0b66866357260cde7626d8">flow::NonTypeList::data</a></div><div class="ttdeci">static constexpr std::array&lt; type, sizeof...(values)&gt; data()</div><div class="ttdef"><b>Definition</b> <a href="flow__non__type__list_8h_source.html#l00053">flow_non_type_list.h:53</a></div></div>
+<p class="definition">Definition at line <a class="el" href="flow__non__type__list_8h_source.html#l00068">68</a> of file <a class="el" href="flow__non__type__list_8h_source.html">flow_non_type_list.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   68</span>                                               {</div>
+<div class="line"><span class="lineno">   69</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="#a69c13c831b0b66866357260cde7626d8">data</a>()[<a class="code hl_struct" href="structflow_1_1_non_type_list.html">index</a>];</div>
+<div class="line"><span class="lineno">   70</span>    }</div>
+<div class="ttc" id="astructflow_1_1_non_type_list_html_a69c13c831b0b66866357260cde7626d8"><div class="ttname"><a href="#a69c13c831b0b66866357260cde7626d8">flow::NonTypeList::data</a></div><div class="ttdeci">static constexpr std::array&lt; type, sizeof...(values)&gt; data()</div><div class="ttdoc">Return all the values in an array.</div><div class="ttdef"><b>Definition</b> <a href="flow__non__type__list_8h_source.html#l00064">flow_non_type_list.h:64</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -327,7 +353,7 @@ template&lt;auto... values&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__non__type__list_8h_source.html#l00038">38</a> of file <a class="el" href="flow__non__type__list_8h_source.html">flow_non_type_list.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="flow__non__type__list_8h_source.html#l00044">44</a> of file <a class="el" href="flow__non__type__list_8h_source.html">flow_non_type_list.h</a>.</p>
 
 </div>
 </div>

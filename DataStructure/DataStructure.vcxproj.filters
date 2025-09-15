@@ -60,9 +60,6 @@
     <ClInclude Include="SkipList.h">
       <Filter>DataStructure</Filter>
     </ClInclude>
-    <ClInclude Include="SegmentTree.h">
-      <Filter>DataStructure</Filter>
-    </ClInclude>
     <ClInclude Include="flow_polymorphic_allocator.h">
       <Filter>flow\memory</Filter>
     </ClInclude>
