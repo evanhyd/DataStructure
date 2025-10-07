@@ -43,6 +43,7 @@ Click Here >> [API documentation](https://evanhyd.github.io/DataStructure/) gene
 | &emsp; [`ArenaMemoryResource`](https://evanhyd.github.io/DataStructure/classflow_1_1_arena_memory_resource.html) | A linear arena memory resource that allocates memory sequentially from a fixed buffer. Throws `std::bad_alloc` if there is insufficient space. |
 | &emsp; [`StackMemoryResource`](https://evanhyd.github.io/DataStructure/classflow_1_1_stack_memory_resource.html) | A stack-based memory resource that allocates memory in a LIFO order. Deallocation must happen in reverse order of allocation. |
 | &emsp; [`PoolMemoryResource`](https://evanhyd.github.io/DataStructure/classflow_1_1_pool_memory_resource.html) | A pool memory resource that manages fixed-size memory blocks from a pre-allocated buffer. Allocation must meet block size/alignment constraints. |
+| &emsp; [`BuddyMemoryResource`](https://evanhyd.github.io/DataStructure/classflow_1_1_buddy_memory_resource.html) | A buddy-system memory resource that has logarithmic allocation complexity. |
 | **Concurrency** |
 | &emsp; Container |
 | &emsp; [`ConcurrentQueue`](https://evanhyd.github.io/DataStructure/classflow_1_1_concurrent_queue.html) | A lock-based concurrency-safe FIFO queue.
