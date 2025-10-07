@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['memoryresource_0',['MemoryResource',['../classflow_1_1_memory_resource.html',1,'flow']]],
-  ['merge_1',['merge',['../classflow_1_1_disjoint_set.html#af80f45c14175f6537e514386c82ff7df',1,'flow::DisjointSet']]],
-  ['multiqueuethreadpool_2',['MultiQueueThreadPool',['../classflow_1_1_multi_queue_thread_pool.html',1,'flow::MultiQueueThreadPool&lt; ThreadSafeQueue, LocalQueue &gt;'],['../classflow_1_1_multi_queue_thread_pool.html#a1e9f192c2e8a765bb9ee5fdd1716c09d',1,'flow::MultiQueueThreadPool::MultiQueueThreadPool()']]],
-  ['mux_5f_3',['mux_',['../classflow_1_1_concurrent_queue.html#a3f443bd583da922327024612530e33ea',1,'flow::ConcurrentQueue::mux_'],['../classflow_1_1_work_stealing_queue.html#a9fbadfa7e05a95c2be9e473eb40e48ce',1,'flow::WorkStealingQueue::mux_']]]
+  ['localqueue_0',['localQueue',['../classflow_1_1_multi_queue_thread_pool.html#acea898c1e801511cf302f106175978f0',1,'flow::MultiQueueThreadPool']]],
+  ['localqueues_5f_1',['localQueues_',['../classflow_1_1_multi_queue_thread_pool.html#a1b358ba708a348a18ae8897933220710',1,'flow::MultiQueueThreadPool']]]
 ];

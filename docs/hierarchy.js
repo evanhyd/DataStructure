@@ -3,6 +3,7 @@ var hierarchy =
     [ "flow::Append< T, value >", "structflow_1_1_append.html", null ],
     [ "flow::Append< NonTypeList< vs... >, v >", "structflow_1_1_append_3_01_non_type_list_3_01vs_8_8_8_01_4_00_01v_01_4.html", null ],
     [ "flow::BinaryHeap< T, Compare, Allocator >", "classflow_1_1_binary_heap.html", null ],
+    [ "flow::BuddyMemoryResource::BuddyBlock", "structflow_1_1_buddy_memory_resource_1_1_buddy_block.html", null ],
     [ "flow::ConcurrentFlexQueue< T >", "classflow_1_1_concurrent_flex_queue.html", null ],
     [ "flow::ConcurrentQueue< T, Container >", "classflow_1_1_concurrent_queue.html", null ],
     [ "flow::CountedValueViewIterator< T >", "classflow_1_1_counted_value_view_iterator.html", null ],
@@ -20,6 +21,7 @@ var hierarchy =
     [ "flow::IntegralIterator< T >", "classflow_1_1_integral_iterator.html", null ],
     [ "flow::MemoryResource", "classflow_1_1_memory_resource.html", [
       [ "flow::ArenaMemoryResource", "classflow_1_1_arena_memory_resource.html", null ],
+      [ "flow::BuddyMemoryResource", "classflow_1_1_buddy_memory_resource.html", null ],
       [ "flow::DefaultMemoryResource", "classflow_1_1_default_memory_resource.html", null ],
       [ "flow::PoolMemoryResource", "classflow_1_1_pool_memory_resource.html", null ],
       [ "flow::StackMemoryResource", "classflow_1_1_stack_memory_resource.html", null ]

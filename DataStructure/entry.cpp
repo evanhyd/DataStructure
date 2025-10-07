@@ -252,12 +252,15 @@ const auto __ = std::atexit([]() { std::ofstream("display_runtime.txt") << INT_M
 
 #endif
 
+#include "benchmark.h"
+
 using namespace std;
 
-#include "flow_segment_tree.h"
-
 int main() {
-
+  benchmark::benchmarkStdVectorInt64(1000000, 1);
+  benchmark::benchmarkFlowVectorInt64(1000000, 1);
+  benchmark::benchmarkStdVectorString(1000000, 1);
+  benchmark::benchmarkFlowVectorString(1000000, 1);
 }
 
 /*

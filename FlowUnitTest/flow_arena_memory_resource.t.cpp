@@ -1,10 +1,10 @@
 #include "../DataStructure/flow_arena_memory_resource.h"
+#include "flow_memory_resource_testsuit.h"
 #include <gtest/gtest.h>
-#include <cstdint>
 #include <memory>
 
 namespace flow {
-  class ArenaMemoryResourceTestHelper : public flow::ArenaMemoryResource {
+  class ArenaMemoryResourceWhiteBox : public flow::ArenaMemoryResource {
   public:
     using flow::ArenaMemoryResource::ArenaMemoryResource;
 
@@ -12,38 +12,72 @@ namespace flow {
     std::size_t getCapacity() const { return capacity_; }
   };
 
-  class ArenaMemoryResourceWhiteBoxTest : public ::testing::Test {
+  class ArenaMemoryResourceTest : public ::testing::Test {
   protected:
     static constexpr std::size_t kBufferSize = 512;
     std::byte buffer[kBufferSize];
-    ArenaMemoryResourceTestHelper arena{ buffer, kBufferSize };
+    ArenaMemoryResourceWhiteBox resource{ buffer, kBufferSize };
   };
 
-  TEST_F(ArenaMemoryResourceWhiteBoxTest, InitialState) {
-    EXPECT_EQ(arena.getBuffer(), buffer);
-    EXPECT_EQ(arena.getCapacity(), kBufferSize);
+  // Common tests.
+  TEST_F(ArenaMemoryResourceTest, TestAllocateInt) {
+    testAllocateInt(resource);
   }
 
-  TEST_F(ArenaMemoryResourceWhiteBoxTest, AllocationReducesCapacityAndAdvancesBuffer) {
-    void* ptr1 = arena.allocate(64, 8);
+  TEST_F(ArenaMemoryResourceTest, TestAllocateIntDistinct) {
+    testAllocateIntDistinct(resource);
+  }
+
+  TEST_F(ArenaMemoryResourceTest, TestAllocateIntArray) {
+    testAllocateIntArray(resource);
+  }
+
+  TEST_F(ArenaMemoryResourceTest, TestAllocateFoo) {
+    testAllocateFoo(resource);
+  }
+
+  TEST_F(ArenaMemoryResourceTest, TestAllocateFooDistinct) {
+    testAllocateFooDistinct(resource);
+  }
+
+  TEST_F(ArenaMemoryResourceTest, TestAllocateFooArray) {
+    testAllocateFooArray(resource);
+  }
+
+  TEST_F(ArenaMemoryResourceTest, TestAllocateAlignasBigFoo) {
+    testAllocateAlignasBigFoo(resource);
+  }
+
+  TEST_F(ArenaMemoryResourceTest, TestAllocateAlignasSmallFoo) {
+    testAllocateAlignasSmallFoo(resource);
+  }
+
+  // Specialized tests.
+  TEST_F(ArenaMemoryResourceTest, InitialState) {
+    EXPECT_EQ(resource.getBuffer(), buffer);
+    EXPECT_EQ(resource.getCapacity(), kBufferSize);
+  }
+
+  TEST_F(ArenaMemoryResourceTest, AllocationReducesCapacityAndAdvancesBuffer) {
+    void* ptr1 = resource.allocate(64, 8);
     EXPECT_NE(ptr1, nullptr);
-    EXPECT_LT(arena.getCapacity(), kBufferSize);
-    EXPECT_GT(arena.getBuffer(), buffer);
+    EXPECT_LT(resource.getCapacity(), kBufferSize);
+    EXPECT_GT(resource.getBuffer(), buffer);
 
-    void* ptr2 = arena.allocate(32, 8);
+    void* ptr2 = resource.allocate(32, 8);
     EXPECT_NE(ptr2, nullptr);
-    EXPECT_LT(arena.getCapacity(), kBufferSize - 64);
-    EXPECT_GT(arena.getBuffer(), ptr1);
+    EXPECT_LT(resource.getCapacity(), kBufferSize - 64);
+    EXPECT_GT(resource.getBuffer(), ptr1);
   }
 
-  TEST_F(ArenaMemoryResourceWhiteBoxTest, AllocationFailsWhenCapacityInsufficient) {
-    arena.allocate(kBufferSize - 8, 1);
-    EXPECT_THROW(arena.allocate(16, 8), std::bad_alloc);
+  TEST_F(ArenaMemoryResourceTest, AllocationFailsWhenCapacityInsufficient) {
+    resource.allocate(kBufferSize - 8, 1);
+    EXPECT_THROW(resource.allocate(16, 8), std::bad_alloc);
   }
 
-  TEST_F(ArenaMemoryResourceWhiteBoxTest, DeallocateAllowsNullptrAndValidAddress) {
-    void* ptr = arena.allocate(64, 8);
-    EXPECT_NO_THROW(arena.deallocate(ptr, 64, 8));
-    EXPECT_NO_THROW(arena.deallocate(nullptr, 0, 1));
+  TEST_F(ArenaMemoryResourceTest, DeallocateAllowsNullptrAndValidAddress) {
+    void* ptr = resource.allocate(64, 8);
+    EXPECT_NO_THROW(resource.deallocate(ptr, 64, 8));
+    EXPECT_NO_THROW(resource.deallocate(nullptr, 0, 1));
   }
 }

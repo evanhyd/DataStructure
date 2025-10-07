@@ -4,6 +4,7 @@ var namespaceflow =
     [ "Append< NonTypeList< vs... >, v >", "structflow_1_1_append_3_01_non_type_list_3_01vs_8_8_8_01_4_00_01v_01_4.html", "structflow_1_1_append_3_01_non_type_list_3_01vs_8_8_8_01_4_00_01v_01_4" ],
     [ "ArenaMemoryResource", "classflow_1_1_arena_memory_resource.html", "classflow_1_1_arena_memory_resource" ],
     [ "BinaryHeap", "classflow_1_1_binary_heap.html", "classflow_1_1_binary_heap" ],
+    [ "BuddyMemoryResource", "classflow_1_1_buddy_memory_resource.html", "classflow_1_1_buddy_memory_resource" ],
     [ "ConcurrentFlexQueue", "classflow_1_1_concurrent_flex_queue.html", "classflow_1_1_concurrent_flex_queue" ],
     [ "ConcurrentQueue", "classflow_1_1_concurrent_queue.html", "classflow_1_1_concurrent_queue" ],
     [ "CountedValueViewIterator", "classflow_1_1_counted_value_view_iterator.html", "classflow_1_1_counted_value_view_iterator" ],

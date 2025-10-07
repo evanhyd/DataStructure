@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['head_5f_0',['head_',['../classflow_1_1_concurrent_flex_queue.html#a1165f772dc6966274d0cdc8f3fcb562c',1,'flow::ConcurrentFlexQueue::head_'],['../classflow_1_1_pool_memory_resource.html#a06a3832bb9d9708ee001638ad8690c65',1,'flow::PoolMemoryResource::head_']]],
-  ['headmux_5f_1',['headMux_',['../classflow_1_1_concurrent_flex_queue.html#ab888996320d668f06c398d2e886278bc',1,'flow::ConcurrentFlexQueue']]]
+  ['globalid_0',['globalId',['../classflow_1_1_debug_class.html#aa914f20c66eb15c818bbe0fb2df89b9e',1,'flow::DebugClass']]],
+  ['groupid_1',['groupId',['../structflow_1_1_disjoint_set_1_1_node.html#ac980537150f8ead8c9dd713f1dc68af4',1,'flow::DisjointSet::Node']]],
+  ['groupsize_5f_2',['groupSize_',['../classflow_1_1_disjoint_set.html#a6033d7ef1fc44793988309b57290a245',1,'flow::DisjointSet']]],
+  ['growthstrategy_5f_3',['growthStrategy_',['../classflow_1_1_vector.html#a6194e8a003c84766b0e07ab59129fd60',1,'flow::Vector']]]
 ];

@@ -45,9 +45,6 @@
     <ClInclude Include="BinomialHeap.h">
       <Filter>DataStructure</Filter>
     </ClInclude>
-    <ClInclude Include="DisjointSet.h">
-      <Filter>DataStructure</Filter>
-    </ClInclude>
     <ClInclude Include="RandomMeldableHeap.h">
       <Filter>DataStructure</Filter>
     </ClInclude>
@@ -129,6 +126,9 @@
     </ClInclude>
     <ClInclude Include="flow_disjoint_set.h">
       <Filter>flow\container</Filter>
+    </ClInclude>
+    <ClInclude Include="flow_buddy_memory_resource.h">
+      <Filter>flow\memory\memory_resource</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

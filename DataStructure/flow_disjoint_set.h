@@ -6,7 +6,7 @@ namespace flow {
   /// @brief A disjoint union set that uses path compression and union by rank.
   /// @tparam T 
   /// @tparam Allocator 
-  template <typename T, typename Allocator = PolymorphicAllocator<>>
+  template <typename T, typename Allocator = PolymorphicAllocator<T>>
   class DisjointSet {
     struct Node {
       std::size_t groupId;
@@ -23,8 +23,8 @@ namespace flow {
     using iterator = T*;
     using const_iterator = const T*;
     using difference_type = std::ptrdiff_t;
-    using container_type = Vector<Node, Allocator>;
-    using allocator_type = container_type::allocator_type;
+    using allocator_type = std::allocator_traits<Allocator>::template rebind_alloc<Node>;
+    using container_type = Vector<Node, allocator_type>;
 
   private:
     std::size_t groupSize_;

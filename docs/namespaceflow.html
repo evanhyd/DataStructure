@@ -102,6 +102,8 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A linear arena memory resource that allocates memory sequentially from a fixed buffer. Throws std::bad_alloc if there is insufficient space for the requested allocation.  <a href="classflow_1_1_arena_memory_resource.html#details">More...</a><br /></td></tr>
 <tr class="memitem:BinaryHeap" id="r_BinaryHeap"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classflow_1_1_binary_heap.html">BinaryHeap</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A binary min-heap container. Supports custom comparator and allocator.  <a href="classflow_1_1_binary_heap.html#details">More...</a><br /></td></tr>
+<tr class="memitem:BuddyMemoryResource" id="r_BuddyMemoryResource"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classflow_1_1_buddy_memory_resource.html">BuddyMemoryResource</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fixed-size buddy allocator implementing the <a class="el" href="classflow_1_1_memory_resource.html" title="A memory resource holder interface for the PolymorphicAllocator. Responsible for allocate and dealloc...">MemoryResource</a> interface. The min block size is 1 byte, the maximum is 1&lt;&lt;64 bytes.  <a href="classflow_1_1_buddy_memory_resource.html#details">More...</a><br /></td></tr>
 <tr class="memitem:ConcurrentFlexQueue" id="r_ConcurrentFlexQueue"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classflow_1_1_concurrent_flex_queue.html">ConcurrentFlexQueue</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A thread-safe concurrent queue with flexible push and pop operations.  <a href="classflow_1_1_concurrent_flex_queue.html#details">More...</a><br /></td></tr>
 <tr class="memitem:ConcurrentQueue" id="r_ConcurrentQueue"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classflow_1_1_concurrent_queue.html">ConcurrentQueue</a></td></tr>
@@ -365,7 +367,7 @@ template&lt;typename AllocatorType, typename T&gt; </div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="flow__memory__algorithm_8h_source.html#l00126">destroyElementsN()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00457">flow::Vector&lt; T, Allocator &gt;::updateBuffer()</a>, and <a class="el" href="flow__vector_8h_source.html#l00177">flow::Vector&lt; T, Allocator &gt;::~Vector()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00459">flow::Vector&lt; T, Allocator &gt;::updateBuffer()</a>, and <a class="el" href="flow__vector_8h_source.html#l00179">flow::Vector&lt; T, Allocator &gt;::~Vector()</a>.</p>
 
 </div>
 </div>
@@ -420,7 +422,7 @@ template&lt;typename AllocatorType, std::forward_iterator InputIt&gt; </div>
 <div class="line"><span class="lineno">   67</span>    }</div>
 <div class="line"><span class="lineno">   68</span>  }</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00341">flow::Vector&lt; T, Allocator &gt;::erase()</a>, and <a class="el" href="flow__vector_8h_source.html#l00484">flow::Vector&lt; T, Allocator &gt;::resizeImp()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00343">flow::Vector&lt; T, Allocator &gt;::erase()</a>, and <a class="el" href="flow__vector_8h_source.html#l00486">flow::Vector&lt; T, Allocator &gt;::resizeImp()</a>.</p>
 
 </div>
 </div>
@@ -475,7 +477,7 @@ template&lt;typename AllocatorType, std::forward_iterator InputIt&gt; </div>
 <div class="line"><span class="lineno">  129</span>    }</div>
 <div class="line"><span class="lineno">  130</span>  }</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00268">flow::Vector&lt; T, Allocator &gt;::clear()</a>, and <a class="el" href="flow__memory__algorithm_8h_source.html#l00138">deleteBuffer()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00270">flow::Vector&lt; T, Allocator &gt;::clear()</a>, and <a class="el" href="flow__memory__algorithm_8h_source.html#l00138">deleteBuffer()</a>.</p>
 
 </div>
 </div>
@@ -799,7 +801,7 @@ template&lt;typename AllocatorType, std::forward_iterator OutputIt, typename ...
 <div class="line"><span class="lineno">   45</span>    <span class="keywordflow">return</span> first;</div>
 <div class="line"><span class="lineno">   46</span>  }</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00484">flow::Vector&lt; T, Allocator &gt;::resizeImp()</a>, and <a class="el" href="flow__memory__algorithm_8h_source.html#l00055">uninitializedFill()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00486">flow::Vector&lt; T, Allocator &gt;::resizeImp()</a>, and <a class="el" href="flow__memory__algorithm_8h_source.html#l00055">uninitializedFill()</a>.</p>
 
 </div>
 </div>
@@ -1015,7 +1017,7 @@ template&lt;typename AllocatorType, std::input_iterator InputIt, std::forward_it
 <div class="line"><span class="lineno">   19</span>    <span class="keywordflow">return</span> dest;</div>
 <div class="line"><span class="lineno">   20</span>  }</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00407">flow::Vector&lt; T, Allocator &gt;::insert()</a>, <a class="el" href="flow__memory__algorithm_8h_source.html#l00029">uninitializedMove()</a>, and <a class="el" href="flow__vector_8h_source.html#l00097">flow::Vector&lt; T, Allocator &gt;::Vector()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00409">flow::Vector&lt; T, Allocator &gt;::insert()</a>, <a class="el" href="flow__memory__algorithm_8h_source.html#l00029">uninitializedMove()</a>, and <a class="el" href="flow__vector_8h_source.html#l00099">flow::Vector&lt; T, Allocator &gt;::Vector()</a>.</p>
 
 </div>
 </div>
@@ -1070,7 +1072,7 @@ template&lt;typename AllocatorType, std::input_iterator InputIt, std::forward_it
 <div class="line"><span class="lineno">   81</span>    <span class="keywordflow">return</span> dest;</div>
 <div class="line"><span class="lineno">   82</span>  }</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00407">flow::Vector&lt; T, Allocator &gt;::insert()</a>, and <a class="el" href="flow__memory__algorithm_8h_source.html#l00091">uninitializedMoveN()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00409">flow::Vector&lt; T, Allocator &gt;::insert()</a>, and <a class="el" href="flow__memory__algorithm_8h_source.html#l00091">uninitializedMoveN()</a>.</p>
 
 </div>
 </div>
@@ -1133,7 +1135,7 @@ template&lt;typename AllocatorType, std::input_iterator InputIt, std::forward_it
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="flow__memory__algorithm_8h_source.html#l00015">uninitializedForward()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00407">flow::Vector&lt; T, Allocator &gt;::insert()</a>, <a class="el" href="flow__vector_8h_source.html#l00465">flow::Vector&lt; T, Allocator &gt;::relocateBuffer()</a>, and <a class="el" href="flow__vector_8h_source.html#l00474">flow::Vector&lt; T, Allocator &gt;::relocateBufferWithHoles()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="flow__vector_8h_source.html#l00409">flow::Vector&lt; T, Allocator &gt;::insert()</a>, <a class="el" href="flow__vector_8h_source.html#l00467">flow::Vector&lt; T, Allocator &gt;::relocateBuffer()</a>, and <a class="el" href="flow__vector_8h_source.html#l00476">flow::Vector&lt; T, Allocator &gt;::relocateBufferWithHoles()</a>.</p>
 
 </div>
 </div>

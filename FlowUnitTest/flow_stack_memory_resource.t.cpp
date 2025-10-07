@@ -1,4 +1,5 @@
 #include "../DataStructure/flow_stack_memory_resource.h"
+#include "flow_memory_resource_testsuit.h"
 #include <cstddef>
 #include <exception>
 #include <gtest/gtest.h>
@@ -7,14 +8,13 @@ namespace flow {
   class StackMemoryResourceWhiteBox : public StackMemoryResource {
   public:
     using Header = StackMemoryResource::Header;
-
     StackMemoryResourceWhiteBox(void* buffer, std::size_t size)
       : StackMemoryResource(buffer, size), originalBuffer_(buffer), originalCapacity_(size) {
     }
 
     void* getCurrentBuffer() const { return buffer_; }
-    std::size_t getRemainingCapacity() const { return capacity_; }
     void* getOriginalBuffer() const { return originalBuffer_; }
+    std::size_t getRemainingCapacity() const { return capacity_; }
     std::size_t getOriginalCapacity() const { return originalCapacity_; }
 
   private:
@@ -29,6 +29,40 @@ namespace flow {
     StackMemoryResourceWhiteBox resource{ rawBuffer, kBufferSize };
   };
 
+  // Common tests.
+  TEST_F(StackMemoryResourceTest, TestAllocateInt) {
+    testAllocateInt(resource);
+  }
+
+  TEST_F(StackMemoryResourceTest, TestAllocateIntDistinct) {
+    testAllocateIntDistinct(resource);
+  }
+
+  TEST_F(StackMemoryResourceTest, TestAllocateIntArray) {
+    testAllocateIntArray(resource);
+  }
+
+  TEST_F(StackMemoryResourceTest, TestAllocateFoo) {
+    testAllocateFoo(resource);
+  }
+
+  TEST_F(StackMemoryResourceTest, TestAllocateFooDistinct) {
+    testAllocateFooDistinct(resource);
+  }
+
+  TEST_F(StackMemoryResourceTest, TestAllocateFooArray) {
+    testAllocateFooArray(resource);
+  }
+
+  TEST_F(StackMemoryResourceTest, TestAllocateAlignasBigFoo) {
+    testAllocateAlignasBigFoo(resource);
+  }
+
+  TEST_F(StackMemoryResourceTest, TestAllocateAlignasSmallFoo) {
+    testAllocateAlignasSmallFoo(resource);
+  }
+
+  // Specialized tests.
   TEST_F(StackMemoryResourceTest, AllocUpdatesBufferAndCapacity) {
     void* oldBuffer = resource.getCurrentBuffer();
     std::size_t oldCapacity = resource.getRemainingCapacity();

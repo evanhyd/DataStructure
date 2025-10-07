@@ -10,7 +10,7 @@
 namespace flow {
 
   /// @brief A binary min-heap container. Supports custom comparator and allocator.
-  template <typename T, typename Compare = std::less<T>, typename Allocator = PolymorphicAllocator<>>
+  template <typename T, typename Compare = std::less<T>, typename Allocator = PolymorphicAllocator<T>>
   class BinaryHeap {
   public:
     using value_type = T;

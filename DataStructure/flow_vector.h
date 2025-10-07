@@ -45,7 +45,7 @@ namespace flow {
     };
   };
 
-  template <typename T, typename Allocator = PolymorphicAllocator<>, GrowthStrategy Strategy = VectorGrowthStrategy::GoldenExpand>
+  template <typename T, typename Allocator = PolymorphicAllocator<T>, GrowthStrategy Strategy = VectorGrowthStrategy::GoldenExpand>
   class Vector {
   public:
     using value_type = T;
@@ -57,10 +57,12 @@ namespace flow {
     using const_iterator = const T*;
     using size_type = std::size_t;
     using difference_type = std::ptrdiff_t;
-    using allocator_type = std::allocator_traits<Allocator>::template rebind_alloc<T>;
+    //using allocator_type = std::allocator_traits<Allocator>::template rebind_alloc<T>;
+    using allocator_type = Allocator;
 
   private:
-    using allocator_trait = std::allocator_traits<Allocator>::template rebind_traits<T>;
+    //using allocator_trait = std::allocator_traits<Allocator>::template rebind_traits<T>;
+    using allocator_trait = std::allocator_traits<Allocator>;
 
     allocator_type allocator_;
     Strategy growthStrategy_;

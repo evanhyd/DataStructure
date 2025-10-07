@@ -109,7 +109,7 @@ Public Types</h2></td></tr>
 <tr class="memitem:a6920261986439daf1deef7a48eb6ab01" id="r_a6920261986439daf1deef7a48eb6ab01"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6920261986439daf1deef7a48eb6ab01">const_iterator</a> = const T*</td></tr>
 <tr class="memitem:a338d587f9d7cdac535b24e7444792723" id="r_a338d587f9d7cdac535b24e7444792723"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a338d587f9d7cdac535b24e7444792723">difference_type</a> = std::ptrdiff_t</td></tr>
 <tr class="memitem:a496b9e276e98d2c70fead25c3a55a8a8" id="r_a496b9e276e98d2c70fead25c3a55a8a8"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a496b9e276e98d2c70fead25c3a55a8a8">container_type</a> = <a class="el" href="classflow_1_1_vector.html">Vector</a>&lt;T, Allocator&gt;</td></tr>
-<tr class="memitem:aeee3fdc64435f4b5f4a04f08db84cc99" id="r_aeee3fdc64435f4b5f4a04f08db84cc99"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeee3fdc64435f4b5f4a04f08db84cc99">allocator_type</a> = <a class="el" href="classflow_1_1_vector.html#ad756f48cb4b3d644d3ee2272016e53de">container_type::allocator_type</a></td></tr>
+<tr class="memitem:aeee3fdc64435f4b5f4a04f08db84cc99" id="r_aeee3fdc64435f4b5f4a04f08db84cc99"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeee3fdc64435f4b5f4a04f08db84cc99">allocator_type</a> = <a class="el" href="classflow_1_1_vector.html#aec979ed36700d7067692961da4635c4d">container_type::allocator_type</a></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -172,7 +172,7 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a3e6622a66cab256701593dc42db188fd" id="r_a3e6622a66cab256701593dc42db188fd"><td class="memItemLeft" align="right" valign="top">Compare&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e6622a66cab256701593dc42db188fd">comparator_</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt;<br />
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt;<br />
 class flow::BinaryHeap&lt; T, Compare, Allocator &gt;</div><p>A binary min-heap container. Supports custom comparator and allocator. </p>
 
 <p class="definition">Definition at line <a class="el" href="flow__binary__heap_8h_source.html#l00014">14</a> of file <a class="el" href="flow__binary__heap_8h_source.html">flow_binary_heap.h</a>.</p>
@@ -183,10 +183,10 @@ class flow::BinaryHeap&lt; T, Compare, Allocator &gt;</div><p>A binary min-heap 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classflow_1_1_binary_heap.html">flow::BinaryHeap</a>&lt; T, Compare, Allocator &gt;::allocator_type = <a class="el" href="classflow_1_1_vector.html#ad756f48cb4b3d644d3ee2272016e53de">container_type::allocator_type</a></td>
+          <td class="memname">using <a class="el" href="classflow_1_1_binary_heap.html">flow::BinaryHeap</a>&lt; T, Compare, Allocator &gt;::allocator_type = <a class="el" href="classflow_1_1_vector.html#aec979ed36700d7067692961da4635c4d">container_type::allocator_type</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -201,7 +201,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="classflow_1_1_binary_heap.html">flow::BinaryHeap</a>&lt; T, Compare, Allocator &gt;::const_iterator = const T*</td>
@@ -219,7 +219,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="classflow_1_1_binary_heap.html">flow::BinaryHeap</a>&lt; T, Compare, Allocator &gt;::const_pointer = const T*</td>
@@ -237,7 +237,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="classflow_1_1_binary_heap.html">flow::BinaryHeap</a>&lt; T, Compare, Allocator &gt;::const_reference = const T&amp;</td>
@@ -255,7 +255,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="classflow_1_1_binary_heap.html">flow::BinaryHeap</a>&lt; T, Compare, Allocator &gt;::container_type = <a class="el" href="classflow_1_1_vector.html">Vector</a>&lt;T, Allocator&gt;</td>
@@ -273,7 +273,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="classflow_1_1_binary_heap.html">flow::BinaryHeap</a>&lt; T, Compare, Allocator &gt;::difference_type = std::ptrdiff_t</td>
@@ -291,7 +291,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="classflow_1_1_binary_heap.html">flow::BinaryHeap</a>&lt; T, Compare, Allocator &gt;::iterator = T*</td>
@@ -309,7 +309,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="classflow_1_1_binary_heap.html">flow::BinaryHeap</a>&lt; T, Compare, Allocator &gt;::pointer = T*</td>
@@ -327,7 +327,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="classflow_1_1_binary_heap.html">flow::BinaryHeap</a>&lt; T, Compare, Allocator &gt;::reference = T&amp;</td>
@@ -345,7 +345,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="classflow_1_1_binary_heap.html">flow::BinaryHeap</a>&lt; T, Compare, Allocator &gt;::value_type = T</td>
@@ -364,7 +364,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -403,7 +403,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -439,7 +439,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -487,7 +487,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -516,7 +516,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -553,7 +553,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -582,7 +582,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -619,7 +619,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <div class="memtemplate">
 template&lt;std::input_iterator It&gt; </div>
 <table class="mlabels">
@@ -681,7 +681,7 @@ template&lt;std::input_iterator It&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -733,7 +733,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -761,7 +761,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -800,7 +800,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -836,7 +836,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -879,7 +879,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <div class="memtemplate">
 template&lt;typename ... Args&gt; </div>
 <table class="mlabels">
@@ -927,7 +927,7 @@ template&lt;typename ... Args&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -964,7 +964,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1015,7 +1015,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1071,7 +1071,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1105,7 +1105,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1139,7 +1139,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1174,7 +1174,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1206,7 +1206,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1247,7 +1247,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1288,7 +1288,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1331,7 +1331,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1373,7 +1373,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1416,7 +1416,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1453,7 +1453,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1494,7 +1494,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1522,7 +1522,7 @@ template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocato
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Compare = std::less&lt;T&gt;, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">

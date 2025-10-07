@@ -40,7 +40,7 @@ namespace flow {
     /// @brief Formats and returns a string showing all recorded durations since reset.
     /// @return Formatted string of all recorded time intervals.
     std::string toString() const {
-      std::string str = std::format("Total record entries: {}\n", timepoints_.size());
+      std::string str;
       std::size_t i = 0;
       for (const auto& timepoint : timepoints_) {
         auto dur = timepoint - begin_;

@@ -105,9 +105,10 @@ $(function(){initNavTree('classflow_1_1_memory_resource.html','','classflow_1_1_
   <img src="classflow_1_1_memory_resource.png" usemap="#flow_3A_3AMemoryResource_map" alt=""/>
   <map id="flow_3A_3AMemoryResource_map" name="flow_3A_3AMemoryResource_map">
 <area href="classflow_1_1_arena_memory_resource.html" title="A linear arena memory resource that allocates memory sequentially from a fixed buffer...." alt="flow::ArenaMemoryResource" shape="rect" coords="0,56,181,80"/>
-<area href="classflow_1_1_default_memory_resource.html" title="A default memory resource that wraps global operator new and operator delete." alt="flow::DefaultMemoryResource" shape="rect" coords="191,56,372,80"/>
-<area href="classflow_1_1_pool_memory_resource.html" title="A pool memory resource that manages fixed-size memory blocks from a pre-allocated buffer...." alt="flow::PoolMemoryResource" shape="rect" coords="382,56,563,80"/>
-<area href="classflow_1_1_stack_memory_resource.html" title="A stack-based memory resource that allocates memory in a LIFO order from a fixed buffer...." alt="flow::StackMemoryResource" shape="rect" coords="573,56,754,80"/>
+<area href="classflow_1_1_buddy_memory_resource.html" title="Fixed-size buddy allocator implementing the MemoryResource interface. The min block size is 1 byte,..." alt="flow::BuddyMemoryResource" shape="rect" coords="191,56,372,80"/>
+<area href="classflow_1_1_default_memory_resource.html" title="A default memory resource that wraps global operator new and operator delete." alt="flow::DefaultMemoryResource" shape="rect" coords="382,56,563,80"/>
+<area href="classflow_1_1_pool_memory_resource.html" title="A pool memory resource that manages fixed-size memory blocks from a pre-allocated buffer...." alt="flow::PoolMemoryResource" shape="rect" coords="573,56,754,80"/>
+<area href="classflow_1_1_stack_memory_resource.html" title="A stack-based memory resource that allocates memory in a LIFO order from a fixed buffer...." alt="flow::StackMemoryResource" shape="rect" coords="764,56,945,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -217,7 +218,7 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classflow_1_1_arena_memory_resource.html#a621223b622d7efd5503f65c9de3aab1b">flow::ArenaMemoryResource</a>, <a class="el" href="classflow_1_1_default_memory_resource.html#a5b3b10ccc61e2b8d17606eb5fc0f1627">flow::DefaultMemoryResource</a>, <a class="el" href="classflow_1_1_pool_memory_resource.html#a3cfb07a234f406f4fb8c1d1c154861bc">flow::PoolMemoryResource</a>, and <a class="el" href="classflow_1_1_stack_memory_resource.html#a2ac0250b455868bd79a38da643b421d5">flow::StackMemoryResource</a>.</p>
+<p>Implemented in <a class="el" href="classflow_1_1_arena_memory_resource.html#a621223b622d7efd5503f65c9de3aab1b">flow::ArenaMemoryResource</a>, <a class="el" href="classflow_1_1_buddy_memory_resource.html#a0d60a3a00ec751cc9b20758eb3b2a4d2">flow::BuddyMemoryResource</a>, <a class="el" href="classflow_1_1_default_memory_resource.html#a5b3b10ccc61e2b8d17606eb5fc0f1627">flow::DefaultMemoryResource</a>, <a class="el" href="classflow_1_1_pool_memory_resource.html#a3cfb07a234f406f4fb8c1d1c154861bc">flow::PoolMemoryResource</a>, and <a class="el" href="classflow_1_1_stack_memory_resource.html#a2ac0250b455868bd79a38da643b421d5">flow::StackMemoryResource</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="flow__memory__resource_8h_source.html#l00013">allocate()</a>.</p>
 
@@ -297,7 +298,7 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classflow_1_1_arena_memory_resource.html#a705ea8539ba4774256c621c482cd9493">flow::ArenaMemoryResource</a>, <a class="el" href="classflow_1_1_default_memory_resource.html#ae780c88790db29cf6e74b2363463f86d">flow::DefaultMemoryResource</a>, <a class="el" href="classflow_1_1_pool_memory_resource.html#ad096a8ce328207d87d572b19ae51f324">flow::PoolMemoryResource</a>, and <a class="el" href="classflow_1_1_stack_memory_resource.html#a472e9dd93c0aad65c2a3768254d2bf1f">flow::StackMemoryResource</a>.</p>
+<p>Implemented in <a class="el" href="classflow_1_1_arena_memory_resource.html#a705ea8539ba4774256c621c482cd9493">flow::ArenaMemoryResource</a>, <a class="el" href="classflow_1_1_buddy_memory_resource.html#a763d250a9955d1a5b2ba2d6bd2bba8f6">flow::BuddyMemoryResource</a>, <a class="el" href="classflow_1_1_default_memory_resource.html#ae780c88790db29cf6e74b2363463f86d">flow::DefaultMemoryResource</a>, <a class="el" href="classflow_1_1_pool_memory_resource.html#ad096a8ce328207d87d572b19ae51f324">flow::PoolMemoryResource</a>, and <a class="el" href="classflow_1_1_stack_memory_resource.html#a472e9dd93c0aad65c2a3768254d2bf1f">flow::StackMemoryResource</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="flow__memory__resource_8h_source.html#l00017">deallocate()</a>.</p>
 

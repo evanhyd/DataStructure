@@ -6,6 +6,7 @@ var searchData=
   ['enablememoryguard_3',['enableMemoryGuard',['../namespaceflow.html#a66db7e81436bb94ac54e68f4f13be960',1,'flow']]],
   ['end_4',['end',['../classflow_1_1_vector.html#ad9bee88ac142d52bc14d3b7c12c5d27a',1,'flow::Vector::end() noexcept'],['../classflow_1_1_vector.html#ad6491063afb2f969da46c7617f09e048',1,'flow::Vector::end() const noexcept']]],
   ['erase_5',['erase',['../classflow_1_1_vector.html#a72bef13d7f81c286d42432ceabe20d20',1,'flow::Vector::erase(iterator pos) noexcept'],['../classflow_1_1_vector.html#a233300c7d3c47e40b70af817590c9811',1,'flow::Vector::erase(iterator first, iterator last) noexcept']]],
-  ['execute_6',['execute',['../classflow_1_1_thread_task.html#a975cf8928ad522758dac0918eee0841c',1,'flow::ThreadTask']]],
-  ['executeimp_7',['executeImp',['../structflow_1_1_thread_task_1_1_thread_task_interface.html#a23fafb6318e8bf4510c76b790c6d62e4',1,'flow::ThreadTask::ThreadTaskInterface::executeImp()'],['../structflow_1_1_thread_task_1_1_thread_task_imp.html#a9dedf8cd503a67b4db166cad163768cd',1,'flow::ThreadTask::ThreadTaskImp::executeImp()']]]
+  ['eraseblock_6',['eraseBlock',['../classflow_1_1_buddy_memory_resource.html#a0dc8bdb63b9ef6ea45c0f6edd1e42432',1,'flow::BuddyMemoryResource']]],
+  ['execute_7',['execute',['../classflow_1_1_thread_task.html#a975cf8928ad522758dac0918eee0841c',1,'flow::ThreadTask']]],
+  ['executeimp_8',['executeImp',['../structflow_1_1_thread_task_1_1_thread_task_interface.html#a23fafb6318e8bf4510c76b790c6d62e4',1,'flow::ThreadTask::ThreadTaskInterface::executeImp()'],['../structflow_1_1_thread_task_1_1_thread_task_imp.html#a9dedf8cd503a67b4db166cad163768cd',1,'flow::ThreadTask::ThreadTaskImp::executeImp()']]]
 ];

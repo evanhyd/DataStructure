@@ -112,24 +112,24 @@ Public Types</h2></td></tr>
 <tr class="memitem:ac09f75d50d60a4aec1103becdf155ee7" id="r_ac09f75d50d60a4aec1103becdf155ee7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac09f75d50d60a4aec1103becdf155ee7">iterator</a> = T*</td></tr>
 <tr class="memitem:ae5b5eae1bfa2f5b1f960832d5ef1d69e" id="r_ae5b5eae1bfa2f5b1f960832d5ef1d69e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5b5eae1bfa2f5b1f960832d5ef1d69e">const_iterator</a> = const T*</td></tr>
 <tr class="memitem:a5713af1eb48d5a1530b6f081a68b73ba" id="r_a5713af1eb48d5a1530b6f081a68b73ba"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5713af1eb48d5a1530b6f081a68b73ba">difference_type</a> = std::ptrdiff_t</td></tr>
-<tr class="memitem:abf862d3e89206e2d0dba3497099d4f3f" id="r_abf862d3e89206e2d0dba3497099d4f3f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abf862d3e89206e2d0dba3497099d4f3f">container_type</a> = <a class="el" href="classflow_1_1_vector.html">Vector</a>&lt;<a class="el" href="structflow_1_1_disjoint_set_1_1_node.html">Node</a>, Allocator&gt;</td></tr>
-<tr class="memitem:ac9fd5bfd3ac01d80b0983c0c2c018e7c" id="r_ac9fd5bfd3ac01d80b0983c0c2c018e7c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac9fd5bfd3ac01d80b0983c0c2c018e7c">allocator_type</a> = <a class="el" href="classflow_1_1_vector.html#ad756f48cb4b3d644d3ee2272016e53de">container_type::allocator_type</a></td></tr>
+<tr class="memitem:a2d515c88c0b1fd4aaa2ec7744e499a52" id="r_a2d515c88c0b1fd4aaa2ec7744e499a52"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2d515c88c0b1fd4aaa2ec7744e499a52">allocator_type</a> = std::allocator_traits&lt;Allocator&gt;::template rebind_alloc&lt;<a class="el" href="structflow_1_1_disjoint_set_1_1_node.html">Node</a>&gt;</td></tr>
+<tr class="memitem:afeb9cc6471290ef48b3a19f7c62fa491" id="r_afeb9cc6471290ef48b3a19f7c62fa491"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afeb9cc6471290ef48b3a19f7c62fa491">container_type</a> = <a class="el" href="classflow_1_1_vector.html">Vector</a>&lt;<a class="el" href="structflow_1_1_disjoint_set_1_1_node.html">Node</a>, <a class="el" href="#a2d515c88c0b1fd4aaa2ec7744e499a52">allocator_type</a>&gt;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a531f12423328d932f0b7a5e68cc1f5a4" id="r_a531f12423328d932f0b7a5e68cc1f5a4"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a531f12423328d932f0b7a5e68cc1f5a4">DisjointSet</a> () noexcept(noexcept(<a class="el" href="#abf862d3e89206e2d0dba3497099d4f3f">container_type</a>()))</td></tr>
-<tr class="memitem:a501435515fc427349b57e2ade8bb9bb3" id="r_a501435515fc427349b57e2ade8bb9bb3"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a501435515fc427349b57e2ade8bb9bb3">DisjointSet</a> (const <a class="el" href="#ac9fd5bfd3ac01d80b0983c0c2c018e7c">allocator_type</a> &amp;allocator) noexcept(noexcept(<a class="el" href="#abf862d3e89206e2d0dba3497099d4f3f">container_type</a>(allocator)))</td></tr>
+<tr class="memitem:a531f12423328d932f0b7a5e68cc1f5a4" id="r_a531f12423328d932f0b7a5e68cc1f5a4"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a531f12423328d932f0b7a5e68cc1f5a4">DisjointSet</a> () noexcept(noexcept(<a class="el" href="#afeb9cc6471290ef48b3a19f7c62fa491">container_type</a>()))</td></tr>
+<tr class="memitem:a501435515fc427349b57e2ade8bb9bb3" id="r_a501435515fc427349b57e2ade8bb9bb3"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a501435515fc427349b57e2ade8bb9bb3">DisjointSet</a> (const <a class="el" href="#a2d515c88c0b1fd4aaa2ec7744e499a52">allocator_type</a> &amp;allocator) noexcept(noexcept(<a class="el" href="#afeb9cc6471290ef48b3a19f7c62fa491">container_type</a>(allocator)))</td></tr>
 <tr class="memitem:a6e4d987b55e8809b9195846786d7efbe" id="r_a6e4d987b55e8809b9195846786d7efbe"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6e4d987b55e8809b9195846786d7efbe">DisjointSet</a> (const <a class="el" href="classflow_1_1_disjoint_set.html">DisjointSet</a> &amp;)=default</td></tr>
-<tr class="memitem:ad23599c9db44e7215e9bb2157ae11689" id="r_ad23599c9db44e7215e9bb2157ae11689"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad23599c9db44e7215e9bb2157ae11689">DisjointSet</a> (const <a class="el" href="classflow_1_1_disjoint_set.html">DisjointSet</a> &amp;rhs, const <a class="el" href="#ac9fd5bfd3ac01d80b0983c0c2c018e7c">allocator_type</a> &amp;allocator)</td></tr>
+<tr class="memitem:ad23599c9db44e7215e9bb2157ae11689" id="r_ad23599c9db44e7215e9bb2157ae11689"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad23599c9db44e7215e9bb2157ae11689">DisjointSet</a> (const <a class="el" href="classflow_1_1_disjoint_set.html">DisjointSet</a> &amp;rhs, const <a class="el" href="#a2d515c88c0b1fd4aaa2ec7744e499a52">allocator_type</a> &amp;allocator)</td></tr>
 <tr class="memitem:ad2e0b29e8d3341a2c4989749f2501803" id="r_ad2e0b29e8d3341a2c4989749f2501803"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad2e0b29e8d3341a2c4989749f2501803">DisjointSet</a> (<a class="el" href="classflow_1_1_disjoint_set.html">DisjointSet</a> &amp;&amp;)=default</td></tr>
-<tr class="memitem:a5e67382d4a03d32480c9ef902b699154" id="r_a5e67382d4a03d32480c9ef902b699154"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5e67382d4a03d32480c9ef902b699154">DisjointSet</a> (<a class="el" href="classflow_1_1_disjoint_set.html">DisjointSet</a> &amp;&amp;rhs, const <a class="el" href="#ac9fd5bfd3ac01d80b0983c0c2c018e7c">allocator_type</a> &amp;allocator) noexcept(noexcept(<a class="el" href="#abf862d3e89206e2d0dba3497099d4f3f">container_type</a>(std::move(rhs.data_), allocator)))</td></tr>
+<tr class="memitem:a5e67382d4a03d32480c9ef902b699154" id="r_a5e67382d4a03d32480c9ef902b699154"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5e67382d4a03d32480c9ef902b699154">DisjointSet</a> (<a class="el" href="classflow_1_1_disjoint_set.html">DisjointSet</a> &amp;&amp;rhs, const <a class="el" href="#a2d515c88c0b1fd4aaa2ec7744e499a52">allocator_type</a> &amp;allocator) noexcept(noexcept(<a class="el" href="#afeb9cc6471290ef48b3a19f7c62fa491">container_type</a>(std::move(rhs.data_), allocator)))</td></tr>
 <tr class="memitem:a866667ec4add05bd924125a30847d704" id="r_a866667ec4add05bd924125a30847d704"><td class="memTemplParams" colspan="2">template&lt;std::forward_iterator It&gt; </td></tr>
-<tr class="memitem:a866667ec4add05bd924125a30847d704 template"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a866667ec4add05bd924125a30847d704">DisjointSet</a> (It first, It last, const <a class="el" href="#ac9fd5bfd3ac01d80b0983c0c2c018e7c">allocator_type</a> &amp;allocator={})</td></tr>
+<tr class="memitem:a866667ec4add05bd924125a30847d704 template"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a866667ec4add05bd924125a30847d704">DisjointSet</a> (It first, It last, const <a class="el" href="#a2d515c88c0b1fd4aaa2ec7744e499a52">allocator_type</a> &amp;allocator={})</td></tr>
 <tr class="memdesc:a866667ec4add05bd924125a30847d704"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator range constructor.  <br /></td></tr>
-<tr class="memitem:af16d00f7cc3c5e8349f97d9b69a13b6b" id="r_af16d00f7cc3c5e8349f97d9b69a13b6b"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af16d00f7cc3c5e8349f97d9b69a13b6b">DisjointSet</a> (std::initializer_list&lt; T &gt; list, const <a class="el" href="#ac9fd5bfd3ac01d80b0983c0c2c018e7c">allocator_type</a> &amp;allocator={})</td></tr>
+<tr class="memitem:af16d00f7cc3c5e8349f97d9b69a13b6b" id="r_af16d00f7cc3c5e8349f97d9b69a13b6b"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af16d00f7cc3c5e8349f97d9b69a13b6b">DisjointSet</a> (std::initializer_list&lt; T &gt; list, const <a class="el" href="#a2d515c88c0b1fd4aaa2ec7744e499a52">allocator_type</a> &amp;allocator={})</td></tr>
 <tr class="memdesc:af16d00f7cc3c5e8349f97d9b69a13b6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializer list constructor.  <br /></td></tr>
 <tr class="memitem:a852cfb702edb050e3965c16796134326" id="r_a852cfb702edb050e3965c16796134326"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a852cfb702edb050e3965c16796134326">~DisjointSet</a> ()=default</td></tr>
-<tr class="memitem:a9a2f5e8273d351b35fd38ee39d154ab7" id="r_a9a2f5e8273d351b35fd38ee39d154ab7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac9fd5bfd3ac01d80b0983c0c2c018e7c">allocator_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a2f5e8273d351b35fd38ee39d154ab7">get_allocator</a> () const noexcept</td></tr>
+<tr class="memitem:a9a2f5e8273d351b35fd38ee39d154ab7" id="r_a9a2f5e8273d351b35fd38ee39d154ab7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a2d515c88c0b1fd4aaa2ec7744e499a52">allocator_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a2f5e8273d351b35fd38ee39d154ab7">get_allocator</a> () const noexcept</td></tr>
 <tr class="memitem:ae686fb4cddd71653a5596bd4bec76e55" id="r_ae686fb4cddd71653a5596bd4bec76e55"><td class="memItemLeft" align="right" valign="top">constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae686fb4cddd71653a5596bd4bec76e55">size</a> () const</td></tr>
 <tr class="memdesc:ae686fb4cddd71653a5596bd4bec76e55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the number of input elements.  <br /></td></tr>
 <tr class="memitem:a6af13ef5a4b52c27ddb44327e3b1fff1" id="r_a6af13ef5a4b52c27ddb44327e3b1fff1"><td class="memItemLeft" align="right" valign="top">constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6af13ef5a4b52c27ddb44327e3b1fff1">groupSize</a> () const</td></tr>
@@ -156,10 +156,10 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a6033d7ef1fc44793988309b57290a245" id="r_a6033d7ef1fc44793988309b57290a245"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6033d7ef1fc44793988309b57290a245">groupSize_</a></td></tr>
-<tr class="memitem:af7824395cb82b7ccc8937aea98b0ec44" id="r_af7824395cb82b7ccc8937aea98b0ec44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#abf862d3e89206e2d0dba3497099d4f3f">container_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af7824395cb82b7ccc8937aea98b0ec44">data_</a></td></tr>
+<tr class="memitem:af7824395cb82b7ccc8937aea98b0ec44" id="r_af7824395cb82b7ccc8937aea98b0ec44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#afeb9cc6471290ef48b3a19f7c62fa491">container_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af7824395cb82b7ccc8937aea98b0ec44">data_</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt;<br />
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt;<br />
 class flow::DisjointSet&lt; T, Allocator &gt;</div><p>A disjoint union set that uses path compression and union by rank. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
@@ -171,21 +171,21 @@ class flow::DisjointSet&lt; T, Allocator &gt;</div><p>A disjoint union set that 
 
 <p class="definition">Definition at line <a class="el" href="flow__disjoint__set_8h_source.html#l00010">10</a> of file <a class="el" href="flow__disjoint__set_8h_source.html">flow_disjoint_set.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
-<a id="ac9fd5bfd3ac01d80b0983c0c2c018e7c" name="ac9fd5bfd3ac01d80b0983c0c2c018e7c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac9fd5bfd3ac01d80b0983c0c2c018e7c">&#9670;&#160;</a></span>allocator_type</h2>
+<a id="a2d515c88c0b1fd4aaa2ec7744e499a52" name="a2d515c88c0b1fd4aaa2ec7744e499a52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d515c88c0b1fd4aaa2ec7744e499a52">&#9670;&#160;</a></span>allocator_type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classflow_1_1_disjoint_set.html">flow::DisjointSet</a>&lt; T, Allocator &gt;::allocator_type = <a class="el" href="classflow_1_1_vector.html#ad756f48cb4b3d644d3ee2272016e53de">container_type::allocator_type</a></td>
+          <td class="memname">using <a class="el" href="classflow_1_1_disjoint_set.html">flow::DisjointSet</a>&lt; T, Allocator &gt;::allocator_type = std::allocator_traits&lt;Allocator&gt;::template rebind_alloc&lt;<a class="el" href="structflow_1_1_disjoint_set_1_1_node.html">Node</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__disjoint__set_8h_source.html#l00027">27</a> of file <a class="el" href="flow__disjoint__set_8h_source.html">flow_disjoint_set.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="flow__disjoint__set_8h_source.html#l00026">26</a> of file <a class="el" href="flow__disjoint__set_8h_source.html">flow_disjoint_set.h</a>.</p>
 
 </div>
 </div>
@@ -195,7 +195,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="classflow_1_1_disjoint_set.html">flow::DisjointSet</a>&lt; T, Allocator &gt;::const_iterator = const T*</td>
@@ -213,7 +213,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="classflow_1_1_disjoint_set.html">flow::DisjointSet</a>&lt; T, Allocator &gt;::const_pointer = const T*</td>
@@ -231,7 +231,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="classflow_1_1_disjoint_set.html">flow::DisjointSet</a>&lt; T, Allocator &gt;::const_reference = const T&amp;</td>
@@ -243,21 +243,21 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 
 </div>
 </div>
-<a id="abf862d3e89206e2d0dba3497099d4f3f" name="abf862d3e89206e2d0dba3497099d4f3f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abf862d3e89206e2d0dba3497099d4f3f">&#9670;&#160;</a></span>container_type</h2>
+<a id="afeb9cc6471290ef48b3a19f7c62fa491" name="afeb9cc6471290ef48b3a19f7c62fa491"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afeb9cc6471290ef48b3a19f7c62fa491">&#9670;&#160;</a></span>container_type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classflow_1_1_disjoint_set.html">flow::DisjointSet</a>&lt; T, Allocator &gt;::container_type = <a class="el" href="classflow_1_1_vector.html">Vector</a>&lt;<a class="el" href="structflow_1_1_disjoint_set_1_1_node.html">Node</a>, Allocator&gt;</td>
+          <td class="memname">using <a class="el" href="classflow_1_1_disjoint_set.html">flow::DisjointSet</a>&lt; T, Allocator &gt;::container_type = <a class="el" href="classflow_1_1_vector.html">Vector</a>&lt;<a class="el" href="structflow_1_1_disjoint_set_1_1_node.html">Node</a>, <a class="el" href="#a2d515c88c0b1fd4aaa2ec7744e499a52">allocator_type</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="flow__disjoint__set_8h_source.html#l00026">26</a> of file <a class="el" href="flow__disjoint__set_8h_source.html">flow_disjoint_set.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="flow__disjoint__set_8h_source.html#l00027">27</a> of file <a class="el" href="flow__disjoint__set_8h_source.html">flow_disjoint_set.h</a>.</p>
 
 </div>
 </div>
@@ -267,7 +267,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="classflow_1_1_disjoint_set.html">flow::DisjointSet</a>&lt; T, Allocator &gt;::difference_type = std::ptrdiff_t</td>
@@ -285,7 +285,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="classflow_1_1_disjoint_set.html">flow::DisjointSet</a>&lt; T, Allocator &gt;::iterator = T*</td>
@@ -303,7 +303,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="classflow_1_1_disjoint_set.html">flow::DisjointSet</a>&lt; T, Allocator &gt;::pointer = T*</td>
@@ -321,7 +321,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="classflow_1_1_disjoint_set.html">flow::DisjointSet</a>&lt; T, Allocator &gt;::reference = T&amp;</td>
@@ -339,7 +339,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="classflow_1_1_disjoint_set.html">flow::DisjointSet</a>&lt; T, Allocator &gt;::value_type = T</td>
@@ -358,7 +358,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -395,7 +395,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -403,7 +403,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
         <tr>
           <td class="memname"><a class="el" href="classflow_1_1_disjoint_set.html">flow::DisjointSet</a>&lt; T, Allocator &gt;::DisjointSet </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="#ac9fd5bfd3ac01d80b0983c0c2c018e7c">allocator_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>allocator</em></span></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="#a2d515c88c0b1fd4aaa2ec7744e499a52">allocator_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>allocator</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -429,7 +429,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -458,7 +458,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -471,7 +471,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="#ac9fd5bfd3ac01d80b0983c0c2c018e7c">allocator_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>allocator</em></span>&#160;)</td>
+          <td class="paramtype">const <a class="el" href="#a2d515c88c0b1fd4aaa2ec7744e499a52">allocator_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>allocator</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -495,7 +495,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -524,7 +524,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -537,7 +537,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="#ac9fd5bfd3ac01d80b0983c0c2c018e7c">allocator_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>allocator</em></span>&#160;)</td>
+          <td class="paramtype">const <a class="el" href="#a2d515c88c0b1fd4aaa2ec7744e499a52">allocator_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>allocator</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -581,7 +581,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <div class="memtemplate">
 template&lt;std::forward_iterator It&gt; </div>
 <table class="mlabels">
@@ -601,7 +601,7 @@ template&lt;std::forward_iterator It&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="#ac9fd5bfd3ac01d80b0983c0c2c018e7c">allocator_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>allocator</em></span><span class="paramdefsep"> = </span><span class="paramdefval">{}</span>&#160;)</td>
+          <td class="paramtype">const <a class="el" href="#a2d515c88c0b1fd4aaa2ec7744e499a52">allocator_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>allocator</em></span><span class="paramdefsep"> = </span><span class="paramdefval">{}</span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -640,7 +640,7 @@ template&lt;std::forward_iterator It&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -653,7 +653,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="#ac9fd5bfd3ac01d80b0983c0c2c018e7c">allocator_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>allocator</em></span><span class="paramdefsep"> = </span><span class="paramdefval">{}</span>&#160;)</td>
+          <td class="paramtype">const <a class="el" href="#a2d515c88c0b1fd4aaa2ec7744e499a52">allocator_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>allocator</em></span><span class="paramdefsep"> = </span><span class="paramdefval">{}</span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -686,7 +686,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -714,7 +714,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -757,7 +757,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -800,7 +800,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -837,7 +837,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -887,13 +887,13 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#ac9fd5bfd3ac01d80b0983c0c2c018e7c">allocator_type</a> <a class="el" href="classflow_1_1_disjoint_set.html">flow::DisjointSet</a>&lt; T, Allocator &gt;::get_allocator </td>
+          <td class="memname"><a class="el" href="#a2d515c88c0b1fd4aaa2ec7744e499a52">allocator_type</a> <a class="el" href="classflow_1_1_disjoint_set.html">flow::DisjointSet</a>&lt; T, Allocator &gt;::get_allocator </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -921,7 +921,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -958,7 +958,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1006,7 +1006,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1070,7 +1070,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1113,7 +1113,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1156,7 +1156,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1198,7 +1198,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1236,13 +1236,13 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#abf862d3e89206e2d0dba3497099d4f3f">container_type</a> <a class="el" href="classflow_1_1_disjoint_set.html">flow::DisjointSet</a>&lt; T, Allocator &gt;::data_</td>
+          <td class="memname"><a class="el" href="#afeb9cc6471290ef48b3a19f7c62fa491">container_type</a> <a class="el" href="classflow_1_1_disjoint_set.html">flow::DisjointSet</a>&lt; T, Allocator &gt;::data_</td>
         </tr>
       </table>
   </td>
@@ -1264,7 +1264,7 @@ template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;&gt;&gt; </div>
+template&lt;typename T, typename Allocator = PolymorphicAllocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">

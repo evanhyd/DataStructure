@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['oldbuffer_0',['oldBuffer',['../structflow_1_1_stack_memory_resource_1_1_header.html#af7da697f584166308e1383ffd1970e91',1,'flow::StackMemoryResource::Header']]]
+  ['mux_5f_0',['mux_',['../classflow_1_1_concurrent_queue.html#a3f443bd583da922327024612530e33ea',1,'flow::ConcurrentQueue::mux_'],['../classflow_1_1_work_stealing_queue.html#a9fbadfa7e05a95c2be9e473eb40e48ce',1,'flow::WorkStealingQueue::mux_']]]
 ];

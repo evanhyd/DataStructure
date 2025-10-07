@@ -48,7 +48,7 @@
     <ClCompile Include="flow_arena_memory_resource.t.cpp">
       <Filter>flow\memory\memory_resource</Filter>
     </ClCompile>
-    <ClCompile Include="flow_memory_resource.t.cpp">
+    <ClCompile Include="flow_memory_resource_testsuit.h">
       <Filter>flow\memory\memory_resource</Filter>
     </ClCompile>
     <ClCompile Include="flow_pool_memory_resource.t.cpp">
@@ -71,6 +71,9 @@
     </ClCompile>
     <ClCompile Include="flow_disjoint_set.t.cpp">
       <Filter>flow\container</Filter>
+    </ClCompile>
+    <ClCompile Include="flow_buddy_memory_resource.t.cpp">
+      <Filter>flow\memory\memory_resource</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

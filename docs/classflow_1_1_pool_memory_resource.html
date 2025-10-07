@@ -319,7 +319,10 @@ Protected Attributes</h2></td></tr>
 <p>Implements <a class="el" href="classflow_1_1_memory_resource.html#a0fe4fd1de140064284dee1cc16c33e21">flow::MemoryResource</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="flow__pool__memory__resource_8h_source.html#l00063">63</a> of file <a class="el" href="flow__pool__memory__resource_8h_source.html">flow_pool_memory_resource.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   66</span>                                                     {</div>
+<div class="fragment"><div class="line"><span class="lineno">   63</span>                                                                                                                               {</div>
+<div class="line"><span class="lineno">   64</span>      <span class="keywordflow">if</span> (!address) {</div>
+<div class="line"><span class="lineno">   65</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   66</span>      }</div>
 <div class="line"><span class="lineno">   67</span>      <a class="code hl_struct" href="structflow_1_1_pool_memory_resource_1_1_header.html">Header</a>* header = <span class="keyword">reinterpret_cast&lt;</span><a class="code hl_struct" href="structflow_1_1_pool_memory_resource_1_1_header.html">Header</a>*<span class="keyword">&gt;</span>(address) - 1;</div>
 <div class="line"><span class="lineno">   68</span>      header-&gt;<a class="code hl_variable" href="structflow_1_1_pool_memory_resource_1_1_header.html#ae67fd9d5f52747e2b0670519f971aa72">next</a> = <a class="code hl_variable" href="#a06a3832bb9d9708ee001638ad8690c65">head_</a>;</div>
 <div class="line"><span class="lineno">   69</span>      <a class="code hl_variable" href="#a06a3832bb9d9708ee001638ad8690c65">head_</a> = header;</div>

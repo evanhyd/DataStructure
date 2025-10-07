@@ -60,10 +60,10 @@ namespace flow {
       return allocatedBlock;
     }
 
-    virtual void deallocateImp(
-      void* address,
-      [[maybe_unused]] std::size_t bytes,
-      [[maybe_unused]] std::size_t alignment) override {
+    virtual void deallocateImp(void* address, [[maybe_unused]] std::size_t bytes, [[maybe_unused]] std::size_t alignment) override {
+      if (!address) {
+        return;
+      }
       Header* header = reinterpret_cast<Header*>(address) - 1;
       header->next = head_;
       head_ = header;

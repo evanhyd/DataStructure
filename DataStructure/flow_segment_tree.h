@@ -10,7 +10,7 @@ namespace flow {
   /// @tparam T 
   /// @tparam Allocator 
   /// @tparam BinOp 
-  template <typename T, typename BinOp, typename Allocator = PolymorphicAllocator<>>
+  template <typename T, typename BinOp, typename Allocator = PolymorphicAllocator<T>>
   class SegmentTree {
   public:
     using value_type = T;

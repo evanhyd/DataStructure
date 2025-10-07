@@ -60,7 +60,7 @@ namespace flow {
     }
 
   private:
-    MemoryResource* resource_; ///< Non-owning pointer to memory resource.
+    MemoryResource* resource_; /// Non-owning pointer to memory resource.
 
     template <typename U>
     friend class PolymorphicAllocator;
