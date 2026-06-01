@@ -13,32 +13,30 @@ namespace flow {
   /// Throws std::bad_alloc if the constraint is not met or run out of memory.
   class PoolMemoryResource : public MemoryResource {
   public:
-    PoolMemoryResource(void* buffer, std::size_t capacity, std::size_t blockSize, std::size_t blockAlignment = sizeof(std::max_align_t))
-      : blockSize_(blockSize), blockAlignment_(blockAlignment), head_(nullptr) {
+    PoolMemoryResource(void* buffer, std::size_t bufferSize, std::size_t blockSize, std::size_t blockAlignment = sizeof(std::max_align_t))
+      : blockSize_(std::max(sizeof(Header), blockSize)),
+        blockAlignment_(std::max(alignof(Header), blockAlignment)),
+        head_(nullptr) {
 
-      Header** headPtr = &head_;
-      for (;;) {
-        Header* header = alignWithHeader<Header>(blockAlignment_, blockSize_, buffer, capacity);
-        if (!header) {
-          break;
-        }
-
-        new (header) Header(nullptr);
-        *headPtr = header;
-        headPtr = &(header->next);
-
-        buffer = reinterpret_cast<std::byte*>(buffer) + sizeof(Header) + blockSize;
-        capacity -= sizeof(Header) + blockSize;
+      // Pad the size so all the successive blocks are all aligned if the first block is aligned.
+      if (size_t tail = blockSize_ % blockAlignment_; tail > 0) {
+        blockSize_ += blockAlignment_ - tail;
       }
-    }
 
-    ~PoolMemoryResource() {
-      // May be useless, since it has a trivial destructor.
-      while (head_) {
-        Header* next = head_->next;
-        head_->~Header();
-        head_ = next;
+      // Align the first block.
+      head_ = static_cast<Header*>(std::align(blockAlignment_, blockSize_, buffer, bufferSize));
+      if (!head_) {
+        return;
       }
+      Header** nextPtr = &head_->next;
+      bufferSize -= blockSize_;
+
+      for (;bufferSize >= blockSize_; bufferSize -= blockSize_) {
+        buffer = static_cast<char*>(buffer) + blockSize_;
+        *nextPtr = static_cast<Header*>(buffer);
+        nextPtr = &static_cast<Header*>(buffer)->next;
+      }
+      *nextPtr = nullptr;
     }
 
   protected:
@@ -55,16 +53,16 @@ namespace flow {
         throw std::bad_alloc();
       }
 
-      void* allocatedBlock = head_ + 1;
+      void* block = head_;
       head_ = head_->next;
-      return allocatedBlock;
+      return block;
     }
 
     virtual void deallocateImp(void* address, [[maybe_unused]] std::size_t bytes, [[maybe_unused]] std::size_t alignment) override {
       if (!address) {
         return;
       }
-      Header* header = reinterpret_cast<Header*>(address) - 1;
+      Header* header = static_cast<Header*>(address);
       header->next = head_;
       head_ = header;
     }

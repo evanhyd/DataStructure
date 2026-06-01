@@ -44,6 +44,7 @@
 #include <utility>
 #ifdef _HAS_CXX20
 #include <bit>
+#include <ranges>
 #endif
 #include <limits>
 
@@ -252,15 +253,35 @@ const auto __ = std::atexit([]() { std::ofstream("display_runtime.txt") << INT_M
 
 #endif
 
-#include "benchmark.h"
-
 using namespace std;
 
+#include "flow_polymorphic_allocator.h"
+#include "flow_pool_memory_resource.h"
+#include "flow_vector.h"
+#include <list>
+
 int main() {
-  benchmark::benchmarkStdVectorInt64(1000000, 1);
-  benchmark::benchmarkFlowVectorInt64(1000000, 1);
-  benchmark::benchmarkStdVectorString(1000000, 1);
-  benchmark::benchmarkFlowVectorString(1000000, 1);
+  char buffer[1024]{};
+  flow::PoolMemoryResource resource(buffer, sizeof(buffer), 4, 4);
+  flow::PolymorphicAllocator allocator(resource);
+  for (int i = 0; i < 10; ++i) {
+    std::byte* p1 = allocator.allocate(4);
+    std::byte* p2 = allocator.allocate(4);
+    std::byte* p3 = allocator.allocate(4);
+    std::byte* p4 = allocator.allocate(4);
+    std::byte* p5 = allocator.allocate(4);
+    cout << p1 << '\n';
+    cout << p2 << '\n';
+    cout << p3 << '\n';
+    cout << p4 << '\n';
+    cout << p5 << '\n';
+
+    allocator.deallocate(p5, 1);
+    allocator.deallocate(p4, 1);
+    allocator.deallocate(p3, 1);
+    allocator.deallocate(p2, 1);
+    allocator.deallocate(p1, 1);
+  }
 }
 
 /*
